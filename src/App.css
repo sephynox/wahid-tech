@@ -1,0 +1,43 @@
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/**
+* Desktop Navigation 
+*/
+.nav-menu * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 992px) {
+
+  .nav-menu button,
+  .nav-menu a,
+  .nav-menu a:focus {
+    width: 56px;
+  }
+
+  .nav-menu button span,
+  .nav-menu a span,
+  .nav-menu button:focus span,
+  .nav-menu a:focus span {
+    display: none;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
