@@ -1,19 +1,21 @@
 import React from 'react';
-import Posts from '../blog/Posts';
+import { Data, Posts } from '../blog/Posts';
 import Postcard from '../components/Postcard';
 
-export default function () {
-    const article = Posts[0];
+export default () => {
+    const article = Data[Posts[0]];
+    const title = 'Wahid Tech';
+    const subtext = 'A personal website and technology blog.';
 
     return (
         <section id="home" className="d-flex flex-column">
             <div className="container margin-auto">
                 <div className="section-title">
-                    <h2>Wahid Tech</h2>
-                    <p>A technology blog analyzing technology through various lenses.</p>
+                    <h2>{title}</h2>
+                    <p>{subtext}</p>
                 </div>
 
-                {typeof article !== 'undefined' && typeof article.link !== 'undefined' ? (
+                {/* {typeof article !== 'undefined' && typeof article.link !== 'undefined' ? (
                     <>
                         <div className="section-title">
                             <h3>Latest Blog Post</h3>
@@ -25,7 +27,7 @@ export default function () {
                             <div className="blog-bottom"></div>
                         </div>
                     </>
-                ) : null}
+                ) : null} */}
             </div>
         </section >
     );

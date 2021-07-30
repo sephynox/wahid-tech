@@ -9,7 +9,6 @@ import {
 import { ThemeProvider } from 'styled-components';
 import ReactGA from 'react-ga';
 import './scss/custom.scss';
-import FadeIn from './tools/FadeIn';
 import { lightTheme, darkTheme } from './tools/Themes';
 import GlobalStyle from './tools/GlobalStyle';
 import './App.css';
@@ -18,11 +17,11 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
-import ReCAPTCHA from 'react-google-recaptcha';
+import BackTop from './tools/BackTop';
 
 function App() {
   const [theme, setTheme] = useState(
-    () => localStorage.getItem('theme') || 'light'
+    () => localStorage.getItem('theme') || 'dark'
   );
 
   const [navstatus, setNav] = useState(
@@ -52,6 +51,12 @@ function App() {
     setNav(mode);
   };
 
+  const onNav = () => {
+    setNav('closed');
+    document.body.classList.remove('mobile-nav-active');
+    window.dispatchEvent(new Event('scroll')); // Resets BackTop
+  }
+
   useEffect(() => {
     localStorage.setItem('theme', theme);
   }, [theme]);
@@ -69,23 +74,23 @@ function App() {
             <header id="header" className="d-flex flex-column justify-content-center">
               <nav id="navbar" className="navbar nav-menu">
                 <ul>
-                  <li><NavLink className="nav-link" exact activeClassName="active" to="/"><i className="nav-link icon bi-house"></i> <span>Home</span></NavLink></li>
-                  <li><NavLink className="nav-link" activeClassName="active" to="/technology-blog"><i className="nav-link icon bi-journals"></i> <span>Blog</span></NavLink></li>
-                  <li><NavLink className="nav-link" exact activeClassName="active" to="/about"><i className="nav-link icon bi-person"></i> <span>About</span></NavLink></li>
-                  <li><NavLink className="nav-link" exact activeClassName="active" to="/contact"><i className="nav-link icon bi-envelope"></i> <span>Contact</span></NavLink></li>
+                  <li><NavLink onClick={onNav} className="nav-link" exact activeClassName="active" to="/"><i className="nav-link icon bi-house"></i> <span>Home</span></NavLink></li>
+                  <li><NavLink onClick={onNav} className="nav-link" activeClassName="active" to="/technology-blog"><i className="nav-link icon bi-journals"></i> <span>Blog</span></NavLink></li>
+                  <li><NavLink onClick={onNav} className="nav-link" exact activeClassName="active" to="/about"><i className="nav-link icon bi-person"></i> <span>About</span></NavLink></li>
+                  <li><NavLink onClick={onNav} className="nav-link" exact activeClassName="active" to="/contact"><i className="nav-link icon bi-envelope"></i> <span>Contact</span></NavLink></li>
                   <li><button className="nav-link" onClick={toggleTheme}><i className={theme === 'light' ? 'icon bi-sun-fill' : 'icon bi-moon-fill'}></i><span>{theme === 'light' ? 'Toggle Dark' : 'Toggle Light'}</span></button></li>
                 </ul>
               </nav>
             </header>
 
-            <FadeIn>
-              <Switch>
-                <Route path="/about" component={About} />
-                <Route path="/contact" component={Contact} />
-                <Route path="/technology-blog*" component={Blog} />
-                <Route path="/" component={Home} />
-              </Switch>
-            </FadeIn>
+            {/* <FadeIn> */}
+            <Switch>
+              <Route path="/about" component={About} />
+              <Route path="/contact" component={Contact} />
+              <Route path="/technology-blog*" component={Blog} />
+              <Route path="/" component={Home} />
+            </Switch>
+            {/* </FadeIn> */}
 
           </Router>
 
@@ -98,6 +103,7 @@ function App() {
           </footer>
         </div>
         <div id="overlay" className={navstatus === 'closed' ? '' : 'active'}></div>
+        <BackTop />
       </>
     </ThemeProvider>
   );

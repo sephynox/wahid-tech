@@ -2,13 +2,13 @@ import React from 'react';
 import Typed from 'typed.js';
 import * as Constants from '../Constants';
 
-export default function () {
+export default () => {
     // Create reference to store the DOM element containing the animation
     const el = React.useRef(null);
     // Create reference to store the Typed instance itself
     const typed = React.useRef(null);
 
-    const bio_text = "I began my journey in software development when I was  13 years old. After almost two decades, technology has become a part of me. However, technology does not exist in a vacuum, and in order to understand technology one must understand its effects through history, on society, and the within various disciplines it forever changes. It is this holistic and fundamental understanding that allows one to truly appreciate and understand the implications of technology on humanity.";
+    const bio_text = "I began my journey in software development when I was  13 years old. After almost two decades, technology has become a part of me. However, technology does not exist in a vacuum, and in order to understand technology one must understand its effects through history, on society, and the within the various disciplines it forever changes. It is this holistic and fundamental understanding that allows one to truly appreciate and understand the implications of technology upon humanity.";
 
     React.useEffect(() => {
         const options = {

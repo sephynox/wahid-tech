@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReCAPTCHA from "react-google-recaptcha";
 import * as Constants from '../Constants';
 
-export default function () {
+export default () => {
     const recaptchaRef = React.createRef();
     const contact_text = "Get in touch if you believe I can help or if you would like to contribute to the blog.";
     const [recaptchaVal, setRecaptcha] = useState(
