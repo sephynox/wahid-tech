@@ -96,6 +96,20 @@ button.nav-link i {
   border: 1px solid ${({ theme }) => theme.backgroundAlt};
 }
 
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.info};
+  border-color: ${({ theme }) => theme.backgroundAlt};
+}
+
+.nav-tabs {
+  border-color: ${({ theme }) => theme.hr};
+}  
+
+.nav-tabs .nav-link:hover{
+  color: ${({ theme }) => theme.text};
+  border-color: ${({ theme }) => theme.hr};
+}
 `;
 
 export default GlobalStyle;

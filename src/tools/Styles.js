@@ -19,7 +19,7 @@ export const TopButton = styled.div`
     cursor: pointer;
 
     &:hover {
-        background-color: #0563bb;
+        background-color: rgb(5, 99, 187);
     }
 
     @media screen and (max-width: 768px) {
@@ -27,4 +27,18 @@ export const TopButton = styled.div`
         right: 15px;
         opacity: .5;
     }
+`;
+
+export const Blockquote = styled.blockquote`
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    border-left: 1px solid ${({ theme }) => theme.text};
+    font-size: 1.2rem;
+    color: ${({ theme }) => theme.textAlt};
+`;
+
+export const HangingIndent = styled.p`
+    padding-left: 1.5em;
+    text-indent:-1.5em;
 `;

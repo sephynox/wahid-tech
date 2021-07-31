@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { DiscussionEmbed } from 'disqus-react';
 import * as Constants from '../Constants';
 import Data from '../blog/Posts';
+import Citation from '../tools/Citation';
 
 const Article = (article) => {
     const article_name = article.props.replace(Constants.SITE_BLOG_PATH_BASE, '');
@@ -56,8 +57,10 @@ const Article = (article) => {
                     <hr className="article-divider-top" />
                     <MyArticle />
                     <hr className="article-divider-bottom" />
+                    <p className="article-story-line">Cite this Page</p>
+                    <Citation />
+                    <hr className="mt-5" />
                     <p className="article-story-line">Comments</p>
-                    <hr />
                     <DiscussionEmbed
                         shortname='wahidtech'
                         config={

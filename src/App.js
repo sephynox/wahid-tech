@@ -18,6 +18,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import BackTop from './tools/BackTop';
+import Market from './pages/Market';
 
 function App() {
   const [theme, setTheme] = useState(
@@ -75,9 +76,10 @@ function App() {
               <nav id="navbar" className="navbar nav-menu">
                 <ul>
                   <li><NavLink onClick={onNav} className="nav-link" exact activeClassName="active" to="/"><i className="nav-link icon bi-house"></i> <span>Home</span></NavLink></li>
+                  <li><NavLink onClick={onNav} className="nav-link" activeClassName="active" to="/financial-markets"><i className="nav-link icon bi-graph-up"></i> <span>Market</span></NavLink></li>
                   <li><NavLink onClick={onNav} className="nav-link" activeClassName="active" to="/technology-blog"><i className="nav-link icon bi-journals"></i> <span>Blog</span></NavLink></li>
-                  <li><NavLink onClick={onNav} className="nav-link" exact activeClassName="active" to="/about"><i className="nav-link icon bi-person"></i> <span>About</span></NavLink></li>
                   <li><NavLink onClick={onNav} className="nav-link" exact activeClassName="active" to="/contact"><i className="nav-link icon bi-envelope"></i> <span>Contact</span></NavLink></li>
+                  <li><NavLink onClick={onNav} className="nav-link" exact activeClassName="active" to="/about"><i className="nav-link icon bi-person"></i> <span>About</span></NavLink></li>
                   <li><button className="nav-link" onClick={toggleTheme}><i className={theme === 'light' ? 'icon bi-sun-fill' : 'icon bi-moon-fill'}></i><span>{theme === 'light' ? 'Toggle Dark' : 'Toggle Light'}</span></button></li>
                 </ul>
               </nav>
@@ -87,6 +89,7 @@ function App() {
             <Switch>
               <Route path="/about" component={About} />
               <Route path="/contact" component={Contact} />
+              <Route path="/financial-markets" component={Market} />
               <Route path="/technology-blog*" component={Blog} />
               <Route path="/" component={Home} />
             </Switch>
