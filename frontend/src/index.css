@@ -193,7 +193,6 @@ h6 {
 .nav-menu a:focus {
   display: flex;
   align-items: center;
-  color: #45505b;
   padding: 10px 18px;
   margin-bottom: 8px;
   font-size: 15px;
@@ -213,7 +212,6 @@ h6 {
 .nav-menu a span,
 .nav-menu a:focus span {
   padding: 0 5px 0 7px;
-  color: #45505b;
 }
 
 @media (min-width: 992px) {
@@ -1164,6 +1162,9 @@ section {
 /*--------------------------------------------------------------
 # Blog
 --------------------------------------------------------------*/
+.no-italic {
+  font-style: normal;
+}
 
 .blog-bottom {
   margin-bottom: 100px;
@@ -1313,6 +1314,10 @@ p.article-image img {
 .article-story-line {
   padding-top: 10px;
   color: #595959;
+}
+
+.article-quote-author {
+  color: #595959
 }
 
 .article-social-links a {

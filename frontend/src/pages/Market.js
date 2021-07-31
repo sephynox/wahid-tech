@@ -1,8 +1,9 @@
 import { Web3ReactProvider } from '@web3-react/core';
+//import { Symfoni } from "./hardhat/SymfoniContext";
 
 export default () => {
     function getLibrary(provider, connector) {
-        return new Web3Provider(provider) // this will vary according to whether you use e.g. ethers or web3.js
+        return new Web3Provider(provider);
     }
 
     return (
@@ -12,4 +13,4 @@ export default () => {
             </section>
         </Web3ReactProvider>
     );
-}
+};

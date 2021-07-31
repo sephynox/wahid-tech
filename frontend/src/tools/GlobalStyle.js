@@ -53,6 +53,11 @@ button.nav-link i {
 
 .nav-link {
   color:  ${({ theme }) => theme.text};
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.text};
+  }
 }
 
 .nav-menu a, .nav-menu a:focus {

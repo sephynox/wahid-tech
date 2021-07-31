@@ -1,3 +1,4 @@
+export const SITE_NAME = 'WahidTech';
 export const MY_NAME = 'Tanveer Wahid';
 export const MY_EMAIL = 'tan@wahid.email';
 export const GA_TRACKING_ID = 'G-HP7W48NCNM';

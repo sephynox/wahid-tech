@@ -1,4 +1,3 @@
-import React from 'react';
 import Helmet from 'react-helmet';
 import { DiscussionEmbed } from 'disqus-react';
 import * as Constants from '../Constants';
@@ -9,6 +8,7 @@ const Article = (article) => {
     const article_name = article.props.replace(Constants.SITE_BLOG_PATH_BASE, '');
     const article_data = Data[article_name];
     const article_full_url = Constants.SITE_BLOG_ARTICLE_BASE_URL + article_data.link;
+    const article_authors = article_data.authors.map((author) => author.given + (author.middle !== undefined ? author.middle.substr(0, 1) + '. ' : ' ') + author.family).join(', ');
     const MyArticle = article_data.component;
     const publish_date = article_data.date.toLocaleDateString();
     const modified_date = article_data.modified ? article_data.modified.toLocaleDateString() : null;
@@ -31,8 +31,10 @@ const Article = (article) => {
                     <h2>{article_data.title}</h2>
 
                     <dl className="dl-horizontal dl-custom">
+                        <dt>By:</dt>
+                        <dd id="article_authors">{article_authors}</dd>
                         <dt>Published:</dt>
-                        <dd id="date_posted">{publish_date}</dd>
+                        <dd id="article_date_posted">{publish_date}</dd>
                         {modified_date !== null ? (
                             <>
                                 <dt>Last Update:</dt>
@@ -40,7 +42,7 @@ const Article = (article) => {
                             </>
                         ) : null}
                         <dt>Summary:</dt>
-                        <dd id="abstract">{article_data.description}</dd>
+                        <dd id="article_abstract">{article_data.description}</dd>
                         <dt className="no-print">Share:</dt>
                         <dd className="no-print">
                             <div className="article-social-links">
@@ -58,7 +60,13 @@ const Article = (article) => {
                     <MyArticle />
                     <hr className="article-divider-bottom" />
                     <p className="article-story-line">Cite this Page</p>
-                    <Citation />
+                    <Citation
+                        authors={article_data.authors}
+                        publisher={Constants.SITE_NAME}
+                        title={article_data.title}
+                        date_year={article_data.date.getFullYear()}
+                        date_month={article_data.date.toLocaleString('default', { month: 'long' })}
+                        date_day={article_data.date.getDate()} />
                     <hr className="mt-5" />
                     <p className="article-story-line">Comments</p>
                     <DiscussionEmbed

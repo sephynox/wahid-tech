@@ -5,6 +5,8 @@
 		}
 	],
 	"settings": {
-		"git.ignoreLimitWarning": true
+		"git.ignoreLimitWarning": true,
+		"solidity.compileUsingRemoteVersion": "v0.6.12",
+		"solidity.enableLocalNodeCompiler": false
 	}
 }
