@@ -1,9 +1,9 @@
 import React from 'react';
-import { Data, Posts } from '../blog/Posts';
-import Postcard from '../components/Postcard';
+//import Data, { Posts } from '../blog/Data';
+//import Postcard from '../components/Postcard';
 
-export default () => {
-    const article = Data[Posts[0]];
+const Home = (): JSX.Element => {
+    //const article = Data[Posts[0]];
     const title = 'Wahid Tech';
     const subtext = 'A personal website and technology blog.';
 
@@ -29,6 +29,8 @@ export default () => {
                     </>
                 ) : null} */}
             </div>
-        </section >
+        </section>
     );
-}
+};
+
+export default Home;
