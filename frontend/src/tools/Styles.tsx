@@ -87,6 +87,18 @@ code {
   background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }
 
+.color.red {
+    color: ${(props: ThemeEngine) => props.theme.dangerText};
+}
+
+.color.green {
+    color: ${(props: ThemeEngine) => props.theme.dangerText};
+}
+
+.color.grey {
+    color: ${(props: ThemeEngine) => props.theme.hr};
+}
+
 .nav-menu a span {
   color:  ${(props: ThemeEngine) => props.theme.text};
 }
@@ -163,5 +175,31 @@ button.nav-link i {
 .nav-tabs .nav-link:hover{
   color: ${(props: ThemeEngine) => props.theme.text};
   border-color: ${(props: ThemeEngine) => props.theme.hr};
+}
+
+.table {
+    color: ${(props: ThemeEngine) => props.theme.text};
+    border-color: ${(props: ThemeEngine) => props.theme.hr};
+}
+
+.highcharts-background {
+    fill: none;
+}
+
+.highcharts-menu-item {
+    color: ${(props: ThemeEngine) => props.theme.text};
+}
+
+.highcharts-menu-item:hover {
+    background: ${(props: ThemeEngine) => props.theme.backgroundAlt};
+    fill: ${(props: ThemeEngine) => props.theme.info};
+}
+
+.highcarts-title,
+.highcharts-axis-labels,
+.highcharts-axis-title,
+.highcharts-legend-item,
+.highcharts-legend-title {
+    color: ${(props: ThemeEngine) => props.theme.text} !important;
 }
 `;

@@ -4,7 +4,7 @@ import React from 'react';
 
 const Home = (): JSX.Element => {
     //const article = Data[Posts[0]];
-    const title = 'Wahid Tech';
+    const title = 'WTech';
     const subtext = 'A personal website and technology blog.';
 
     return (

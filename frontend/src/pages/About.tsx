@@ -53,6 +53,14 @@ const About = (): JSX.Element => {
                                 <a href="resume.pdf" target="_new" className="linkedin" title="Resume">
                                     <i className="icon bi-file-earmark-person-fill"></i>
                                 </a>
+                                <a
+                                    href="https://github.com/sephynox/wahid-tech"
+                                    target="_new"
+                                    className="github"
+                                    title="GitHub"
+                                >
+                                    <i className="icon bi-linkedin"></i>
+                                </a>
                             </div>
                         </div>
                     </div>

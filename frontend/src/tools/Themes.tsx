@@ -22,6 +22,9 @@ export type Theme = {
     danger: string;
     dangerText: string;
     dangerBorder: string;
+    success: string;
+    successText: string;
+    successBorder: string;
 };
 
 export const lightTheme: Theme = {
@@ -48,6 +51,9 @@ export const lightTheme: Theme = {
     danger: 'rgba(151, 3, 1, 0.3)',
     dangerText: '#721c24',
     dangerBorder: 'rgb(157, 3, 1)',
+    success: 'rgb(32, 253, 13)',
+    successText: 'rgb(32, 253, 13)',
+    successBorder: 'rgb(32, 253, 13)',
 };
 
 export const darkTheme: Theme = {
@@ -74,6 +80,9 @@ export const darkTheme: Theme = {
     danger: 'rgba(126, 3, 1, 0.3)',
     dangerText: '#f08181',
     dangerBorder: 'rgb(220, 11, 5)',
+    success: 'rgb(32, 253, 13)',
+    successText: 'rgb(32, 253, 13)',
+    successBorder: 'rgb(32, 253, 13)',
 };
 
 export default Theme;

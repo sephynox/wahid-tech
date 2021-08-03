@@ -76,6 +76,12 @@ h6 {
     margin: 0 auto;
 }
 
+@media screen and (max-width: 768px) {
+    .hide-mobile {
+        display: none;
+    }
+}
+
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -385,6 +391,7 @@ section {
 @media (min-width: 992px) {
     section {
         padding-left: 160px;
+        padding-right: 80px;
     }
 }
 
@@ -1334,4 +1341,22 @@ p.article-image img {
 
 .article-end-comments {
     margin-bottom: 100px;
+}
+
+/*--------------------------------------------------------------
+# Market
+--------------------------------------------------------------*/
+.table thead tr {
+    border-top: none;
+    border-left: none;
+}
+
+.table thead tr th {
+    border-left: none;
+    border-right: none;
+}
+
+.table tbody tr td {
+    border-left: none;
+    border-right: none;
 }
