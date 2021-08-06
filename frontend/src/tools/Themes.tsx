@@ -9,6 +9,8 @@ export type Theme = {
     backgroundExtended: string;
     backgroundBlog: string;
     backgroundDelta: string;
+    link: string;
+    linkHover: string;
     hr: string;
     text: string;
     textAlt: string;
@@ -38,22 +40,24 @@ export const lightTheme: Theme = {
     backgroundExtended: 'rgba(244, 244, 244)',
     backgroundBlog: 'rgb(255, 255, 255)',
     backgroundDelta: 'rgba(0, 0, 0, .1)',
-    hr: 'rgb(191, 191, 191)',
+    link: 'rgb(11, 134, 249)',
+    linkHover: 'rgb(38, 107, 172)',
+    hr: 'rgb(96, 96, 96)',
     text: '#000',
     textAlt: '#1a487d',
     textIcon: '#000',
     info: 'rgb(5, 99, 187)',
     infoText: '#004085',
     infoBorder: 'rgb(13, 142, 174)',
-    warn: 'rgba(168, 141, 12, 0.3)',
-    warnText: '#856404',
-    warnBorder: 'rgb(174, 146, 13)',
+    warn: 'rgb(227, 0, 21)',
+    warnText: 'rgb(227, 0, 21)',
+    warnBorder: 'rgb(227, 0, 21)',
     danger: 'rgba(151, 3, 1, 0.3)',
     dangerText: '#721c24',
     dangerBorder: 'rgb(157, 3, 1)',
-    success: 'rgb(32, 253, 13)',
-    successText: 'rgb(32, 253, 13)',
-    successBorder: 'rgb(32, 253, 13)',
+    success: 'rgb(19, 162, 7)',
+    successText: 'rgb(19, 162, 7)',
+    successBorder: 'rgb(19, 162, 7)',
 };
 
 export const darkTheme: Theme = {
@@ -67,6 +71,8 @@ export const darkTheme: Theme = {
     backgroundExtended: 'rgb(32, 34, 34)',
     backgroundBlog: 'rgb(32, 34, 34)',
     backgroundDelta: 'rgba(0, 0, 0)',
+    link: 'rgb(81, 139, 193)',
+    linkHover: 'rgb(6, 125, 237)',
     hr: 'rgb(81, 83, 84)',
     text: '#fff',
     textAlt: '#acc7e6',

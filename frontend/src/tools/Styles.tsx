@@ -52,22 +52,32 @@ export const HangingIndent = styled.p`
 export const GlobalStyle = createGlobalStyle`
 html,
 body {
-  overflow: auto;
-  height: 100%;
-  margin: 0; 
+    overflow: auto;
+    height: 100%;
+    margin: 0; 
 }
 
 body {
-  display:flex; 
-  flex-direction:column; 
-  background-color:${(props: ThemeEngine) => props.theme.background};
-  color: ${(props: ThemeEngine) => props.theme.text};
-  transition: all 0.25s linear;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    display:flex; 
+    flex-direction:column; 
+    background-color:${(props: ThemeEngine) => props.theme.background};
+    color: ${(props: ThemeEngine) => props.theme.text};
+    transition: all 0.25s linear;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: ${(props: ThemeEngine) => props.theme.link};
+    text-decoration: none;
+}
+
+a:hover {
+    color: ${(props: ThemeEngine) => props.theme.linkHover}
+    text-decoration: none;
 }
 
 code {
@@ -83,8 +93,8 @@ code {
 }
 
 #footer {
-  color: ${(props: ThemeEngine) => props.theme.text};
-  background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
+    color: ${(props: ThemeEngine) => props.theme.text};
+    background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }
 
 .color.red {
@@ -92,7 +102,7 @@ code {
 }
 
 .color.green {
-    color: ${(props: ThemeEngine) => props.theme.dangerText};
+    color: ${(props: ThemeEngine) => props.theme.successText};
 }
 
 .color.grey {
@@ -100,16 +110,16 @@ code {
 }
 
 .nav-menu a span {
-  color:  ${(props: ThemeEngine) => props.theme.text};
+    color:  ${(props: ThemeEngine) => props.theme.text};
 }
 
 button.nav-link {
-  color:  ${(props: ThemeEngine) => props.theme.text};
-  background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
+    color:  ${(props: ThemeEngine) => props.theme.text};
+    background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }
 
 button.nav-link i {
-  color:  ${(props: ThemeEngine) => props.theme.text};
+    color:  ${(props: ThemeEngine) => props.theme.text};
 }
 
 .nav-link {
@@ -122,7 +132,7 @@ button.nav-link i {
 }
 
 .nav-menu a, .nav-menu a:focus {
-  background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
+    background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }
 
 .nav-menu button:hover,
@@ -130,51 +140,51 @@ button.nav-link i {
 .nav-menu .active,
 .nav-menu .active:focus,
 .nav-menu li:hover > a {
-  background-color: ${(props: ThemeEngine) => props.theme.info} !important;
+    background-color: ${(props: ThemeEngine) => props.theme.info} !important;
 }
 
 .mobile-nav-active .mobile-nav-toggle {
-  color: ${(props: ThemeEngine) => props.theme.text};
-  background-color: ${(props: ThemeEngine) => props.theme.info};
+    color: ${(props: ThemeEngine) => props.theme.text};
+    background-color: ${(props: ThemeEngine) => props.theme.info};
 }
 
 .mobile-nav-toggle {
-  color: ${(props: ThemeEngine) => props.theme.text};
+    color: ${(props: ThemeEngine) => props.theme.text};
 }
 
 .back-to-top:hover {
-  background-color: ${(props: ThemeEngine) => props.theme.info};
-  color: ${(props: ThemeEngine) => props.theme.text};
+    background-color: ${(props: ThemeEngine) => props.theme.info};
+    color: ${(props: ThemeEngine) => props.theme.text};
 }
 
 .contact .php-email-form input,
 .contact .php-email-form textarea {
-  color: ${(props: ThemeEngine) => props.theme.text};
-  background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
+    color: ${(props: ThemeEngine) => props.theme.text};
+    background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }
 
 .card {
-  background-color: ${(props: ThemeEngine) => props.theme.backgroundBlog};
-  border: 1px solid ${(props: ThemeEngine) => props.theme.backgroundDelta};
+    background-color: ${(props: ThemeEngine) => props.theme.backgroundBlog};
+    border: 1px solid ${(props: ThemeEngine) => props.theme.backgroundDelta};
 }
 
 .form-control {
-  border: 1px solid ${(props: ThemeEngine) => props.theme.backgroundAlt};
+    border: 1px solid ${(props: ThemeEngine) => props.theme.backgroundAlt};
 }
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-  color: ${(props: ThemeEngine) => props.theme.text};
-  background-color: ${(props: ThemeEngine) => props.theme.info};
-  border-color: ${(props: ThemeEngine) => props.theme.backgroundAlt};
+    color: ${(props: ThemeEngine) => props.theme.text};
+    background-color: ${(props: ThemeEngine) => props.theme.info};
+    border-color: ${(props: ThemeEngine) => props.theme.backgroundAlt};
 }
 
 .nav-tabs {
-  border-color: ${(props: ThemeEngine) => props.theme.hr};
+    border-color: ${(props: ThemeEngine) => props.theme.hr};
 }  
 
 .nav-tabs .nav-link:hover{
-  color: ${(props: ThemeEngine) => props.theme.text};
-  border-color: ${(props: ThemeEngine) => props.theme.hr};
+    color: ${(props: ThemeEngine) => props.theme.text};
+    border-color: ${(props: ThemeEngine) => props.theme.hr};
 }
 
 .table {
@@ -201,5 +211,27 @@ button.nav-link i {
 .highcharts-legend-item,
 .highcharts-legend-title {
     color: ${(props: ThemeEngine) => props.theme.text} !important;
+}
+
+a.page-link {
+    color: ${(props: ThemeEngine) => props.theme.text};
+    background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
+    border: 1px solid ${(props: ThemeEngine) => props.theme.backgroundAlt};
+}
+
+a.page-item.active .page-link {
+    background-color: ${(props: ThemeEngine) => props.theme.info};
+    color: ${(props: ThemeEngine) => props.theme.text};
+    border-color: {(props: ThemeEngine) => props.theme.info};
+}
+
+button.btn-secondary {
+    background-color:${(props: ThemeEngine) => props.theme.backgroundExtended};
+    border-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
+}
+
+button.btn-secondary:hover {
+    background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
+    border-color: ${(props: ThemeEngine) => props.theme.info};
 }
 `;

@@ -3,10 +3,10 @@ export const numberWithCommas = (x: number, r?: number): string => {
     return ret.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-export const formatPrice = (price: number): string => {
-    return '$' + numberWithCommas(price, 2) + ' USD';
+export const formatPrice = (p: number): string => {
+    return '$' + numberWithCommas(p, 2) + ' USD';
 };
 
-export const formatPercent = (percent: number): string => {
-    return numberWithCommas(percent) + '%';
+export const formatPercent = (p: number, r = 2): string => {
+    return numberWithCommas(p, r) + '%';
 };
