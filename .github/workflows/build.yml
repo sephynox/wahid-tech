@@ -1,0 +1,11 @@
+name: 'Build Site'
+
+on: pull_request
+
+jobs:
+  build-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Code that does the build process goes here
