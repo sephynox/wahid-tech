@@ -1,16 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import BootstrapTable from 'react-bootstrap-table-next';
+import BootstrapTable, { SortOrder } from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import LoaderSpinner from '../tools/LoaderSpinner';
 
 type Props = {
     columns: Array<Column<any>>;
     data: Array<any>;
     page?: number,
-    sizePerPage?: number
+    sizePerPage?: number,
+    defaultSorted?: Sort<any>
 };
 
-const Table = ({ columns, data, page = 1, sizePerPage = 20 }: Props): JSX.Element => {
+const Table = ({ columns, data, defaultSorted, page = 1, sizePerPage = 20 }: Props): JSX.Element => {
     const options = {
         page: page,
         sizePerPage: sizePerPage,
@@ -21,9 +23,20 @@ const Table = ({ columns, data, page = 1, sizePerPage = 20 }: Props): JSX.Elemen
     };
 
     return (
-        <BootstrapTable bootstrap4 keyField='id' data={data} columns={columns} pagination={paginationFactory(options)} />
+        <BootstrapTable bootstrap4
+            keyField='id'
+            noDataIndication={() => <LoaderSpinner />}
+            defaultSorted={defaultSorted} data={data}
+            columns={columns}
+            pagination={paginationFactory(options)}
+        />
     );
 }
+
+export type Sort<T> = [{
+    dataField: T;
+    order: SortOrder;
+}];
 
 export type Column<T> = {
     key: string,
@@ -31,6 +44,7 @@ export type Column<T> = {
     text: string;
     formatter?: (c: any, r: T) => any;
     hidden?: boolean;
+    sort: boolean;
     headerClasses?: string;
     classes?: string;
     icon?: JSX.Element;

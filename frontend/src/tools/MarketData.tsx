@@ -1,4 +1,11 @@
+export enum MarketType {
+    CRYPTO,
+    STOCK,
+    COMMODITY
+};
+
 export type MarketData = {
+    type: MarketType;
     key: string;
     name: string;
     ticker: string;

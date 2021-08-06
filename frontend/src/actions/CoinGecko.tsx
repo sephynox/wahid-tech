@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import * as Constants from '../Constants';
-import { MarketData } from '../tools/MarketData';
+import { MarketData, MarketType } from '../tools/MarketData';
 import { ExternalStates } from './External';
 
 enum CoinGeckoStates {
@@ -55,6 +55,7 @@ export type CoinGeckoState =
     | { type: ExternalStates.ERROR, error: string, result?: Array<MarketData> }
     | { type: CoinGeckoStates.FETCHED_COIN_DATA, result: Array<MarketData> }
     | { type: CoinGeckoStates.FETCHED_COIN_MARKET_DATA, result: Array<MarketData> }
+    // TODO
     | { type: CoinGeckoStates.FETCHED_COIN_LIST, result: Array<MarketData> };
 
 export const initialCoinGeckoState: CoinGeckoState = {
@@ -100,6 +101,7 @@ export const fetchCryptoMarketData = (
                 (result) => {
                     const data = result.data.map((coin: CoinGeckoCoinData): MarketData => {
                         return {
+                            type: MarketType.CRYPTO,
                             key: coin.id,
                             name: coin.name,
                             ticker: coin.symbol,
@@ -109,7 +111,7 @@ export const fetchCryptoMarketData = (
                             delta30: coin.price_change_percentage_30d_in_currency ?? undefined,
                             deltaY: coin.price_change_percentage_1y_in_currency ?? undefined,
                             cap: coin.market_cap,
-                            path: Constants.SITE_MARKET_PATH_BASE + coin.id,
+                            path: Constants.SITE_MARKET_PATH_BASE_URL + MarketType.CRYPTO + '/' + coin.id,
                         };
                     });
                     dispatch({ type: CoinGeckoStates.FETCHED_COIN_MARKET_DATA, result: data });
@@ -156,4 +158,4 @@ const exampleData: CoinGeckoCoinData = {
     symbol: "eth",
     total_supply: null,
     total_volume: 38006149148
-}
+};
