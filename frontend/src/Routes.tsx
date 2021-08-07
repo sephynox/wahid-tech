@@ -7,15 +7,13 @@ import Home from './pages/Home';
 import Market from './pages/Market';
 
 const Routes: React.FunctionComponent = (): JSX.Element => (
-    <section className="d-flex flex-column justify-content-center">
-        <Switch>
-            <Route path="/about" component={About} />
-            <Route path="/contact" component={Contact} />
-            <Route path="/financial-markets" component={Market} />
-            <Route path="/technology-blog*" component={Blog} />
-            <Route path="/" component={Home} />
-        </Switch>
-    </section>
+    <Switch>
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/financial-markets" component={Market} />
+        <Route path="/technology-blog*" component={Blog} />
+        <Route path="/" component={Home} />
+    </Switch>
 );
 
 export default Routes;

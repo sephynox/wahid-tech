@@ -4,11 +4,12 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import ReactGA from 'react-ga';
 import './scss/custom.scss';
+import * as Constants from './Constants';
 import { lightTheme, darkTheme, Themes } from './tools/Themes';
 import { GlobalStyle } from './tools/Styles';
 import './App.css';
 import { socialLinks } from './Data';
-import { NavState } from './layout/Navigation';
+import { NavMenu, NavState } from './layout/Navigation';
 import BackTop from './tools/BackTop';
 import Overlay, { OverlayState } from './layout/Overlay';
 import { SocialBlock } from './tools/SocialLinks';
@@ -22,6 +23,7 @@ export const AppContext = createContext<{
     navState: NavState,
     overlayState: OverlayState,
     socialLinks: Array<SocialBlock>,
+    toggleNav: () => void,
     setTheme: (value: Themes) => void,
     setNavState: (value: NavState) => void,
     setOverlayState: (value: OverlayState) => void,
@@ -31,6 +33,7 @@ export const AppContext = createContext<{
     navState: NavState.CLOSED,
     overlayState: OverlayState.HIDE,
     socialLinks: socialLinks,
+    toggleNav: () => null,
     setTheme: () => null,
     setNavState: () => null,
     setOverlayState: () => null,
@@ -44,12 +47,29 @@ const App = (): JSX.Element => {
     const [navState, setNavState] = useState(() => localStorage.getItem('navState') as NavState || NavState.CLOSED);
     const [overlayState, setOverlayState] = useState(() => OverlayState.HIDE);
 
+    const toggleNav = () => {
+        let mode: NavState = NavState.CLOSED;
+        //let overlay: OverlayState = OverlayState.HIDE;
+
+        if (appContext.navState === NavState.CLOSED) {
+            mode = NavState.OPEN;
+            //overlay = OverlayState.SHOW;
+            document.body.classList.add(Constants.NAVIGATION_ACTIVE_CLASS);
+        } else {
+            document.body.classList.remove(Constants.NAVIGATION_ACTIVE_CLASS);
+        }
+
+        appContext.setNavState(mode);
+        //appContext.setOverlayState(overlay);
+    };
+
     const appContext = {
         testMode,
         theme,
         navState,
         overlayState,
         socialLinks,
+        toggleNav,
         setTheme,
         setNavState,
         setOverlayState
@@ -66,6 +86,7 @@ const App = (): JSX.Element => {
                 <ThemeProvider theme={theme === Themes.LIGHT ? lightTheme : darkTheme}>
                     <Fragment>
                         <Router>
+                            <NavMenu />
                             <Header />
                             <Body />
                             <Footer />

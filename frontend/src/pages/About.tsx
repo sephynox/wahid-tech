@@ -23,7 +23,7 @@ const About = (): JSX.Element => {
     };
 
     return (
-        <div className="container">
+        <div id="about" className="container">
             <h1>{Constants.MY_NAME}</h1>
             <div className="container">
                 <div className="row">

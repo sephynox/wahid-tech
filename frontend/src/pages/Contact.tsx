@@ -12,7 +12,7 @@ const Contact = (): JSX.Element => {
     }, [recaptchaVal]);
 
     return (
-        <div className="container">
+        <div className="container contact">
             <div className="section-title">
                 <h2>Contact</h2>
                 <p>{contact_text}</p>

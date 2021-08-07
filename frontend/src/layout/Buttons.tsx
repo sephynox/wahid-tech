@@ -17,8 +17,8 @@ const Buttons: React.FunctionComponent = (): JSX.Element => {
     return (
         <div className='nav-menu-buttons'>
             <button className="nav-link" onClick={toggleTheme}>
-                <i className={appContext.theme === Themes.LIGHT ? 'icon bi-sun-fill' : 'icon bi-moon-fill'}></i>
-                <span>{appContext.theme === Themes.LIGHT ? 'Toggle Dark' : 'Toggle Light'}</span>
+                <i className={appContext.theme === Themes.LIGHT ? 'icon bi-moon-fill' : 'icon bi-sun-fill'}></i>
+                <span>&nbsp;{appContext.theme === Themes.LIGHT ? 'Dark' : 'Light'}</span>
             </button>
         </div>
     );

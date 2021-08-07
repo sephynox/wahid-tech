@@ -26,24 +26,22 @@ const Blog = (): JSX.Element => {
 
     return (
         <Router history={useHistory()}>
-            <div className="margin-auto-vertical">
-                <Switch>
-                    <Route
-                        path={Constants.SITE_BLOG_PATH_BASE + '*'}
-                        render={() => <Article data={Data[window.location.pathname.replace(Constants.SITE_BLOG_PATH_BASE, '')]} />}
-                    />
-                    <Route path="*">
-                        <div className="container">
-                            <div className="section-title">
-                                <h2>{title}</h2>
-                                <p>{subtext}</p>
-                            </div>
-                            <div className="row">{list}</div>
-                            <div className="space-bottom"></div>
+            <Switch>
+                <Route
+                    path={Constants.SITE_BLOG_PATH_BASE + '*'}
+                    render={() => <Article data={Data[window.location.pathname.replace(Constants.SITE_BLOG_PATH_BASE, '')]} />}
+                />
+                <Route path="*">
+                    <div className="container">
+                        <div className="section-title">
+                            <h2>{title}</h2>
+                            <p>{subtext}</p>
                         </div>
-                    </Route>
-                </Switch>
-            </div>
+                        <div className="row">{list}</div>
+                        <div className="space-bottom"></div>
+                    </div>
+                </Route>
+            </Switch>
         </Router>
     );
 };

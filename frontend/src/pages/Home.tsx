@@ -9,12 +9,9 @@ const Home = (): JSX.Element => {
     const subtext = 'A personal website and technology blog.';
 
     return (
-        <div className="container margin-auto">
-            <div className="section-title">
-                <h2>{title}</h2>
-                <p>{subtext}</p>
-            </div>
-
+        <div className="section-title">
+            <h2>{title}</h2>
+            <p>{subtext}</p>
             {/* {typeof article !== 'undefined' && typeof article.link !== 'undefined' ? (
                 <>
                     <div className="section-title">

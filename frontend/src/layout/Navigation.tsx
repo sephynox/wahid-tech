@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import * as Constants from '../Constants';
 import { AppContext } from '../App';
 
 type Props = {
@@ -24,14 +23,24 @@ export type NavBlock = {
     exact?: boolean;
 };
 
-const Navigation = ({ navLinks }: Props): JSX.Element => {
+
+export const NavMenu = (): JSX.Element => {
     const appContext = React.useContext(AppContext);
 
-    const onNav = () => {
-        appContext.setNavState(NavState.CLOSED);
-        document.body.classList.remove(Constants.NAVIGATION_ACTIVE_CLASS);
-        window.dispatchEvent(new Event('scroll')); // Resets BackTop
-    };
+    return (
+        <button
+            type="button"
+            onClick={appContext.toggleNav}
+            className={appContext.navState === NavState.CLOSED
+                ? 'bi bi-list mobile-nav-toggle'
+                : 'bi bi-x mobile-nav-toggle'
+            }
+        ></button>
+    );
+};
+
+const Navigation = ({ navLinks }: Props): JSX.Element => {
+    const appContext = React.useContext(AppContext);
 
     const NavItem = ({
         keyId,
@@ -44,7 +53,7 @@ const Navigation = ({ navLinks }: Props): JSX.Element => {
     }: NavBlock): JSX.Element => {
         return (
             <NavLink
-                onClick={onNav}
+                onClick={appContext.toggleNav}
                 className={className}
                 exact={exact}
                 activeClassName={activeClassName}
