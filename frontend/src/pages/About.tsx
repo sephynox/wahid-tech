@@ -23,50 +23,48 @@ const About = (): JSX.Element => {
     };
 
     return (
-        <section id="about" className="d-flex flex-column justify-content-center">
+        <div className="container">
+            <h1>{Constants.MY_NAME}</h1>
             <div className="container">
-                <h1>{Constants.MY_NAME}</h1>
-                <div className="container">
-                    <div className="row">
-                        <p className="typed-container">
-                            I&apos;m a <Typed {...typed_options} />
-                        </p>
+                <div className="row">
+                    <p className="typed-container">
+                        I&apos;m a <Typed {...typed_options} />
+                    </p>
+                </div>
+                <div className="row">
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                        <hr />
+                        {bio_text}
                     </div>
-                    <div className="row">
-                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                            <hr />
-                            {bio_text}
-                        </div>
-                        <div className="col"></div>
-                    </div>
-                    <div className="row">
-                        <div className="col">
-                            <div className="social-links">
-                                <a
-                                    href="https://www.linkedin.com/in/twahid"
-                                    target="_new"
-                                    className="linkedin"
-                                    title="LinkedIn"
-                                >
-                                    <i className="icon bi-linkedin"></i>
-                                </a>
-                                <a href="resume.pdf" target="_new" className="linkedin" title="Resume">
-                                    <i className="icon bi-file-earmark-person-fill"></i>
-                                </a>
-                                <a
-                                    href="https://github.com/sephynox/wahid-tech"
-                                    target="_new"
-                                    className="github"
-                                    title="GitHub"
-                                >
-                                    <i className="icon bi-linkedin"></i>
-                                </a>
-                            </div>
+                    <div className="col"></div>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <div className="social-links">
+                            <a
+                                href="https://www.linkedin.com/in/twahid"
+                                target="_new"
+                                className="linkedin"
+                                title="LinkedIn"
+                            >
+                                <i className="icon bi-linkedin"></i>
+                            </a>
+                            <a href="resume.pdf" target="_new" className="linkedin" title="Resume">
+                                <i className="icon bi-file-earmark-person-fill"></i>
+                            </a>
+                            <a
+                                href="https://github.com/sephynox/wahid-tech"
+                                target="_new"
+                                className="github"
+                                title="GitHub"
+                            >
+                                <i className="icon bi-github"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 

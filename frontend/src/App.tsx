@@ -1,169 +1,82 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { createContext, Fragment, useEffect, useState } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import ReactGA from 'react-ga';
 import './scss/custom.scss';
-import { lightTheme, darkTheme } from './tools/Themes';
+import { lightTheme, darkTheme, Themes } from './tools/Themes';
 import { GlobalStyle } from './tools/Styles';
 import './App.css';
-import * as Constants from './Constants';
-import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Blog from './pages/Blog';
+import { socialLinks } from './Data';
+import { NavState } from './layout/Navigation';
 import BackTop from './tools/BackTop';
-import Market from './pages/Market';
+import Overlay, { OverlayState } from './layout/Overlay';
+import { SocialBlock } from './tools/SocialLinks';
+import Header from './layout/Header';
+import Footer from './layout/Footer';
+import Body from './layout/Body';
+
+export const AppContext = createContext<{
+    testMode: boolean,
+    theme: Themes,
+    navState: NavState,
+    overlayState: OverlayState,
+    socialLinks: Array<SocialBlock>,
+    setTheme: (value: Themes) => void,
+    setNavState: (value: NavState) => void,
+    setOverlayState: (value: OverlayState) => void,
+}>({
+    testMode: false,
+    theme: Themes.DARK,
+    navState: NavState.CLOSED,
+    overlayState: OverlayState.HIDE,
+    socialLinks: socialLinks,
+    setTheme: () => null,
+    setNavState: () => null,
+    setOverlayState: () => null,
+});
 
 const App = (): JSX.Element => {
-    const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
-    const [navStatus, setNav] = useState(() => localStorage.getItem('navStatus') || 'closed');
+    const testMode: boolean = process.env.NODE_ENV === 'test';
+    const sysTheme: Themes = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? Themes.LIGHT : Themes.DARK;
 
-    const toggleTheme = () => {
-        let mode = 'light';
+    const [theme, setTheme] = useState(() => localStorage.getItem('theme') as Themes || sysTheme);
+    const [navState, setNavState] = useState(() => localStorage.getItem('navState') as NavState || NavState.CLOSED);
+    const [overlayState, setOverlayState] = useState(() => OverlayState.HIDE);
 
-        if (theme === 'light') {
-            mode = 'dark';
-        }
-
-        setTheme(mode);
-    };
-
-    const toggleNav = () => {
-        let mode = 'closed';
-
-        if (navStatus === 'closed') {
-            mode = 'open';
-            document.body.classList.add('mobile-nav-active');
-        } else {
-            document.body.classList.remove('mobile-nav-active');
-        }
-
-        setNav(mode);
-    };
-
-    const onNav = () => {
-        setNav('closed');
-        document.body.classList.remove('mobile-nav-active');
-        window.dispatchEvent(new Event('scroll')); // Resets BackTop
+    const appContext = {
+        testMode,
+        theme,
+        navState,
+        overlayState,
+        socialLinks,
+        setTheme,
+        setNavState,
+        setOverlayState
     };
 
     useEffect(() => {
         localStorage.setItem('theme', theme);
-    }, [theme]);
-
-    ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID ? process.env.REACT_APP_GA_TRACKING_ID : '');
+        !testMode && ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID ? process.env.REACT_APP_GA_TRACKING_ID : '');
+    }, [theme, testMode]);
 
     return (
-        <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-            <Fragment>
-                <div className="App">
-                    <Router>
-                        <button
-                            type="button"
-                            onClick={toggleNav}
-                            className={
-                                navStatus === 'closed'
-                                    ? 'bi bi-list mobile-nav-toggle d-xl-none'
-                                    : 'bi bi-x mobile-nav-toggle d-xl-none'
-                            }
-                        ></button>
-                        <header id="header" className="d-flex flex-column justify-content-center">
-                            <nav id="navbar" className="navbar nav-menu">
-                                <ul>
-                                    <li>
-                                        <NavLink
-                                            onClick={onNav}
-                                            className="nav-link"
-                                            exact
-                                            activeClassName="active"
-                                            to="/"
-                                        >
-                                            <i className="nav-link icon bi-house"></i> <span>Home</span>
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            onClick={onNav}
-                                            className="nav-link"
-                                            activeClassName="active"
-                                            to="/financial-markets"
-                                        >
-                                            <i className="nav-link icon bi-graph-up"></i> <span>Market</span>
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            onClick={onNav}
-                                            className="nav-link"
-                                            activeClassName="active"
-                                            to="/technology-blog"
-                                        >
-                                            <i className="nav-link icon bi-journals"></i> <span>Blog</span>
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            onClick={onNav}
-                                            className="nav-link"
-                                            exact
-                                            activeClassName="active"
-                                            to="/contact"
-                                        >
-                                            <i className="nav-link icon bi-envelope"></i> <span>Contact</span>
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            onClick={onNav}
-                                            className="nav-link"
-                                            exact
-                                            activeClassName="active"
-                                            to="/about"
-                                        >
-                                            <i className="nav-link icon bi-person"></i> <span>About</span>
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <button className="nav-link" onClick={toggleTheme}>
-                                            <i
-                                                className={theme === 'light' ? 'icon bi-sun-fill' : 'icon bi-moon-fill'}
-                                            ></i>
-                                            <span>{theme === 'light' ? 'Toggle Dark' : 'Toggle Light'}</span>
-                                        </button>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </header>
-
-                        {/* <FadeIn> */}
-                        <Switch>
-                            <Route path="/about" component={About} />
-                            <Route path="/contact" component={Contact} />
-                            <Route path="/financial-markets" component={Market} />
-                            <Route path="/technology-blog*" component={Blog} />
-                            <Route path="/" component={Home} />
-                        </Switch>
-                        {/* </FadeIn> */}
-                    </Router>
-
-                    <footer id="footer" className="justify-content-center">
-                        <div className="container">
-                            <div className="copyright">
-                                © Copyright{' '}
-                                <strong>
-                                    <span>{Constants.MY_NAME}</span>
-                                </strong>
-                                . All Rights Reserved.
-                            </div>
-                        </div>
-                    </footer>
-                </div>
-                <div id="overlay" className={navStatus === 'closed' ? '' : 'active'}></div>
-                <BackTop />
-                <GlobalStyle />
-            </Fragment>
-        </ThemeProvider>
+        <div className="App">
+            <AppContext.Provider value={appContext}>
+                <ThemeProvider theme={theme === Themes.LIGHT ? lightTheme : darkTheme}>
+                    <Fragment>
+                        <Router>
+                            <Header />
+                            <Body />
+                            <Footer />
+                        </Router>
+                        <Overlay state={overlayState as OverlayState} />
+                        <BackTop />
+                        <GlobalStyle />
+                    </Fragment>
+                </ThemeProvider>
+            </AppContext.Provider>
+        </div>
     );
 }
 

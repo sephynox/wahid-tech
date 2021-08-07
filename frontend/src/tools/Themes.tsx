@@ -1,3 +1,13 @@
+export enum Themes {
+    LIGHT = 'light',
+    DARK = 'dark',
+}
+
+export enum Active {
+    ON = 'active',
+    OFF = ''
+};
+
 export type Theme = {
     name: string;
     border: string;

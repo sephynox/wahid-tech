@@ -1,7 +1,7 @@
 export enum MarketType {
-    CRYPTO,
-    STOCK,
-    COMMODITY
+    CRYPTO = 'crypto',
+    STOCK = 'stock',
+    COMMODITY = 'commodity'
 };
 
 export type MarketData = {

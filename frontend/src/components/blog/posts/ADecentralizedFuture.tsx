@@ -1,6 +1,6 @@
 import React from 'react';
-import APACitation from '../tools/APACitation';
-import Quote from '../components/Quote';
+import APACitation from '../../../tools/APACitation';
+import Quote from '../../Quote';
 
 const ADecentralizedFuture = (): JSX.Element => {
     return (

@@ -1,5 +1,5 @@
-import { ArticleData } from '../components/Article';
-import ADecentralizedFuture from './ADecentralizedFuture';
+import { ArticleData } from './Article';
+import ADecentralizedFuture from './posts/ADecentralizedFuture';
 
 type PostData = {
     [key: string]: ArticleData;

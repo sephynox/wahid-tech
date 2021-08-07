@@ -1,16 +1,16 @@
 import React from 'react';
-import Table, { Column, Sort } from '../components/Table';
-import { MarketData } from '../tools/MarketData';
-import { formatPercent, formatPrice } from '../utils/data-formatters';
+import Table, { Column, Sort } from '../Table';
+import { MarketData } from '../../tools/MarketData';
+import { formatPercent, formatPrice } from '../../utils/data-formatters';
 
 type Props<T> = {
     data: Array<T>;
 };
 
 const MarketList = <T,>({ data }: Props<T>): JSX.Element => {
-    const defaultSorted: Sort<string> = [{ dataField: 'cap', order: 'desc' }];
+    const defaultSorted: [Sort<string>] = [{ dataField: 'cap', order: 'desc' }] as [Sort<string>];
 
-    const marketColumns: Array<Column<MarketData>> = [
+    const marketColumns: Array<Column> = [
         { key: 'name', dataField: 'name', text: 'Name', sort: true, formatter: (c: string, r: MarketData) => formatName(r) },
         { key: 'price', dataField: 'price', text: 'Price', sort: true, formatter: (c: number) => formatPrice(c) },
         { key: 'delta1', dataField: 'delta1', text: '1D', sort: true, formatter: (c: number) => formatPercentSym(c) },
@@ -21,7 +21,11 @@ const MarketList = <T,>({ data }: Props<T>): JSX.Element => {
     ];
 
     const formatName = (row: MarketData): JSX.Element => {
-        return (<a href={row.path}><span>{row.name} <span className="color grey">({row.ticker.toUpperCase()})</span></span></a>);
+        return (
+            <a href={row.path}>
+                <span>{row.name} <span className="color grey">({row.ticker.toUpperCase()})</span></span>
+            </a>
+        );
     };
 
     const formatPercentSym = (percent?: number): JSX.Element => {
@@ -33,17 +37,10 @@ const MarketList = <T,>({ data }: Props<T>): JSX.Element => {
         const sign = percent < 0 ? 'bi bi-arrow-down-short' : 'bi bi-arrow-up-short';
         const color = percent < 0 ? 'color red' : 'color green';
 
-        return (
-            <span className={color}>{ret} <i className={sign}></i></span>
-        );
+        return (<span className={color}>{ret} <i className={sign}></i></span>);
     };
 
-    return (
-        <Table
-            data={data}
-            columns={marketColumns}
-            defaultSorted={defaultSorted} />
-    );
+    return (<Table data={data} columns={marketColumns} sort={defaultSorted} />);
 };
 
 export default MarketList;

@@ -21,10 +21,10 @@ export type ExternalEvent<T> = {
     payload?: T
 };
 
-export const reducer = (state: ExternalState, action: ExternalActions): ExternalState => {
+export const externalReducer = (state: ExternalState, action: ExternalActions): ExternalState => {
     switch (action.type) {
         case ExternalStates.FETCHING:
-            return { ...{}, status: ExternalStates.FETCHING };
+            return { ...state, status: ExternalStates.FETCHING };
         case ExternalStates.SUCCESS:
             return { ...state, status: ExternalStates.SUCCESS, data: action.result };
         case ExternalStates.ERROR:

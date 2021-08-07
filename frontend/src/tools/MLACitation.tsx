@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArticleAuthor } from '../components/Article';
+import { ArticleAuthor } from '../components/blog/Article';
 import Citation from './Citation';
 import { HangingIndent } from './Styles';
 

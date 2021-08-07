@@ -109,6 +109,10 @@ code {
     color: ${(props: ThemeEngine) => props.theme.hr};
 }
 
+.social-links a:hover {
+    color: ${(props: ThemeEngine) => props.theme.info};
+}
+
 .nav-menu a span {
     color:  ${(props: ThemeEngine) => props.theme.text};
 }
@@ -129,6 +133,10 @@ button.nav-link i {
   &:focus {
     color: ${(props: ThemeEngine) => props.theme.text};
   }
+}
+
+.nav-menu-buttons {
+    border-top: 1px solid ${(props: ThemeEngine) => props.theme.hr};
 }
 
 .nav-menu a, .nav-menu a:focus {

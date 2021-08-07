@@ -1,9 +1,9 @@
 import React from 'react';
-import { Route, Router, Switch, withRouter, useHistory } from 'react-router-dom';
+import { Route, Router, Switch, useHistory } from 'react-router-dom';
 import * as Constants from '../Constants';
 import Postcard from '../components/Postcard';
-import Data, { Posts } from '../blog/Data';
-import Article from '../components/Article';
+import Data, { Posts } from '../components/blog/Data';
+import Article from '../components/blog/Article';
 
 const Blog = (): JSX.Element => {
     const title = 'Blog Posts';
@@ -25,29 +25,27 @@ const Blog = (): JSX.Element => {
     });
 
     return (
-        <section id="blog" className="d-flex flex-column">
-            <Router history={useHistory()}>
-                <div className="margin-auto-vertical">
-                    <Switch>
-                        <Route
-                            path={Constants.SITE_BLOG_PATH_BASE + '*'}
-                            render={() => <Article data={Data[window.location.pathname.replace(Constants.SITE_BLOG_PATH_BASE, '')]} />}
-                        />
-                        <Route path="*">
-                            <div className="container">
-                                <div className="section-title">
-                                    <h2>{title}</h2>
-                                    <p>{subtext}</p>
-                                </div>
-                                <div className="row">{list}</div>
-                                <div className="blog-bottom"></div>
+        <Router history={useHistory()}>
+            <div className="margin-auto-vertical">
+                <Switch>
+                    <Route
+                        path={Constants.SITE_BLOG_PATH_BASE + '*'}
+                        render={() => <Article data={Data[window.location.pathname.replace(Constants.SITE_BLOG_PATH_BASE, '')]} />}
+                    />
+                    <Route path="*">
+                        <div className="container">
+                            <div className="section-title">
+                                <h2>{title}</h2>
+                                <p>{subtext}</p>
                             </div>
-                        </Route>
-                    </Switch>
-                </div>
-            </Router>
-        </section>
+                            <div className="row">{list}</div>
+                            <div className="space-bottom"></div>
+                        </div>
+                    </Route>
+                </Switch>
+            </div>
+        </Router>
     );
 };
 
-export default withRouter(Blog);
+export default Blog;

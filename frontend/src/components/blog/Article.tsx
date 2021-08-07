@@ -1,8 +1,9 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { DiscussionEmbed } from 'disqus-react';
-import * as Constants from '../Constants';
-import CitationGuide from '../tools/CitationGuide';
+import * as Constants from '../../Constants';
+import CitationGuide from '../../tools/CitationGuide';
+import SocialLinks from '../../tools/SocialLinks';
 
 type Props = {
     data: ArticleData;
@@ -77,40 +78,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                         <dd id="article_abstract">{data.description}</dd>
                         <dt className="no-print">Share:</dt>
                         <dd className="no-print">
-                            <div className="article-social-links">
-                                <a
-                                    href={'https://www.facebook.com/sharer/sharer.php?u=' + article_full_url}
-                                    target="_new"
-                                    className="facebook"
-                                    title="Facebook"
-                                >
-                                    <i className="icon bi-facebook"></i>
-                                </a>
-                                <a
-                                    href={'https://twitter.com/intent/tweet?url=' + article_full_url}
-                                    target="_new"
-                                    className="twitter"
-                                    title="Twitter"
-                                >
-                                    <i className="icon bi-twitter"></i>
-                                </a>
-                                <a
-                                    href={'https://www.linkedin.com/shareArticle?mini=true&url=' + article_full_url}
-                                    target="_new"
-                                    className="linkedin"
-                                    title="LinkedIn"
-                                >
-                                    <i className="icon bi-linkedin"></i>
-                                </a>
-                                <a
-                                    href={'mailto:info@example.com?subject=' + data.title + '&body=' + article_full_url}
-                                    target="_new"
-                                    className="email"
-                                    title="Email"
-                                >
-                                    <i className="icon bi-envelope-open-fill"></i>
-                                </a>
-                            </div>
+                            <SocialLinks url={article_full_url} title={data.title} />
                         </dd>
                     </dl>
                 </div>

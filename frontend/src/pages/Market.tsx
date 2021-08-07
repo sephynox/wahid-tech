@@ -2,8 +2,8 @@ import React, { createContext, Dispatch, useEffect, useReducer } from 'react';
 import { Route, Router, Switch, useHistory } from 'react-router-dom';
 import * as Constants from '../Constants';
 import { coinGeckoReducer, CoinGeckoState, fetchCryptoMarketData, initialCoinGeckoState } from '../actions/CoinGecko';
-import MarketProfile from '../components/MarketProfile';
-import MarketList from '../components/MarketList';
+import MarketProfile from '../components/market/MarketProfile';
+import MarketList from '../components/market/MarketList';
 
 //import StockChart from '../components/StockChart';
 //import * as Constants from '../Constants';
@@ -20,7 +20,7 @@ export const MarketContext = createContext<{
 });
 
 const Market = (): JSX.Element => {
-    const localCoinGeckoState = JSON.parse(localStorage.getItem('cryptoMarket') ?? '{}');
+    const localCoinGeckoState = JSON.parse(localStorage.getItem('cryptoMarket') ?? '[]');
     const [cryptoMarket, dispatchCryptoMarket] = useReducer(coinGeckoReducer, localCoinGeckoState || initialCoinGeckoState);
 
     const title = 'Markets';
@@ -36,6 +36,8 @@ const Market = (): JSX.Element => {
     //     {/* <CandleStickChart width="100%" data={{}} ratio="1.0" /> */}
     //     </section>
     // </Web3ReactProvider>
+
+    localStorage.setItem('cryptoMarket', JSON.stringify(cryptoMarket));
 
     const fetchStoreData = (): void => {
         fetchCryptoMarketData()(dispatchCryptoMarket);
@@ -53,28 +55,27 @@ const Market = (): JSX.Element => {
     }, []);
 
     return (
-        <section id="blog" className="d-flex flex-column">
-            <MarketContext.Provider value={{ cryptoMarket, dispatchCryptoMarket }}>
-                <Router history={useHistory()}>
-                    <div className="margin-auto-vertical">
-                        <Switch>
-                            <Route
-                                path={Constants.SITE_MARKET_PATH_BASE + '*'}
-                                render={() => <MarketProfile />}
-                            />
-                            <Route path="*">
-                                <div className="container">
-                                    <div className="section-title">
-                                        <h2>{title}</h2>
-                                        <MarketList data={cryptoMarket.result ?? localCoinGeckoState ?? []} />
-                                    </div>
+        <MarketContext.Provider value={{ cryptoMarket, dispatchCryptoMarket }}>
+            <Router history={useHistory()}>
+                <div className="margin-auto-vertical">
+                    <Switch>
+                        <Route
+                            path={Constants.SITE_MARKET_PATH_BASE + '*'}
+                            render={() => <MarketProfile />}
+                        />
+                        <Route path="*">
+                            <div className="container">
+                                <div className="section-title">
+                                    <h2>{title}</h2>
+                                    <MarketList data={cryptoMarket.result ?? localCoinGeckoState ?? []} />
                                 </div>
-                            </Route>
-                        </Switch>
-                    </div>
-                </Router>
-            </MarketContext.Provider>
-        </section >
+                                <div className="space-bottom"></div>
+                            </div>
+                        </Route>
+                    </Switch>
+                </div>
+            </Router>
+        </MarketContext.Provider>
     );
 };
 

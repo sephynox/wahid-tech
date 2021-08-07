@@ -1,4 +1,4 @@
-import { ArticleAuthor } from '../components/Article';
+import { ArticleAuthor } from '../components/blog/Article';
 
 interface Citation {
     title: string;

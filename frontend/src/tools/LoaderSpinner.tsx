@@ -17,13 +17,15 @@ const LoaderSpinner = ({
     timeout = 3000 }: Props
 ): JSX.Element => {
     return (
-        <Loader
-            type={type}
-            color={color}
-            height={height}
-            width={width}
-            timeout={3000}
-        />
+        <div className="loader-center">
+            <Loader
+                type={type}
+                color={color}
+                height={height}
+                width={width}
+                timeout={timeout}
+            />
+        </div>
     );
 };
 

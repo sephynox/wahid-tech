@@ -10,7 +10,7 @@ enum CoinGeckoStates {
     FETCHED_COIN_LIST,
 };
 
-type CoinGeckoROI = null | {
+type CoinGeckoROI = {
     times: number;
     currency: string;
     percentage: number;
@@ -36,7 +36,7 @@ type CoinGeckoCoinData = {
     market_cap_change_percentage_24h: number;
     market_cap_rank: number;
     name: string;
-    roi: CoinGeckoROI;
+    roi: CoinGeckoROI | null;
     max_supply: number | null;
     fully_diluted_valuation: number | null;
     total_supply: number | null;
@@ -47,6 +47,9 @@ type CoinGeckoCoinData = {
     price_change_percentage_1y_in_currency: number | null;
     price_change_percentage_30d_in_currency: number | null;
     price_change_percentage_7d_in_currency: number | null;
+    block_time_in_minutes?: number;
+    hashing_algorithm?: number;
+
 };
 
 export type CoinGeckoState =
@@ -111,7 +114,7 @@ export const fetchCryptoMarketData = (
                             delta30: coin.price_change_percentage_30d_in_currency ?? undefined,
                             deltaY: coin.price_change_percentage_1y_in_currency ?? undefined,
                             cap: coin.market_cap,
-                            path: Constants.SITE_MARKET_PATH_BASE_URL + MarketType.CRYPTO + '/' + coin.id,
+                            path: Constants.SITE_MARKET_PATH_BASE + MarketType.CRYPTO + '/' + coin.id,
                         };
                     });
                     dispatch({ type: CoinGeckoStates.FETCHED_COIN_MARKET_DATA, result: data });
@@ -127,7 +130,7 @@ const CoinGecko = axios.create({
 export default CoinGecko;
 
 // eslint-disable-next-line
-const exampleData: CoinGeckoCoinData = {
+const exampleMarketData: CoinGeckoCoinData = {
     ath: 4356.99,
     ath_change_percentage: -35.86867,
     ath_date: "2021-05-12T14:41:48.623Z",

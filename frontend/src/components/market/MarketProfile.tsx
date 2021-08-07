@@ -1,6 +1,6 @@
 import React from 'react';
-import StockChart from '../components/StockChart';
-import { MarketContext } from '../pages/Market';
+import StockChart from '../StockChart';
+import { MarketContext } from '../../pages/Market';
 
 
 const MarketProfile: React.FunctionComponent = () => {
