@@ -9,12 +9,15 @@ type Props = {
     data: Array<any>;
     page?: number,
     sizePerPage?: number,
-    sort?: [Sort<any>]
+    defaultSort?: Sort<any>
 };
 
-const Table = ({ columns, data, sort, page = 1, sizePerPage = 20 }: Props): JSX.Element => {
-    // eslint-disable-next-line
-    const defaultSorted: [Sort<any>] = [{ dataField: 'name', order: 'asc' }];
+const Table = ({ columns, data, defaultSort, page = 1, sizePerPage = 10 }: Props): JSX.Element => {
+    const defaultSorted: Sort<any> = {
+        dataField: 'name',
+        order: 'asc'
+    };
+
     const options = {
         dataSize: data.length,
         page: page,
@@ -29,7 +32,7 @@ const Table = ({ columns, data, sort, page = 1, sizePerPage = 20 }: Props): JSX.
         <BootstrapTable bootstrap4
             keyField='id'
             noDataIndication={() => <LoaderSpinner />}
-            defaultSorted={defaultSorted}
+            defaultSorted={defaultSort ? [{ ...defaultSorted, ...defaultSort }] : [defaultSorted]}
             data={data}
             columns={columns}
             pagination={paginationFactory(options)}
@@ -40,6 +43,7 @@ const Table = ({ columns, data, sort, page = 1, sizePerPage = 20 }: Props): JSX.
 export type Sort<T> = {
     dataField: T;
     order: SortOrder;
+    sortCaret?: (order: SortOrder | null, column: Column) => JSX.Element | void;
 };
 
 export type Column = {

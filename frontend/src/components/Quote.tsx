@@ -1,5 +1,5 @@
 import React from 'react';
-import { Blockquote } from '../tools/Styles';
+import { Blockquote } from '../styles/Blockquote';
 
 type Props = {
     quote: string;

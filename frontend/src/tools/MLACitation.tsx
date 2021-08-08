@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArticleAuthor } from '../components/blog/Article';
 import Citation from './Citation';
-import { HangingIndent } from './Styles';
+import { HangingIndent } from '../styles/HangingIndent';
 
 //TODO
 const MLACitation = ({

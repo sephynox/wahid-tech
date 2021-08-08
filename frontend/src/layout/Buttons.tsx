@@ -15,11 +15,16 @@ const Buttons: React.FunctionComponent = (): JSX.Element => {
     };
 
     return (
-        <div className='nav-menu-buttons'>
-            <button className="nav-link" onClick={toggleTheme}>
-                <i className={appContext.theme === Themes.LIGHT ? 'icon bi-moon-fill' : 'icon bi-sun-fill'}></i>
-                <span>&nbsp;{appContext.theme === Themes.LIGHT ? 'Dark' : 'Light'}</span>
-            </button>
+        <div className="nav-menu nav-menu-buttons">
+            <hr className="nav-menu mt-2 mb-3" />
+            <ul>
+                <li>
+                    <button className="nav-link" onClick={toggleTheme}>
+                        <i className={appContext.theme === Themes.LIGHT ? 'icon bi-moon-fill' : 'icon bi-sun-fill'}></i>
+                        <span>&nbsp;{appContext.theme === Themes.LIGHT ? 'Dark' : 'Light'}</span>
+                    </button>
+                </li>
+            </ul>
         </div>
     );
 };

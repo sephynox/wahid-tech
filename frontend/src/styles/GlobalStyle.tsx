@@ -1,53 +1,10 @@
-import styled, { createGlobalStyle } from 'styled-components';
-import Theme from './Themes';
+import { createGlobalStyle } from 'styled-components';
+import Theme from '../tools/Themes';
 
 // Hack
-type ThemeEngine = {
+export type ThemeEngine = {
     theme: Theme
 };
-
-export const TopButton = styled.div<Theme>`
-    position: fixed;
-    height: 56px;
-    width: 56px;
-    right: 40px;
-    border-radius: 50px;
-    bottom: 100px;
-    padding: 5px 12px;
-    align-items: center;
-    font-size: 30px;
-    color: (theme) => theme.text};
-    background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
-    transition: 0.5s all ease-in-out;
-    overflow: hidden;
-    z-index: 1;
-    opacity: 0.75;
-    cursor: pointer;
-
-    &:hover {
-        background-color: rgb(5, 99, 187);
-    }
-
-    @media screen and (max-width: 768px) {
-        bottom: 80px;
-        right: 15px;
-        opacity: 0.5;
-    }
-`;
-
-export const Blockquote = styled.blockquote`
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding-left: 10px;
-    border-left: 1px solid ${(props: ThemeEngine) => props.theme.text};
-    font-size: 1.2rem;
-    color: ${(props: ThemeEngine) => props.theme.textAlt};
-`;
-
-export const HangingIndent = styled.p`
-    padding-left: 1.5em;
-    text-indent: -1.5em;
-`;
 
 export const GlobalStyle = createGlobalStyle`
 html,
@@ -135,7 +92,7 @@ button.nav-link i {
   }
 }
 
-.nav-menu-buttons {
+hr.nav-menu-buttons {
     border-top: 1px solid ${(props: ThemeEngine) => props.theme.hr};
 }
 
@@ -165,8 +122,8 @@ button.nav-link i {
     color: ${(props: ThemeEngine) => props.theme.text};
 }
 
-.contact .php-email-form input,
-.contact .php-email-form textarea {
+#contact .php-email-form input,
+#contact .php-email-form textarea {
     color: ${(props: ThemeEngine) => props.theme.text};
     background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }
@@ -183,7 +140,7 @@ button.nav-link i {
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
     color: ${(props: ThemeEngine) => props.theme.text};
     background-color: ${(props: ThemeEngine) => props.theme.info};
-    border-color: ${(props: ThemeEngine) => props.theme.backgroundAlt};
+    border-color: ${(props: ThemeEngine) => props.theme.info};
 }
 
 .nav-tabs {
@@ -234,12 +191,14 @@ a.page-item.active .page-link {
 }
 
 button.btn-secondary {
+    color: ${(props: ThemeEngine) => props.theme.text};
     background-color:${(props: ThemeEngine) => props.theme.backgroundExtended};
     border-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }
 
 button.btn-secondary:hover {
-    background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
+    color: ${(props: ThemeEngine) => props.theme.text};
+    background-color: ${(props: ThemeEngine) => props.theme.info};
     border-color: ${(props: ThemeEngine) => props.theme.info};
 }
 `;

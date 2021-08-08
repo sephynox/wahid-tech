@@ -1,7 +1,9 @@
 
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 import { AppContext } from '../App';
+import Theme from '../tools/Themes';
 
 type Props = {
     navLinks: Array<NavBlock>;
@@ -23,23 +25,22 @@ export type NavBlock = {
     exact?: boolean;
 };
 
-
-export const NavMenu = (): JSX.Element => {
+export const NavToggle = (): JSX.Element => {
     const appContext = React.useContext(AppContext);
 
     return (
-        <button
+        <NavToggleStyle
             type="button"
             onClick={appContext.toggleNav}
             className={appContext.navState === NavState.CLOSED
                 ? 'bi bi-list mobile-nav-toggle'
                 : 'bi bi-x mobile-nav-toggle'
             }
-        ></button>
+        ></NavToggleStyle>
     );
 };
 
-const Navigation = ({ navLinks }: Props): JSX.Element => {
+const Navigation: React.FunctionComponent<Props> = ({ navLinks }: Props): JSX.Element => {
     const appContext = React.useContext(AppContext);
 
     const NavItem = ({
@@ -72,3 +73,19 @@ const Navigation = ({ navLinks }: Props): JSX.Element => {
 };
 
 export default Navigation;
+
+const NavToggleStyle = styled.button<Theme>`
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 9998;
+    border: 0;
+    background: none;
+    font-size: 28px;
+    transition: all 0.4s;
+    outline: none !important;
+    line-height: 0;
+    cursor: pointer;
+    border-radius: 50px;
+    padding: 5px;
+`;

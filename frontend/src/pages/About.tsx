@@ -23,7 +23,7 @@ const About = (): JSX.Element => {
     };
 
     return (
-        <div id="about" className="container">
+        <section id="about" className="container">
             <h1>{Constants.MY_NAME}</h1>
             <div className="container">
                 <div className="row">
@@ -64,7 +64,7 @@ const About = (): JSX.Element => {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

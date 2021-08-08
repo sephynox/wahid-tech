@@ -9,12 +9,14 @@ const Home = (): JSX.Element => {
     const subtext = 'A personal website and technology blog.';
 
     return (
-        <div className="section-title">
-            <h2>{title}</h2>
-            <p>{subtext}</p>
+        <section className="container">
+            <div className="title">
+                <h2>{title}</h2>
+                <p>{subtext}</p>
+            </div>
             {/* {typeof article !== 'undefined' && typeof article.link !== 'undefined' ? (
                 <>
-                    <div className="section-title">
+                    <div className="title">
                         <h3>Latest Blog Post</h3>
                     </div>
                     <div className="row">
@@ -25,7 +27,7 @@ const Home = (): JSX.Element => {
                     </div>
                 </>
             ) : null} */}
-        </div>
+        </section>
     );
 };
 

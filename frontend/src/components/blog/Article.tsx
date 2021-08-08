@@ -50,7 +50,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
 
     return (
         <div className="container">
-            <div className="article-container">
+            <section className="article-container">
                 <Helmet>
                     <meta property="og:title" content={data.title} />
                     <meta property="og:type" content="article" />
@@ -60,7 +60,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                     <meta property="article:published_time" content={meta_date} />
                     <meta property="article:modified_time" content={meta_modified} />
                 </Helmet>
-                <div className="section-title">
+                <div className="title">
                     <h2>{data.title}</h2>
 
                     <dl className="dl-horizontal dl-custom">
@@ -110,7 +110,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                         />
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     );
 };

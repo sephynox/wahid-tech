@@ -1,6 +1,7 @@
 import React from 'react';
+import * as Constants from '../../Constants';
 import Table, { Column, Sort } from '../Table';
-import { MarketData } from '../../tools/MarketData';
+import { MarketData, MarketType } from '../../tools/MarketData';
 import { formatPercent, formatPrice } from '../../utils/data-formatters';
 
 type Props<T> = {
@@ -8,7 +9,7 @@ type Props<T> = {
 };
 
 const MarketList = <T,>({ data }: Props<T>): JSX.Element => {
-    const defaultSorted: [Sort<string>] = [{ dataField: 'cap', order: 'desc' }] as [Sort<string>];
+    const defaultSorted: Sort<string> = { dataField: 'cap', order: 'desc' };
 
     const marketColumns: Array<Column> = [
         { key: 'name', dataField: 'name', text: 'Name', sort: true, formatter: (c: string, r: MarketData) => formatName(r) },
@@ -22,7 +23,7 @@ const MarketList = <T,>({ data }: Props<T>): JSX.Element => {
 
     const formatName = (row: MarketData): JSX.Element => {
         return (
-            <a href={row.path}>
+            <a href={row.path ?? Constants.SITE_MARKET_PATH_BASE + MarketType.CRYPTO + '/' + row.key}>
                 <span>{row.name} <span className="color grey">({row.ticker.toUpperCase()})</span></span>
             </a>
         );
@@ -40,7 +41,7 @@ const MarketList = <T,>({ data }: Props<T>): JSX.Element => {
         return (<span className={color}>{ret} <i className={sign}></i></span>);
     };
 
-    return (<Table data={data} columns={marketColumns} sort={defaultSorted} />);
+    return (<Table data={data} columns={marketColumns} defaultSort={defaultSorted} />);
 };
 
 export default MarketList;

@@ -14,7 +14,7 @@ const LoaderSpinner = ({
     height = 80,
     type = 'Oval',
     color = '#004085',
-    timeout = 3000 }: Props
+    timeout = 60000 }: Props
 ): JSX.Element => {
     return (
         <div className="loader-center">

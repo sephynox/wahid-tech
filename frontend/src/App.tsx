@@ -5,11 +5,11 @@ import { ThemeProvider } from 'styled-components';
 import ReactGA from 'react-ga';
 import './scss/custom.scss';
 import * as Constants from './Constants';
-import { lightTheme, darkTheme, Themes } from './tools/Themes';
-import { GlobalStyle } from './tools/Styles';
+import { Themes, availableThemes } from './tools/Themes';
+import { GlobalStyle } from './styles/GlobalStyle';
 import './App.css';
 import { socialLinks } from './Data';
-import { NavMenu, NavState } from './layout/Navigation';
+import { NavToggle, NavState } from './layout/Navigation';
 import BackTop from './tools/BackTop';
 import Overlay, { OverlayState } from './layout/Overlay';
 import { SocialBlock } from './tools/SocialLinks';
@@ -53,10 +53,6 @@ const App = (): JSX.Element => {
 
         if (appContext.navState === NavState.CLOSED) {
             mode = NavState.OPEN;
-            //overlay = OverlayState.SHOW;
-            document.body.classList.add(Constants.NAVIGATION_ACTIVE_CLASS);
-        } else {
-            document.body.classList.remove(Constants.NAVIGATION_ACTIVE_CLASS);
         }
 
         appContext.setNavState(mode);
@@ -81,12 +77,12 @@ const App = (): JSX.Element => {
     }, [theme, testMode]);
 
     return (
-        <div className="App">
-            <AppContext.Provider value={appContext}>
-                <ThemeProvider theme={theme === Themes.LIGHT ? lightTheme : darkTheme}>
+        <ThemeProvider theme={availableThemes[theme]}>
+            <div className={"App " + (navState === NavState.OPEN ? Constants.NAVIGATION_ACTIVE_CLASS : '')}>
+                <AppContext.Provider value={appContext}>
                     <Fragment>
                         <Router>
-                            <NavMenu />
+                            <NavToggle />
                             <Header />
                             <Body />
                             <Footer />
@@ -95,9 +91,9 @@ const App = (): JSX.Element => {
                         <BackTop />
                         <GlobalStyle />
                     </Fragment>
-                </ThemeProvider>
-            </AppContext.Provider>
-        </div>
+                </AppContext.Provider>
+            </div>
+        </ThemeProvider>
     );
 }
 

@@ -101,4 +101,9 @@ export const darkTheme: Theme = {
     successBorder: 'rgb(32, 253, 13)',
 };
 
+export const availableThemes: Record<string, Theme> = {
+    [Themes.LIGHT]: lightTheme,
+    [Themes.DARK]: darkTheme
+};
+
 export default Theme;

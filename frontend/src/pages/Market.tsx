@@ -1,9 +1,10 @@
-import React, { createContext, Dispatch, useEffect, useReducer } from 'react';
+import React, { createContext, Dispatch, useEffect, useReducer, useState } from 'react';
 import { Route, Router, Switch, useHistory } from 'react-router-dom';
 import * as Constants from '../Constants';
-import { coinGeckoReducer, CoinGeckoState, fetchCryptoMarketData, initialCoinGeckoState } from '../actions/CoinGecko';
+import { coinGeckoReducer, CoinGeckoState, fetchCoinData, fetchCryptoMarketData, initialCoinGeckoState } from '../actions/CoinGecko';
+import MarketHome from '../components/market/MarketHome';
 import MarketProfile from '../components/market/MarketProfile';
-import MarketList from '../components/market/MarketList';
+import { MarketData, MarketType } from '../tools/MarketData';
 
 //import StockChart from '../components/StockChart';
 //import * as Constants from '../Constants';
@@ -13,17 +14,20 @@ import MarketList from '../components/market/MarketList';
 
 export const MarketContext = createContext<{
     cryptoMarket: CoinGeckoState;
-    dispatchCryptoMarket: Dispatch<CoinGeckoState>;
+    assetData: Record<string, MarketData>,
+    dispatchCryptoMarket: Dispatch<CoinGeckoState>,
+    fetchAssetData: (type: MarketType, asset: string) => MarketData | null,
 }>({
     cryptoMarket: initialCoinGeckoState,
+    assetData: {},
     dispatchCryptoMarket: () => undefined,
+    fetchAssetData: () => null
 });
 
 const Market = (): JSX.Element => {
     const localCoinGeckoState = JSON.parse(localStorage.getItem('cryptoMarket') ?? '[]');
     const [cryptoMarket, dispatchCryptoMarket] = useReducer(coinGeckoReducer, localCoinGeckoState || initialCoinGeckoState);
-
-    const title = 'Markets';
+    const [assetData, setAssetData] = useState(JSON.parse(localStorage.getItem('assetData') ?? '{}'));
 
     // TODO Retrieve data from ChainLink
     // function getLibrary(provider) {
@@ -37,43 +41,49 @@ const Market = (): JSX.Element => {
     //     </section>
     // </Web3ReactProvider>
 
-    localStorage.setItem('cryptoMarket', JSON.stringify(cryptoMarket));
-
     const fetchStoreData = (): void => {
         fetchCryptoMarketData()(dispatchCryptoMarket);
     };
 
+    const fetchAssetData = (type: MarketType, asset: string): MarketData | null => {
+        if (assetData[asset] !== undefined) {
+            return assetData[asset];
+        }
+
+        switch (type) {
+            case MarketType.CRYPTO:
+                fetchCoinData(asset)(setAssetData);
+                return assetData[asset] ?? null;
+            default:
+                return null;
+        }
+    };
+
     useEffect(() => {
         // Initial fetch
-        fetchStoreData();
+        if (localCoinGeckoState === []) {
+            fetchStoreData();
+        }
+
         // Refresh every minute
         const timer = setInterval(() => {
             fetchStoreData();
         }, 60000);
 
         return () => clearTimeout(timer);
-    }, []);
+    }, [localCoinGeckoState]);
+
+    useEffect(() => {
+        localStorage.setItem('cryptoMarket', JSON.stringify(cryptoMarket));
+    }, [cryptoMarket]);
 
     return (
-        <MarketContext.Provider value={{ cryptoMarket, dispatchCryptoMarket }}>
+        <MarketContext.Provider value={{ cryptoMarket, assetData, dispatchCryptoMarket, fetchAssetData }}>
             <Router history={useHistory()}>
-                <div className="margin-auto-vertical">
-                    <Switch>
-                        <Route
-                            path={Constants.SITE_MARKET_PATH_BASE + '*'}
-                            render={() => <MarketProfile />}
-                        />
-                        <Route path="*">
-                            <div className="container">
-                                <div className="section-title">
-                                    <h2>{title}</h2>
-                                    <MarketList data={cryptoMarket.result ?? localCoinGeckoState ?? []} />
-                                </div>
-                                <div className="space-bottom"></div>
-                            </div>
-                        </Route>
-                    </Switch>
-                </div>
+                <Switch>
+                    <Route path={Constants.SITE_MARKET_PATH_BASE + '*'} render={() => <MarketProfile />} />
+                    <Route path="*" component={MarketHome} />
+                </Switch>
             </Router>
         </MarketContext.Provider>
     );
