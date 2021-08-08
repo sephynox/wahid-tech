@@ -2,36 +2,38 @@ import React from 'react';
 import * as Constants from '../../Constants';
 import StockChart from '../StockChart';
 import { MarketContext } from '../../pages/Market';
-import LoaderSpinner from '../../tools/LoaderSpinner';
-import { MarketData, MarketType } from '../../tools/MarketData';
+import { MarketType } from '../../tools/MarketData';
+import { Breadcrumbs } from '../../layout/Navigation';
+import { useEffect } from 'react';
+import LoaderContent from '../../tools/LoaderContent';
 
-const MarketProfile: React.FunctionComponent = (): JSX.Element => {
+type Props = {
+    type: MarketType,
+    key: string,
+};
+
+const MarketProfile: React.FunctionComponent<Props> = ({ type, key }: Props): JSX.Element => {
     const marketContext = React.useContext(MarketContext);
 
-    const assetPath = window.location.pathname.replace(Constants.SITE_MARKET_PATH_BASE, '').split('/');
-    const assetType = assetPath[0];
-    const assetKey = assetPath[1];
-
-    let assetMarketData: MarketData | null = null;
-
-    switch (assetType) {
-        case MarketType.CRYPTO:
-            assetMarketData = marketContext.cryptoMarket.result?.filter((c) => c.key === assetKey).pop() ?? null;
-            break;
-        default:
-            assetMarketData = null;
-    }
+    useEffect(() => {
+        marketContext.dispatchAssetData(type, key);
+    }, [marketContext, type, key]);
 
     return (
-        <>
-            {typeof assetMarketData !== undefined ? (
-                <div className="container">
-                    <h2>{assetMarketData?.name}</h2>
-                    <p></p>
-                    <StockChart title="Test" />
-                </div>
-            ) : (<LoaderSpinner />)}
-        </>
+        <div className="container">
+            <Breadcrumbs links={[{ text: 'Market', path: Constants.SITE_MARKET_PATH_BASE }, { text: `${type} /`, path: '', class: 'capitalize', active: true }]} />
+            <section>
+                {typeof marketContext.assetData[key] !== undefined ? (
+                    <>
+                        <div className="title">
+                            <h2>{marketContext.assetData[key]?.name}</h2>
+                            <p></p>
+                        </div>
+                        <StockChart title="Test" />
+                    </>
+                ) : (<LoaderContent />)}
+            </section>
+        </div>
     );
 };
 

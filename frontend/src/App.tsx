@@ -85,7 +85,6 @@ const App = (): JSX.Element => {
                             <NavToggle />
                             <Header />
                             <Body />
-                            <Footer />
                         </Router>
                         <Overlay state={overlayState as OverlayState} />
                         <BackTop />

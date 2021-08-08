@@ -16,18 +16,22 @@ export const MarketContext = createContext<{
     cryptoMarket: CoinGeckoState;
     assetData: Record<string, MarketData>,
     dispatchCryptoMarket: Dispatch<CoinGeckoState>,
-    fetchAssetData: (type: MarketType, asset: string) => MarketData | null,
+    dispatchAssetData: (type: MarketType, asset: string) => void,
 }>({
     cryptoMarket: initialCoinGeckoState,
     assetData: {},
     dispatchCryptoMarket: () => undefined,
-    fetchAssetData: () => null
+    dispatchAssetData: () => null
 });
 
 const Market = (): JSX.Element => {
     const localCoinGeckoState = JSON.parse(localStorage.getItem('cryptoMarket') ?? '[]');
     const [cryptoMarket, dispatchCryptoMarket] = useReducer(coinGeckoReducer, localCoinGeckoState || initialCoinGeckoState);
-    const [assetData, setAssetData] = useState(JSON.parse(localStorage.getItem('assetData') ?? '{}'));
+    const [assetData, setAssetData] = useState(JSON.parse(localStorage.getItem('assetData') ?? '{}') as Record<string, MarketData>);
+
+    const assetPath = window.location.pathname.replace(Constants.SITE_MARKET_ASSET_PATH, '').split('/');
+    const assetType = assetPath[0] as MarketType;
+    const assetKey = assetPath[1];
 
     // TODO Retrieve data from ChainLink
     // function getLibrary(provider) {
@@ -45,17 +49,16 @@ const Market = (): JSX.Element => {
         fetchCryptoMarketData()(dispatchCryptoMarket);
     };
 
-    const fetchAssetData = (type: MarketType, asset: string): MarketData | null => {
-        if (assetData[asset] !== undefined) {
-            return assetData[asset];
-        }
-
+    const dispatchAssetData = (type: MarketType, key: string): void => {
         switch (type) {
             case MarketType.CRYPTO:
-                fetchCoinData(asset)(setAssetData);
-                return assetData[asset] ?? null;
-            default:
-                return null;
+                fetchCoinData(key)((x) => {
+                    const coin = x.result?.pop();
+                    if (coin?.key !== undefined) {
+                        setAssetData({ ...assetData, [coin.key]: coin });
+                    }
+                });
+                break;
         }
     };
 
@@ -77,15 +80,19 @@ const Market = (): JSX.Element => {
         localStorage.setItem('cryptoMarket', JSON.stringify(cryptoMarket));
     }, [cryptoMarket]);
 
+    useEffect(() => {
+        localStorage.setItem('assetData', JSON.stringify(assetData));
+    }, [assetData]);
+
     return (
-        <MarketContext.Provider value={{ cryptoMarket, assetData, dispatchCryptoMarket, fetchAssetData }}>
-            <Router history={useHistory()}>
+        <Router history={useHistory()}>
+            <MarketContext.Provider value={{ cryptoMarket, assetData, dispatchCryptoMarket, dispatchAssetData }}>
                 <Switch>
-                    <Route path={Constants.SITE_MARKET_PATH_BASE + '*'} render={() => <MarketProfile />} />
+                    <Route path={Constants.SITE_MARKET_ASSET_PATH + '*'} render={() => <MarketProfile type={assetType} key={assetKey} />} />
                     <Route path="*" component={MarketHome} />
                 </Switch>
-            </Router>
-        </MarketContext.Provider>
+            </MarketContext.Provider>
+        </Router>
     );
 };
 

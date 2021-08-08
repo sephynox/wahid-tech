@@ -10,7 +10,7 @@ body {
     font-family: "Open Sans", sans-serif;
     background-image: url('resources/images/background.svg');
     background-repeat: no-repeat;
-    background-position: center bottom !important;
+    background-position: left bottom !important;
 }
 
 code {
@@ -54,6 +54,10 @@ h6 {
 
 #overlay.active {
     display: block;
+}
+
+.capitalize {
+    text-transform: capitalize;
 }
 
 .margin-auto {
@@ -1165,19 +1169,7 @@ section .title p {
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
-#footer {
-    border-top: 1px solid #6c757d;
-    color: #45505b;
-    font-size: 14px;
-    text-align: center;
-    bottom: 0;
-    position: fixed;
-    padding: 20px 0;
-    width: 100%;
-    z-index: 100;
-}
-
-#footer h3 {
+footer h3 {
     font-size: 36px;
     font-weight: 700;
     position: relative;
@@ -1186,18 +1178,18 @@ section .title p {
     margin: 0 0 15px 0;
 }
 
-#footer p {
+footer p {
     font-size: 15;
     font-style: italic;
     padding: 0;
     margin: 0 0 40px 0;
 }
 
-#footer .social-links {
+footer .social-links {
     margin: 0 0 20px 0;
 }
 
-#footer .social-links a {
+footer .social-links a {
     font-size: 18px;
     display: inline-block;
     background: #0563bb;
@@ -1212,17 +1204,17 @@ section .title p {
     transition: 0.3s;
 }
 
-#footer .social-links a:hover {
+footer .social-links a:hover {
     background: #0678e3;
     color: #fff;
     text-decoration: none;
 }
 
-#footer .copyright {
+footer .copyright {
     margin: 0 0 5px 0;
 }
 
-#footer .credits {
+footer .credits {
     font-size: 13px;
 }
 

@@ -10,12 +10,10 @@ const Blog = (): JSX.Element => {
         <Router history={useHistory()}>
             <Switch>
                 <Route
-                    path={Constants.SITE_BLOG_PATH_BASE + '*'}
-                    render={() => <Article data={Data[window.location.pathname.replace(Constants.SITE_BLOG_PATH_BASE, '')]} />}
+                    path={Constants.SITE_BLOG_ARTICLE_PATH + '*'}
+                    render={() => <Article data={Data[window.location.pathname.replace(Constants.SITE_BLOG_ARTICLE_PATH, '')]} />}
                 />
-                <Route path="*" component={BlogHome}>
-
-                </Route>
+                <Route path="*" component={BlogHome} />
             </Switch>
         </Router>
     );

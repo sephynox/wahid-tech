@@ -16,7 +16,7 @@ const BlogHome: React.FunctionComponent = (): JSX.Element => {
                     date={article.date}
                     text={article.description}
                     image={article.image}
-                    link={Constants.SITE_BLOG_PATH_BASE + article.path}
+                    link={Constants.SITE_BLOG_ARTICLE_PATH + article.path}
                 />
             </div>
         );

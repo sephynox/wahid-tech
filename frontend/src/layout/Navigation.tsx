@@ -1,12 +1,24 @@
 
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Breadcrumb } from 'react-bootstrap';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { AppContext } from '../App';
 import Theme from '../tools/Themes';
 
-type Props = {
+type Crumb = {
+    text: string;
+    path: string;
+    active?: boolean;
+    class?: string;
+};
+
+type NavigationProps = {
     navLinks: Array<NavBlock>;
+};
+
+type BreadcrumbsProps = {
+    links: Array<Crumb>;
 };
 
 export enum NavState {
@@ -25,6 +37,22 @@ export type NavBlock = {
     exact?: boolean;
 };
 
+export const Breadcrumbs = ({ links }: BreadcrumbsProps): JSX.Element => {
+    return (
+        <Breadcrumb>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Home</Breadcrumb.Item>
+            {links.map((crumb: Crumb, i: number) => (
+                <Breadcrumb.Item
+                    key={i}
+                    className={crumb.class}
+                    linkAs={Link}
+                    linkProps={{ to: crumb.path }}
+                    active={crumb.active}>{crumb.text}</Breadcrumb.Item>)
+            )}
+        </Breadcrumb>
+    );
+};
+
 export const NavToggle = (): JSX.Element => {
     const appContext = React.useContext(AppContext);
 
@@ -40,7 +68,7 @@ export const NavToggle = (): JSX.Element => {
     );
 };
 
-const Navigation: React.FunctionComponent<Props> = ({ navLinks }: Props): JSX.Element => {
+const Navigation: React.FunctionComponent<NavigationProps> = ({ navLinks }: NavigationProps): JSX.Element => {
     const appContext = React.useContext(AppContext);
 
     const NavItem = ({

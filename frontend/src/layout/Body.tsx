@@ -2,20 +2,24 @@ import * as React from 'react'
 import styled from 'styled-components';
 import Routes from '../Routes';
 import Theme from '../tools/Themes';
+import Footer from './Footer';
 
 const Body: React.FunctionComponent = (): JSX.Element => (
-    <MainStyle id="main" className="d-flex flex-column">
-        <div className="margin-auto-vertical">
-            <Routes />
-        </div>
-    </MainStyle>
+    <>
+        <MainStyle id="main" className="d-flex flex-column">
+            <div className="margin-auto-vertical">
+                <Routes />
+            </div>
+        </MainStyle>
+        <Footer />
+    </>
 );
 
 export default Body;
 
 const MainStyle = styled.main<Theme>`
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-size: cover;
     position: relative;
     padding: 60px 0;

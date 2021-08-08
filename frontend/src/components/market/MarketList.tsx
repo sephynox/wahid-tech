@@ -3,6 +3,7 @@ import * as Constants from '../../Constants';
 import Table, { Column, Sort } from '../Table';
 import { MarketData, MarketType } from '../../tools/MarketData';
 import { formatPercent, formatPrice } from '../../utils/data-formatters';
+import { NavLink } from 'react-router-dom';
 
 type Props<T> = {
     data: Array<T>;
@@ -23,9 +24,9 @@ const MarketList = <T,>({ data }: Props<T>): JSX.Element => {
 
     const formatName = (row: MarketData): JSX.Element => {
         return (
-            <a href={row.path ?? Constants.SITE_MARKET_PATH_BASE + MarketType.CRYPTO + '/' + row.key}>
+            <NavLink to={row.path ?? Constants.SITE_MARKET_ASSET_PATH + MarketType.CRYPTO + '/' + row.key}>
                 <span>{row.name} <span className="color grey">({row.ticker.toUpperCase()})</span></span>
-            </a>
+            </NavLink>
         );
     };
 

@@ -59,7 +59,7 @@ const importData = ((coin: CoinGeckoCoinData): MarketData => {
         delta30: coin.price_change_percentage_30d_in_currency ?? undefined,
         deltaY: coin.price_change_percentage_1y_in_currency ?? undefined,
         cap: coin.market_cap,
-        path: Constants.SITE_MARKET_PATH_BASE + MarketType.CRYPTO + '/' + coin.id,
+        path: Constants.SITE_MARKET_ASSET_PATH + MarketType.CRYPTO + '/' + coin.id,
     };
 });
 
@@ -103,31 +103,30 @@ export const coinGeckoReducer = (
     };
 };
 
-export const fetchCoinData = (coin: string) =>
-    async (dispatch: React.Dispatch<CoinGeckoState>): Promise<void> => {
-        dispatch({ type: CoinGeckoStates.FETCHING });
-        return CoinGecko.get(`coins/${coin}`).then(
-            (result) => {
-                dispatch({ type: CoinGeckoStates.FETCHED_COIN_DATA, result: [importData(result.data)] });
-            },
-            (error) => dispatch({ type: CoinGeckoStates.ERROR, error: error }),
-        );
-    };
+export const fetchCoinData = (coin: string) => async (dispatch: React.Dispatch<CoinGeckoState>): Promise<void> => {
+    dispatch({ type: CoinGeckoStates.FETCHING });
+    return CoinGecko.get(`coins/${coin}`).then(
+        (result) => {
+            dispatch({ type: CoinGeckoStates.FETCHED_COIN_DATA, result: [importData(result.data)] });
+        },
+        (error) => dispatch({ type: CoinGeckoStates.ERROR, error: error }),
+    );
+};
 
 export const fetchCryptoMarketData = (
     currency = 'usd',
-    priceChangePercentage = '24h,7d,30d,1y') =>
-    async (dispatch: React.Dispatch<CoinGeckoState>): Promise<void> => {
-        dispatch({ type: CoinGeckoStates.FETCHING });
-        return CoinGecko.get(`coins/markets?vs_currency=${currency}&price_change_percentage=${priceChangePercentage}`)
-            .then(
-                (result) => {
-                    const data = result.data.map((coin: CoinGeckoCoinData): MarketData => importData(coin));
-                    dispatch({ type: CoinGeckoStates.FETCHED_COIN_MARKET_DATA, result: data });
-                },
-                (error) => dispatch({ type: CoinGeckoStates.ERROR, error: error }),
-            );
-    };
+    priceChangePercentage = '24h,7d,30d,1y'
+) => async (dispatch: React.Dispatch<CoinGeckoState>): Promise<void> => {
+    dispatch({ type: CoinGeckoStates.FETCHING });
+    return CoinGecko.get(`coins/markets?vs_currency=${currency}&price_change_percentage=${priceChangePercentage}`)
+        .then(
+            (result) => {
+                const data = result.data.map((coin: CoinGeckoCoinData): MarketData => importData(coin));
+                dispatch({ type: CoinGeckoStates.FETCHED_COIN_MARKET_DATA, result: data });
+            },
+            (error) => dispatch({ type: CoinGeckoStates.ERROR, error: error }),
+        );
+};
 
 const CoinGecko = axios.create({
     baseURL: Constants.COINGECKO_API_ENDPOINT
