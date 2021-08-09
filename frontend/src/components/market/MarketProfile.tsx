@@ -18,7 +18,7 @@ const MarketProfile = ({ type, id }: Props): JSX.Element => {
     return (
         <div className="container">
             <Breadcrumbs links={[
-                { text: 'Market', path: Constants.SITE_MARKET_PATH_BASE },
+                { text: 'markets', class: 'capitalize', path: Constants.SITE_MARKET_PATH_BASE },
                 { text: `${type} /`, path: '', class: 'capitalize', active: true }
             ]} />
             <section>

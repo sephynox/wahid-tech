@@ -4,7 +4,7 @@ import { DiscussionEmbed } from 'disqus-react';
 import * as Constants from '../../Constants';
 import CitationGuide from '../../tools/CitationGuide';
 import SocialLinks from '../../tools/SocialLinks';
-import { Breadcrumb } from 'react-bootstrap';
+import { Breadcrumbs } from '../../layout/Navigation';
 
 type Props = {
     data: ArticleData;
@@ -51,11 +51,10 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
 
     return (
         <div className="container">
-            <Breadcrumb >
-                <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                <Breadcrumb.Item href={Constants.SITE_BLOG_PATH_BASE}>Blog</Breadcrumb.Item>
-                <Breadcrumb.Item href={window.location.href} active>Article /</Breadcrumb.Item>
-            </Breadcrumb>
+            <Breadcrumbs links={[
+                { text: 'blog', class: 'capitalize', path: Constants.SITE_BLOG_PATH_BASE },
+                { text: 'article', path: '', class: 'capitalize', active: true }
+            ]} />
             <section className="article-container">
                 <Helmet>
                     <meta property="og:title" content={data.title} />
