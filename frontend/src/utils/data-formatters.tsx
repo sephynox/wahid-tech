@@ -1,4 +1,4 @@
-export const numberWithCommas = (x: number, r?: number): string => {
+const numberWithCommas = (x: number, r?: number): string => {
     const ret = r ? x.toFixed(2) : x.toString();
     return ret.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -10,3 +10,7 @@ export const formatPrice = (p: number): string => {
 export const formatPercent = (p: number, r = 2): string => {
     return numberWithCommas(p, r) + '%';
 };
+
+export const formatTitleCase = (input: string): string => {
+    return input[0].toUpperCase() + input.slice(1).toLowerCase();
+}

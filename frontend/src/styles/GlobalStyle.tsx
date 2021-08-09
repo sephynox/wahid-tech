@@ -122,6 +122,18 @@ hr.nav-menu-buttons {
     color: ${(props: ThemeEngine) => props.theme.text};
 }
 
+.modal-content {
+    background-color: ${(props: ThemeEngine) => props.theme.background};
+}
+
+.modal-content .modal-header {
+    border-bottom: ${(props: ThemeEngine) => props.theme.backgroundExtended};
+}
+
+.modal-content .modal-footer {
+    border-top: ${(props: ThemeEngine) => props.theme.backgroundExtended};
+}
+
 #contact .php-email-form input,
 #contact .php-email-form textarea {
     color: ${(props: ThemeEngine) => props.theme.text};

@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { Col, Form, Row } from 'react-bootstrap';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { useTranslation } from 'react-i18next';
+import { formatTitleCase } from '../utils/data-formatters';
 
 const Contact = (): JSX.Element => {
     const recaptchaRef = React.createRef();
+    const { t, i18n } = useTranslation();
+
     const contact_text = 'Get in touch if you believe I can help or if you would like to contribute to the blog.';
     const [recaptchaVal, setRecaptcha] = useState(() => localStorage.getItem('recaptchaVal') || '');
     const [theme] = useState(() => localStorage.getItem('theme') || 'light');
@@ -15,78 +20,82 @@ const Contact = (): JSX.Element => {
         <div id="contact" className="container">
             <section>
                 <div className="title">
-                    <h2>Contact</h2>
+                    <h2 className="capitalize">{t('contact')}</h2>
                     <p>{contact_text}</p>
                 </div>
-
-                <div className="row mt-1">
-                    <div className="col-lg-8 mt-6 mt-lg-0">
-                        <form action="forms/contact.php" method="post" className="php-email-form">
+                <Row className="mt-1">
+                    <Col lg={8} className="mt-6 mt-lg-0">
+                        <Form action="forms/contact.php" method="post" className="php-email-form">
                             <div className="my-3">
                                 <div className="loading">Loading</div>
                                 <div className="error-message"></div>
                                 <div className="sent-message">Your message has been sent. Thank you!</div>
                             </div>
-                            <div className="row">
-                                <div className="col-md-6 form-group">
+                            <Row>
+                                <Col md={6} sm={12} className="form-group">
                                     <input
                                         type="text"
                                         name="name"
                                         className="form-control"
                                         id="name"
-                                        placeholder="Your Name"
+                                        placeholder={formatTitleCase(t('name'))}
                                         required
                                     />
-                                </div>
-                                <div className="col-md-6 form-group mt-3 mt-md-0">
+                                </Col>
+                                <Col md={6} sm={12} className="form-group">
                                     <input
                                         type="email"
                                         className="form-control"
                                         name="email"
                                         id="email"
-                                        placeholder="Your Email"
+                                        placeholder="Email"
                                         required
                                     />
-                                </div>
-                            </div>
-                            <div className="form-group mt-3">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    name="subject"
-                                    id="subject"
-                                    placeholder="Subject"
-                                    required
-                                />
-                            </div>
-                            <div className="form-group mt-3">
-                                <textarea
-                                    className="form-control"
-                                    name="message"
-                                    rows={5}
-                                    placeholder="Message"
-                                    required
-                                ></textarea>
-                            </div>
-                            <div className="row">
-                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-6 pb-2">
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className="form-group mt-lg-2">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        name="subject"
+                                        id="subject"
+                                        placeholder={formatTitleCase(t('subject'))}
+                                        required
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className="form-group mt-lg-2">
+                                    <textarea
+                                        className="form-control"
+                                        name="message"
+                                        rows={5}
+                                        placeholder={formatTitleCase(t('message'))}
+                                        required
+                                    ></textarea>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12} md={12} lg={6} className="contact-recaptcha pt-lg-2 pb-2">
                                     <ReCAPTCHA
+                                        hl={i18n.language}
                                         ref={recaptchaRef}
                                         sitekey={process.env.REACT_APP_GA_RECAPTCHA_KEY}
                                         theme={theme}
                                         onChange={setRecaptcha}
                                     />
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-6"></div>
-                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-6 contact-button">
-                                    <button type="submit">Send Message</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12} sm={12} md={12} lg={6}></Col>
+                                <Col xs={12} sm={12} md={12} lg={6} className="contact-button mt-xs-2">
+                                    <button type="submit">{t('send_message')}</button>
+                                </Col>
+                            </Row>
+                        </Form>
+                    </Col>
+                </Row>
             </section>
         </div>
     );

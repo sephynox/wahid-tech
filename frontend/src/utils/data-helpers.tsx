@@ -24,3 +24,7 @@ export const addDataPoint = (data: Array<Array<number>>, toAdd: Array<number>): 
 
     return newData;
 };
+
+export const randomNumber = (floor: number, ceil: number): number => {
+    return Math.floor(Math.random() * (ceil - floor + 1) + floor);
+}

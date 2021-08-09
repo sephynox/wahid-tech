@@ -25,7 +25,7 @@ const MarketList = <T,>({ data }: Props<T>): JSX.Element => {
     const formatName = (row: MarketData): JSX.Element => {
         return (
             <NavLink to={row.path ?? Constants.SITE_MARKET_ASSET_PATH + MarketType.CRYPTO + '/' + row.key}>
-                <span>{row.name} <span className="color grey">({row.ticker.toUpperCase()})</span></span>
+                <span>{row.name} <span className="color grey">({row.ticker?.toUpperCase()})</span></span>
             </NavLink>
         );
     };

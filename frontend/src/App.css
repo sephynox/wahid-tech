@@ -72,12 +72,6 @@ h6 {
     margin: 0 auto;
 }
 
-@media screen and (max-width: 768px) {
-    .hide-mobile {
-        display: none;
-    }
-}
-
 .space-bottom {
     margin-bottom: 100px;
 }
@@ -86,6 +80,19 @@ h6 {
     text-align: center;
     margin: 20px;
 }
+
+@media screen and (max-width: 768px) {
+    .hide-mobile {
+        display: none;
+    }
+
+    ol.breadcrumb {
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 992px) {}
 
 /*--------------------------------------------------------------
 # Preloader
@@ -153,7 +160,7 @@ h6 {
     top: 0;
     left: 0;
     bottom: 0;
-    z-index: 9997;
+    z-index: 999;
     transition: all 0.5s;
     padding: 15px;
     overflow-y: auto;
@@ -181,6 +188,10 @@ h6 {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+.nav-menu-buttons {
+    z-index: 1061;
 }
 
 .nav-menu-buttons button {
@@ -270,6 +281,10 @@ hr.nav-menu {
 
     .App.mobile-nav-active #header {
         left: 0;
+    }
+
+    hr.nav-menu {
+        width: 100%;
     }
 }
 
@@ -1109,13 +1124,17 @@ section .title p {
 }
 
 @media (min-width: 992px) {
-    #contact-button {
+    .contact-button {
         text-align: right;
     }
 }
 
 @media screen and (max-width: 992px) {
-    #contact-button {
+    .contact-recaptcha>div {
+        margin: 0 auto;
+    }
+
+    .contact-button {
         text-align: center;
     }
 }

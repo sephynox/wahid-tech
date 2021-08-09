@@ -1,10 +1,11 @@
-import React, { createContext, Dispatch, useEffect, useReducer, useState } from 'react';
+import React, { createContext, Dispatch, SetStateAction, useEffect, useReducer, useState } from 'react';
 import { Route, Router, Switch, useHistory } from 'react-router-dom';
 import * as Constants from '../Constants';
-import { coinGeckoReducer, CoinGeckoState, fetchCoinData, fetchCryptoMarketData, initialCoinGeckoState } from '../actions/CoinGecko';
+import { coinGeckoReducer, CoinGeckoState, CoinGeckoStates, fetchCryptoMarketData, initialCoinGeckoState } from '../actions/CoinGecko';
+import { AssetState, assetReducer, initialAssetState, fetchAssetData, AssetStates, fetchAssetPriceData } from '../actions/Assets';
 import MarketHome from '../components/market/MarketHome';
 import MarketProfile from '../components/market/MarketProfile';
-import { MarketData, MarketType } from '../tools/MarketData';
+import { MarketType } from '../tools/MarketData';
 
 //import StockChart from '../components/StockChart';
 //import * as Constants from '../Constants';
@@ -14,20 +15,25 @@ import { MarketData, MarketType } from '../tools/MarketData';
 
 export const MarketContext = createContext<{
     cryptoMarket: CoinGeckoState;
-    assetData: Record<string, MarketData>,
+    assetData: AssetState,
+    setDateStart: Dispatch<SetStateAction<number>>,
     dispatchCryptoMarket: Dispatch<CoinGeckoState>,
-    dispatchAssetData: (type: MarketType, asset: string) => void,
+    dispatchAssetData: Dispatch<AssetState>,
 }>({
     cryptoMarket: initialCoinGeckoState,
-    assetData: {},
+    assetData: initialAssetState,
+    setDateStart: () => undefined,
     dispatchCryptoMarket: () => undefined,
-    dispatchAssetData: () => null
+    dispatchAssetData: () => undefined
 });
 
 const Market = (): JSX.Element => {
-    const localCoinGeckoState = JSON.parse(localStorage.getItem('cryptoMarket') ?? '[]');
+    const defaultStart: number = Math.floor(new Date(new Date().setDate(new Date().getDate() - 5)).getTime() / 1000);
+    const localCoinGeckoState: CoinGeckoState = JSON.parse(localStorage.getItem('cryptoMarket') ?? '{}');
+    const localAssetState: AssetState = JSON.parse(localStorage.getItem('assetData') ?? '{}');
     const [cryptoMarket, dispatchCryptoMarket] = useReducer(coinGeckoReducer, localCoinGeckoState || initialCoinGeckoState);
-    const [assetData, setAssetData] = useState(JSON.parse(localStorage.getItem('assetData') ?? '{}') as Record<string, MarketData>);
+    const [assetData, dispatchAssetData] = useReducer(assetReducer, localAssetState || initialAssetState);
+    const [dateStart, setDateStart] = useState(defaultStart);
 
     const assetPath = window.location.pathname.replace(Constants.SITE_MARKET_ASSET_PATH, '').split('/');
     const assetType = assetPath[0] as MarketType;
@@ -45,36 +51,36 @@ const Market = (): JSX.Element => {
     //     </section>
     // </Web3ReactProvider>
 
-    const fetchStoreData = (): void => {
+    const fetchCryptoMarketStoreData = (): void => {
         fetchCryptoMarketData()(dispatchCryptoMarket);
-    };
-
-    const dispatchAssetData = (type: MarketType, key: string): void => {
-        switch (type) {
-            case MarketType.CRYPTO:
-                fetchCoinData(key)((x) => {
-                    const coin = x.result?.pop();
-                    if (coin?.key !== undefined) {
-                        setAssetData({ ...assetData, [coin.key]: coin });
-                    }
-                });
-                break;
-        }
     };
 
     useEffect(() => {
         // Initial fetch
-        if (localCoinGeckoState === []) {
-            fetchStoreData();
+        if (localCoinGeckoState.type === CoinGeckoStates.EMPTY && cryptoMarket.type !== CoinGeckoStates.FETCHING) {
+            fetchCryptoMarketStoreData();
         }
 
         // Refresh every minute
+        // TODO use sockets
         const timer = setInterval(() => {
-            fetchStoreData();
+            fetchCryptoMarketStoreData();
         }, 60000);
 
         return () => clearTimeout(timer);
-    }, [localCoinGeckoState]);
+    }, [localCoinGeckoState, cryptoMarket]);
+
+    useEffect(() => {
+        if (assetType && assetKey && assetData.type !== AssetStates.ERROR && assetData.type !== AssetStates.FETCHING) {
+            if (!assetData.data || assetData.data[assetKey] === undefined) {
+                fetchAssetData(assetType, assetKey)(dispatchAssetData);
+            }
+
+            if (assetData.data && assetData.data[assetKey] && !assetData.data[assetKey].price_history) {
+                fetchAssetPriceData(assetType, assetKey, dateStart)(dispatchAssetData);
+            }
+        }
+    }, [assetType, assetKey, assetData, dateStart]);
 
     useEffect(() => {
         localStorage.setItem('cryptoMarket', JSON.stringify(cryptoMarket));
@@ -84,11 +90,18 @@ const Market = (): JSX.Element => {
         localStorage.setItem('assetData', JSON.stringify(assetData));
     }, [assetData]);
 
+    useEffect(() => {
+        localStorage.setItem('dateStart', dateStart.toString());
+    }, [dateStart]);
+
     return (
         <Router history={useHistory()}>
-            <MarketContext.Provider value={{ cryptoMarket, assetData, dispatchCryptoMarket, dispatchAssetData }}>
+            <MarketContext.Provider value={{ cryptoMarket, assetData, setDateStart, dispatchCryptoMarket, dispatchAssetData }}>
                 <Switch>
-                    <Route path={Constants.SITE_MARKET_ASSET_PATH + '*'} render={() => <MarketProfile type={assetType} key={assetKey} />} />
+                    <Route
+                        path={Constants.SITE_MARKET_ASSET_PATH + '*'}
+                        render={() => <MarketProfile type={assetType} id={assetKey} />}
+                    />
                     <Route path="*" component={MarketHome} />
                 </Switch>
             </MarketContext.Provider>

@@ -1,16 +1,17 @@
 import React from 'react';
+import { Col, Row } from 'react-bootstrap';
 import * as Constants from '../../Constants';
 import Postcard from '../Postcard';
 import Data, { Posts } from './Data';
 
 const BlogHome: React.FunctionComponent = (): JSX.Element => {
-    const title = 'Blog Posts';
+    const title = 'Blog';
     const subtext = 'A technology blog analyzing technology through various lenses, disciplines and views.';
     const list = Posts.map((path: string) => {
         const article = Data[path];
 
         return (
-            <div key={article.path} className="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+            <Col xs={12} sm={12} md={12} lg={6} key={article.path}>
                 <Postcard
                     title={article.title}
                     date={article.date}
@@ -18,7 +19,7 @@ const BlogHome: React.FunctionComponent = (): JSX.Element => {
                     image={article.image}
                     link={Constants.SITE_BLOG_ARTICLE_PATH + article.path}
                 />
-            </div>
+            </Col>
         );
     });
     return (
@@ -27,7 +28,7 @@ const BlogHome: React.FunctionComponent = (): JSX.Element => {
                 <h2>{title}</h2>
                 <p>{subtext}</p>
             </div>
-            <div className="row">{list}</div>
+            <Row>{list}</Row>
             <div className="space-bottom"></div>
         </section>
     );

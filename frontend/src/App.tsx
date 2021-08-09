@@ -14,29 +14,35 @@ import BackTop from './tools/BackTop';
 import Overlay, { OverlayState } from './layout/Overlay';
 import { SocialBlock } from './tools/SocialLinks';
 import Header from './layout/Header';
-import Footer from './layout/Footer';
 import Body from './layout/Body';
+import { LanguageSelectorState } from './layout/LanguageSelector';
 
 export const AppContext = createContext<{
     testMode: boolean,
     theme: Themes,
     navState: NavState,
+    langSelectorState: LanguageSelectorState,
     overlayState: OverlayState,
     socialLinks: Array<SocialBlock>,
     toggleNav: () => void,
+    toggleLangSelector: () => void,
     setTheme: (value: Themes) => void,
     setNavState: (value: NavState) => void,
     setOverlayState: (value: OverlayState) => void,
+    setLangSelectorState: (value: LanguageSelectorState) => void,
 }>({
     testMode: false,
     theme: Themes.DARK,
     navState: NavState.CLOSED,
+    langSelectorState: LanguageSelectorState.CLOSED,
     overlayState: OverlayState.HIDE,
     socialLinks: socialLinks,
     toggleNav: () => null,
+    toggleLangSelector: () => null,
     setTheme: () => null,
     setNavState: () => null,
     setOverlayState: () => null,
+    setLangSelectorState: () => null,
 });
 
 const App = (): JSX.Element => {
@@ -46,29 +52,29 @@ const App = (): JSX.Element => {
     const [theme, setTheme] = useState(() => localStorage.getItem('theme') as Themes || sysTheme);
     const [navState, setNavState] = useState(() => localStorage.getItem('navState') as NavState || NavState.CLOSED);
     const [overlayState, setOverlayState] = useState(() => OverlayState.HIDE);
+    const [langSelectorState, setLangSelectorState] = useState(() => LanguageSelectorState.CLOSED);
 
     const toggleNav = () => {
-        let mode: NavState = NavState.CLOSED;
-        //let overlay: OverlayState = OverlayState.HIDE;
+        setNavState(navState === NavState.CLOSED ? NavState.OPEN : NavState.CLOSED);
+    };
 
-        if (appContext.navState === NavState.CLOSED) {
-            mode = NavState.OPEN;
-        }
-
-        appContext.setNavState(mode);
-        //appContext.setOverlayState(overlay);
+    const toggleLangSelector = () => {
+        setLangSelectorState(langSelectorState === LanguageSelectorState.CLOSED ? LanguageSelectorState.OPEN : LanguageSelectorState.CLOSED);
     };
 
     const appContext = {
         testMode,
         theme,
         navState,
+        langSelectorState,
         overlayState,
         socialLinks,
         toggleNav,
+        toggleLangSelector,
         setTheme,
         setNavState,
-        setOverlayState
+        setOverlayState,
+        setLangSelectorState,
     };
 
     useEffect(() => {

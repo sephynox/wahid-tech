@@ -8,33 +8,33 @@ import { SocialBlock } from "./tools/SocialLinks";
 
 export const navLinks: Array<NavBlock> = [
     {
-        text: 'Home',
+        text: 'home',
         icon: 'icon bi-house',
         to: '/',
         exact: true,
         component: Home,
     },
     {
-        text: 'Market',
+        text: 'markets',
         icon: 'icon bi-graph-up',
         to: '/financial-markets',
         component: Market,
     },
     {
-        text: 'Blog',
+        text: 'blog',
         icon: 'icon bi-journals',
         to: '/technology-blog',
         component: Blog,
     },
     {
-        text: 'Contact',
+        text: 'contact',
         icon: 'icon bi-envelope',
         to: '/contact',
         component: Contact,
         exact: true,
     },
     {
-        text: 'About',
+        text: 'about',
         icon: 'icon bi-person',
         to: '/about',
         component: About,
@@ -64,4 +64,16 @@ export const socialLinks: Array<SocialBlock> = [
         url: 'mailto:info@example.com?subject=',
     },
 
+];
+
+export const systemLanguages: Record<string, string> = {
+    'en-US': 'English',
+    'es': 'Español',
+    'de': 'Deutsch'
+};
+
+export const supportedLanguages: Array<keyof typeof systemLanguages> = [
+    'en-US',
+    'es',
+    'de'
 ];

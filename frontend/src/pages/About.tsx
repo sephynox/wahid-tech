@@ -1,4 +1,5 @@
 import React from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import Typed from 'react-typed';
 import * as Constants from '../Constants';
 
@@ -25,21 +26,18 @@ const About = (): JSX.Element => {
     return (
         <section id="about" className="container">
             <h1>{Constants.MY_NAME}</h1>
-            <div className="container">
-                <div className="row">
-                    <p className="typed-container">
-                        I&apos;m a <Typed {...typed_options} />
-                    </p>
-                </div>
-                <div className="row">
-                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+            <Container>
+                <Row>
+                    <Col><p className="typed-container">I&apos;m a <Typed {...typed_options} /></p></Col>
+                </Row>
+                <Row>
+                    <Col className="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                         <hr />
                         {bio_text}
-                    </div>
-                    <div className="col"></div>
-                </div>
-                <div className="row">
-                    <div className="col">
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
                         <div className="social-links">
                             <a
                                 href="https://www.linkedin.com/in/twahid"
@@ -61,9 +59,9 @@ const About = (): JSX.Element => {
                                 <i className="icon bi-github"></i>
                             </a>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </Col>
+                </Row>
+            </Container>
         </section>
     );
 };

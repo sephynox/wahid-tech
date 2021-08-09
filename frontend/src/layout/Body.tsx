@@ -29,6 +29,10 @@ const MainStyle = styled.main<Theme>`
         padding-right: 30px;
     }
 
+    @media screen and (max-width: 768px) {
+        padding-top: 0;
+    }
+
     @media screen and (max-height: 800px) {
         margin-bottom: 50px;
     }

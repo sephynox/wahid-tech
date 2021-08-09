@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react';
 import { Breadcrumb } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { AppContext } from '../App';
 import Theme from '../tools/Themes';
@@ -38,16 +39,17 @@ export type NavBlock = {
 };
 
 export const Breadcrumbs = ({ links }: BreadcrumbsProps): JSX.Element => {
+    const { t } = useTranslation();
     return (
         <Breadcrumb>
-            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>Home</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={NavLink} linkProps={{ to: "/" }}>{t('home')}</Breadcrumb.Item>
             {links.map((crumb: Crumb, i: number) => (
                 <Breadcrumb.Item
                     key={i}
                     className={crumb.class}
-                    linkAs={Link}
+                    linkAs={NavLink}
                     linkProps={{ to: crumb.path }}
-                    active={crumb.active}>{crumb.text}</Breadcrumb.Item>)
+                    active={crumb.active}>{t(crumb.text)}</Breadcrumb.Item>)
             )}
         </Breadcrumb>
     );
@@ -80,6 +82,7 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({ navLinks }: Navi
         activeClassName = 'active',
         exact = true
     }: NavBlock): JSX.Element => {
+        const { t } = useTranslation();
         return (
             <NavLink
                 onClick={appContext.toggleNav}
@@ -88,7 +91,7 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({ navLinks }: Navi
                 activeClassName={activeClassName}
                 to={to}
             >
-                <i className={'nav-link' + icon}></i> <span>{text}</span>
+                <i className={'nav-link' + icon}></i> <span className="capitalize">{t(text)}</span>
             </NavLink>
         );
     };

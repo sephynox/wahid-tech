@@ -1,114 +1,173 @@
-import i18next from "i18next";
-import { initReactI18next } from "react-i18next";
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import * as Constants from '../Constants';
 
 const resources = {
-    en: {
+    'en-US': {
         translation: {
-            bitcoin: "Bitcoin",
+            language: 'language',
+            home: 'home',
+            markets: 'market',
+            blog: 'blog',
+            contact: 'contact',
+            about: 'about',
+            light: 'light',
+            dark: 'dark',
+            name: 'name',
+            subject: 'subject',
+            message: 'message',
+            bitcoin: 'bitcoin',
+            send_message: 'Send Message',
         },
     },
     de: {
         translation: {
-            bitcoin: "Bitcoin",
+            language: 'sprachen',
+            home: 'huis',
+            markets: 'markten',
+            blog: 'blog',
+            contact: 'contact',
+            about: 'über',
+            light: 'helder',
+            dark: 'donker',
+            name: 'nombre',
+            subject: 'subject',
+            message: 'message',
+            bitcoin: 'bitcoin',
+            send_message: 'Bericht Versturen',
         },
     },
     es: {
         translation: {
-            bitcoin: "Bitcoin",
+            language: 'idioma',
+            home: 'portada',
+            markets: 'mercados',
+            blog: 'blog',
+            contact: 'contacto',
+            about: 'acerca de',
+            light: 'luz',
+            dark: 'oscuro',
+            name: 'nombre',
+            subject: 'el tema',
+            message: 'la comunicación',
+            bitcoin: 'bitcoin',
+            send_message: 'Enviar Mensaje',
         },
     },
+    // TODO Support other languages
     fr: {
         translation: {
-            bitcoin: "Bitcoin",
+            home: 'home',
+            bitcoin: 'bitcoin',
         },
     },
     it: {
         translation: {
-            bitcoin: "Bitcoin",
+            home: 'home',
+            bitcoin: 'bitcoin',
         },
     },
     pl: {
         translation: {
-            bitcoin: "Bitcoin",
+            home: 'home',
+            bitcoin: 'bitcoin',
         },
     },
     ro: {
         translation: {
-            bitcoin: "Bitcoin",
+            home: 'home',
+            bitcoin: 'bitcoin',
         },
     },
     hu: {
         translation: {
-            bitcoin: "Bitcoin",
+            home: 'home',
+            bitcoin: 'bitcoin',
         },
     },
     nl: {
         translation: {
-            bitcoin: "Bitcoin",
+            home: 'home',
+            bitcoin: 'bitcoin',
         },
     },
     pt: {
         translation: {
-            bitcoin: "Bitcoin",
+            home: 'home',
+            bitcoin: 'bitcoin',
         },
     },
     sv: {
         translation: {
-            bitcoin: "Bitcoin",
+            home: 'home',
+            bitcoin: 'bitcoin',
         },
     },
     vi: {
         translation: {
-            bitcoin: "Bitcoin",
+            home: 'home',
+            bitcoin: 'bitcoin',
         },
     },
     tr: {
         translation: {
-            bitcoin: "Bitcoin",
+            home: 'home',
+            bitcoin: 'bitcoin',
         },
     },
     ru: {
         translation: {
-            bitcoin: "биткоин",
+            home: 'home',
+            bitcoin: 'биткоин',
         },
     },
     ja: {
         translation: {
-            bitcoin: "ビットコイン",
+            home: 'home',
+            bitcoin: 'ビットコイン',
         },
     },
     zh: {
         translation: {
-            bitcoin: "比特币",
+            home: 'home',
+            bitcoin: '比特币',
         },
     },
     'zh-tw': {
         translation: {
-            bitcoin: "比特幣",
+            home: 'home',
+            bitcoin: '比特幣',
         },
     },
     ko: {
         translation: {
-            bitcoin: "비트코인",
+            home: 'home',
+            bitcoin: '비트코인',
         },
     },
     ar: {
         translation: {
-            app_name: "بيتكوين",
+            home: 'home',
+            bitcoin: 'بيتكوين',
         },
     },
     th: {
         translation: {
-            bitcoin: "บิตคอยน์",
+            home: 'home',
+            bitcoin: 'บิตคอยน์',
         },
     }
 };
 
 i18next
+    .use(LanguageDetector)
     .use(initReactI18next)
     .init({
         resources,
-        lng: "en",
+        //ns: ['common', 'validation', 'external'],
+        debug: process.env.NODE_ENV !== 'production',
+        fallbackLng: Constants.DEFAULT_LANG,
         interpolation: {
             escapeValue: false,
         },
