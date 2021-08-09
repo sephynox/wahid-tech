@@ -1,8 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import APACitation from '../../../tools/APACitation';
 import Quote from '../../Quote';
 
 const ADecentralizedFuture = (): JSX.Element => {
+    const { t } = useTranslation();
+
     return (
         <>
             <p>
@@ -149,7 +152,7 @@ const ADecentralizedFuture = (): JSX.Element => {
             <h3>Final Thoughts</h3>
             <p>TODO</p>
             <hr className="article-divider-bottom" />
-            <p className="article-story-line">References</p>
+            <p className="article-story-line capitalize">{t('references')}</p>
             <APACitation
                 id="citation-beattie-2019"
                 authors={[{ given: 'Andrew', family: 'Beattie' }]}

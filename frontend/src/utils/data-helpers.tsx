@@ -16,6 +16,16 @@ export const createRandomData = (time: number, magnitude: number, points = 100):
     return data;
 };
 
+export const chunkArray = <T,>(array: Array<T>, chunkSize: number): Array<Array<T>> => {
+    const chunkedArray = [];
+
+    for (let i = 0; i < array.length; i += chunkSize) {
+        chunkedArray.push(array.slice(i, i + chunkSize));
+    }
+
+    return chunkedArray;
+}
+
 export const addDataPoint = (data: Array<Array<number>>, toAdd: Array<number>): Array<Array<number>> => {
     if (!toAdd) toAdd = createDataPoint();
 

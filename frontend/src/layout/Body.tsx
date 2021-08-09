@@ -30,7 +30,7 @@ const MainStyle = styled.main<Theme>`
     }
 
     @media screen and (max-width: 768px) {
-        padding-top: 0;
+        padding-top: 20px;
     }
 
     @media screen and (max-height: 800px) {

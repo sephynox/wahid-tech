@@ -5,6 +5,7 @@ import * as Constants from '../../Constants';
 import CitationGuide from '../../tools/CitationGuide';
 import SocialLinks from '../../tools/SocialLinks';
 import { Breadcrumbs } from '../../layout/Navigation';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     data: ArticleData;
@@ -34,6 +35,8 @@ export interface ArticleData {
 }
 
 const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
+    const { t, i18n } = useTranslation();
+
     const article_full_url = Constants.SITE_BLOG_ARTICLE_BASE_URL + data.path;
     const article_authors = data.authors
         .map(
@@ -69,30 +72,30 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                     <h2>{data.title}</h2>
 
                     <dl className="dl-horizontal dl-custom">
-                        <dt>By:</dt>
+                        <dt className="capitalize">{t('byline')}:</dt>
                         <dd id="article_authors">{article_authors}</dd>
-                        <dt>Published:</dt>
+                        <dt className="capitalize">{t('published')}:</dt>
                         <dd id="article_date_posted">{publish_date}</dd>
                         {modified_date !== null ? (
                             <>
-                                <dt>Last Update:</dt>
+                                <dt className="capitalize">{t('last_update')}:</dt>
                                 <dd id="modified">{modified_date}</dd>
                             </>
                         ) : null}
-                        <dt>Summary:</dt>
+                        <dt className="capitalize">{t('summary')}:</dt>
                         <dd id="article_abstract">{data.description}</dd>
-                        <dt className="no-print">Share:</dt>
+                        <dt className="capitalize no-print">{t('share')}:</dt>
                         <dd className="no-print">
                             <SocialLinks url={article_full_url} title={data.title} />
                         </dd>
                     </dl>
                 </div>
                 <div className="article-body">
-                    <p className="article-story-line">Full Story</p>
+                    <p className="article-story-line capitalize">{t('full_story')}</p>
                     <hr className="article-divider-top" />
                     <MyArticle />
                     <hr className="article-divider-bottom" />
-                    <p className="article-story-line">Cite this Page</p>
+                    <p className="article-story-line capitalize">{t('citations')}</p>
                     <CitationGuide
                         authors={data.authors}
                         publisher={Constants.SITE_NAME}
@@ -102,7 +105,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                         date_day={data.date.getDate()}
                     />
                     <hr className="mt-5" />
-                    <p className="article-story-line">Comments</p>
+                    <p className="article-story-line capitalize">{t('comments')}</p>
                     <div className="article-end-comments">
                         <DiscussionEmbed
                             shortname="wahidtech"
@@ -110,7 +113,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                                 url: article_full_url,
                                 identifier: data.path,
                                 title: data.title,
-                                language: 'en',
+                                language: i18n.language.replace('-', '_'),
                             }}
                         />
                     </div>

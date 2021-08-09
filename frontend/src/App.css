@@ -1242,14 +1242,14 @@ footer .credits {
 --------------------------------------------------------------*/
 dl.dl-custom dd {
     text-align: left;
-    margin-left: 120px;
+    margin-left: 170px;
     padding-bottom: 5px;
 }
 
 dl.dl-custom dt {
     float: left;
     text-align: right;
-    width: 100px;
+    width: 150px;
     font-weight: normal;
     font-style: italic;
     color: #595959;
@@ -1308,6 +1308,20 @@ p.article-image img {
 .article-end-comments {
     margin-bottom: 100px;
 }
+
+@media (min-width: 992px) {}
+
+@media screen and (max-width: 992px) {
+    dl.dl-custom dd {
+        margin-left: 120px;
+    }
+
+    dl.dl-custom dt {
+        width: 100px;
+    }
+
+}
+
 
 /*--------------------------------------------------------------
 # Social

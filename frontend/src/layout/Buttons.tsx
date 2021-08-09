@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../App';
+import { systemLanguages } from '../Data';
 import { Themes } from '../tools/Themes';
 
 const Buttons: React.FunctionComponent = (): JSX.Element => {
@@ -31,7 +32,7 @@ const Buttons: React.FunctionComponent = (): JSX.Element => {
                 <li>
                     <button className="nav-link" onClick={appContext.toggleLangSelector}>
                         <i className="icon bi-translate"></i>
-                        <span>&nbsp;{i18n.language}</span>
+                        <span>&nbsp;{systemLanguages[i18n.language]}</span>
                     </button>
                 </li>
             </ul>
