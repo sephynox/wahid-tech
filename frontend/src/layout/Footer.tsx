@@ -2,16 +2,21 @@ import React from 'react';
 import * as Constants from '../Constants';
 import styled from 'styled-components';
 import Theme from '../tools/Themes';
+import { useTranslation } from 'react-i18next';
 
-const Footer: React.FunctionComponent = (): JSX.Element => (
-    <FooterStyle id="footer" className="justify-content-center">
-        <div className="container">
-            <div className="copyright">
-                © Copyright <strong>{Constants.MY_NAME}</strong>. All Rights Reserved.
+const Footer: React.FunctionComponent = (): JSX.Element => {
+    const { t } = useTranslation();
+
+    return (
+        <FooterStyle id="footer" className="justify-content-center">
+            <div className="container">
+                <div className="copyright capitalize">
+                    {t('copyright')} <strong>{Constants.MY_NAME}</strong>.
+                </div>
             </div>
-        </div>
-    </FooterStyle>
-);
+        </FooterStyle>
+    );
+};
 
 export default Footer;
 
