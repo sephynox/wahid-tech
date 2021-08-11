@@ -1,6 +1,6 @@
-import React, { createContext, Fragment, useEffect, useState } from 'react';
+import React, { createContext, Suspense, useEffect, useState } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import ReactGA from 'react-ga';
 import './scss/custom.scss';
@@ -16,6 +16,7 @@ import { SocialBlock } from './tools/SocialLinks';
 import Header from './layout/Header';
 import Body from './layout/Body';
 import { LanguageSelectorState } from './layout/LanguageSelector';
+import LoaderSpinner from './tools/LoaderSpinner';
 
 export const AppContext = createContext<{
     testMode: boolean,
@@ -45,7 +46,7 @@ export const AppContext = createContext<{
     setLangSelectorState: () => null,
 });
 
-const App = (): JSX.Element => {
+const App = ({ history }: RouteComponentProps): JSX.Element => {
     const testMode: boolean = process.env.NODE_ENV === 'test';
     const sysTheme: Themes = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? Themes.LIGHT : Themes.DARK;
 
@@ -80,26 +81,31 @@ const App = (): JSX.Element => {
     useEffect(() => {
         localStorage.setItem('theme', theme);
         !testMode && ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID ? process.env.REACT_APP_GA_TRACKING_ID : '');
-    }, [theme, testMode]);
+
+        //HACK Fix this odd issue
+        const bugListener = history.listen(() => {
+            document.querySelectorAll('body>div:not(#root)').forEach((el) => { el.remove(); });
+        });
+
+        return bugListener;
+    }, [theme, testMode, history]);
 
     return (
         <ThemeProvider theme={availableThemes[theme]}>
             <div className={"App " + (navState === NavState.OPEN ? Constants.NAVIGATION_ACTIVE_CLASS : '')}>
                 <AppContext.Provider value={appContext}>
-                    <Fragment>
-                        <Router>
-                            <NavToggle />
-                            <Header />
-                            <Body />
-                        </Router>
+                    <Suspense fallback={<LoaderSpinner type="Pulse" size={20} />}>
+                        <NavToggle />
+                        <Header />
+                        <Body />
                         <Overlay state={overlayState as OverlayState} />
                         <BackTop />
                         <GlobalStyle />
-                    </Fragment>
+                    </Suspense>
                 </AppContext.Provider>
             </div>
         </ThemeProvider>
     );
 }
 
-export default App;
+export default withRouter(App);

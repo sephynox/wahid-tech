@@ -1,8 +1,5 @@
 export const createDataPoint = (time = Date.now(), magnitude = 1000, offset = 0): Array<number> => {
-    return [
-        time + offset * magnitude,
-        Math.round((Math.random() * 100) * 2) / 2
-    ];
+    return [time + offset * magnitude, Math.round((Math.random() * 100) * 2) / 2];
 };
 
 export const createRandomData = (time: number, magnitude: number, points = 100): Array<Array<number>> => {
@@ -38,3 +35,7 @@ export const addDataPoint = (data: Array<Array<number>>, toAdd: Array<number>): 
 export const randomNumber = (floor: number, ceil: number): number => {
     return Math.floor(Math.random() * (ceil - floor + 1) + floor);
 }
+
+export const stripTagsUnsafe = (input: string): string => {
+    return input.replace(/<\/?[^>]+(>|$)/g, '');
+};

@@ -1,5 +1,5 @@
 import React, { createContext, Dispatch, SetStateAction, useEffect, useReducer, useState } from 'react';
-import { Route, Router, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import * as Constants from '../Constants';
 import { coinGeckoReducer, CoinGeckoState, CoinGeckoStates, fetchCryptoMarketData, initialCoinGeckoState } from '../actions/CoinGecko';
 import { AssetState, assetReducer, initialAssetState, fetchAssetData, AssetStates, fetchAssetPriceData } from '../actions/Assets';
@@ -29,10 +29,10 @@ export const MarketContext = createContext<{
 
 const Market = (): JSX.Element => {
     const defaultStart: number = Math.floor(new Date(new Date().setDate(new Date().getDate() - 5)).getTime() / 1000);
-    const localCoinGeckoState: CoinGeckoState = JSON.parse(localStorage.getItem('cryptoMarket') ?? '{}');
-    const localAssetState: AssetState = JSON.parse(localStorage.getItem('assetData') ?? '{}');
-    const [cryptoMarket, dispatchCryptoMarket] = useReducer(coinGeckoReducer, localCoinGeckoState || initialCoinGeckoState);
-    const [assetData, dispatchAssetData] = useReducer(assetReducer, localAssetState || initialAssetState);
+    const localCoinGeckoState: CoinGeckoState = { ...initialCoinGeckoState, ...JSON.parse(localStorage.getItem('cryptoMarket') ?? '{}') };
+    const localAssetState: AssetState = { ...initialAssetState, ...JSON.parse(localStorage.getItem('assetData') ?? '{}') };
+    const [cryptoMarket, dispatchCryptoMarket] = useReducer(coinGeckoReducer, localCoinGeckoState);
+    const [assetData, dispatchAssetData] = useReducer(assetReducer, localAssetState);
     const [dateStart, setDateStart] = useState(defaultStart);
 
     const assetPath = window.location.pathname.replace(Constants.SITE_MARKET_ASSET_PATH, '').split('/');
@@ -51,13 +51,15 @@ const Market = (): JSX.Element => {
     //     </section>
     // </Web3ReactProvider>
 
-    const fetchCryptoMarketStoreData = (): void => {
-        fetchCryptoMarketData()(dispatchCryptoMarket);
-    };
-
     useEffect(() => {
+        const fetchCryptoMarketStoreData = (): void => {
+            if (cryptoMarket.type !== CoinGeckoStates.FETCHING) {
+                fetchCryptoMarketData()(dispatchCryptoMarket);
+            }
+        };
+
         // Initial fetch
-        if (localCoinGeckoState.type === CoinGeckoStates.EMPTY && cryptoMarket.type !== CoinGeckoStates.FETCHING) {
+        if (cryptoMarket.type === CoinGeckoStates.EMPTY) {
             fetchCryptoMarketStoreData();
         }
 
@@ -68,7 +70,7 @@ const Market = (): JSX.Element => {
         }, 60000);
 
         return () => clearTimeout(timer);
-    }, [localCoinGeckoState, cryptoMarket]);
+    }, [cryptoMarket]);
 
     useEffect(() => {
         if (assetType && assetKey && assetData.type !== AssetStates.ERROR && assetData.type !== AssetStates.FETCHING) {
@@ -95,17 +97,12 @@ const Market = (): JSX.Element => {
     }, [dateStart]);
 
     return (
-        <Router history={useHistory()}>
-            <MarketContext.Provider value={{ cryptoMarket, assetData, setDateStart, dispatchCryptoMarket, dispatchAssetData }}>
-                <Switch>
-                    <Route
-                        path={Constants.SITE_MARKET_ASSET_PATH + '*'}
-                        render={() => <MarketProfile type={assetType} id={assetKey} />}
-                    />
-                    <Route path="*" component={MarketHome} />
-                </Switch>
-            </MarketContext.Provider>
-        </Router>
+        <MarketContext.Provider value={{ cryptoMarket, assetData, setDateStart, dispatchCryptoMarket, dispatchAssetData }}>
+            <Switch>
+                <Route exact path={Constants.SITE_MARKET_PATH_BASE} component={MarketHome} />
+                <Route path={`${Constants.SITE_MARKET_ASSET_PATH}:type/:id`} component={MarketProfile} />
+            </Switch>
+        </MarketContext.Provider>
     );
 };
 

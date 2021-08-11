@@ -12,7 +12,7 @@ type Props = {
     date: Date;
 };
 
-const Postcard = ({ title, text, link, image, date, linkText = 'read' }: Props): JSX.Element => {
+const Postcard = ({ title, text, link, image, date, linkText = 'button.read' }: Props): JSX.Element => {
     const { t } = useTranslation();
     return (
         <div className="card blog">

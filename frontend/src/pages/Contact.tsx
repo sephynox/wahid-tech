@@ -90,7 +90,7 @@ const Contact = (): JSX.Element => {
                             <Row>
                                 <Col xs={12} sm={12} md={12} lg={6}></Col>
                                 <Col xs={12} sm={12} md={12} lg={6} className="contact-button mt-xs-2">
-                                    <button className="capitalize" type="submit">{t('send_message')}</button>
+                                    <button className="capitalize" type="submit">{t('button.send_message')}</button>
                                 </Col>
                             </Row>
                         </Form>

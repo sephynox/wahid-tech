@@ -170,24 +170,45 @@ hr.nav-menu-buttons {
 }
 
 .highcharts-background {
-    fill: none;
+    fill: none !important;
 }
 
 .highcharts-menu-item {
-    color: ${(props: ThemeEngine) => props.theme.text};
+    color: ${(props: ThemeEngine) => props.theme.text} !important;
 }
 
 .highcharts-menu-item:hover {
-    background: ${(props: ThemeEngine) => props.theme.backgroundAlt};
-    fill: ${(props: ThemeEngine) => props.theme.info};
+    background: ${(props: ThemeEngine) => props.theme.backgroundAlt} !important;
+    fill: ${(props: ThemeEngine) => props.theme.info} !important;
 }
 
-.highcarts-title,
-.highcharts-axis-labels,
+.highcharts-title,
 .highcharts-axis-title,
-.highcharts-legend-item,
+.highcharts-label > text,
+.highcharts-legend-item > text,
 .highcharts-legend-title {
-    color: ${(props: ThemeEngine) => props.theme.text} !important;
+    fill: ${(props: ThemeEngine) => props.theme.text} !important;
+}
+
+.highcharts-axis-labels > text {
+    fill: ${(props: ThemeEngine) => props.theme.textAlt} !important;
+}
+
+.highcharts-label-box, .highcharts-button-box {
+    fill: ${(props: ThemeEngine) => props.theme.backgroundExtended} !important;
+}
+
+.highcharts-label-box.highcharts-shadow {
+    fill: ${(props: ThemeEngine) => props.theme.backgroundAlt} !important;
+}
+
+.highcharts-button-disabled > .highcharts-button-box {
+    fill: ${(props: ThemeEngine) => props.theme.hr} !important;
+}
+
+.highcharts-button-pressed > .highcharts-button-box {
+    color: ${(props: ThemeEngine) => props.theme.text};
+    fill: ${(props: ThemeEngine) => props.theme.info} !important;
 }
 
 a.page-link {

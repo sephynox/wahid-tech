@@ -75,7 +75,7 @@ export const fetchAssetPriceData = (
         case MarketType.CRYPTO:
             fetchCoinPriceData(key, start, end, currency)((response) => {
                 if (response.type === CoinGeckoStates.FETCHED_COIN_PRICE_DATA) {
-                    const data = { [key]: { type: type, key: key, price_history: true, prices: response.prices } };
+                    const data = { [key]: { type: type, key: key, price_history: true, prices: response.data } };
                     dispatch({ type: AssetStates.FETCHED_ASSET_PRICE_DATA, key: key, data: data });
                 } else if (response.type === CoinGeckoStates.ERROR) {
                     dispatch({ type: AssetStates.ERROR, error: response.error });

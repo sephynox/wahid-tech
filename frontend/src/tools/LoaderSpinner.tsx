@@ -1,31 +1,38 @@
 import React from 'react';
-import Loader from 'react-loader-spinner';
+import PulseLoader from 'react-spinners/PulseLoader';
+import MoonLoader from 'react-spinners/MoonLoader';
+import BarLoader from 'react-spinners/BarLoader';
 
 type Props = {
-    type?: 'Bars' | 'Circles' | 'Grid' | 'Oval' | 'Rings' | 'TailSpin' | 'ThreeDots';
-    color?: string;
-    width?: number;
+    type?: 'Pulse' | 'Circle' | 'Bar';
     height?: number;
-    timeout?: number;
+    width?: number | string;
+    size?: number;
+    color?: string;
 };
 
-const LoaderSpinner = ({
-    width = 80,
+const LoaderSpinner: React.FunctionComponent<Props> = ({
+    type = 'Bar',
+    size = 80,
     height = 80,
-    type = 'Oval',
-    color = '#004085',
-    timeout = 60000 }: Props
-): JSX.Element => {
+    width = 80,
+    color = '#004085'
+}: Props): JSX.Element => {
+    const styles = { height: size + 40, lineHeight: `${size + 40}px` };
+    const getSpinner = (): JSX.Element => {
+        switch (type) {
+            case 'Pulse':
+                return <PulseLoader color={color} size={size} />;
+            case 'Circle':
+                return <MoonLoader color={color} size={size} />;
+            case 'Bar':
+            default:
+                return <BarLoader css="display: inline-block" color={color} width={width} height={height} />;
+        }
+    };
+
     return (
-        <div className="loader-center">
-            <Loader
-                type={type}
-                color={color}
-                height={height}
-                width={width}
-                timeout={timeout}
-            />
-        </div>
+        <div className="loader-center" style={styles}>{getSpinner()}</div>
     );
 };
 

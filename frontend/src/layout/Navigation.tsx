@@ -49,7 +49,7 @@ export const Breadcrumbs = ({ links }: BreadcrumbsProps): JSX.Element => {
                     className={crumb.class}
                     linkAs={NavLink}
                     linkProps={{ to: crumb.path }}
-                    active={crumb.active}>{t(crumb.text)}</Breadcrumb.Item>)
+                    active={crumb.active}>{t(crumb.text, crumb.text)}</Breadcrumb.Item>)
             )}
         </Breadcrumb>
     );
@@ -91,7 +91,7 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({ navLinks }: Navi
                 activeClassName={activeClassName}
                 to={to}
             >
-                <i className={'nav-link' + icon}></i> <span className="capitalize">{t(text)}</span>
+                <i className={'nav-link' + icon}></i> <span className="capitalize">{t(text, text)}</span>
             </NavLink>
         );
     };

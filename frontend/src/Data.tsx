@@ -67,13 +67,13 @@ export const socialLinks: Array<SocialBlock> = [
 ];
 
 export const systemLanguages: Record<string, string> = {
-    'en-US': 'English',
-    'es-US': 'Español',
+    'en': 'English',
+    'es': 'Español',
     'de': 'Deutsch'
 };
 
 export const supportedLanguages: Array<keyof typeof systemLanguages> = [
-    'en-US',
-    'es-US',
+    'en',
+    'es',
     'de'
 ];

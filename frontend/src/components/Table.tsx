@@ -31,7 +31,7 @@ const Table = ({ columns, data, defaultSort, page = 1, sizePerPage = 10 }: Props
     return (
         <BootstrapTable bootstrap4
             keyField='id'
-            noDataIndication={() => <LoaderSpinner />}
+            noDataIndication={() => <LoaderSpinner width="50%" height={5} />}
             defaultSorted={defaultSort ? [{ ...defaultSorted, ...defaultSort }] : [defaultSorted]}
             data={data}
             columns={columns}

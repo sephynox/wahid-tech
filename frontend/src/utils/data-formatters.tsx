@@ -14,3 +14,9 @@ export const formatPercent = (p: number, r = 2): string => {
 export const formatTitleCase = (input: string): string => {
     return input[0].toUpperCase() + input.slice(1).toLowerCase();
 }
+
+export const formatFirstUpper = (input: string): string => {
+    return input.replace(/\w\S*/g, function (str) {
+        return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
+    });
+}

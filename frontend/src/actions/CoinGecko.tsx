@@ -1,7 +1,14 @@
 import axios from 'axios';
+import i18next from 'i18next';
 import React from 'react';
 import * as Constants from '../Constants';
+import { i18nNamespace } from '../services/i18n';
 import { MarketData, MarketType, PriceData } from '../tools/MarketData';
+import { stripTagsUnsafe } from '../utils/data-helpers';
+
+enum i18nKeys {
+    DESCRIPTION = 'description'
+};
 
 type CoinGeckoROI = {
     times: number;
@@ -75,14 +82,14 @@ export enum CoinGeckoStates {
 };
 
 export type CoinGeckoState =
-    | { type: CoinGeckoStates.EMPTY, result?: Array<MarketData>, prices?: Array<CoinGeckoPriceData> }
-    | { type: CoinGeckoStates.FETCHING, result?: Array<MarketData>, prices?: Array<CoinGeckoPriceData> }
-    | { type: CoinGeckoStates.ERROR, error: string, result?: Array<MarketData>, prices?: Array<CoinGeckoPriceData> }
-    | { type: CoinGeckoStates.FETCHED_COIN_DATA, result: Array<MarketData>, prices?: Array<CoinGeckoPriceData> }
-    | { type: CoinGeckoStates.FETCHED_MARKET_DATA, result: Array<MarketData>, prices?: Array<CoinGeckoPriceData> }
-    | { type: CoinGeckoStates.FETCHED_COIN_PRICE_DATA, result?: Array<MarketData>, prices: Array<CoinGeckoPriceData> }
+    | { type: CoinGeckoStates.EMPTY, result?: Array<MarketData>, data?: CoinGeckoPriceData }
+    | { type: CoinGeckoStates.FETCHING, result?: Array<MarketData>, data?: CoinGeckoPriceData }
+    | { type: CoinGeckoStates.ERROR, error: string, result?: Array<MarketData>, data?: CoinGeckoPriceData }
+    | { type: CoinGeckoStates.FETCHED_COIN_DATA, result: Array<MarketData>, data?: CoinGeckoPriceData }
+    | { type: CoinGeckoStates.FETCHED_MARKET_DATA, result: Array<MarketData>, data?: CoinGeckoPriceData }
+    | { type: CoinGeckoStates.FETCHED_COIN_PRICE_DATA, result?: Array<MarketData>, data: CoinGeckoPriceData }
     // TODO
-    | { type: CoinGeckoStates.FETCHED_COIN_LIST, result: Array<MarketData>, prices?: Array<CoinGeckoPriceData> };
+    | { type: CoinGeckoStates.FETCHED_COIN_LIST, result: Array<MarketData>, data?: CoinGeckoPriceData };
 
 export const initialCoinGeckoState: CoinGeckoState = {
     type: CoinGeckoStates.EMPTY
@@ -125,7 +132,7 @@ export const fetchCoinPriceData = (
     dispatch({ type: CoinGeckoStates.FETCHING });
     return CoinGecko.get(`coins/${coin}/market_chart/range?vs_currency=${currency}&from=${start}&to=${end}`).then(
         (result) => {
-            dispatch({ type: CoinGeckoStates.FETCHED_COIN_PRICE_DATA, prices: result.data.prices ?? [] });
+            dispatch({ type: CoinGeckoStates.FETCHED_COIN_PRICE_DATA, data: result.data ?? [] });
         },
         (error) => dispatch({ type: CoinGeckoStates.ERROR, error: error }),
     );
@@ -148,6 +155,24 @@ export const fetchCryptoMarketData = (
 
 const CoinGecko = axios.create({
     baseURL: Constants.COINGECKO_API_ENDPOINT
+});
+
+//TODO Make separate middleware
+CoinGecko.interceptors.response.use((response) => {
+    if (typeof response.data === 'object' && !Array.isArray(response.data) && response.data.id !== undefined) {
+        Object.values(i18nKeys).forEach((key: string) => {
+            if (response.data[key] !== undefined) {
+                for (const locale in response.data[key]) {
+                    i18next.addResourceBundle(locale, i18nNamespace.EXTERNAL, {
+                        [response.data.id + '_' + key]: stripTagsUnsafe(response.data[key][locale])
+                    });
+                }
+            }
+        });
+    }
+    return response;
+}, function (error) {
+    return Promise.reject(error);
 });
 
 export default CoinGecko;
