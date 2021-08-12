@@ -1,49 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { ThemeEngine } from '../styles/GlobalStyle';
 
 type Props = {
     text: string;
     charactersMax: number;
 };
 
+enum ReadMoreState {
+    SHOW = 'show',
+    HIDE = 'hide'
+};
+
 const ReadMore: React.FunctionComponent<Props> = ({ text, charactersMax }: Props): JSX.Element => {
     const textShort = text.substr(0, charactersMax);
     const textExtra = text.substr(charactersMax, text.length);
+    const showButton = text.length <= charactersMax ? 'hide' : '';
+    const [readMoreState, setReadMoreState] = useState(() => ReadMoreState.HIDE);
+
+    const toggleShowMore = () => {
+        setReadMoreState(readMoreState === ReadMoreState.SHOW ? ReadMoreState.HIDE : ReadMoreState.SHOW);
+    };
 
     return (
         <ReadMoreStyles>
-            <input type="checkbox" className="read-more-state" id="post-1" />
-            <p className="read-more-wrap">{textShort}<span className="read-more-target">{textExtra}</span></p>
-            <label className="read-more-trigger"></label>
+            {textShort}<span className={'read-more-target ' + readMoreState}>{textExtra}</span>
+            <button onClick={toggleShowMore} className={'read-more-trigger ' + showButton}></button>
         </ReadMoreStyles>
     );
 };
 
 export default ReadMore;
 
-const ReadMoreStyles = styled.div`
-    & .read-more-state {
-        display: none;
+const ReadMoreStyles = styled.p`
+    & .read-more-target {
+        transition: .1s ease;
     }
 
-    & .read-more-target {
+    & .read-more-target.hide {
         opacity: 0;
         max-height: 0;
         font-size: 0;
-        transition: .25s ease;
     }
 
-    & .read-more-state:checked ~ .read-more-wrap .read-more-target {
+    & .read-more-target.show {
         opacity: 1;
-        font-size: inherit;
-        max-height: 999em;
+        max-height: auto;
+    }
+    
+    & .read-more-trigger.hide {
+        display: none;
     }
 
-    & .read-more-state ~ .read-more-trigger:before {
+    & .read-more-target.hide ~ .read-more-trigger:before {
         content: 'Show more';
     }
 
-    & .read-more-state:checked ~ .read-more-trigger:before {
+    & .read-more-target.show ~ .read-more-trigger:before {
         content: 'Show less';
     }
 
@@ -51,10 +64,10 @@ const ReadMoreStyles = styled.div`
         cursor: pointer;
         display: inline-block;
         padding: 0 .5em;
-        color: #666;
-        font-size: .9em;
+        color: ${(props: ThemeEngine) => props.theme.text};
         line-height: 2;
-        border: 1px solid #ddd;
+        border: 1px solid ${(props: ThemeEngine) => props.theme.backgroundAlt};
+        background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
         border-radius: .25em;
     }
 `;

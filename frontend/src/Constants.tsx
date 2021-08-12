@@ -2,6 +2,7 @@ export const SITE_NAME = 'WTech';
 export const MY_NAME = 'Tanveer Wahid';
 export const MY_EMAIL = 'tan@wahid.email';
 export const DEFAULT_LANG = 'en';
+export const DEFAULT_CURRENCY = 'usd';
 export const SITE_BASE_URL = 'https://wahid.tech';
 export const SITE_BLOG_PATH_BASE = '/technology-blog/';
 export const SITE_BLOG_ARTICLE_PATH = SITE_BLOG_PATH_BASE + 'posts/';

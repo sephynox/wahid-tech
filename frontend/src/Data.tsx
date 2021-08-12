@@ -1,10 +1,10 @@
-import { NavBlock } from "./layout/Navigation";
-import About from "./pages/About";
-import Blog from "./pages/Blog";
-import Contact from "./pages/Contact";
-import Home from "./pages/Home";
-import Market from "./pages/Market";
-import { SocialBlock } from "./tools/SocialLinks";
+import { NavBlock } from './layout/Navigation';
+import About from './pages/About';
+import Blog from './pages/Blog';
+import Contact from './pages/Contact';
+import Home from './pages/Home';
+import Market from './pages/Market';
+import { SocialBlock } from './tools/SocialLinks';
 
 export const navLinks: Array<NavBlock> = [
     {
@@ -67,13 +67,13 @@ export const socialLinks: Array<SocialBlock> = [
 ];
 
 export const systemLanguages: Record<string, string> = {
-    'en': 'English',
+    'en-US': 'English',
     'es': 'Español',
     'de': 'Deutsch'
 };
 
 export const supportedLanguages: Array<keyof typeof systemLanguages> = [
-    'en',
+    'en-US',
     'es',
     'de'
 ];

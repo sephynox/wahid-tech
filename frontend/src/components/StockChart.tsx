@@ -6,6 +6,7 @@ import { HighchartsStockChart, Navigator, RangeSelector } from 'react-jsx-highst
 import { PriceData } from '../tools/MarketData';
 import LoaderSpinner from '../tools/LoaderSpinner';
 import { formatTitleCase } from '../utils/data-formatters';
+import { useEffect } from 'react';
 
 type Props = {
     dataSet: PriceData,
@@ -16,9 +17,14 @@ type Props = {
 
 const StockChart = ({ title, dataSet, xAxis = 'Time' }: Props): JSX.Element => {
     const { t } = useTranslation();
-    const [data1] = useState(() => dataSet);
+    const [data1, setData1] = useState(() => dataSet);
     //const [data2] = useState(() => dataSet2);
-    const [loaded] = useState(() => dataSet.prices !== undefined);
+    const [loaded, setLoaded] = useState(() => dataSet.prices !== undefined);
+
+    useEffect(() => {
+        setData1(dataSet);
+        setLoaded(dataSet.prices !== undefined);
+    }, [dataSet, loaded]);
 
     return (
         <HighchartsStockChart>

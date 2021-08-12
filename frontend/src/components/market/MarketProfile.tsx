@@ -5,7 +5,7 @@ import { MarketContext } from '../../pages/Market';
 import { PriceData } from '../../tools/MarketData';
 import { Breadcrumbs } from '../../layout/Navigation';
 import LoaderContent from '../../tools/LoaderContent';
-import { AssetStates } from '../../actions/Assets';
+import { AssetStates } from '../../actions/Asset';
 import { useTranslation } from 'react-i18next';
 import { i18nNamespace } from '../../services/i18n';
 import ReadMore from '../../tools/ReadMore';
@@ -26,7 +26,7 @@ const MarketProfile = (): JSX.Element => {
 
             {marketContext.assetData.type !== AssetStates.ERROR &&
                 marketContext.assetData.data &&
-                marketContext.assetData.data[id]
+                marketContext.assetData.data[id] !== undefined
                 ? <>
                     <section>
                         <div className="title">
@@ -38,9 +38,10 @@ const MarketProfile = (): JSX.Element => {
                         />
                     </section>
                     <section>
+                        <h3 className="capitalize">{t('about')} {marketContext.assetData.data[id]?.name}</h3>
                         <ReadMore
                             text={t(i18nNamespace.EXTERNAL + ':' + id + '_description')}
-                            charactersMax={100}
+                            charactersMax={300}
                         />
                     </section>
                 </>

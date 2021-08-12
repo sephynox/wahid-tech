@@ -1,13 +1,18 @@
 import axios from 'axios';
-import i18next from 'i18next';
 import React from 'react';
 import * as Constants from '../Constants';
-import { i18nNamespace } from '../services/i18n';
+import { systemLanguages } from '../Data';
+import i18next, { i18nNamespace } from '../services/i18n';
 import { MarketData, MarketType, PriceData } from '../tools/MarketData';
 import { stripTagsUnsafe } from '../utils/data-helpers';
+import { externalLocaleReducer, ExternalLocaleState, ExternalLocaleStates, initialExternalLocaleState } from './ExternalLocale';
 
 enum i18nKeys {
     DESCRIPTION = 'description'
+};
+
+const i18nKeyExchange: Record<string, keyof typeof systemLanguages> = {
+    en: 'en-US',
 };
 
 type CoinGeckoROI = {
@@ -49,7 +54,7 @@ type CoinGeckoCoinData = {
     price_change_percentage_1y_in_currency: number | null;
     price_change_percentage_30d_in_currency: number | null;
     price_change_percentage_7d_in_currency: number | null;
-    platforms?: { ['any']: string };
+    platforms?: Record<string, string>;
     asset_platform_id?: string | null;
     block_time_in_minutes?: number;
     hashing_algorithm?: string;
@@ -127,7 +132,7 @@ export const fetchCoinPriceData = (
     coin: string,
     start: number,
     end: number,
-    currency = 'usd'
+    currency = Constants.DEFAULT_CURRENCY
 ) => async (dispatch: React.Dispatch<CoinGeckoState>): Promise<void> => {
     dispatch({ type: CoinGeckoStates.FETCHING });
     return CoinGecko.get(`coins/${coin}/market_chart/range?vs_currency=${currency}&from=${start}&to=${end}`).then(
@@ -139,7 +144,7 @@ export const fetchCoinPriceData = (
 };
 
 export const fetchCryptoMarketData = (
-    currency = 'usd',
+    currency = Constants.DEFAULT_CURRENCY,
     priceChangePercentage = '24h,7d,30d,1y'
 ) => async (dispatch: React.Dispatch<CoinGeckoState>): Promise<void> => {
     dispatch({ type: CoinGeckoStates.FETCHING });
@@ -157,18 +162,25 @@ const CoinGecko = axios.create({
     baseURL: Constants.COINGECKO_API_ENDPOINT
 });
 
-//TODO Make separate middleware
+//TODO Make separate middleware and completely rework this flow
 CoinGecko.interceptors.response.use((response) => {
-    if (typeof response.data === 'object' && !Array.isArray(response.data) && response.data.id !== undefined) {
+    if (typeof response.data === typeof {} && !Array.isArray(response.data) && response.data.id !== undefined) {
+        const translations: ExternalLocaleState = { type: ExternalLocaleStates.SUCCESS, data: {} };
+
         Object.values(i18nKeys).forEach((key: string) => {
             if (response.data[key] !== undefined) {
                 for (const locale in response.data[key]) {
-                    i18next.addResourceBundle(locale, i18nNamespace.EXTERNAL, {
-                        [response.data.id + '_' + key]: stripTagsUnsafe(response.data[key][locale])
-                    });
+                    const lang = i18nKeyExchange[locale] !== undefined ? i18nKeyExchange[locale] : locale;
+                    translations.data[lang] = { [response.data.id + '_' + key]: stripTagsUnsafe(response.data[key][locale]) };
+                    i18next.addResourceBundle(lang, i18nNamespace.EXTERNAL, translations.data[lang]);
                 }
             }
         });
+
+        if (translations.data) {
+            const localExternalLocaleState: ExternalLocaleState = { ...initialExternalLocaleState, ...JSON.parse(localStorage.getItem('externalLocaleState') ?? '{}') };
+            localStorage.setItem('externalLocaleState', JSON.stringify(externalLocaleReducer(localExternalLocaleState, translations)));
+        }
     }
     return response;
 }, function (error) {

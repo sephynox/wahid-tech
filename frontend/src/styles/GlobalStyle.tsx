@@ -225,7 +225,7 @@ a.page-item.active .page-link {
 
 button.btn-secondary {
     color: ${(props: ThemeEngine) => props.theme.text};
-    background-color:${(props: ThemeEngine) => props.theme.backgroundExtended};
+    background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
     border-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }
 

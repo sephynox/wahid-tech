@@ -2,7 +2,7 @@ import React, { createContext, Dispatch, SetStateAction, useEffect, useReducer, 
 import { Route, Switch } from 'react-router-dom';
 import * as Constants from '../Constants';
 import { coinGeckoReducer, CoinGeckoState, CoinGeckoStates, fetchCryptoMarketData, initialCoinGeckoState } from '../actions/CoinGecko';
-import { AssetState, assetReducer, initialAssetState, fetchAssetData, AssetStates, fetchAssetPriceData } from '../actions/Assets';
+import { AssetState, assetReducer, initialAssetState, fetchAssetData, AssetStates, fetchAssetPriceData } from '../actions/Asset';
 import MarketHome from '../components/market/MarketHome';
 import MarketProfile from '../components/market/MarketProfile';
 import { MarketType } from '../tools/MarketData';
@@ -38,6 +38,14 @@ const Market = (): JSX.Element => {
     const assetPath = window.location.pathname.replace(Constants.SITE_MARKET_ASSET_PATH, '').split('/');
     const assetType = assetPath[0] as MarketType;
     const assetKey = assetPath[1];
+
+    const providerData = {
+        cryptoMarket,
+        assetData,
+        setDateStart,
+        dispatchCryptoMarket,
+        dispatchAssetData
+    };
 
     // TODO Retrieve data from ChainLink
     // function getLibrary(provider) {
@@ -97,7 +105,7 @@ const Market = (): JSX.Element => {
     }, [dateStart]);
 
     return (
-        <MarketContext.Provider value={{ cryptoMarket, assetData, setDateStart, dispatchCryptoMarket, dispatchAssetData }}>
+        <MarketContext.Provider value={providerData}>
             <Switch>
                 <Route exact path={Constants.SITE_MARKET_PATH_BASE} component={MarketHome} />
                 <Route path={`${Constants.SITE_MARKET_ASSET_PATH}:type/:id`} component={MarketProfile} />

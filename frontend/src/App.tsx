@@ -1,14 +1,14 @@
 import React, { createContext, Suspense, useEffect, useState } from 'react';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import ReactGA from 'react-ga';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './scss/custom.scss';
+import './App.css';
 import * as Constants from './Constants';
 import { Themes, availableThemes } from './tools/Themes';
 import { GlobalStyle } from './styles/GlobalStyle';
-import './App.css';
-import { socialLinks } from './Data';
+import { socialLinks, supportedLanguages } from './Data';
 import { NavToggle, NavState } from './layout/Navigation';
 import BackTop from './tools/BackTop';
 import Overlay, { OverlayState } from './layout/Overlay';
@@ -17,6 +17,10 @@ import Header from './layout/Header';
 import Body from './layout/Body';
 import { LanguageSelectorState } from './layout/LanguageSelector';
 import LoaderSpinner from './tools/LoaderSpinner';
+import { ExternalLocaleState, externalLocaleReducer, initialExternalLocaleState } from './actions/ExternalLocale';
+import i18next, { i18nNamespace } from './services/i18n';
+import { useReducer } from 'react';
+import { Dispatch } from 'react';
 
 export const AppContext = createContext<{
     testMode: boolean,
@@ -31,6 +35,7 @@ export const AppContext = createContext<{
     setNavState: (value: NavState) => void,
     setOverlayState: (value: OverlayState) => void,
     setLangSelectorState: (value: LanguageSelectorState) => void,
+    dispatchExternalLocaleState: Dispatch<ExternalLocaleState>,
 }>({
     testMode: false,
     theme: Themes.DARK,
@@ -44,23 +49,29 @@ export const AppContext = createContext<{
     setNavState: () => null,
     setOverlayState: () => null,
     setLangSelectorState: () => null,
+    dispatchExternalLocaleState: () => undefined,
 });
 
 const App = ({ history }: RouteComponentProps): JSX.Element => {
     const testMode: boolean = process.env.NODE_ENV === 'test';
-    const sysTheme: Themes = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? Themes.LIGHT : Themes.DARK;
+    const isLightScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    const sysTheme: Themes = isLightScheme ? Themes.LIGHT : Themes.DARK;
+    const localExternalLocaleState: ExternalLocaleState = { ...initialExternalLocaleState, ...JSON.parse(localStorage.getItem('externalLocaleState') ?? '{}') };
 
     const [theme, setTheme] = useState(() => localStorage.getItem('theme') as Themes || sysTheme);
     const [navState, setNavState] = useState(() => localStorage.getItem('navState') as NavState || NavState.CLOSED);
     const [overlayState, setOverlayState] = useState(() => OverlayState.HIDE);
     const [langSelectorState, setLangSelectorState] = useState(() => LanguageSelectorState.CLOSED);
+    const [externalLocaleState, dispatchExternalLocaleState] = useReducer(externalLocaleReducer, localExternalLocaleState);
 
     const toggleNav = () => {
         setNavState(navState === NavState.CLOSED ? NavState.OPEN : NavState.CLOSED);
     };
 
     const toggleLangSelector = () => {
-        setLangSelectorState(langSelectorState === LanguageSelectorState.CLOSED ? LanguageSelectorState.OPEN : LanguageSelectorState.CLOSED);
+        setLangSelectorState(langSelectorState === LanguageSelectorState.CLOSED
+            ? LanguageSelectorState.OPEN
+            : LanguageSelectorState.CLOSED);
     };
 
     const appContext = {
@@ -76,19 +87,35 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
         setNavState,
         setOverlayState,
         setLangSelectorState,
+        dispatchExternalLocaleState,
     };
 
     useEffect(() => {
-        localStorage.setItem('theme', theme);
-        !testMode && ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID ? process.env.REACT_APP_GA_TRACKING_ID : '');
+        !testMode && ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID
+            ? process.env.REACT_APP_GA_TRACKING_ID
+            : '');
+    }, [testMode]);
 
-        //HACK Fix this odd issue
+    useEffect(() => {
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    useEffect(() => {
+        localStorage.setItem('externalLocaleState', JSON.stringify(externalLocaleState));
+        supportedLanguages.forEach(lang => {
+            if (externalLocaleState.data && externalLocaleState.data[lang] !== undefined) {
+                i18next.addResourceBundle(lang, i18nNamespace.EXTERNAL, externalLocaleState.data[lang]);
+            }
+        });
+    }, [externalLocaleState]);
+
+    //HACK Fix this odd issue
+    useEffect(() => {
         const bugListener = history.listen(() => {
             document.querySelectorAll('body>div:not(#root)').forEach((el) => { el.remove(); });
         });
-
         return bugListener;
-    }, [theme, testMode, history]);
+    }, [history]);
 
     return (
         <ThemeProvider theme={availableThemes[theme]}>

@@ -1,3 +1,4 @@
+import * as Constants from '../Constants';
 import { MarketData, MarketType } from '../tools/MarketData';
 import { CoinGeckoStates, fetchCoinData, fetchCoinPriceData } from './CoinGecko';
 
@@ -36,7 +37,7 @@ export const assetReducer = (
             const data = init.data ? { [action.key]: { ...init.data[action.key], ...action.data[action.key] } } : {};
             return { ...init, type: action.type, key: action.key, data: { ...init.data, ...data } };
         default:
-            return { ...init, type: AssetStates.EMPTY };
+            return { ...init, ...initialAssetState };
     };
 };
 
@@ -67,7 +68,7 @@ export const fetchAssetPriceData = (
     key: string,
     start: number,
     end = Date.now(),
-    currency = 'usd'
+    currency = Constants.DEFAULT_CURRENCY
 ) => async (dispatch: React.Dispatch<AssetState>): Promise<void> => {
     dispatch({ type: AssetStates.FETCHING });
 
