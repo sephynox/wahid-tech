@@ -202,8 +202,20 @@ hr.nav-menu-buttons {
     fill: ${(props: ThemeEngine) => props.theme.backgroundAlt} !important;
 }
 
+.highcharts-button-normal > .highcharts-button-box {
+    fill: ${(props: ThemeEngine) => props.theme.backgroundAlt} !important;
+}
+
+.highcharts-button-normal > text {
+    fill: ${(props: ThemeEngine) => props.theme.text} !important;
+}
+
 .highcharts-button-disabled > .highcharts-button-box {
     fill: ${(props: ThemeEngine) => props.theme.hr} !important;
+}
+
+.highcharts-button-disabled > text {
+    fill: ${(props: ThemeEngine) => props.theme.backgroundExtended} !important;
 }
 
 .highcharts-button-pressed > .highcharts-button-box {

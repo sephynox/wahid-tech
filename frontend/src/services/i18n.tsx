@@ -17,7 +17,7 @@ i18next
     .init({
         ns: Object.values(i18nNamespace),
         defaultNS: 'common',
-        debug: process.env.NODE_ENV !== 'production',
+        debug: 'production' !== process.env.NODE_ENV,
         fallbackLng: Constants.DEFAULT_LANG,
         saveMissing: false,
         react: {
@@ -30,6 +30,16 @@ i18next
         },
         interpolation: {
             escapeValue: false,
+            format: (value, format, lang) => {
+                switch (format) {
+                    case 'intlDate':
+                        return new Intl.DateTimeFormat(lang).format(value);
+                    case 'intlNumber':
+                        return Intl.NumberFormat(lang).format(value);
+                }
+
+                return value;
+            },
         },
     });
 

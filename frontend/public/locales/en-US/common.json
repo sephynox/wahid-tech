@@ -26,9 +26,15 @@
     "bitcoin": "bitcoin",
     "price": "price",
     "volume": "volume",
+    "zoom": "zoom",
     "market_data": "market data",
+    "market_capitalization": "market capitalization",
     "button": {
         "read": "Read",
         "send_message": "Send Message"
+    },
+    "number": {
+        "separator": ",",
+        "fractional": "."
     }
 }

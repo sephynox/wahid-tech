@@ -28,7 +28,7 @@ export const MarketContext = createContext<{
 });
 
 const Market = (): JSX.Element => {
-    const defaultStart: number = Math.floor(new Date(new Date().setDate(new Date().getDate() - 5)).getTime() / 1000);
+    const defaultStart: number = Math.floor(new Date(new Date().setDate(new Date().getDate() - 366)).getTime() / 1000);
     const localCoinGeckoState: CoinGeckoState = { ...initialCoinGeckoState, ...JSON.parse(localStorage.getItem('cryptoMarket') ?? '{}') };
     const localAssetState: AssetState = { ...initialAssetState, ...JSON.parse(localStorage.getItem('assetData') ?? '{}') };
     const [cryptoMarket, dispatchCryptoMarket] = useReducer(coinGeckoReducer, localCoinGeckoState);
@@ -77,6 +77,7 @@ const Market = (): JSX.Element => {
             fetchCryptoMarketStoreData();
         }, 60000);
 
+        localStorage.setItem('cryptoMarket', JSON.stringify(cryptoMarket));
         return () => clearTimeout(timer);
     }, [cryptoMarket]);
 
@@ -90,15 +91,9 @@ const Market = (): JSX.Element => {
                 fetchAssetPriceData(assetType, assetKey, dateStart)(dispatchAssetData);
             }
         }
-    }, [assetType, assetKey, assetData, dateStart]);
 
-    useEffect(() => {
-        localStorage.setItem('cryptoMarket', JSON.stringify(cryptoMarket));
-    }, [cryptoMarket]);
-
-    useEffect(() => {
         localStorage.setItem('assetData', JSON.stringify(assetData));
-    }, [assetData]);
+    }, [assetType, assetKey, assetData, dateStart]);
 
     useEffect(() => {
         localStorage.setItem('dateStart', dateStart.toString());

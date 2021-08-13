@@ -33,6 +33,8 @@ const MarketProfile = (): JSX.Element => {
                             <h2>{marketContext.assetData.data[id]?.name}</h2>
                         </div>
                         <StockChart
+                            symbol="$" //TODO
+                            height={500}
                             title={formatFirstUpper(t('market_data'))}
                             dataSet={marketContext.assetData.data[id].prices ?? {} as PriceData}
                         />
@@ -46,7 +48,7 @@ const MarketProfile = (): JSX.Element => {
                     </section>
                 </>
                 : marketContext.assetData.type === AssetStates.ERROR
-                    ? "Error"
+                    ? 'Error'
                     : <LoaderContent type="profile" />
             }
 

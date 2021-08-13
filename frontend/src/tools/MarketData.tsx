@@ -1,5 +1,9 @@
 import { systemLanguages } from "../Data";
 
+export enum MarketDataTranslationKeys {
+    DESCRIPTION = 'description'
+};
+
 export enum MarketType {
     CRYPTO = 'crypto',
     STOCK = 'stock',
