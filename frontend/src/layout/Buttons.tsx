@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../App';
 import { systemLanguages } from '../Data';
 import { Themes } from '../tools/Themes';
 
 const Buttons: React.FunctionComponent = (): JSX.Element => {
-    const appContext = React.useContext(AppContext);
+    const appContext = useContext(AppContext);
 
     const { t, i18n } = useTranslation();
 

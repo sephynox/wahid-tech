@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../App';
@@ -15,7 +15,7 @@ export enum LanguageSelectorState {
 };
 
 const LanguageSelector: React.FunctionComponent<Props> = ({ columns = 3 }: Props): JSX.Element => {
-    const appContext = React.useContext(AppContext);
+    const appContext = useContext(AppContext);
     const { t, i18n } = useTranslation();
 
     const changeLanguageHandler = (lang: string): void => {
@@ -54,7 +54,7 @@ const LanguageSelector: React.FunctionComponent<Props> = ({ columns = 3 }: Props
                 <Container>{options}</Container>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={closeLanguageSelector}>Close</Button>
+                <Button className="capitalize" variant="secondary" onClick={closeLanguageSelector}>{t('close')}</Button>
             </Modal.Footer>
         </Modal>
     );

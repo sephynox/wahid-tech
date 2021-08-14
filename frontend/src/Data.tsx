@@ -1,9 +1,11 @@
+import * as Icon from 'react-cryptocoins';
 import { NavBlock } from './layout/Navigation';
 import About from './pages/About';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Market from './pages/Market';
+import { AssetData } from './tools/MarketData';
 import { SocialBlock } from './tools/SocialLinks';
 
 export const navLinks: Array<NavBlock> = [
@@ -69,11 +71,19 @@ export const socialLinks: Array<SocialBlock> = [
 export const systemLanguages: Record<string, string> = {
     'en-US': 'English',
     'es': 'Español',
-    'de': 'Deutsch'
+    'de': 'Deutsch',
 };
 
 export const supportedLanguages: Array<keyof typeof systemLanguages> = [
     'en-US',
     'es',
-    'de'
+    'de',
 ];
+
+export const donationAddresses: Record<string, AssetData> = {
+    xrp: { name: 'XRP (XRP)', icon: Icon.Xrp, address: 'r4UjAbmBoVVTUk6midb25GoWqtexBbcvzM' },
+    btc: { name: 'Bitcoin (BTC)', icon: Icon.Btc, address: 'bc1qkqsfuaptqcslwmxh5lz2utxls4pe7wnjhepa2s' },
+    eth: { name: 'Ethereum (ETH)', icon: Icon.Eth, address: '0x00E069d105F61564530859A35FE0D007C3536a35' },
+    ada: { name: 'Cardano (ADA)', icon: Icon.Ada, address: 'addr1qywvljkfnyyey38te86tshjscn6yw25c069lf82jfjgv57m3txy8f0nf4wnjwcr8uxmlg9wk7lt6uu7g5w9x077v8lwqgsulw6' },
+    doge: { name: 'Doge (DOGE)', icon: Icon.Doge, address: 'D949UWaLauvKyhX6PNuXGavmMNS6uFcjfS' },
+};

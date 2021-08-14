@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useTranslation } from 'react-i18next';
 import { formatTitleCase } from '../utils/data-formatters';
 
 const Contact = (): JSX.Element => {
-    const recaptchaRef = React.createRef();
+    const recaptchaRef = createRef();
     const { t, i18n } = useTranslation();
 
-    const contact_text = 'Get in touch if you believe I can help or if you would like to contribute to the blog.';
+    const contact_text = 'Get in touch if you believe I can help or if you would like to contribute to the blog, platform code, or have an idea to share.';
     const [recaptchaVal, setRecaptcha] = useState(() => localStorage.getItem('recaptchaVal') || '');
     const [theme] = useState(() => localStorage.getItem('theme') || 'light');
 

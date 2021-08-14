@@ -6,6 +6,7 @@ import CitationGuide from '../../tools/CitationGuide';
 import SocialLinks from '../../tools/SocialLinks';
 import { Breadcrumbs } from '../../layout/Navigation';
 import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 
 type Props = {
     data: ArticleData;
@@ -45,8 +46,8 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
         )
         .join(', ');
     const MyArticle = data.component;
-    const publish_date = data.date.toLocaleDateString();
-    const modified_date = data.modified ? data.modified.toLocaleDateString() : null;
+    const publish_date = Intl.DateTimeFormat(i18next.language).format(data.date);
+    const modified_date = data.modified ? Intl.DateTimeFormat(i18next.language).format(data.modified) : null;
     const meta_date = [data.date.getFullYear(), data.date.getMonth(), data.date.getDate()].join('-');
     const meta_modified = data.modified
         ? [data.modified.getFullYear(), data.modified.getMonth(), data.modified.getDate()].join('-')

@@ -112,7 +112,7 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
     //HACK Fix this odd issue
     useEffect(() => {
         const bugListener = history.listen(() => {
-            document.querySelectorAll('body>div:not(#root)').forEach((el) => { el.remove(); });
+            document.querySelectorAll('body>div:not(#root):not(.modal):not(.modal-backdrop)').forEach((el) => { el.remove(); });
         });
         return bugListener;
     }, [history]);

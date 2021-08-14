@@ -1,11 +1,12 @@
 
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import { Breadcrumb } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { AppContext } from '../App';
 import Theme from '../tools/Themes';
+import { OverlayState } from './Overlay';
 
 type Crumb = {
     text: string;
@@ -49,19 +50,25 @@ export const Breadcrumbs = ({ links }: BreadcrumbsProps): JSX.Element => {
                     className={crumb.class}
                     linkAs={NavLink}
                     linkProps={{ to: crumb.path }}
-                    active={crumb.active}>{t(crumb.text, crumb.text)}</Breadcrumb.Item>)
+                    active={crumb.active}>{crumb.text}</Breadcrumb.Item>)
             )}
         </Breadcrumb>
     );
 };
 
 export const NavToggle = (): JSX.Element => {
-    const appContext = React.useContext(AppContext);
+    const appContext = useContext(AppContext);
 
     return (
         <NavToggleStyle
             type="button"
-            onClick={appContext.toggleNav}
+            onClick={() => {
+                appContext.toggleNav();
+                appContext.setOverlayState(appContext.navState === NavState.OPEN
+                    ? OverlayState.HIDE
+                    : OverlayState.SHOW
+                );
+            }}
             className={appContext.navState === NavState.CLOSED
                 ? 'bi bi-list mobile-nav-toggle'
                 : 'bi bi-x mobile-nav-toggle'
@@ -71,7 +78,7 @@ export const NavToggle = (): JSX.Element => {
 };
 
 const Navigation: React.FunctionComponent<NavigationProps> = ({ navLinks }: NavigationProps): JSX.Element => {
-    const appContext = React.useContext(AppContext);
+    const appContext = useContext(AppContext);
 
     const NavItem = ({
         keyId,
@@ -109,7 +116,7 @@ const NavToggleStyle = styled.button<Theme>`
     position: fixed;
     right: 10px;
     top: 10px;
-    z-index: 9998;
+    z-index: 999;
     border: 0;
     background: none;
     font-size: 28px;

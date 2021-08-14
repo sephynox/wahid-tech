@@ -5,6 +5,7 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Market from './pages/Market';
+import NotFound from './pages/NotFound';
 
 const Routes: React.FunctionComponent = (): JSX.Element => (
     <Switch>
@@ -13,6 +14,7 @@ const Routes: React.FunctionComponent = (): JSX.Element => (
         <Route exact path="/contact" component={Contact} />
         <Route path="/financial-markets" component={Market} />
         <Route path="/technology-blog*" component={Blog} />
+        <Route component={NotFound} />
     </Switch>
 );
 

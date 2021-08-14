@@ -1,5 +1,10 @@
 import { systemLanguages } from "../Data";
 
+export type MarketDataSource = {
+    name: string;
+    link: string;
+};
+
 export enum MarketDataTranslationKeys {
     DESCRIPTION = 'description'
 };
@@ -11,6 +16,7 @@ export enum MarketType {
 };
 
 export type MarketData = {
+    source: MarketDataSource;
     type: MarketType;
     key: string;
     name?: string;
@@ -18,7 +24,7 @@ export type MarketData = {
     ticker?: string;
     price?: number;
     price_history?: boolean;
-    prices?: PriceData;
+    prices?: MarketPriceData;
     delta1?: number;
     delta7?: number;
     delta30?: number;
@@ -26,10 +32,19 @@ export type MarketData = {
     cap?: number;
     path?: string;
     ath?: number;
+    icon?: JSX.Element;
 };
 
-export type PriceData = {
-    prices: Array<Array<number>>,
-    market_caps: Array<Array<number>>,
-    total_volumes: Array<Array<number>>,
+export type MarketPriceData = {
+    source: MarketDataSource;
+    prices: Array<Array<number>>;
+    market_caps: Array<Array<number>>;
+    total_volumes: Array<Array<number>>;
 };
+
+export type AssetData = {
+    name: string;
+    address: string;
+    icon?: JSX.Element;
+    extra?: Array<[string, string]>;
+}

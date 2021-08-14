@@ -1,14 +1,16 @@
+import * as Constants from '../Constants';
+
 export const formatNumberWithSeparators = (x: number, r?: number, s = ','): string => {
     const ret = r ? x.toFixed(2) : x.toString();
     return ret.replace(/\B(?=(\d{3})+(?!\d))/g, s);
 }
 
-export const formatPrice = (n: number, s = ','): string => {
-    return '$' + formatNumberWithSeparators(n, 2, s) + ' USD';
+export const formatPrice = (n: number, r = 2, l = Constants.DEFAULT_LANG, c = Constants.DEFAULT_CURRENCY): string => {
+    return `${Intl.NumberFormat(l, { style: 'currency', currency: c, minimumFractionDigits: r }).format(n)}`;
 };
 
-export const formatPercent = (p: number, r = 2, s = ','): string => {
-    return formatNumberWithSeparators(p, r, s) + '%';
+export const formatPercent = (p: number, r = 2, l = Constants.DEFAULT_LANG): string => {
+    return `${Intl.NumberFormat(l, { maximumFractionDigits: r }).format(p)}%`;
 };
 
 export const formatTitleCase = (input: string): string => {

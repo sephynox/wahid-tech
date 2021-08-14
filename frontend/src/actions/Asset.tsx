@@ -1,66 +1,108 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Constants from '../Constants';
-import { MarketData, MarketType } from '../tools/MarketData';
-import { CoinGeckoStates, fetchCoinData, fetchCoinPriceData } from './CoinGecko';
+import { AssetStateData, AssetState, AssetStates, initialAssetState } from './AssetState';
+import { fetchCoinData, fetchCoinPriceData, fetchCryptoMarketData } from './CoinGecko';
+import { MarketType } from '../tools/MarketData';
+import { Dispatch } from 'react';
+import { merge } from 'highcharts';
 
-export enum AssetStates {
-    EMPTY,
-    FETCHING,
-    ERROR,
-    FETCHED_ASSET_DATA,
-    FETCHED_ASSET_PRICE_DATA,
+const methodDefinitions: Record<AssetStates, (...props: any) => (dispatch: Dispatch<AssetState>) => Promise<void>> = {
+    [AssetStates.EMPTY]: () => async () => new Promise(() => undefined),
+    [AssetStates.FETCHING]: () => async () => new Promise(() => undefined),
+    [AssetStates.ERROR]: () => async () => new Promise(() => undefined),
+    [AssetStates.FETCHED_ASSET_DATA]: (
+        asset = '',
+    ) => async (dispatch: Dispatch<AssetState>) => new Promise(() => undefined),
+    [AssetStates.FETCHED_ASSET_MARKET_DATA]: (
+        currency = Constants.DEFAULT_CURRENCY,
+        priceChangePercentage = Constants.DEFAULT_PRICE_PERCENTAGE_CHANGES,
+    ) => async (dispatch: Dispatch<AssetState>) => new Promise(() => undefined),
+    [AssetStates.FETCHED_ASSET_PRICE_DATA]: (
+        asset = '',
+        start = 0,
+        end = 0,
+        currency = Constants.DEFAULT_CURRENCY,
+    ) => async (dispatch: Dispatch<AssetState>) => new Promise(() => undefined),
 };
 
-export type AssetState =
-    | { type: AssetStates.EMPTY, data?: Record<string, MarketData> }
-    | { type: AssetStates.FETCHING, data?: Record<string, MarketData> }
-    | { type: AssetStates.ERROR, error: string, data?: Record<string, MarketData> }
-    | { type: AssetStates.FETCHED_ASSET_DATA, data: Record<string, MarketData> }
-    | { type: AssetStates.FETCHED_ASSET_PRICE_DATA, key: string, data: Record<string, MarketData> };
+const methodBaseStates = {
+    [AssetStates.EMPTY]: methodDefinitions[AssetStates.EMPTY],
+    [AssetStates.FETCHING]: methodDefinitions[AssetStates.FETCHING],
+    [AssetStates.ERROR]: methodDefinitions[AssetStates.ERROR],
+};
 
-export const initialAssetState: AssetState = {
-    type: AssetStates.EMPTY
+const methodMap: Record<MarketType, typeof methodDefinitions> = {
+    [MarketType.CRYPTO]: {
+        ...methodBaseStates,
+        [AssetStates.FETCHED_ASSET_DATA]: fetchCoinData,
+        [AssetStates.FETCHED_ASSET_MARKET_DATA]: fetchCryptoMarketData,
+        [AssetStates.FETCHED_ASSET_PRICE_DATA]: fetchCoinPriceData,
+    },
+    //TODO
+    [MarketType.STOCK]: {
+        ...methodBaseStates,
+        [AssetStates.FETCHED_ASSET_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_DATA],
+        [AssetStates.FETCHED_ASSET_MARKET_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_MARKET_DATA],
+        [AssetStates.FETCHED_ASSET_PRICE_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_PRICE_DATA],
+    },
+    //TODO
+    [MarketType.COMMODITY]: {
+        ...methodBaseStates,
+        [AssetStates.FETCHED_ASSET_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_DATA],
+        [AssetStates.FETCHED_ASSET_MARKET_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_MARKET_DATA],
+        [AssetStates.FETCHED_ASSET_PRICE_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_PRICE_DATA],
+    },
+};
+
+const fetchData = (
+    assetClass: MarketType,
+    assetState: AssetStates,
+    dispatch: Dispatch<AssetState>,
+    props = {},
+    key?: string,
+): void => {
+    dispatch({ type: AssetStates.FETCHING, class: assetClass });
+
+    methodMap[assetClass][assetState](...Object.values(props))((assetState) => {
+        if (assetState.type === AssetStates.ERROR) {
+            dispatch({ type: AssetStates.ERROR, class: assetClass, error: assetState.error });
+        } else {
+            const data: AssetStateData = { ...initialAssetState.data as AssetStateData, ...assetState.data ?? {} };
+            dispatch({ type: assetState.type, class: assetClass, key: key ?? '', data: data });
+        }
+    });
 };
 
 export const assetReducer = (
-    init: AssetState = initialAssetState,
-    action: AssetState
+    currentState: AssetState = initialAssetState,
+    action: AssetState,
 ): AssetState => {
     switch (action.type) {
         case AssetStates.FETCHING:
-            return { ...init, type: action.type };
+            return { ...currentState, type: action.type, class: action.class };
         case AssetStates.ERROR:
-            return { ...init, type: action.type, error: action.error };
+            return { ...currentState, type: action.type, class: action.class, error: action.error };
         case AssetStates.FETCHED_ASSET_DATA:
-            return { ...init, type: action.type, data: { ...init.data, ...action.data } };
+        case AssetStates.FETCHED_ASSET_MARKET_DATA:
+            return { ...currentState, type: action.type, class: action.class, data: merge(currentState.data, action.data) };
         case AssetStates.FETCHED_ASSET_PRICE_DATA:
-            //Ensures price data does not overwrite the asset data
-            const data = init.data ? { [action.key]: { ...init.data[action.key], ...action.data[action.key] } } : {};
-            return { ...init, type: action.type, key: action.key, data: { ...init.data, ...data } };
+            return { ...currentState, type: action.type, class: action.class, key: action.key, data: merge(currentState.data, action.data) };
         default:
-            return { ...init, ...initialAssetState };
+            return { ...currentState, ...initialAssetState };
     };
+};
+
+export const fetchAssetMarketData = (
+    type: MarketType,
+) => async (dispatch: Dispatch<AssetState>): Promise<void> => {
+    fetchData(type, AssetStates.FETCHED_ASSET_MARKET_DATA, dispatch);
 };
 
 export const fetchAssetData = (
     type: MarketType,
-    key: string
-) => async (dispatch: React.Dispatch<AssetState>): Promise<void> => {
-    dispatch({ type: AssetStates.FETCHING });
-
-    switch (type) {
-        case MarketType.CRYPTO:
-            fetchCoinData(key)((response) => {
-                if (response.type === CoinGeckoStates.FETCHED_COIN_DATA) {
-                    const coin = response.result?.pop();
-                    if (coin?.key !== undefined) {
-                        dispatch({ type: AssetStates.FETCHED_ASSET_DATA, data: { [coin.key]: coin } });
-                    }
-                } else if (response.type === CoinGeckoStates.ERROR) {
-                    dispatch({ type: AssetStates.ERROR, error: response.error });
-                }
-            });
-            break;
-    }
+    key: string,
+) => async (dispatch: Dispatch<AssetState>): Promise<void> => {
+    fetchData(type, AssetStates.FETCHED_ASSET_DATA, dispatch, { asset: key }, key);
 };
 
 export const fetchAssetPriceData = (
@@ -68,20 +110,8 @@ export const fetchAssetPriceData = (
     key: string,
     start: number,
     end = Date.now(),
-    currency = Constants.DEFAULT_CURRENCY
-) => async (dispatch: React.Dispatch<AssetState>): Promise<void> => {
-    dispatch({ type: AssetStates.FETCHING });
-
-    switch (type) {
-        case MarketType.CRYPTO:
-            fetchCoinPriceData(key, start, end, currency)((response) => {
-                if (response.type === CoinGeckoStates.FETCHED_COIN_PRICE_DATA) {
-                    const data = { [key]: { type: type, key: key, price_history: true, prices: response.data } };
-                    dispatch({ type: AssetStates.FETCHED_ASSET_PRICE_DATA, key: key, data: data });
-                } else if (response.type === CoinGeckoStates.ERROR) {
-                    dispatch({ type: AssetStates.ERROR, error: response.error });
-                }
-            });
-            break;
-    }
+    currency = Constants.DEFAULT_CURRENCY,
+) => async (dispatch: Dispatch<AssetState>): Promise<void> => {
+    const props = { asset: key, start: start, end: end, currency: currency };
+    fetchData(type, AssetStates.FETCHED_ASSET_PRICE_DATA, dispatch, props, key);
 };

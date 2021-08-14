@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { ThemeEngine } from '../styles/GlobalStyle';
 
 type Props = {
     text: string;
     charactersMax: number;
+    copy?: boolean
 };
 
 enum ReadMoreState {
@@ -12,20 +14,37 @@ enum ReadMoreState {
     HIDE = 'hide'
 };
 
-const ReadMore: React.FunctionComponent<Props> = ({ text, charactersMax }: Props): JSX.Element => {
+enum CopyState {
+    COPY = 'bi-clipboard',
+    COPIED = 'bi-clipboard-check'
+};
+
+const ReadMore: React.FunctionComponent<Props> = ({ text, charactersMax, copy }: Props): JSX.Element => {
+    const { t } = useTranslation();
+    const [readMoreState, setReadMoreState] = useState(() => ReadMoreState.HIDE);
+    const [copyState, setCopyState] = useState(() => CopyState.COPY);
+
     const textShort = text.substr(0, charactersMax);
     const textExtra = text.substr(charactersMax, text.length);
     const showButton = text.length <= charactersMax ? 'hide' : '';
-    const [readMoreState, setReadMoreState] = useState(() => ReadMoreState.HIDE);
 
     const toggleShowMore = () => {
         setReadMoreState(readMoreState === ReadMoreState.SHOW ? ReadMoreState.HIDE : ReadMoreState.SHOW);
     };
 
+    const copyText = (text: string) => {
+        setCopyState(CopyState.COPIED);
+        navigator.clipboard.writeText(text);
+    };
+
     return (
         <ReadMoreStyles>
             {textShort}<span className={'read-more-target ' + readMoreState}>{textExtra}</span>
-            <button onClick={toggleShowMore} className={'read-more-trigger ' + showButton}></button>
+            <button onClick={toggleShowMore} className={'read-more-button ' + showButton}>...</button>
+            {copy ? <button title={t('copy')} onClick={() => copyText(text)} className="read-more-button">
+                <i className={copyState}></i>
+            </button>
+                : null}
         </ReadMoreStyles>
     );
 };
@@ -48,24 +67,15 @@ const ReadMoreStyles = styled.p`
         max-height: auto;
     }
     
-    & .read-more-trigger.hide {
+    & .read-more-button.hide {
         display: none;
     }
 
-    & .read-more-target.hide ~ .read-more-trigger:before {
-        content: 'Show more';
-    }
-
-    & .read-more-target.show ~ .read-more-trigger:before {
-        content: 'Show less';
-    }
-
-    & .read-more-trigger {
+    & .read-more-button {
         cursor: pointer;
         display: inline-block;
         padding: 0 .5em;
         color: ${(props: ThemeEngine) => props.theme.text};
-        line-height: 2;
         border: 1px solid ${(props: ThemeEngine) => props.theme.backgroundAlt};
         background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
         border-radius: .25em;

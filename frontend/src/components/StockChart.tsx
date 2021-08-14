@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next';
 import Highcharts from 'highcharts/highstock';
 import { AreaSplineSeries, Chart, ColumnSeries, Legend, LineSeries, Loading, Title, Tooltip, withHighcharts, XAxis, YAxis } from 'react-jsx-highcharts';
 import { HighchartsStockChart, Navigator, RangeSelector } from 'react-jsx-highstock';
-import { PriceData } from '../tools/MarketData';
+import * as Constants from '../Constants';
+import { MarketPriceData } from '../tools/MarketData';
 import LoaderSpinner from '../tools/LoaderSpinner';
-import { formatFirstUpper, formatNumberWithSeparators, formatShortNumber } from '../utils/data-formatters';
+import { formatFirstUpper, formatNumberWithSeparators, formatPrice, formatShortNumber } from '../utils/data-formatters';
 import i18next from 'i18next';
 
 type Props = {
-    dataSet: PriceData,
+    dataSet: MarketPriceData,
     height: number,
     symbol: string,
     xAxis?: string,
@@ -44,17 +45,17 @@ const StockChart = ({ title, dataSet, height, symbol, xAxis = 'Time', startRange
             <Loading isLoading={!loaded}><LoaderSpinner width="50%" height={5} /></Loading>
             <Legend layout="horizontal" />
             <Tooltip valuePrefix={symbol} />
-            <XAxis labels={{ formatter: (ctx) => { return Intl.DateTimeFormat(i18next.language).format(ctx.value as number); } }}>
+            <XAxis labels={{ formatter: (ctx) => Intl.DateTimeFormat(i18next.language).format(new Date(ctx.value ? ctx.value : 0)) }}>
                 <XAxis.Title>{xAxis}</XAxis.Title>
             </XAxis>
-            <YAxis opposite labels={{ formatter: (ctx) => { return `${symbol}${formatShortNumber(ctx.value as number, 0)}` }, x: 0, align: 'right' }}>
+            <YAxis opposite labels={{ formatter: (ctx) => `${symbol}${formatShortNumber(ctx.value as number, 0)}`, x: 0, align: 'right' }}>
                 <AreaSplineSeries opacity={0.25} color="#ead274" id="cap" name={formatFirstUpper(t('market_capitalization'))} data={data1.market_caps} />
             </YAxis>
-            <YAxis opposite labels={{ formatter: (ctx) => { return `${symbol}${formatShortNumber(ctx.value as number, 0)}` }, x: -40, align: 'right' }}>
+            <YAxis opposite labels={{ formatter: (ctx) => `${symbol}${formatShortNumber(ctx.value as number, 0)}`, x: -40, align: 'right' }}>
                 <YAxis.Title>{formatFirstUpper(`${t('volume')} / ${t('market_capitalization')}`)}</YAxis.Title>
                 <ColumnSeries color="#0a58ca" id="volume" name={formatFirstUpper(t('volume'))} data={data1.total_volumes} />
             </YAxis>
-            <YAxis opposite={false} labels={{ formatter: (ctx) => { return `${symbol}${Intl.NumberFormat(i18next.language).format(ctx.value as number)}` }, x: 0, align: 'left' }}>
+            <YAxis opposite={false} labels={{ formatter: (ctx) => `${formatPrice(ctx.value as number, Constants.DEFAULT_PRICE_PLACES, i18next.language)}`, x: 0, align: 'left' }}>
                 <YAxis.Title x={5}>{formatFirstUpper(t('price'))}</YAxis.Title>
                 <LineSeries color="rgb(32,253,13)" id="price" name={formatFirstUpper(t('price'))} data={data1.prices} />
             </YAxis>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../App';
 import styled from 'styled-components';
 import Theme from '../tools/Themes';
@@ -19,7 +19,7 @@ export const SocialLink = ({ title, icon, url }: SocialBlock): JSX.Element => (
 );
 
 const SocialLinks: React.FunctionComponent<Props> = ({ url, title }: Props): JSX.Element => {
-    const appContext = React.useContext(AppContext);
+    const appContext = useContext(AppContext);
     return (<>{appContext.socialLinks.map((l: SocialBlock, i): JSX.Element => <SocialLink key={i} {...l} />)}</>);
 };
 
