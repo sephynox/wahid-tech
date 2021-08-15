@@ -1,16 +1,15 @@
 import * as Constants from '../Constants';
 
-export const formatNumberWithSeparators = (x: number, r?: number, s = ','): string => {
-    const ret = r ? x.toFixed(2) : x.toString();
-    return ret.replace(/\B(?=(\d{3})+(?!\d))/g, s);
-}
+export const formatNumber = (n: number, l = Constants.DEFAULT_LANG, r?: number, opts?: Intl.NumberFormatOptions): string => {
+    return `${Intl.NumberFormat(l, { maximumFractionDigits: r ?? 16, ...opts }).format(n)}`;
+};
 
 export const formatPrice = (n: number, r = 2, l = Constants.DEFAULT_LANG, c = Constants.DEFAULT_CURRENCY): string => {
-    return `${Intl.NumberFormat(l, { style: 'currency', currency: c, minimumFractionDigits: r }).format(n)}`;
+    return formatNumber(n, l, r, { style: 'currency', currency: c });
 };
 
 export const formatPercent = (p: number, r = 2, l = Constants.DEFAULT_LANG): string => {
-    return `${Intl.NumberFormat(l, { maximumFractionDigits: r }).format(p)}%`;
+    return `${formatNumber(p, l, r)}%`;
 };
 
 export const formatTitleCase = (input: string): string => {

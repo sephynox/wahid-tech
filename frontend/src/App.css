@@ -623,12 +623,19 @@ dl.dl-auto dt {
 }
 
 .dl-auto.dl-horizontal dt {
+    width: 200px;
     float: left;
     clear: left;
     text-align: right;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+    .dl-auto.dl-horizontal dt {
+        width: 150px;
+    }
 }
 
 /*--------------------------------------------------------------

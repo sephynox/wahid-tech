@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as Constants from '../Constants';
-import { AssetStateData, AssetState, AssetStates, initialAssetState } from './AssetState';
-import { fetchCoinData, fetchCoinPriceData, fetchCryptoMarketData } from './CoinGecko';
-import { MarketType } from '../tools/MarketData';
 import { Dispatch } from 'react';
 import { merge } from 'highcharts';
+import * as Constants from '../Constants';
+import { AssetStateData, AssetState, AssetStates, initialAssetState } from './AssetState';
+import { fetchCoinMetaData, fetchCoinPriceData, fetchCryptoMarketData } from './CoinGecko';
+import { MarketType } from '../tools/MarketData';
 
 const methodDefinitions: Record<AssetStates, (...props: any) => (dispatch: Dispatch<AssetState>) => Promise<void>> = {
     [AssetStates.EMPTY]: () => async () => new Promise(() => undefined),
     [AssetStates.FETCHING]: () => async () => new Promise(() => undefined),
     [AssetStates.ERROR]: () => async () => new Promise(() => undefined),
-    [AssetStates.FETCHED_ASSET_DATA]: (
+    [AssetStates.FETCHED_ASSET_META_DATA]: (
         asset = '',
     ) => async (dispatch: Dispatch<AssetState>) => new Promise(() => undefined),
     [AssetStates.FETCHED_ASSET_MARKET_DATA]: (
@@ -34,21 +34,21 @@ const methodBaseStates = {
 const methodMap: Record<MarketType, typeof methodDefinitions> = {
     [MarketType.CRYPTO]: {
         ...methodBaseStates,
-        [AssetStates.FETCHED_ASSET_DATA]: fetchCoinData,
+        [AssetStates.FETCHED_ASSET_META_DATA]: fetchCoinMetaData,
         [AssetStates.FETCHED_ASSET_MARKET_DATA]: fetchCryptoMarketData,
         [AssetStates.FETCHED_ASSET_PRICE_DATA]: fetchCoinPriceData,
     },
     //TODO
     [MarketType.STOCK]: {
         ...methodBaseStates,
-        [AssetStates.FETCHED_ASSET_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_DATA],
+        [AssetStates.FETCHED_ASSET_META_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_META_DATA],
         [AssetStates.FETCHED_ASSET_MARKET_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_MARKET_DATA],
         [AssetStates.FETCHED_ASSET_PRICE_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_PRICE_DATA],
     },
     //TODO
     [MarketType.COMMODITY]: {
         ...methodBaseStates,
-        [AssetStates.FETCHED_ASSET_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_DATA],
+        [AssetStates.FETCHED_ASSET_META_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_META_DATA],
         [AssetStates.FETCHED_ASSET_MARKET_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_MARKET_DATA],
         [AssetStates.FETCHED_ASSET_PRICE_DATA]: methodDefinitions[AssetStates.FETCHED_ASSET_PRICE_DATA],
     },
@@ -77,16 +77,18 @@ export const assetReducer = (
     currentState: AssetState = initialAssetState,
     action: AssetState,
 ): AssetState => {
+    const merger: AssetStateData = merge<AssetStateData>(currentState.data, action.data);
+
     switch (action.type) {
         case AssetStates.FETCHING:
             return { ...currentState, type: action.type, class: action.class };
         case AssetStates.ERROR:
             return { ...currentState, type: action.type, class: action.class, error: action.error };
-        case AssetStates.FETCHED_ASSET_DATA:
+        case AssetStates.FETCHED_ASSET_META_DATA:
         case AssetStates.FETCHED_ASSET_MARKET_DATA:
-            return { ...currentState, type: action.type, class: action.class, data: merge(currentState.data, action.data) };
+            return { ...currentState, type: action.type, class: action.class, data: merger };
         case AssetStates.FETCHED_ASSET_PRICE_DATA:
-            return { ...currentState, type: action.type, class: action.class, key: action.key, data: merge(currentState.data, action.data) };
+            return { ...currentState, type: action.type, class: action.class, key: action.key, data: merger };
         default:
             return { ...currentState, ...initialAssetState };
     };
@@ -102,7 +104,7 @@ export const fetchAssetData = (
     type: MarketType,
     key: string,
 ) => async (dispatch: Dispatch<AssetState>): Promise<void> => {
-    fetchData(type, AssetStates.FETCHED_ASSET_DATA, dispatch, { asset: key }, key);
+    fetchData(type, AssetStates.FETCHED_ASSET_META_DATA, dispatch, { asset: key }, key);
 };
 
 export const fetchAssetPriceData = (

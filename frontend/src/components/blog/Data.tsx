@@ -22,6 +22,6 @@ const Data: PostData = {
     },
 };
 
-export const Posts: Array<string> = ['a-decentralized-future'];
+export const Posts: string[] = ['a-decentralized-future'];
 
 export default Data;

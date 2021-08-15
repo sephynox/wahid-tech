@@ -29,7 +29,7 @@ const LanguageSelector: React.FunctionComponent<Props> = ({ columns = 3 }: Props
 
     const languagesGrid: Array<Array<string>> = chunkArray<string>(supportedLanguages, columns);
 
-    const options: Array<JSX.Element> = languagesGrid.map((group: Array<string>, i: number): JSX.Element => {
+    const options: Array<JSX.Element> = languagesGrid.map((group: string[], i: number): JSX.Element => {
         return (
             <Row key={i} className={0 !== i ? 'mt-3' : undefined}>
                 {group.map((lang: string, x: number) => (

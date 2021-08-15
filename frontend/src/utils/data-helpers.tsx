@@ -1,8 +1,8 @@
-export const createDataPoint = (time = Date.now(), magnitude = 1000, offset = 0): Array<number> => {
+export const createDataPoint = (time = Date.now(), magnitude = 1000, offset = 0): number[] => {
     return [time + offset * magnitude, Math.round((Math.random() * 100) * 2) / 2];
 };
 
-export const createRandomData = (time: number, magnitude: number, points = 100): Array<Array<number>> => {
+export const createRandomData = (time: number, magnitude: number, points = 100): number[][] => {
     const data = [];
     let i = (points * -1) + 1;
 
@@ -11,6 +11,11 @@ export const createRandomData = (time: number, magnitude: number, points = 100):
     }
 
     return data;
+};
+
+// Thanks https://stackoverflow.com/a/38340730/8177368
+export const cleanObject = <T,>(obj: T): T => {
+    return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null)) as T;
 };
 
 export const chunkArray = <T,>(array: Array<T>, chunkSize: number): Array<Array<T>> => {
@@ -23,7 +28,7 @@ export const chunkArray = <T,>(array: Array<T>, chunkSize: number): Array<Array<
     return chunkedArray;
 }
 
-export const addDataPoint = (data: Array<Array<number>>, toAdd: Array<number>): Array<Array<number>> => {
+export const addDataPoint = (data: number[][], toAdd: number[]): number[][] => {
     if (!toAdd) toAdd = createDataPoint();
 
     const newData = data.slice(0); // Clone

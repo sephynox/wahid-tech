@@ -10,15 +10,22 @@ import { MarketContext } from '../../pages/Market';
 import LoaderContent from '../../tools/LoaderContent';
 import { MarketPriceData, MarketType } from '../../tools/MarketData';
 import ReadMore from '../../tools/ReadMore';
-import { formatFirstUpper, formatPrice } from '../../utils/data-formatters';
+import { formatFirstUpper, formatNumber, formatPrice } from '../../utils/data-formatters';
 import { AssetStates } from '../../actions/AssetState';
 import StyledPercentage from '../../tools/StyledPercentage';
+import IconButton from '../../tools/IconButton';
 
 const MarketProfile = (): JSX.Element => {
     const { type, id } = useParams<{ type: MarketType, id: string }>();
     const { t } = useTranslation();
     const marketContext = useContext(MarketContext);
     const assetData = marketContext.assetData?.data ? marketContext.assetData?.data[type][id] : undefined;
+    const athDelta = ((assetData?.price ?? 0) - (assetData?.ath ?? 0)) / (assetData?.price ?? 1) * 100;
+    const atlDelta = Math.abs(((assetData?.atl ?? 0) - (assetData?.price ?? 0)) / (assetData?.atl ?? 1) * 100);
+
+    const refreshData = () => {
+        marketContext.refreshData(type ?? MarketType.CRYPTO, marketContext.dispatchAssetData, id);
+    };
 
     return (
         <Container>
@@ -35,13 +42,24 @@ const MarketProfile = (): JSX.Element => {
                                 <div className="title">
                                     <h2>{assetData.name}</h2>
                                 </div>
-                                <StockChart
-                                    symbol="$" //TODO
-                                    height={500}
-                                    title={formatFirstUpper(t('market_data'))}
-                                    dataSet={assetData.prices ?? {} as MarketPriceData}
-                                />
                             </section>
+                        </Col>
+                        <Col className="text-right d-none d-md-block d-xl-block d-lg-block">
+                            <IconButton
+                                title={t('refresh')}
+                                onClick={refreshData}
+                                icon="bi-arrow-repeat"
+                                size={30}></IconButton>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <StockChart
+                                symbol="$" //TODO
+                                height={500}
+                                title={formatFirstUpper(t('market_data'))}
+                                dataSet={assetData.prices ?? {} as MarketPriceData}
+                            />
                         </Col>
                     </Row>
 
@@ -60,7 +78,7 @@ const MarketProfile = (): JSX.Element => {
                                 <h3 className="capitalize">{t('statistics')}</h3>
                                 <dl className="dl-horizontal dl-auto">
                                     <dt className="capitalize">{t('price')}:</dt>
-                                    <dd className="text-right">{formatPrice(assetData.price ?? 0, Constants.DEFAULT_PRICE_PLACES, i18next.language)}</dd>
+                                    <dd className="text-right">{formatPrice(assetData.price ?? 0, 9, i18next.language)}</dd>
                                     <dt className="capitalize">1D {t('change')}:</dt>
                                     <dd className="text-right">{StyledPercentage(assetData.delta1, i18next.language)}</dd>
                                     <dt className="capitalize">7D {t('change')}:</dt>
@@ -69,8 +87,20 @@ const MarketProfile = (): JSX.Element => {
                                     <dd className="text-right">{StyledPercentage(assetData.delta30, i18next.language)}</dd>
                                     <dt className="capitalize">YTD {t('change')}:</dt>
                                     <dd className="text-right">{StyledPercentage(assetData.deltaY, i18next.language)}</dd>
+                                    <dt className="capitalize">{t('all_time_high')}:</dt>
+                                    <dd className="text-right">{formatPrice(assetData.ath ?? 0, 9, i18next.language)} {StyledPercentage(athDelta, i18next.language)}</dd>
+                                    <dt className="capitalize">{t('all_time_low')}:</dt>
+                                    <dd className="text-right">{formatPrice(assetData.atl ?? 0, 9, i18next.language)} {StyledPercentage(atlDelta, i18next.language)}</dd>
                                     <dt className="capitalize">{t('market_capitalization')}:</dt>
                                     <dd className="text-right">{formatPrice(assetData.cap ?? 0, Constants.DEFAULT_PRICE_PLACES, i18next.language)}</dd>
+                                    <dt className="capitalize">{t('fully_diluted_valuation')}:</dt>
+                                    <dd className="text-right">{formatPrice(assetData.total_value ?? 0, Constants.DEFAULT_PRICE_PLACES, i18next.language)}</dd>
+                                    <dt className="capitalize">24H {t('volume')}:</dt>
+                                    <dd className="text-right">{formatPrice(assetData.volume ?? 0, Constants.DEFAULT_PRICE_PLACES, i18next.language)}</dd>
+                                    <dt className="capitalize">{t('circulating_supply')}:</dt>
+                                    <dd className="text-right">{formatNumber(assetData.circulating_supply ?? 0, i18next.language, 0)}</dd>
+                                    <dt className="capitalize">{t('max_supply')}:</dt>
+                                    <dd className="text-right">{!assetData.max_supply ? '-' : formatNumber(assetData.max_supply ?? 0, i18next.language, 0)}</dd>
                                 </dl>
                             </section>
                         </Col>

@@ -2,6 +2,7 @@ import React, { createContext, Dispatch, SetStateAction, useEffect, useReducer, 
 import { Route, Switch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { SwipeEventData, SwipeDirections, DOWN } from 'react-swipeable';
+import { toast } from 'react-hot-toast';
 import * as Constants from '../Constants';
 import { AssetState, AssetStates, initialAssetState } from '../actions/AssetState';
 import {
@@ -14,6 +15,7 @@ import MarketHome from '../components/market/MarketHome';
 import MarketProfile from '../components/market/MarketProfile';
 import { MarketType } from '../tools/MarketData';
 import SwipeDown from '../components/SwipeDown';
+import { formatFirstUpper } from '../utils/data-formatters';
 
 //import StockChart from '../components/StockChart';
 //import * as Constants from '../Constants';
@@ -51,17 +53,23 @@ const Market = (): JSX.Element => {
     const assetKey = assetPath[1];
 
     const refreshData = (type: MarketType, reducer: Dispatch<AssetState>, assetKey?: string) => {
-        fetchAssetMarketData(type)(reducer);
+        //BUG Does not actually work
+        toast.promise(fetchAssetMarketData(type)(reducer), {
+            loading: `${formatFirstUpper(t('loading'))}...`,
+            success: `${formatFirstUpper(t('updated'))}!`,
+            error: formatFirstUpper(t('error')),
+        });
 
         if (assetKey) {
-            fetchAssetPriceData(type, assetKey, dateStart)(dispatchAssetData);
+            fetchAssetPriceData(type, assetKey, dateStart)(reducer);
+            fetchAssetData(assetType, assetKey)(reducer);
         }
     };
 
     const swipeActions = (event: SwipeEventData | { dir: SwipeDirections }) => {
         switch (event.dir) {
             case DOWN:
-                refreshData(MarketType.CRYPTO, dispatchAssetData, assetKey);
+                refreshData(MarketType.CRYPTO, dispatchAssetData);
                 break;
         }
     };
@@ -100,9 +108,22 @@ const Market = (): JSX.Element => {
     // </Web3ReactProvider>
 
     useEffect(() => {
+        //TODO Cleanup
         const fetchCryptoMarketStoreData = (): void => {
             if (assetData.type !== AssetStates.FETCHING) {
                 fetchAssetMarketData(MarketType.CRYPTO)(dispatchAssetData);
+
+                //TODO this probably will break in many cases...
+                if (assetData.data && assetData.data[assetType] && assetData.data[assetType][assetKey]?.price_history) {
+                    const timestamp = new Date().getTime();
+                    const price = assetData.data[assetType][assetKey].price ?? 0;
+                    const cap = assetData.data[assetType][assetKey].cap ?? 0;
+                    const volume = assetData.data[assetType][assetKey].volume ?? 0;
+
+                    assetData.data[assetType][assetKey].prices?.prices.push([timestamp, price]);
+                    assetData.data[assetType][assetKey].prices?.market_caps.push([timestamp, cap]);
+                    assetData.data[assetType][assetKey].prices?.total_volumes.push([timestamp, volume]);
+                }
             }
         };
 
@@ -112,7 +133,7 @@ const Market = (): JSX.Element => {
         }
 
         if (assetType && assetKey && assetData.type !== AssetStates.ERROR && assetData.type !== AssetStates.FETCHING) {
-            if (!assetData.data || assetData.data[assetType][assetKey] === undefined) {
+            if (assetData.data && assetData.data[assetType][assetKey] && !assetData.data[assetType][assetKey].meta_data) {
                 fetchAssetData(assetType, assetKey)(dispatchAssetData);
             }
 

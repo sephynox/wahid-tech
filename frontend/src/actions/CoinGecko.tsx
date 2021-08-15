@@ -1,10 +1,10 @@
-import axios from 'axios';
 import { Dispatch } from 'react';
+import axios from 'axios';
 import * as Constants from '../Constants';
 import { systemLanguages } from '../Data';
 import i18next, { i18nNamespace } from '../services/i18n';
 import { MarketData, MarketDataSource, MarketType } from '../tools/MarketData';
-import { stripTagsUnsafe } from '../utils/data-helpers';
+import { cleanObject, stripTagsUnsafe } from '../utils/data-helpers';
 import { AssetStateData, AssetState, AssetStates, initialAssetState } from './AssetState';
 import {
     externalLocaleReducer,
@@ -21,13 +21,13 @@ const i18nKeyExchange: Record<string, keyof typeof systemLanguages> = {
     en: 'en-US',
 };
 
-type CoinGeckoROI = {
+interface CoinGeckoROI {
     times: number;
     currency: string;
     percentage: number;
 };
 
-type CoinGeckoCoinData = {
+interface CoinGeckoCoinData {
     symbol: string;
     ath: number;
     ath_change_percentage: number;
@@ -62,6 +62,7 @@ type CoinGeckoCoinData = {
     asset_platform_id?: string | null;
     block_time_in_minutes?: number;
     hashing_algorithm?: string;
+    description?: Record<keyof typeof systemLanguages, string>;
 };
 
 const coinGeckoSource: MarketDataSource = {
@@ -70,7 +71,27 @@ const coinGeckoSource: MarketDataSource = {
 }
 
 const importData = (coin: CoinGeckoCoinData): MarketData => {
-    return {
+    //TODO Handle external translations better
+    const translations: ExternalLocaleState = { type: ExternalLocaleStates.SUCCESS, data: {} };
+
+    Object.values(i18nKeys).forEach((key: keyof CoinGeckoCoinData) => {
+        if (coin[key] !== undefined) {
+            const data = coin[key] as { [key: string]: string };
+
+            Object.keys(coin[key] as Record<keyof typeof systemLanguages, string>).forEach((locale) => {
+                const lang = i18nKeyExchange[locale] !== undefined ? i18nKeyExchange[locale] : locale;
+                translations.data[lang] = { [coin.id + '_' + key]: stripTagsUnsafe(data[locale] ?? '') };
+                i18next.addResourceBundle(lang, i18nNamespace.EXTERNAL, translations.data[lang]);
+            });
+        }
+    });
+
+    if (translations.data) {
+        const localExternalLocaleState: ExternalLocaleState = { ...initialExternalLocaleState, ...JSON.parse(localStorage.getItem('externalLocaleState') ?? '{}') };
+        localStorage.setItem('externalLocaleState', JSON.stringify(externalLocaleReducer(localExternalLocaleState, translations)));
+    }
+
+    return cleanObject<MarketData>({
         source: coinGeckoSource,
         type: MarketType.CRYPTO,
         key: coin.id,
@@ -81,17 +102,24 @@ const importData = (coin: CoinGeckoCoinData): MarketData => {
         delta7: coin.price_change_percentage_7d_in_currency ?? undefined,
         delta30: coin.price_change_percentage_30d_in_currency ?? undefined,
         deltaY: coin.price_change_percentage_1y_in_currency ?? undefined,
+        description: coin.description ?? undefined,
         cap: coin.market_cap,
+        total_value: coin.fully_diluted_valuation ?? undefined,
+        circulating_supply: coin.circulating_supply ?? undefined,
+        max_supply: coin.max_supply ?? undefined,
+        volume: coin.total_volume ?? undefined,
+        ath: coin.ath,
+        atl: coin.atl,
         path: Constants.SITE_MARKET_ASSET_PATH + MarketType.CRYPTO + '/' + coin.id,
-    };
+    });
 };
 
-export const fetchCoinData = (asset = 'bitcoin') => async (dispatch: Dispatch<AssetState>): Promise<void> => {
+export const fetchCoinMetaData = (asset = 'bitcoin') => async (dispatch: Dispatch<AssetState>): Promise<void> => {
     dispatch({ type: AssetStates.FETCHING, class: MarketType.CRYPTO });
     return CoinGecko.get(`coins/${asset}`).then(
         (result) => {
-            const data = { ...initialAssetState.data as AssetStateData, [MarketType.CRYPTO]: { [result.data.id]: importData(result.data) } };
-            dispatch({ type: AssetStates.FETCHED_ASSET_DATA, class: MarketType.CRYPTO, data: data });
+            const data = { ...initialAssetState.data as AssetStateData, [MarketType.CRYPTO]: { [result.data.id]: { ...importData(result.data), meta_data: true } } };
+            dispatch({ type: AssetStates.FETCHED_ASSET_META_DATA, class: MarketType.CRYPTO, data: data });
         },
         (error) => dispatch({ type: AssetStates.ERROR, class: MarketType.CRYPTO, error: error }),
     );
@@ -108,7 +136,7 @@ export const fetchCoinPriceData = (
         (result) => {
             const data = {
                 [asset]: {
-                    source: result.data.source,
+                    source: coinGeckoSource,
                     type: MarketType.CRYPTO,
                     key: asset,
                     price_history: true,
@@ -145,31 +173,6 @@ export const fetchCryptoMarketData = (
 
 const CoinGecko = axios.create({
     baseURL: Constants.COINGECKO_API_ENDPOINT
-});
-
-//TODO Make separate middleware and completely rework this flow
-CoinGecko.interceptors.response.use((response) => {
-    if (typeof response.data === typeof {} && !Array.isArray(response.data) && response.data.id !== undefined) {
-        const translations: ExternalLocaleState = { type: ExternalLocaleStates.SUCCESS, data: {} };
-
-        Object.values(i18nKeys).forEach((key: string) => {
-            if (response.data[key] !== undefined) {
-                for (const locale in response.data[key]) {
-                    const lang = i18nKeyExchange[locale] !== undefined ? i18nKeyExchange[locale] : locale;
-                    translations.data[lang] = { [response.data.id + '_' + key]: stripTagsUnsafe(response.data[key][locale]) };
-                    i18next.addResourceBundle(lang, i18nNamespace.EXTERNAL, translations.data[lang]);
-                }
-            }
-        });
-
-        if (translations.data) {
-            const localExternalLocaleState: ExternalLocaleState = { ...initialExternalLocaleState, ...JSON.parse(localStorage.getItem('externalLocaleState') ?? '{}') };
-            localStorage.setItem('externalLocaleState', JSON.stringify(externalLocaleReducer(localExternalLocaleState, translations)));
-        }
-    }
-    return response;
-}, function (error) {
-    return Promise.reject(error);
 });
 
 export default CoinGecko;

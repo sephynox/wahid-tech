@@ -30,13 +30,11 @@ const MarketHome: React.FunctionComponent = (): JSX.Element => {
                     </section>
                 </Col>
                 <Col className="text-right d-none d-md-block d-xl-block d-lg-block">
-                    <section>
-                        <IconButton
-                            title={t('refresh')}
-                            onClick={refreshData}
-                            icon="bi-arrow-repeat"
-                            size={30}></IconButton>
-                    </section>
+                    <IconButton
+                        title={t('refresh')}
+                        onClick={refreshData}
+                        icon="bi-arrow-repeat"
+                        size={30}></IconButton>
                 </Col>
             </Row>
             <MarketList data={listData} />

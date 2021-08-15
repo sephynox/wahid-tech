@@ -1,4 +1,4 @@
-import React, { createContext, Suspense, useEffect, useState } from 'react';
+import React, { createContext, Dispatch, Suspense, useEffect, useState, useReducer } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import ReactGA from 'react-ga';
@@ -12,6 +12,7 @@ import { socialLinks, supportedLanguages } from './Data';
 import { NavToggle, NavState } from './layout/Navigation';
 import BackTop from './tools/BackTop';
 import Overlay, { OverlayState } from './layout/Overlay';
+import Toaster from './tools/Toaster';
 import { SocialBlock } from './tools/SocialLinks';
 import Header from './layout/Header';
 import Body from './layout/Body';
@@ -19,8 +20,6 @@ import { LanguageSelectorState } from './layout/LanguageSelector';
 import LoaderSpinner from './tools/LoaderSpinner';
 import { ExternalLocaleState, externalLocaleReducer, initialExternalLocaleState } from './actions/ExternalLocale';
 import i18next, { i18nNamespace } from './services/i18n';
-import { useReducer } from 'react';
-import { Dispatch } from 'react';
 
 export const AppContext = createContext<{
     testMode: boolean,
@@ -122,6 +121,7 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
             <div className={"App " + (navState === NavState.OPEN ? Constants.NAVIGATION_ACTIVE_CLASS : '')}>
                 <AppContext.Provider value={appContext}>
                     <Suspense fallback={<LoaderSpinner type="Pulse" size={20} />}>
+                        <Toaster />
                         <NavToggle />
                         <Header />
                         <Body />
