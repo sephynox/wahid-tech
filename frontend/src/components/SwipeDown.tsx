@@ -13,6 +13,7 @@ const SwipeDown: React.FunctionComponent<Props> = (props): JSX.Element => {
     const [swipeMargin, setSwipeMargin] = useState(0);
 
     const swipeConfig: SwipeableProps = {
+        delta: 50,
         onSwiping: (e) => { setSwipeMargin(e.deltaY < 100 ? e.deltaY : 100); }
     };
 

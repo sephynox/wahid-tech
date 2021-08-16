@@ -10,15 +10,16 @@ type Props = {
     title: string;
     text: string;
     link: string;
-    linkText?: string;
-    image: ArticleImage;
     date: Date;
+    image: ArticleImage;
+    height?: number;
+    linkText?: string;
 };
 
-const Postcard = ({ title, text, link, image, date, linkText = 'button.read' }: Props): JSX.Element => {
+const Postcard = ({ title, text, link, date, image, height = 500, linkText = 'button.read' }: Props): JSX.Element => {
     const { t } = useTranslation();
     return (
-        <PostcardStyle>
+        <PostcardStyle height={height}>
             <img className="card-img-top" src={image.url} alt={image.alt} />
             <div className="card-body">
                 <h3 className="card-title">{title}</h3>
@@ -34,8 +35,31 @@ export default Postcard;
 
 
 const PostcardStyle = styled.div<Theme>`
+    display: flex;
+    flex-direction: column;
+    height: ${(props: { height: number }) => props.height}px;
     background-color: ${(props: ThemeEngine) => props.theme.background};
     border: 1px solid ${(props: ThemeEngine) => props.theme.backgroundAlt};
+
+    & .card-body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    & .card-body .card-text {
+        height: 100%;
+        overflow: hidden;
+        line-height: 24px;
+        display: -webkit-box;
+        box-orient: vertical;
+        line-clamp: 5;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        -ms-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        -moz-line-clamp: 5;
+        -ms-line-clamp: 5;
+    }
 
     & img {
         padding: 20px;

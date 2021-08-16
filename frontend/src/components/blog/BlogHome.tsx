@@ -13,6 +13,7 @@ const BlogHome: React.FunctionComponent = (): JSX.Element => {
         return (
             <Col xs={12} sm={12} md={6} lg={4} xl={4} key={article.path}>
                 <Postcard
+                    height={600}
                     title={article.title}
                     date={article.date}
                     text={article.description}

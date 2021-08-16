@@ -62,7 +62,7 @@ export const NavToggle = (): JSX.Element => {
         <NavToggleStyle
             type="button"
             onClick={() => {
-                appContext.toggleNav(true);
+                appContext.toggleNav(undefined, true);
             }}
             className={appContext.navState === NavState.CLOSED
                 ? 'bi bi-list mobile-nav-toggle'
@@ -87,7 +87,7 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({ navLinks }: Navi
         const { t } = useTranslation();
         return (
             <NavLink
-                onClick={() => appContext.toggleNav()}
+                onClick={() => appContext.toggleNav(NavState.CLOSED, true)}
                 className={className}
                 exact={exact}
                 activeClassName={activeClassName}

@@ -28,7 +28,7 @@ export const AppContext = createContext<{
     langSelectorState: LanguageSelectorState,
     overlayState: OverlayState,
     socialLinks: Array<SocialBlock>,
-    toggleNav: (overlay?: boolean) => void,
+    toggleNav: (override?: NavState, overlay?: boolean) => void,
     toggleLangSelector: () => void,
     setTheme: (value: Themes) => void,
     setNavState: (value: NavState) => void,
@@ -63,12 +63,13 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
     const [langSelectorState, setLangSelectorState] = useState(() => LanguageSelectorState.CLOSED);
     const [externalLocaleState, dispatchExternalLocaleState] = useReducer(externalLocaleReducer, localExternalLocaleState);
 
-    const toggleNav = (overlay?: boolean) => {
-        const originalState = navState;
-        setNavState(navState === NavState.CLOSED ? NavState.OPEN : NavState.CLOSED);
+    const toggleNav = (override?: NavState, overlay?: boolean) => {
+        const state = override ?? navState === NavState.CLOSED ? NavState.OPEN : NavState.CLOSED;
+
+        setNavState(state);
 
         if (overlay) {
-            setOverlayState(originalState === NavState.OPEN ? OverlayState.HIDE : OverlayState.SHOW);
+            setOverlayState(state === NavState.OPEN ? OverlayState.SHOW : OverlayState.HIDE);
         }
     };
 

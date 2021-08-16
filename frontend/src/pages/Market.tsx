@@ -1,7 +1,7 @@
 import React, { createContext, Dispatch, SetStateAction, useEffect, useReducer, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { SwipeEventData, SwipeDirections, DOWN } from 'react-swipeable';
+import { SwipeEventData, DOWN } from 'react-swipeable';
 import { toast } from 'react-hot-toast';
 import * as Constants from '../Constants';
 import { AssetState, AssetStates, initialAssetState } from '../actions/AssetState';
@@ -67,7 +67,7 @@ const Market = (): JSX.Element => {
         }
     };
 
-    const swipeActions = (event: SwipeEventData | { dir: SwipeDirections }) => {
+    const swipeActions = (event: SwipeEventData) => {
         switch (event.dir) {
             case DOWN:
                 refreshData(MarketType.CRYPTO, dispatchAssetData);
