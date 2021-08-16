@@ -7,6 +7,8 @@ import SocialLinks from '../../tools/SocialLinks';
 import { Breadcrumbs } from '../../layout/Navigation';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
+import { Container } from 'react-bootstrap';
+import HorizontalRule from '../../styles/HorizontalRule';
 
 type Props = {
     data: ArticleData;
@@ -54,24 +56,26 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
         : undefined;
 
     return (
-        <div className="container">
+        <Container>
+            <Helmet>
+                <meta property="og:title" content={data.title} />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content={article_full_url} />
+                <meta property="og:image" content={'images/blog/' + data.image.url} />
+                <meta property="og:description" content={data.description} />
+                <meta property="article:published_time" content={meta_date} />
+                <meta property="article:modified_time" content={meta_modified} />
+            </Helmet>
             <Breadcrumbs links={[
                 { text: 'blog', class: 'capitalize', path: Constants.SITE_BLOG_PATH_BASE },
                 { text: 'article', path: '', class: 'capitalize', active: true }
             ]} />
             <section className="article-container">
-                <Helmet>
-                    <meta property="og:title" content={data.title} />
-                    <meta property="og:type" content="article" />
-                    <meta property="og:url" content={article_full_url} />
-                    <meta property="og:image" content={'images/blog/' + data.image.url} />
-                    <meta property="og:description" content={data.description} />
-                    <meta property="article:published_time" content={meta_date} />
-                    <meta property="article:modified_time" content={meta_modified} />
-                </Helmet>
                 <div className="title">
+                    <Container className="image-container mb-5">
+                        <img src={data.image.url} alt={data.image.alt} />
+                    </Container>
                     <h2>{data.title}</h2>
-
                     <dl className="dl-horizontal dl-custom">
                         <dt className="capitalize">{t('byline')}:</dt>
                         <dd id="article_authors">{article_authors}</dd>
@@ -92,10 +96,10 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                     </dl>
                 </div>
                 <div className="article-body">
-                    <p className="article-story-line capitalize">{t('full_story')}</p>
-                    <hr className="article-divider-top" />
+                    <p className="article-story-line capitalize text-xs-center">{t('full_story')}</p>
+                    <HorizontalRule />
                     <MyArticle />
-                    <hr className="article-divider-bottom" />
+                    <HorizontalRule />
                     <p className="article-story-line capitalize">{t('citations')}</p>
                     <CitationGuide
                         authors={data.authors}
@@ -120,7 +124,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                     </div>
                 </div>
             </section>
-        </div>
+        </Container>
     );
 };
 

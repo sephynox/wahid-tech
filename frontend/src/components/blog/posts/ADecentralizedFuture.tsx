@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import APACitation from '../../../tools/APACitation';
 import Quote from '../../Quote';
@@ -15,9 +16,9 @@ const ADecentralizedFuture = (): JSX.Element => {
                 However, as we know--at least, for now--we cannot go back in time. Although, history has an interesting
                 habit of rhyming and we may very well be experiencing the next technological breakthrough of our time.
             </p>
-            <p className="article-image">
+            <Container className="image-container">
                 <img src="/images/blog/internet-a-fad.webp" alt="Daily Mail Internet a Fad Article" />
-            </p>
+            </Container>
             <p>
                 What many forget is that the internet was met with a surprising amount of skepticism and at one point
                 considered a &ldquo;passing fad&rdquo; by newspaper outlets like the Daily Mail. However, not unlike
@@ -72,6 +73,14 @@ const ADecentralizedFuture = (): JSX.Element => {
                 often neglected.” (Chenoweth, 2019). Such a statement today would be utterly absurd and history is
                 littered with these examples.
             </p>
+            <Container className="image-container">
+                <img src="/images/blog/crowe-fraud-small.png" alt="Crowe - Global losses of fraud equate to USD 5.127 trillion" />
+                <p>
+                    CroweGlobal @CroweGlobal. (2019, July 11). Report reveals #fraud costs the global economy $5.127
+                    trillion with losses rising by 56% in the past decade.
+                    &nbsp;<a target="_new" href="https://twitter.com/croweglobal/status/1149375727042777088">Twitter</a>.
+                </p>
+            </Container>
             <h3>The Issues of Trust</h3>
             <Quote
                 quote="The root problem with conventional currency is all the trust that's required to make it work."
@@ -112,6 +121,9 @@ const ADecentralizedFuture = (): JSX.Element => {
                 author="Alexander Winton"
             />
             <p>TODO</p>
+            <Container className="image-container">
+                <img src="/images/blog/bitcoin-ether-xrp.webp" alt="Bitcoin Ethereum Ripple XRP" />
+            </Container>
             <h3>Cryptocurrencies</h3>
             <Quote quote="Anyone could create money; the problem is to get it accepted." author="Hyman Minsky" />
             <p>

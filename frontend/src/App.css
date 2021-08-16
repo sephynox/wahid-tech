@@ -732,8 +732,18 @@ p.article-image {
     text-align: center;
 }
 
-p.article-image img {
+.container.image-container {
+    padding: 50px;
+    text-align: center;
+}
+
+.container.image-container img {
     max-width: 100%;
+    height: auto;
+}
+
+.container.image-container p {
+    padding-top: 10px;
 }
 
 .article-body {
@@ -772,9 +782,13 @@ p.article-image img {
     dl.dl-custom dt {
         width: 100px;
     }
-
 }
 
+@media screen and (max-width: 768px) {
+    .container.image-container {
+        padding: 20px;
+    }
+}
 
 /*--------------------------------------------------------------
 # Social

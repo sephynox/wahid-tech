@@ -19,7 +19,7 @@ const Postcard = ({ title, text, link, image, date, linkText = 'button.read' }: 
     const { t } = useTranslation();
     return (
         <PostcardStyle>
-            <img className="card-img-top" src={'/images/blog/' + image.url} alt={image.alt} />
+            <img className="card-img-top" src={image.url} alt={image.alt} />
             <div className="card-body">
                 <h3 className="card-title">{title}</h3>
                 <p>{date.toLocaleDateString()}</p>
