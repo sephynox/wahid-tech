@@ -14,6 +14,7 @@ import { formatFirstUpper, formatNumber, formatPrice } from '../../utils/data-fo
 import { AssetStates } from '../../actions/AssetState';
 import StyledPercentage from '../../tools/StyledPercentage';
 import IconButton from '../../tools/IconButton';
+import HorizontalRule from '../../styles/HorizontalRule';
 
 const MarketProfile = (): JSX.Element => {
     const { type, id } = useParams<{ type: MarketType, id: string }>();
@@ -60,6 +61,7 @@ const MarketProfile = (): JSX.Element => {
                                 title={formatFirstUpper(t('market_data'))}
                                 dataSet={assetData.prices ?? {} as MarketPriceData}
                             />
+                            <HorizontalRule />
                         </Col>
                     </Row>
 

@@ -16,7 +16,7 @@ const Data: PostData = {
         description:
             'Decentralized Ledger Technology (DLT) is the future of all things and nothing and no one is going to stop it. An examination of the technology, its advocates, and skeptics through the lenses of history, technology, society, and economics.',
         image: {
-            url: 'crypto-bitcoin-xrp-ether.png',
+            url: 'cryptocurrencies.png',
             alt: 'Bitcoin XRP Ethereum Cryptocurrencies',
         },
     },

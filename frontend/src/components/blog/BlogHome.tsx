@@ -11,7 +11,7 @@ const BlogHome: React.FunctionComponent = (): JSX.Element => {
         const article = Data[path];
 
         return (
-            <Col xs={12} sm={12} md={12} lg={6} key={article.path}>
+            <Col xs={12} sm={12} md={6} lg={4} xl={4} key={article.path}>
                 <Postcard
                     title={article.title}
                     date={article.date}

@@ -28,14 +28,15 @@ type Props = {
     xAxis?: string,
     title?: string,
     legend?: string,
-    startRange?: number,
+    defaultRange?: number,
 };
 
-const StockChart = ({ title, dataSet, height, symbol, xAxis = 'Time', startRange = 3 }: Props): JSX.Element => {
+const StockChart = ({ title, dataSet, height, symbol, xAxis = 'Time', defaultRange = 3 }: Props): JSX.Element => {
     const { t } = useTranslation();
-    const [data1, setData1] = useState(() => dataSet);
+    const [data1, setData1] = useState(dataSet);
     //const [data2] = useState(() => dataSet2);
-    const [loaded, setLoaded] = useState(() => dataSet.prices !== undefined);
+    const [loaded, setLoaded] = useState(dataSet.prices !== undefined);
+    const [chartRange, setChartRange] = useState(parseInt(localStorage.getItem('chartRange') ?? defaultRange.toString()));
 
     Highcharts.setOptions({
         lang: {
@@ -49,6 +50,10 @@ const StockChart = ({ title, dataSet, height, symbol, xAxis = 'Time', startRange
         setData1(dataSet);
         setLoaded(dataSet.prices !== undefined);
     }, [dataSet, loaded]);
+
+    useEffect(() => {
+        localStorage.setItem('chartRange', chartRange.toString());
+    }, [chartRange]);
 
     return (
         <HighchartsProvider Highcharts={Highcharts}>
@@ -74,13 +79,13 @@ const StockChart = ({ title, dataSet, height, symbol, xAxis = 'Time', startRange
                     <YAxis.Title>Social Buzz</YAxis.Title>
                     <SplineSeries id="twitter" name="Twitter mentions" data={data2} />
                 </YAxis> */}
-                <RangeSelector selected={startRange}>
-                    <RangeSelector.Button count={24} offsetMin={0} offsetMax={0} type="hour">24H</RangeSelector.Button>
-                    <RangeSelector.Button count={7} offsetMin={0} offsetMax={0} type="day">7D</RangeSelector.Button>
-                    <RangeSelector.Button count={30} offsetMin={0} offsetMax={0} type="day">30D</RangeSelector.Button>
-                    <RangeSelector.Button count={90} offsetMin={0} offsetMax={0} type="day">90D</RangeSelector.Button>
-                    <RangeSelector.Button count={1} offsetMin={0} offsetMax={0} type="ytd">YTD</RangeSelector.Button>
-                    <RangeSelector.Button offsetMin={0} offsetMax={0} type="all">All</RangeSelector.Button>
+                <RangeSelector selected={chartRange}>
+                    <RangeSelector.Button events={{ click: () => setChartRange(0) }} count={24} offsetMin={0} offsetMax={0} type="hour">24H</RangeSelector.Button>
+                    <RangeSelector.Button events={{ click: () => setChartRange(1) }} count={7} offsetMin={0} offsetMax={0} type="day">7D</RangeSelector.Button>
+                    <RangeSelector.Button events={{ click: () => setChartRange(2) }} count={30} offsetMin={0} offsetMax={0} type="day">30D</RangeSelector.Button>
+                    <RangeSelector.Button events={{ click: () => setChartRange(3) }} count={90} offsetMin={0} offsetMax={0} type="day">90D</RangeSelector.Button>
+                    <RangeSelector.Button events={{ click: () => setChartRange(4) }} count={1} offsetMin={0} offsetMax={0} type="ytd">YTD</RangeSelector.Button>
+                    <RangeSelector.Button events={{ click: () => setChartRange(5) }} offsetMin={0} offsetMax={0} type="all">All</RangeSelector.Button>
                     <RangeSelector.Input enabled />
                 </RangeSelector>
                 <Navigator>

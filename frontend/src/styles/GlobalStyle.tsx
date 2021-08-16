@@ -17,7 +17,7 @@ body {
 body {
     display:flex; 
     flex-direction:column; 
-    background-color:${(props: ThemeEngine) => props.theme.background};
+    background-color: ${(props: ThemeEngine) => props.theme.background};
     color: ${(props: ThemeEngine) => props.theme.text};
     transition: all 0.25s linear;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -138,11 +138,6 @@ hr.nav-menu-buttons {
 #contact .php-email-form textarea {
     color: ${(props: ThemeEngine) => props.theme.text};
     background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
-}
-
-.card {
-    background-color: ${(props: ThemeEngine) => props.theme.backgroundBlog};
-    border: 1px solid ${(props: ThemeEngine) => props.theme.backgroundDelta};
 }
 
 .form-control {

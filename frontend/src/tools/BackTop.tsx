@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Theme from '../tools/Themes';
 import { ThemeEngine } from '../styles/GlobalStyle';
+import Theme from '../tools/Themes';
 
 const BackTop = (): JSX.Element => {
     const [visible, setVisible] = useState(false);
