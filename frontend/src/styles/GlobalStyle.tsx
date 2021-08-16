@@ -9,9 +9,22 @@ export type ThemeEngine = {
 export const GlobalStyle = createGlobalStyle`
 html,
 body {
-    overflow: auto;
+    overflow-y: auto;
     height: 100%;
     margin: 0; 
+}
+
+::-webkit-scrollbar {
+    background-color: ${(props: ThemeEngine) => props.theme.backgroundAlt};
+}
+
+::-webkit-scrollbar-track {
+    background-color: ${(props: ThemeEngine) => props.theme.background};
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: ${(props: ThemeEngine) => props.theme.backgroundAlt};
+    outline: 1px solid ${(props: ThemeEngine) => props.theme.backgroundDelta};
 }
 
 body {
@@ -40,13 +53,6 @@ a:hover {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-@media screen and (max-width: 768px) {
-  #header {
-    background-color: ${(props: ThemeEngine) => props.theme.background};
-    border-right: 1px solid ${(props: ThemeEngine) => props.theme.backgroundDelta};
-  }
 }
 
 #footer {
@@ -240,5 +246,12 @@ button.btn-secondary:hover {
     color: ${(props: ThemeEngine) => props.theme.text};
     background-color: ${(props: ThemeEngine) => props.theme.info};
     border-color: ${(props: ThemeEngine) => props.theme.info};
+}
+
+@media screen and (max-width: 768px) {
+    #header {
+      background-color: ${(props: ThemeEngine) => props.theme.background};
+      border-right: 1px solid ${(props: ThemeEngine) => props.theme.backgroundDelta};
+    }
 }
 `;

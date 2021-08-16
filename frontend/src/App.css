@@ -25,6 +25,12 @@ body>div:not(#root):not(.modal):not(.modal-backdrop) {
     display: none;
 }
 
+@media screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+}
+
 /**
 * Template Name: MyResume - v4.3.0
 * Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/

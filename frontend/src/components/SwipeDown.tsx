@@ -14,13 +14,15 @@ const SwipeDown: React.FunctionComponent<Props> = (props): JSX.Element => {
 
     const swipeConfig: SwipeableProps = {
         delta: 50,
-        onSwiping: (e) => { setSwipeMargin(e.deltaY < 100 ? e.deltaY : 100); }
+        onSwiping: (e) => { (document.body.scrollTop === 0) && setSwipeMargin(e.deltaY < 100 ? e.deltaY : 100); }
     };
 
     const swipeHandlers = useSwipeable({
         onSwiped: (event) => {
-            props.swipeActions(event);
-            setSwipeMargin(0);
+            if (document.body.scrollTop === 0) {
+                props.swipeActions(event);
+                setSwipeMargin(0);
+            }
         }, ...swipeConfig,
     });
 
