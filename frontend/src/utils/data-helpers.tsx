@@ -44,3 +44,7 @@ export const randomNumber = (floor: number, ceil: number): number => {
 export const stripTagsUnsafe = (input: string): string => {
     return input.replace(/<\/?[^>]+(>|$)/g, '');
 };
+
+export const unixDaysAgo = (n: number): number => {
+    return Math.floor(new Date(new Date().setDate(new Date().getDate() - n)).getTime() / 1000);
+};

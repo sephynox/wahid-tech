@@ -74,7 +74,7 @@ export const darkTheme: Theme = {
     name: 'dark',
     border: '1px solid rgba(169, 155, 134, 0.13)',
     borderAlt: '1px solid rgba(169, 155, 134, 0.13)',
-    background: 'rgb(24, 26, 26)',
+    background: 'rgb(18, 18, 19)',
     backgroundAlt: 'rgb(29, 31, 31)',
     backgroundIcon: 'rgb(87, 87, 87)',
     backgroundOption: '#6c757d',

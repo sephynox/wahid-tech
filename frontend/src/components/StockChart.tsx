@@ -52,7 +52,7 @@ const StockChart = ({ title, dataSet, height, symbol, xAxis = 'Time', startRange
 
     return (
         <HighchartsProvider Highcharts={Highcharts}>
-            <HighchartsStockChart>
+            <HighchartsStockChart updateArgs={[true, true, true]}>
                 <Chart marginLeft={20} marginRight={20} zoomType="x" height={height} numberFormatter={(n: number) => formatNumber(n, i18next.language)} />
                 <Title>{title}</Title>
                 <Loading isLoading={!loaded}><LoaderSpinner width="50%" height={5} /></Loading>
@@ -75,7 +75,7 @@ const StockChart = ({ title, dataSet, height, symbol, xAxis = 'Time', startRange
                     <SplineSeries id="twitter" name="Twitter mentions" data={data2} />
                 </YAxis> */}
                 <RangeSelector selected={startRange}>
-                    <RangeSelector.Button count={1} offsetMin={0} offsetMax={0} type="day">1D</RangeSelector.Button>
+                    <RangeSelector.Button count={24} offsetMin={0} offsetMax={0} type="hour">24H</RangeSelector.Button>
                     <RangeSelector.Button count={7} offsetMin={0} offsetMax={0} type="day">7D</RangeSelector.Button>
                     <RangeSelector.Button count={30} offsetMin={0} offsetMax={0} type="day">30D</RangeSelector.Button>
                     <RangeSelector.Button count={90} offsetMin={0} offsetMax={0} type="day">90D</RangeSelector.Button>

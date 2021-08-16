@@ -28,9 +28,8 @@ const IconButton: React.FunctionComponent<Props> = (props): JSX.Element => {
 export default IconButton;
 
 const IconButtonStyle = styled.div<Theme>`
-    cursor: pointer;
-
     & i {
+        cursor: pointer;
         font-size: ${(props: Props) => props.size}px;
     }
 `;

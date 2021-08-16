@@ -16,6 +16,7 @@ import MarketProfile from '../components/market/MarketProfile';
 import { MarketType } from '../tools/MarketData';
 import SwipeDown from '../components/SwipeDown';
 import { formatFirstUpper } from '../utils/data-formatters';
+import { unixDaysAgo } from '../utils/data-helpers';
 
 //import StockChart from '../components/StockChart';
 //import * as Constants from '../Constants';
@@ -42,7 +43,7 @@ export const MarketContext = createContext<{
 const Market = (): JSX.Element => {
     const { t } = useTranslation();
 
-    const defaultStart: number = Math.floor(new Date(new Date().setDate(new Date().getDate() - 366)).getTime() / 1000);
+    const defaultStart: number = unixDaysAgo(366);
     const localAssetState: AssetState = { ...initialAssetState, ...JSON.parse(localStorage.getItem('assetData') ?? '{}') };
 
     const [assetData, dispatchAssetData] = useReducer(assetReducer, localAssetState);
@@ -112,18 +113,6 @@ const Market = (): JSX.Element => {
         const fetchCryptoMarketStoreData = (): void => {
             if (assetData.type !== AssetStates.FETCHING) {
                 fetchAssetMarketData(MarketType.CRYPTO)(dispatchAssetData);
-
-                //TODO this probably will break in many cases...
-                if (assetData.data && assetData.data[assetType] && assetData.data[assetType][assetKey]?.price_history) {
-                    const timestamp = new Date().getTime();
-                    const price = assetData.data[assetType][assetKey].price ?? 0;
-                    const cap = assetData.data[assetType][assetKey].cap ?? 0;
-                    const volume = assetData.data[assetType][assetKey].volume ?? 0;
-
-                    assetData.data[assetType][assetKey].prices?.prices.push([timestamp, price]);
-                    assetData.data[assetType][assetKey].prices?.market_caps.push([timestamp, cap]);
-                    assetData.data[assetType][assetKey].prices?.total_volumes.push([timestamp, volume]);
-                }
             }
         };
 

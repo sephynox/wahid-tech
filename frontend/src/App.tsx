@@ -28,7 +28,7 @@ export const AppContext = createContext<{
     langSelectorState: LanguageSelectorState,
     overlayState: OverlayState,
     socialLinks: Array<SocialBlock>,
-    toggleNav: () => void,
+    toggleNav: (overlay?: boolean) => void,
     toggleLangSelector: () => void,
     setTheme: (value: Themes) => void,
     setNavState: (value: NavState) => void,
@@ -63,8 +63,13 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
     const [langSelectorState, setLangSelectorState] = useState(() => LanguageSelectorState.CLOSED);
     const [externalLocaleState, dispatchExternalLocaleState] = useReducer(externalLocaleReducer, localExternalLocaleState);
 
-    const toggleNav = () => {
+    const toggleNav = (overlay?: boolean) => {
+        const originalState = navState;
         setNavState(navState === NavState.CLOSED ? NavState.OPEN : NavState.CLOSED);
+
+        if (overlay) {
+            setOverlayState(originalState === NavState.OPEN ? OverlayState.HIDE : OverlayState.SHOW);
+        }
     };
 
     const toggleLangSelector = () => {
@@ -111,7 +116,12 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
     //HACK Fix this odd issue
     useEffect(() => {
         const bugListener = history.listen(() => {
-            document.querySelectorAll('body>div:not(#root):not(.modal):not(.modal-backdrop)').forEach((el) => { el.remove(); });
+            document.querySelectorAll('body>div:not(#root):not(.modal):not(.modal-backdrop)')
+                .forEach((el) => {
+                    try {
+                        el.remove();
+                    } catch (e) { }
+                });
         });
         return bugListener;
     }, [history]);

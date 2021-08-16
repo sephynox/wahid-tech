@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 const MarketHome: React.FunctionComponent = (): JSX.Element => {
     const marketContext = React.useContext(MarketContext);
-    const [marketType, setMarketType] = useState(MarketType.CRYPTO);
+    const [marketType] = useState(MarketType.CRYPTO);
     const { t } = useTranslation();
 
     const title = t('markets');

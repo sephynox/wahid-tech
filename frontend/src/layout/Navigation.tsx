@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { AppContext } from '../App';
 import Theme from '../tools/Themes';
-import { OverlayState } from './Overlay';
 
 type Crumb = {
     text: string;
@@ -63,11 +62,7 @@ export const NavToggle = (): JSX.Element => {
         <NavToggleStyle
             type="button"
             onClick={() => {
-                appContext.toggleNav();
-                appContext.setOverlayState(appContext.navState === NavState.OPEN
-                    ? OverlayState.HIDE
-                    : OverlayState.SHOW
-                );
+                appContext.toggleNav(true);
             }}
             className={appContext.navState === NavState.CLOSED
                 ? 'bi bi-list mobile-nav-toggle'
@@ -92,7 +87,7 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({ navLinks }: Navi
         const { t } = useTranslation();
         return (
             <NavLink
-                onClick={appContext.toggleNav}
+                onClick={() => appContext.toggleNav()}
                 className={className}
                 exact={exact}
                 activeClassName={activeClassName}
