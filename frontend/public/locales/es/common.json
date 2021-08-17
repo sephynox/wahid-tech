@@ -40,7 +40,10 @@
     "price": "precio",
     "volume": "volumen",
     "zoom": "enfocar",
+    "analytics": "analítica",
+    "required": "necesario",
     "refresh": "actualizar",
+    "data_privacy": "protección de datos",
     "all_time_high": "récord histórico",
     "all_time_low": "mínimo histórico",
     "market_data": "datos del mercado",
@@ -49,12 +52,26 @@
     "fully_diluted_valuation": "valoración tras la dilución total",
     "market_capitalization": "capitalización de mercado",
     "data_from": "datos de",
+    "latest_blog_post": "última publicación de blog",
+    "privacy_consent": "consentimiento de privacidad",
     "button": {
+        "accept": "Aceptar",
+        "accept_all": "Aceptar Todo",
+        "reject_all": "Rechazar Todo",
+        "close": "Cerrar",
+        "customize": "Personalizar",
         "read": "Leer",
         "send_message": "Enviar Mensaje"
     },
     "number": {
         "separator": ",",
         "fractional": "."
+    },
+    "content": {
+        "privacy_consent": "By clicking “Accept All”, you consent to our website's use of cookies to give you the most relevant experience by remembering your preferences and repeat visits. However, you may select “Customize” to provide controlled consent.",
+        "required_cookies": "These cookies are considered mandatory for proper operation of the website. They cannot be disabled without rendering the platform unusable. These cookies are used to facilitate authentication when logged into the platform.",
+        "analytics_cookies": "This site utilizes Google Analytics to provide analytical information for improving the quality of the platform through gathering usage data. You may disable these cookies although, allowing them will provide valuable data for us to improve.",
+        "disqus_cookies": "Comments are powered using the Disqus platform. Disqus utilizes a number of cookies to power their functionality. Disabling these cookies will prevent you from using Disqus to comment.",
+        "disqus_disabled": "Disqus is disabled. To participate in discussions, you will need to allow Disqus cookies."
     }
 }

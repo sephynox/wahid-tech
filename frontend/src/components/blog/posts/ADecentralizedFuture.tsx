@@ -18,23 +18,36 @@ const ADecentralizedFuture = (): JSX.Element => {
             </p>
             <Container className="image-container">
                 <img src="/images/blog/internet-a-fad.webp" alt="Daily Mail Internet a Fad Article" />
+                <p>
+                    Afshar, V. @ValaAfshar. (2018, April 18). Internet ‘may be just a passing fad as millions give up on it’,
+                    December 2000.
+                    &nbsp;<a target="_new" href="https://web.archive.org/web/20210523195547/https://twitter.com/ValaAfshar/status/1383904613598859270">Twitter</a>.
+                </p>
             </Container>
             <p>
                 What many forget is that the internet was met with a surprising amount of skepticism and at one point
-                considered a &ldquo;passing fad&rdquo; by newspaper outlets like the Daily Mail. However, not unlike
-                others throughout history who felt threatened by innovative technologies, the Daily Mail made statements
-                that today would be considered absurd. One may even argue that today&apos;s experts may be
-                tomorrow&apos;s fools and to support that point, we can take a look back in history.
+                considered a &ldquo;passing fad&rdquo; by newspaper outlets like the Daily Mail. Quite frankly, it is
+                easy to forget such things--when was the last time you questioned the importance of electricity? However,
+                not unlike others throughout history who felt threatened by innovative technologies, the Daily Mail made
+                statements that today would be considered absurd. One may even argue that today&apos;s experts may be
+                tomorrow&apos;s fools and to support that point, we need only to look back in history.
             </p>
             <h3>Yesterday&apos;s Experts</h3>
             <Quote
                 quote="iPhone is nothing more than a luxury bauble that will appeal to a few gadget freaks."
                 author="Matthew Lynn"
             />
+            <Container className="image-container">
+                <img src="/images/blog/apple-iphone-jobs.jpg" alt="Steve Jobs unveiling the first iPhone" />
+                <p>
+                    Time Magazine. (2017, January 09). <i>Watch Steve Jobs unveil the first iPhone 10 years ago today.</i>
+                    &nbsp;<a target="_new" href="https://web.archive.org/web/20170110053025if_/http://time.com/hive.org/web/20170110053025/http://time.com/4628515/steve-jobs-iphone-launch-keynote-2007">Time Magazine</a>.
+                </p>
+            </Container>
             <p>
                 We will start with something more familiar as the further back in time we go, the more ridiculous the
                 statements begin to sound. Thus, the first stop we will arrive at is the original iPhone. Some of us may
-                be aware of Steve Balme&apos;s now famous criticisms of the device in which he stated &ldquo;I said that
+                be aware of Steve Balmer&apos;s now famous criticisms of the device for which he stated &ldquo;I said that
                 is the most expensive phone in the world and it doesn&apos;t appeal to business customers because it
                 doesn&apos;t have a keyboard which makes it not a very good email machine.&rdquo; Although that was not
                 the only criticism as others like Matthew Lynn declared that the &ldquo;iPhone is nothing more than a
@@ -43,13 +56,13 @@ const ADecentralizedFuture = (): JSX.Element => {
                 2012). Today, the iPhone is arguably the most successful electronic device ever conceived.
             </p>
             <p>
-                While a keyboard-less smartphone may be more understandable in recent times, one that I always like to
-                fall back on was the original skepticism that the first automobiles faced in America. Alexander Winton,
-                a pioneer of the automotive industry was once told that &ldquo;You&apos;re crazy if you think this fool
-                contraption you’ve been wasting your time on will ever displace the horse.&rdquo; However, what was most
-                amazing was that the horseless carriage was &ldquo;such an amazing production that no one believed
-                it&rdquo; (Winton, 2017). It was this disbelief and utter lack of imagination to the possibilities for
-                the technology that left so-called experts making statements which never aged well. Although, true
+                While a keyboard-less smartphone may be more understandable in recent times, one example that I always
+                like to fall back on was the original skepticism that the first automobiles faced in America. Alexander
+                Winton, a pioneer of the automotive industry was once told that &ldquo;You&apos;re crazy if you think
+                this fool contraption you’ve been wasting your time on will ever displace the horse.&rdquo; However,
+                what was most amazing was that the horseless carriage was &ldquo;such an amazing production that no one
+                believed it&rdquo; (Winton, 2017). It was this disbelief and utter lack of imagination to the possibilities
+                for the technology that left so-called experts making statements which never aged well. Although, true
                 futurists such as Thomas Edison saw the potential stating &ldquo;Talking of horseless carriage suggests
                 to my mind that the horse is doomed. The bicycle, which, 10 years ago, was a curiosity, is now a
                 necessity. It is found everywhere. Ten years from now you will be able to buy a horseless vehicle for
@@ -67,18 +80,18 @@ const ADecentralizedFuture = (): JSX.Element => {
                 Roman Catholic Church. The printing press was a splash that caused ripples throughout society leading to
                 entirely new fields of study that could be written down and shared in a fungible manner. Despite this,
                 the experts of the day had a different and exceedingly laughable interpretation at the time. One example
-                is Johannes Trithemius, a well-known German scribe known for writing the book
-                &ldquo;Steganographia,&rdquo; a book on steganography written in 1499 who wrote “Printed books will
-                never equal scribed books, especially because the spelling and ornamentation of some printed books is
-                often neglected.” (Chenoweth, 2019). Such a statement today would be utterly absurd and history is
-                littered with these examples.
+                is Johannes Trithemius, a well-known German scribe known for writing the book &ldquo;Steganographia,&rdquo;
+                a book on steganography written in 1499 who wrote &ldquo;Printed books will never equal scribed books,
+                especially because the spelling and ornamentation of some printed books is often neglected.&rdquo;
+                (Chenoweth, 2019). Such a statement today would be utterly absurd and history is quite littered with
+                these examples.
             </p>
             <Container className="image-container">
                 <img src="/images/blog/crowe-fraud-small.png" alt="Crowe - Global losses of fraud equate to USD 5.127 trillion" />
                 <p>
                     CroweGlobal @CroweGlobal. (2019, July 11). Report reveals #fraud costs the global economy $5.127
                     trillion with losses rising by 56% in the past decade.
-                    &nbsp;<a target="_new" href="https://twitter.com/croweglobal/status/1149375727042777088">Twitter</a>.
+                    &nbsp;<a target="_new" href="https://web.archive.org/web/20210816045808/https://twitter.com/croweglobal/status/1149375727042777088">Twitter</a>.
                 </p>
             </Container>
             <h3>The Issues of Trust</h3>
@@ -102,27 +115,38 @@ const ADecentralizedFuture = (): JSX.Element => {
                 incomprehensible. According to Crowe Global, a network of separate and independent accounting and
                 consulting firms, &ldquo;fraud losses equate to a shocking US$5.127 trillion each year, which represents
                 almost 70% of the $7.442 trillion which world spends on healthcare each year&rdquo; (Crowe Global,
-                2019).
+                2019). Moreover, if this were not troubling enough, one of the major enablers of this systematic problem
+                is the same group responsible for ensuring it does not occur: banks.
             </p>
-            <h3>The Forgotten</h3>
-            <Quote
-                quote="There's no stopping crypto, [it's] the future and we won't let some old fools take our future from us ... We're Nigerians. Using the crypto is a way out of poverty for the youth."
-                author="Nigerian Bitcoin User"
-            />
+            <Container className="image-container">
+                <img src="/images/blog/fincen-files-top-banks.jpg" alt="Top banks suspicious transaction amounts" />
+                <p>
+                    ICIJ. (2020, September 20). <i>Global banks defy U.S. crackdowns by serving oligarchs, criminals and terrorists.</i>
+                    &nbsp;<a target="_new" href="https://web.archive.org/web/20210630030416/https://www.icij.org/investigations/fincen-files/global-banks-defy-u-s-crackdowns-by-serving-oligarchs-criminals-and-terrorists">ICIJ</a>.
+                </p>
+            </Container>
             <p>
-                Despite the trillions of dollars in suspect transactions, assets, and revenues by banks &ldquo;too big
-                to fail,&rdquo; nearly 2 billion people in the world remain unbanked or underbanked. The sad truth is
-                that they are in this state not because it is not possible to provide financial inclusion for these
-                people, it is simply not profitable to do so.
+                In 2020 while the world was being ravaged by the Coronavirus, the International Consortium of Investigative
+                Journalists, the same group famously known for the Panama Papers, released a damning report on the
+                international banking system. The report concluded that &ldquo;more than $2 trillion in transactions
+                between  1999 and 2017 that were flagged by financial institutions’ internal compliance officers&rdquo;
+                with that number considered &ldquo;just a drop in a far larger flood of dirty money gushing through banks
+                around the world&rdquo; (ICIJ, 2020).
             </p>
             <h3>Decentralized Ledger Technology</h3>
             <Quote
                 quote="You must remember that every invention of this kind which is made adds to the general wealth by introducing a new system of greater economy of force. A great invention which facilitates commerce, enriches a country just as much as the discovery of vast hoards of gold."
                 author="Alexander Winton"
             />
-            <p>TODO</p>
+            <p>
+                The phrase &ldquo;blockchain&rdquo; has been used a number of times to explain how cryptocurrencies
+                operate however, the word &ldquo;blockchain&rdquo; is a bit of a misnomer itself. The true innovation
+                is the consensus derived decentralized ledger technology (DLT). Not all cryptocurrencies
+                utilize blockchains and cryptocurrencies are not the only applications for DLT.
+            </p>
             <Container className="image-container">
                 <img src="/images/blog/bitcoin-ether-xrp.webp" alt="Bitcoin Ethereum Ripple XRP" />
+                <p>XRP, Ethereum, and Bitcoin</p>
             </Container>
             <h3>Cryptocurrencies</h3>
             <Quote quote="Anyone could create money; the problem is to get it accepted." author="Hyman Minsky" />
@@ -155,6 +179,68 @@ const ADecentralizedFuture = (): JSX.Element => {
                 Thus, we come to the so-called experts of today and their very loud criticisms toward distributed ledger
                 technology (DLT) and cryptocurrencies.
             </p>
+            <h3>The Powers That Be</h3>
+            <p>
+                Federal Reserve chair Jerome Powell and Secretary of the Treasury, Janet Yellen have been the most
+                outspoken critics of cryptocurrency from within the government. Despite their positions, they too are
+                dinosaurs of a bygone era that are totally out-of-touch with reality. Jerome Powell&apos;s remark that
+                &ldquo;You wouldn&apos;t need stablecoins; you wouldn&apos;t need cryptocurrencies, if you had a digital
+                U.S. currency&rdquo; is particularly absurd seeing as if that statement were to hold true, then we equally
+                would not have a need for commodities such as gold either. Furthermore his statement that &ldquo;We have
+                a tradition in this country where the public&apos;s money is held in what is supposed to be a very safe
+                asset&rdquo; is equally invalid seeing as that this supposed safe asset is losing its purchasing power
+                each year with wages unable to keep up with the very inflation they are creating and clearly unable
+                to control.
+            </p>
+            <p>
+                My favorite was Janet Yellen&apos;s statements where she said &ldquo;I think many [cryptocurrencies] are
+                used, at least in a transaction sense, mainly for illicit financing&rdquo; when questioned about
+                the technology&apos;s potential terrorism risk. Yet, the cryptocurrency market in its totality as of
+                this writing sits at around $1.978 trillion which is less that the amount reported in the FinCen files.
+                Furthermore, her responses were hyperbole seeing as in &ldquo;2020, the criminal share of all
+                cryptocurrency activity fell to just 0.34% ($10.0 billion in transaction volume)&rdquo; (Lennon, 2021).
+                What this sounds like is simply an echo from the McCarthy era. Except, today&apos;s word is
+                &ldquo;terrorism&rdquo; and quite frankly, if terrorist financing is of actual concern to our
+                governmental officials then they should not be looking at cryptocurrency, but rather the traditional
+                banking system.
+            </p>
+            <Quote
+                quote="Income growth has been most rapid for the top 5% of families"
+                author="Pew Research Center"
+            />
+            <p>
+                The Pew Research Center shows that the &ldquo;share of American adults who live in middle-income
+                households has decreased from 61% in 1971 to 51% in 2019&rdquo; and that from &ldquo;1970 to 2018, the
+                share of aggregate income going to middle-class households fell from 62% to 43%. Over the same period,
+                the share held by upper-income households increased from 29% to 48%&rdquo; ().
+            </p>
+            <p>
+                However, despite this, what is most absurd is the hubris of our leaders for believing that a small group
+                of politically appointed bureaucrats has the ability to exercise control over something as complex as
+                a first world economy. An examination of the results through history shows that not only are they unable
+                to meet goals, they are also unable to remain independent--a critical aspect of being a central bank.
+            </p>
+            <h3>The Forgotten</h3>
+            <Quote
+                quote="There's no stopping crypto, [it's] the future and we won't let some old fools take our future from us ... We're Nigerians. Using the crypto is a way out of poverty for the youth."
+                author="Nigerian Bitcoin User"
+            />
+            <p>
+                Aside from the growing wealth disparities in the first world, there are those that have never had
+                access to the financial system in any capacity. Despite the trillions of dollars in suspect transactions,
+                assets, and revenues by banks &ldquo;too big to fail,&rdquo; nearly 2 billion people in the world remain
+                unbanked or underbanked. The sad truth is that they are in this state not because it is not possible to
+                provide financial inclusion for these people, it is simply not profitable to do so. In fact, in nations
+                such as Ghana and Uganda, cellular airtime minutes are used as money as &ldquo;airtime&apos;s value does
+                not rely directly on a government&apos;s stability or ability to hold down inflation&rdquo;
+                (The Economist, 2013). Despite still requiring telecom companies as an intermediary, this example shows
+                that instruments other than central bank issued currencies can be used as mediums of exchange, stores
+                of value, and units of account without the need of banks.
+            </p>
+            <p>
+                Thus, cryptocurrencies can have a major impact on the unbanked and underbanked providing financial
+                inclusion that banks simply cannot care to provide.
+            </p>
             <h3>The Future</h3>
             <Quote
                 quote="The only way to discover the limits of the possible is to go beyond them into the impossible."
@@ -165,6 +251,17 @@ const ADecentralizedFuture = (): JSX.Element => {
             <p>TODO</p>
             <hr className="article-divider-bottom" />
             <p className="article-story-line capitalize">{t('references')}</p>
+            <APACitation
+                id="citation-aarons-2021"
+                authors={[{ given: 'Steven', family: 'Arons' }]}
+                date_year={2021}
+                date_month="July"
+                date_day={7}
+                title="Deutsche bank enabled 'massive' U.S. ponzi scheme, lawsuit says"
+                publisher="Bloomberg"
+                archive="https://web.archive.org/web/20210724135440if_/https://www.bloomberg.com/news/articles/2021-07-23/deutsche-bank-enabled-massive-u-s-ponzi-scheme-lawsuit-says"
+                url="https://www.bloomberg.com/news/articles/2021-07-23/deutsche-bank-enabled-massive-u-s-ponzi-scheme-lawsuit-says"
+            />
             <APACitation
                 id="citation-beattie-2019"
                 authors={[{ given: 'Andrew', family: 'Beattie' }]}
@@ -208,6 +305,17 @@ const ADecentralizedFuture = (): JSX.Element => {
                 url="https://www.coindesk.com/bitcoin-cant-be-stopped-nigerians-look-to-p2p-exchanges-after-crypto-ban"
             />
             <APACitation
+                id="citation-economist-2013"
+                date_year={2013}
+                date_month="January"
+                date_day={19}
+                title="Airtime is money"
+                site="The Economist"
+                publisher="The Economist"
+                archive="https://web.archive.org/web/20210418020533/https://www.economist.com/finance-and-economics/2013/01/19/airtime-is-money"
+                url="https://www.economist.com/finance-and-economics/2013/01/19/airtime-is-money"
+            />
+            <APACitation
                 id="citation-hayek-1999"
                 authors={[{ given: 'Friedrich', middle: 'August', family: 'Hayek' }]}
                 page_start={230}
@@ -228,6 +336,18 @@ const ADecentralizedFuture = (): JSX.Element => {
                 publisher="Business Insider"
                 archive="https://web.archive.org/web/20210730201022/https://markets.businessinsider.com/news/currencies/bitcoin-price-worth-zero-black-swan-author-nassim-taleb-blockchain-2021-6"
                 url="https://markets.businessinsider.com/news/currencies/bitcoin-price-worth-zero-black-swan-author-nassim-taleb-blockchain-2021-6"
+            />
+            <APACitation
+                id="citation-lennon-2021"
+                authors={[{ given: 'Hailey', family: 'Lennon' }]}
+                date_year={2021}
+                date_month="January"
+                date_day={19}
+                title="The false narrative of Bitcoin’s role in illicit activity"
+                site="Forbes"
+                publisher="Forbes Magazine"
+                archive="https://web.archive.org/web/20210224214412/https://www.forbes.com/sites/haileylennon/2021/01/19/the-false-narrative-of-bitcoins-role-in-illicit-activity"
+                url="https://www.forbes.com/sites/haileylennon/2021/01/19/the-false-narrative-of-bitcoins-role-in-illicit-activity"
             />
             <APACitation
                 id="citation-minsky-2008"

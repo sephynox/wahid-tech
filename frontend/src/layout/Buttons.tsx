@@ -35,6 +35,12 @@ const Buttons: React.FunctionComponent = (): JSX.Element => {
                         <span>&nbsp;{systemLanguages[i18n.language]}</span>
                     </button>
                 </li>
+                <li>
+                    <button className="nav-link" onClick={appContext.togglePrivacySelector}>
+                        <i className="icon bi-collection"></i>
+                        <span className="capitalize">&nbsp;{t('data_privacy')}</span>
+                    </button>
+                </li>
             </ul>
         </div>
     );

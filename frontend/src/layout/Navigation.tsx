@@ -1,5 +1,5 @@
-
 import React, { Component, useContext } from 'react';
+
 import { Breadcrumb } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -109,7 +109,7 @@ export default Navigation;
 
 const NavToggleStyle = styled.button<Theme>`
     position: fixed;
-    right: 10px;
+    right: 20px;
     top: 10px;
     z-index: 999;
     border: 0;

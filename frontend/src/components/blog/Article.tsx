@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Helmet from 'react-helmet';
 import { DiscussionEmbed } from 'disqus-react';
 import * as Constants from '../../Constants';
@@ -7,8 +7,9 @@ import SocialLinks from '../../tools/SocialLinks';
 import { Breadcrumbs } from '../../layout/Navigation';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import HorizontalRule from '../../styles/HorizontalRule';
+import { AppContext } from '../../App';
 
 type Props = {
     data: ArticleData;
@@ -39,6 +40,7 @@ export interface ArticleData {
 
 const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
     const { t, i18n } = useTranslation();
+    const appContext = useContext(AppContext);
 
     const article_full_url = Constants.SITE_BLOG_ARTICLE_BASE_URL + data.path;
     const article_authors = data.authors
@@ -112,15 +114,28 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                     <hr className="mt-5" />
                     <p className="article-story-line capitalize">{t('comments')}</p>
                     <div className="article-end-comments">
-                        <DiscussionEmbed
-                            shortname="wahidtech"
-                            config={{
-                                url: article_full_url,
-                                identifier: data.path,
-                                title: data.title,
-                                language: i18n.language.replace('-', '_'),
-                            }}
-                        />
+                        {appContext.allowedCookieState['disqus']
+                            ? <DiscussionEmbed
+                                shortname="wahidtech"
+                                config={{
+                                    url: article_full_url,
+                                    identifier: data.path,
+                                    title: data.title,
+                                    language: i18n.language.replace('-', '_'),
+                                }}
+                            />
+                            :
+                            <p>
+                                {t('content.disqus_disabled')}<br />
+                                <Button
+                                    className="capitalize"
+                                    onClick={appContext.togglePrivacySelector}
+                                    variant="link"
+                                >
+                                    {t('data_privacy')}
+                                </Button>
+                            </p>
+                        }
                     </div>
                 </div>
             </section>

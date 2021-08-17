@@ -6,48 +6,61 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './scss/custom.scss';
 import './App.css';
 import * as Constants from './Constants';
-import { Themes, availableThemes } from './tools/Themes';
+import { socialLinks } from './Data';
 import { GlobalStyle } from './styles/GlobalStyle';
-import { socialLinks, supportedLanguages } from './Data';
 import { NavToggle, NavState } from './layout/Navigation';
-import BackTop from './tools/BackTop';
 import Overlay, { OverlayState } from './layout/Overlay';
-import Toaster from './tools/Toaster';
-import { SocialBlock } from './tools/SocialLinks';
+import Toaster from './layout/Toaster';
 import Header from './layout/Header';
 import Body from './layout/Body';
+import Privacy from './layout/Privacy';
 import { LanguageSelectorState } from './layout/LanguageSelector';
-import LoaderSpinner from './tools/LoaderSpinner';
 import { ExternalLocaleState, externalLocaleReducer, initialExternalLocaleState } from './actions/ExternalLocale';
-import i18next, { i18nNamespace } from './services/i18n';
+import { PrivacyCookieState, PrivacyPromptState } from './components/PrivacyPrompt';
+import BackTop from './tools/BackTop';
+import { SocialBlock } from './tools/SocialLinks';
+import { Themes, availableThemes } from './tools/Themes';
+import LoaderSpinner from './tools/LoaderSpinner';
 
 export const AppContext = createContext<{
     testMode: boolean,
     theme: Themes,
     navState: NavState,
     langSelectorState: LanguageSelectorState,
+    privacySelectorState: PrivacyPromptState,
     overlayState: OverlayState,
+    allowedCookieState: PrivacyCookieState,
     socialLinks: Array<SocialBlock>,
+    externalLocaleState: ExternalLocaleState,
     toggleNav: (override?: NavState, overlay?: boolean) => void,
     toggleLangSelector: () => void,
+    togglePrivacySelector: () => void,
     setTheme: (value: Themes) => void,
     setNavState: (value: NavState) => void,
     setOverlayState: (value: OverlayState) => void,
+    setAllowedCookieState: (value: PrivacyCookieState) => void,
     setLangSelectorState: (value: LanguageSelectorState) => void,
+    setPrivacySelectorState: (value: PrivacyPromptState) => void,
     dispatchExternalLocaleState: Dispatch<ExternalLocaleState>,
 }>({
     testMode: false,
     theme: Themes.DARK,
     navState: NavState.CLOSED,
     langSelectorState: LanguageSelectorState.CLOSED,
+    privacySelectorState: PrivacyPromptState.INACTIVE,
     overlayState: OverlayState.HIDE,
+    allowedCookieState: {},
     socialLinks: socialLinks,
+    externalLocaleState: initialExternalLocaleState,
     toggleNav: () => null,
     toggleLangSelector: () => null,
+    togglePrivacySelector: () => null,
     setTheme: () => null,
     setNavState: () => null,
     setOverlayState: () => null,
+    setAllowedCookieState: () => null,
     setLangSelectorState: () => null,
+    setPrivacySelectorState: () => null,
     dispatchExternalLocaleState: () => undefined,
 });
 
@@ -57,10 +70,12 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
     const sysTheme: Themes = isLightScheme ? Themes.LIGHT : Themes.DARK;
     const localExternalLocaleState: ExternalLocaleState = { ...initialExternalLocaleState, ...JSON.parse(localStorage.getItem('externalLocaleState') ?? '{}') };
 
-    const [theme, setTheme] = useState(() => localStorage.getItem('theme') as Themes || sysTheme);
-    const [navState, setNavState] = useState(() => localStorage.getItem('navState') as NavState || NavState.CLOSED);
-    const [overlayState, setOverlayState] = useState(() => OverlayState.HIDE);
-    const [langSelectorState, setLangSelectorState] = useState(() => LanguageSelectorState.CLOSED);
+    const [theme, setTheme] = useState(localStorage.getItem('theme') as Themes || sysTheme);
+    const [navState, setNavState] = useState(localStorage.getItem('navState') as NavState || NavState.CLOSED);
+    const [overlayState, setOverlayState] = useState(OverlayState.HIDE);
+    const [langSelectorState, setLangSelectorState] = useState(LanguageSelectorState.CLOSED);
+    const [privacySelectorState, setPrivacySelectorState] = useState(localStorage.getItem('privacyPromptComplete') === 'true' ? PrivacyPromptState.INACTIVE : PrivacyPromptState.ACTIVE);
+    const [allowedCookieState, setAllowedCookieState] = useState(JSON.parse(localStorage.getItem('allowedCookieState') ?? '{}') as PrivacyCookieState);
     const [externalLocaleState, dispatchExternalLocaleState] = useReducer(externalLocaleReducer, localExternalLocaleState);
 
     const toggleNav = (override?: NavState, overlay?: boolean) => {
@@ -79,49 +94,51 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
             : LanguageSelectorState.CLOSED);
     };
 
+    const togglePrivacySelector = () => {
+        setPrivacySelectorState(privacySelectorState === PrivacyPromptState.INACTIVE
+            ? PrivacyPromptState.ACTIVE
+            : PrivacyPromptState.INACTIVE);
+    }
+
     const appContext = {
         testMode,
         theme,
         navState,
         langSelectorState,
+        privacySelectorState,
         overlayState,
+        allowedCookieState,
         socialLinks,
+        externalLocaleState,
         toggleNav,
         toggleLangSelector,
+        togglePrivacySelector,
         setTheme,
         setNavState,
         setOverlayState,
+        setAllowedCookieState,
         setLangSelectorState,
+        setPrivacySelectorState,
         dispatchExternalLocaleState,
     };
 
     useEffect(() => {
-        !testMode && ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID
-            ? process.env.REACT_APP_GA_TRACKING_ID
-            : '');
-    }, [testMode]);
+        if (!testMode && allowedCookieState['analytics']) {
+            ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID ?? '');
+            ReactGA.pageview(window.location.pathname + window.location.search);
+        }
+    }, [testMode, allowedCookieState]);
 
     useEffect(() => {
         localStorage.setItem('theme', theme);
     }, [theme]);
-
-    useEffect(() => {
-        localStorage.setItem('externalLocaleState', JSON.stringify(externalLocaleState));
-        supportedLanguages.forEach(lang => {
-            if (externalLocaleState.data && externalLocaleState.data[lang] !== undefined) {
-                i18next.addResourceBundle(lang, i18nNamespace.EXTERNAL, externalLocaleState.data[lang]);
-            }
-        });
-    }, [externalLocaleState]);
 
     //HACK Fix this odd issue
     useEffect(() => {
         const bugListener = history.listen(() => {
             document.querySelectorAll('body>div:not(#root):not(.modal):not(.modal-backdrop)')
                 .forEach((el) => {
-                    try {
-                        el.remove();
-                    } catch (e) { }
+                    try { el.remove(); } catch (e) { }
                 });
         });
         return bugListener;
@@ -132,6 +149,7 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
             <div className={"App " + (navState === NavState.OPEN ? Constants.NAVIGATION_ACTIVE_CLASS : '')}>
                 <AppContext.Provider value={appContext}>
                     <Suspense fallback={<LoaderSpinner type="Pulse" size={20} />}>
+                        <Privacy />
                         <Toaster />
                         <NavToggle />
                         <Header />

@@ -33,7 +33,6 @@ const Postcard = ({ title, text, link, date, image, height = 500, linkText = 'bu
 
 export default Postcard;
 
-
 const PostcardStyle = styled.div<Theme>`
     display: flex;
     flex-direction: column;

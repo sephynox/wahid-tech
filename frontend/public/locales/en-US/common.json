@@ -40,7 +40,10 @@
     "price": "price",
     "volume": "volume",
     "zoom": "zoom",
+    "analytics": "analytics",
+    "required": "required",
     "refresh": "refresh",
+    "data_privacy": "data privacy",
     "all_time_high": "all-time high",
     "all_time_low": "all-time low",
     "market_data": "market data",
@@ -49,12 +52,26 @@
     "fully_diluted_valuation": "fully diluted valuation",
     "market_capitalization": "market capitalization",
     "data_from": "data from",
+    "latest_blog_post": "latest blog post",
+    "privacy_consent": "data privacy consent",
     "button": {
+        "accept": "Accept",
+        "accept_all": "Accept All",
+        "reject_all": "Reject All",
+        "close": "Close",
+        "customize": "Customize",
         "read": "Read",
         "send_message": "Send Message"
     },
     "number": {
         "separator": ",",
         "fractional": "."
+    },
+    "content": {
+        "privacy_consent": "By clicking “Accept All”, you consent to our website's use of cookies to give you the most relevant experience by remembering your preferences and repeat visits. However, you may select “Customize” to provide controlled consent.",
+        "required_cookies": "These cookies are considered mandatory for proper operation of the website. They cannot be disabled without rendering the platform unusable. These cookies are used to facilitate authentication when logged into the platform.",
+        "analytics_cookies": "This site utilizes Google Analytics to provide analytical information for improving the quality of the platform through gathering usage data. You may disable these cookies although, allowing them will provide valuable data for us to improve.",
+        "disqus_cookies": "Comments are powered using the Disqus platform. Disqus utilizes a number of cookies to power their functionality. Disabling these cookies will prevent you from using Disqus to comment.",
+        "disqus_disabled": "Disqus is disabled. To participate in discussions, you will need to allow Disqus cookies."
     }
 }

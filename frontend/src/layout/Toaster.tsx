@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTheme } from 'styled-components'
 import { Toaster as ReactToaster } from 'react-hot-toast';
-import Theme from './Themes';
+import Theme from '../tools/Themes';
 
 const Toaster = ({ theme }: { theme: Theme }): JSX.Element => {
     return (

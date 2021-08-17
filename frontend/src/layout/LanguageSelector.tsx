@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import i18next from 'i18next';
+import React, { useContext, useEffect } from 'react';
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../App';
 import { supportedLanguages, systemLanguages } from '../Data';
+import { i18nNamespace } from '../services/i18n';
 import { chunkArray } from '../utils/data-helpers';
 
 type Props = {
@@ -44,6 +46,15 @@ const LanguageSelector: React.FunctionComponent<Props> = ({ columns = 3 }: Props
             </Row>
         );
     });
+
+    useEffect(() => {
+        localStorage.setItem('externalLocaleState', JSON.stringify(appContext.externalLocaleState));
+        supportedLanguages.forEach(lang => {
+            if (appContext.externalLocaleState.data && appContext.externalLocaleState.data[lang] !== undefined) {
+                i18next.addResourceBundle(lang, i18nNamespace.EXTERNAL, appContext.externalLocaleState.data[lang]);
+            }
+        });
+    }, [appContext.externalLocaleState]);
 
     return (
         <Modal show={appContext.langSelectorState === LanguageSelectorState.OPEN} onHide={closeLanguageSelector} centered>
