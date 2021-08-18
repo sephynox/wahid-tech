@@ -1,12 +1,13 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import { Btc } from 'react-cryptocoins';
 import styled from 'styled-components';
 import QRCode from 'qrcode.react';
 import { ThemeEngine } from '../styles/GlobalStyle';
 import { AssetData } from './MarketData';
 import ReadMore from './ReadMore';
-import { useTranslation } from 'react-i18next';
+import { formatFirstUpper } from '../utils/data-formatters';
 
 type Props = {
     state: QRModalState;
@@ -53,7 +54,7 @@ const QRCodeModal = ({ state, stateManager, asset }: Props): JSX.Element => {
                 </Container>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={closeQRModal}>{t('close')}</Button>
+                <Button variant="secondary" onClick={closeQRModal}>{formatFirstUpper(t('close'))}</Button>
             </Modal.Footer>
         </Modal>
     );

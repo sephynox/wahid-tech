@@ -1,11 +1,14 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import Typed from 'react-typed';
 import * as Constants from '../Constants';
+import { formatTitleCase } from '../utils/data-formatters';
 
 const About = (): JSX.Element => {
-    const bio_text =
-        'I began my journey in software development when I was  13 years old. After almost two decades, technology has become a part of me. However, technology does not exist in a vacuum, and in order to understand technology one must understand its effects through history, on society, and the within the various disciplines it forever changes. It is this holistic and fundamental understanding that allows one to truly appreciate and understand the implications of technology upon humanity.';
+    const { t } = useTranslation();
+
+    const bio_text = t('content.about');
     const typed_options = {
         strings: [
             'VP of Engineering',
@@ -28,7 +31,7 @@ const About = (): JSX.Element => {
             <h1>{Constants.MY_NAME}</h1>
             <Container>
                 <Row>
-                    <Col><p className="typed-container">I&apos;m a <Typed {...typed_options} /></p></Col>
+                    <Col><p className="typed-container">{formatTitleCase(t('i_am_a'))} <Typed {...typed_options} /></p></Col>
                 </Row>
                 <Row>
                     <Col className="col-xs-12 col-sm-12 col-md-12 col-lg-6">

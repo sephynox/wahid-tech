@@ -1,7 +1,7 @@
 import React, { createContext, Dispatch, Suspense, useEffect, useState, useReducer } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import ReactGA from 'react-ga';
+import ReactGA, { EventArgs } from 'react-ga';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './scss/custom.scss';
 import './App.css';
@@ -32,6 +32,7 @@ export const AppContext = createContext<{
     allowedCookieState: PrivacyCookieState,
     socialLinks: Array<SocialBlock>,
     externalLocaleState: ExternalLocaleState,
+    logEvent: (event: EventArgs, debug?: boolean) => void,
     toggleNav: (override?: NavState, overlay?: boolean) => void,
     toggleLangSelector: () => void,
     togglePrivacySelector: () => void,
@@ -52,6 +53,7 @@ export const AppContext = createContext<{
     allowedCookieState: {},
     socialLinks: socialLinks,
     externalLocaleState: initialExternalLocaleState,
+    logEvent: () => null,
     toggleNav: () => null,
     toggleLangSelector: () => null,
     togglePrivacySelector: () => null,
@@ -98,7 +100,15 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
         setPrivacySelectorState(privacySelectorState === PrivacyPromptState.INACTIVE
             ? PrivacyPromptState.ACTIVE
             : PrivacyPromptState.INACTIVE);
-    }
+    };
+
+    const logEvent = (event: EventArgs, debug = false) => {
+        if (debug) {
+            //TODO
+        } else if (allowedCookieState['analytics']) {
+            ReactGA.event(event);
+        }
+    };
 
     const appContext = {
         testMode,
@@ -110,6 +120,7 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
         allowedCookieState,
         socialLinks,
         externalLocaleState,
+        logEvent,
         toggleNav,
         toggleLangSelector,
         togglePrivacySelector,
@@ -123,11 +134,29 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
     };
 
     useEffect(() => {
-        if (!testMode && allowedCookieState['analytics']) {
-            ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID ?? '');
-            ReactGA.pageview(window.location.pathname + window.location.search);
+        let historyListener = undefined;
+
+        if (allowedCookieState['analytics']) {
+            ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID ?? '', { debug: testMode });
+
+            historyListener = history.listen(() => {
+                ReactGA.pageview(window.location.pathname + window.location.search);
+            });
         }
-    }, [testMode, allowedCookieState]);
+
+        if (allowedCookieState['performance'] && !document.getElementById('new-relic')) {
+            const script = document.createElement('script');
+            script.id = 'new-relic';
+            script.src = '/scripts/nr.js';
+            script.async = true;
+
+            document.head.appendChild(script);
+        }
+
+        if (historyListener !== undefined) {
+            return historyListener;
+        }
+    }, [history, testMode, allowedCookieState]);
 
     useEffect(() => {
         localStorage.setItem('theme', theme);

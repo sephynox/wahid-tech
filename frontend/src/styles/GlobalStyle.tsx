@@ -170,6 +170,10 @@ hr.nav-menu-buttons {
     border-color: ${(props: ThemeEngine) => props.theme.hr};
 }
 
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    color: ${(props: ThemeEngine) => props.theme.textAlt};
+}
+
 .highcharts-background {
     fill: none !important;
 }

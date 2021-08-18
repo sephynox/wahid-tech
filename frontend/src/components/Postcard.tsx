@@ -18,6 +18,7 @@ type Props = {
 
 const Postcard = ({ title, text, link, date, image, height = 500, linkText = 'button.read' }: Props): JSX.Element => {
     const { t } = useTranslation();
+
     return (
         <PostcardStyle height={height}>
             <img className="card-img-top" src={image.url} alt={image.alt} />
@@ -63,6 +64,7 @@ const PostcardStyle = styled.div<Theme>`
     & img {
         padding: 20px;
         display: block;
+        max-width: 545px;
         margin-left: auto;
         margin-right: auto;
     }

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Col, Nav, Row, Tab } from 'react-bootstrap';
+import { Button, Col, Nav, Row, Tab, Table } from 'react-bootstrap';
 import styled from 'styled-components';
 import { ThemeEngine } from '../styles/GlobalStyle';
-import Theme from '../tools/Themes';
+import ReadMore from '../tools/ReadMore';
 import Switch, { SwitchStates } from '../tools/Switch';
 
 type Props = {
@@ -15,6 +15,7 @@ type Props = {
     customizeText: string;
     closeExpandedText: string;
     acceptExpandedText: string;
+    tableText: { name: string, expiration: string, description: string };
     settingsCallback: (settings: PrivacyCookieState) => void;
 };
 
@@ -38,7 +39,7 @@ export type PrivacySetting = {
     locked: boolean;
     title: string;
     description: string;
-    cookies: Record<string, PrivacyCookie>;
+    cookies: Array<PrivacyCookie>;
 };
 
 const PrivacyPrompt = (props: Props): JSX.Element => {
@@ -66,18 +67,48 @@ const PrivacyPrompt = (props: Props): JSX.Element => {
         </Nav.Item>
     );
 
+    const tableRow = (setting: PrivacyCookie): JSX.Element => (
+        <tr key={setting.name}>
+            <td>{setting.name}</td>
+            <td>{setting.expiration}</td>
+            <td className="hide-mobile"><ReadMore text={setting.description} charactersMax={42} /></td>
+        </tr>
+    );
+
     const tabPane = (key: string, text: string, state: SwitchStates, locked: boolean): JSX.Element => (
         <Tab.Pane key={key} eventKey={key}>
-            <Switch
-                changeHandler={(s: SwitchStates) => { settings[key].active = s === SwitchStates.ACTIVE ? true : false; }}
-                active={state}
-                size={25}
-                margin={.5}
-                fontSize={1}
-                className="mb-3"
-                disabled={locked}
-            />
-            <p>{text}</p>
+            <Row>
+                <Col>
+                    <Switch
+                        changeHandler={(s: SwitchStates) => { settings[key].active = s === SwitchStates.ACTIVE ? true : false; }}
+                        active={state}
+                        size={25}
+                        margin={.5}
+                        fontSize={1}
+                        className="mb-3"
+                        disabled={locked}
+                    />
+                    <p>{text}</p>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Table striped bordered>
+                        <thead>
+                            <tr>
+                                <th>{props.tableText.name}</th>
+                                <th>{props.tableText.expiration}</th>
+                                <th className="hide-mobile">{props.tableText.description}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {settings[key].cookies.map((cookie) =>
+                                tableRow(cookie)
+                            )}
+                        </tbody>
+                    </Table>
+                </Col>
+            </Row>
         </Tab.Pane>
     );
 
@@ -156,7 +187,7 @@ const PrivacyPrompt = (props: Props): JSX.Element => {
 
 export default PrivacyPrompt;
 
-const PrivacyPromptStyle = styled.div<Theme>`
+const PrivacyPromptStyle = styled.div`
     font-size: 0.9em;
     z-index: 9000;
     width: 100%;
@@ -194,11 +225,18 @@ const PrivacyPromptStyle = styled.div<Theme>`
         margin-left: 10px;
     }
 
+    & td p {
+        font-size: 1em;
+        margin-bottom: 0;
+    }
+
     @media (min-width: 768px) {
 
     }
 
     @media screen and (max-width: 768px) {
+        overflow-y: auto;
+
         & .tab-pane {
             margin-top: 15px;
         }
@@ -208,9 +246,7 @@ const PrivacyPromptStyle = styled.div<Theme>`
         }
 
         & .privacy-prompt-customize.active {
-            height: 100%;
             padding-bottom: 10px;
-            overflow-y: auto;
         }
     }
 `;

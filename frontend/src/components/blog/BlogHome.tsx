@@ -1,12 +1,15 @@
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import * as Constants from '../../Constants';
 import Postcard from '../Postcard';
 import Data, { Posts } from './Data';
 
 const BlogHome: React.FunctionComponent = (): JSX.Element => {
+    const { t } = useTranslation();
+
     const title = 'Blog';
-    const subtext = 'A technology blog analyzing technology through various lenses, disciplines and views.';
+    const subtext = t('content.blog');
     const list = Posts.map((path: string) => {
         const article = Data[path];
 

@@ -1,4 +1,5 @@
 import * as Icon from 'react-cryptocoins';
+import { EventArgs } from 'react-ga';
 import { NavBlock } from './layout/Navigation';
 import About from './pages/About';
 import Blog from './pages/Blog';
@@ -67,6 +68,17 @@ export const socialLinks: Array<SocialBlock> = [
     },
 
 ];
+
+export const systemEvents: Record<string, EventArgs> = {
+    'disqus_comment': {
+        category: 'Social',
+        action: 'Comment',
+    },
+    'manual_refresh': {
+        category: 'Maintenance',
+        action: 'Refresh',
+    },
+}
 
 export const systemLanguages: Record<string, string> = {
     'en-US': 'English',

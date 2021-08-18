@@ -1,9 +1,11 @@
-import React, { createContext, Dispatch, SetStateAction, useEffect, useReducer, useState } from 'react';
+import React, { createContext, Dispatch, SetStateAction, useEffect, useReducer, useState, useContext } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { SwipeEventData, DOWN } from 'react-swipeable';
 import { toast } from 'react-hot-toast';
 import * as Constants from '../Constants';
+import { AppContext } from '../App';
+import { systemEvents } from '../Data';
 import { AssetState, AssetStates, initialAssetState } from '../actions/AssetState';
 import {
     assetReducer,
@@ -42,6 +44,7 @@ export const MarketContext = createContext<{
 
 const Market = (): JSX.Element => {
     const { t } = useTranslation();
+    const appContext = useContext(AppContext);
 
     const defaultStart: number = unixDaysAgo(366);
     const localAssetState: AssetState = { ...initialAssetState, ...JSON.parse(localStorage.getItem('assetData') ?? '{}') };
@@ -65,6 +68,8 @@ const Market = (): JSX.Element => {
             fetchAssetPriceData(type, assetKey, dateStart)(reducer);
             fetchAssetData(assetType, assetKey)(reducer);
         }
+
+        appContext.logEvent(systemEvents['manual_refresh']);
     };
 
     const swipeActions = (event: SwipeEventData) => {

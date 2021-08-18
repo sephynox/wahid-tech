@@ -10,6 +10,7 @@ import i18next from 'i18next';
 import { Button, Container } from 'react-bootstrap';
 import HorizontalRule from '../../styles/HorizontalRule';
 import { AppContext } from '../../App';
+import { systemEvents } from '../../Data';
 
 type Props = {
     data: ArticleData;
@@ -118,6 +119,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                             ? <DiscussionEmbed
                                 shortname="wahidtech"
                                 config={{
+                                    onNewComment: () => { appContext.logEvent(systemEvents['disqus_comment']) },
                                     url: article_full_url,
                                     identifier: data.path,
                                     title: data.title,

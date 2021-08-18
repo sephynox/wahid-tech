@@ -122,6 +122,10 @@ const SwitchStyle = styled.div<Theme>`
             ~ .handle {
                 left: ${(props: Props) => props.size + (props.size * 1.75)}px;
                 transition: left .25s;
+
+                @media screen and (max-width: 768px) {
+                    left: ${(props: Props) => props.size + (props.size * 1.65)}px;
+                }
             }
 
             &:before {

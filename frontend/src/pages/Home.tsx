@@ -12,7 +12,8 @@ const Home = (): JSX.Element => {
 
     const article = Data[Posts[0]];
     const title = Constants.SITE_NAME;
-    const subtext = 'An informational website and technology blog.';
+    const subtext = t('content.home');
+    const donate = t('content.donate');
 
     return (
         <Container>
@@ -45,10 +46,7 @@ const Home = (): JSX.Element => {
                 <Col>
                     <section>
                         <h3 className="capitalize">{t('donate')}</h3>
-                        <p>
-                            Proceeds will be used to maintain and enhance the platform
-                            as well as developing quality content for the blog.
-                        </p>
+                        <p>{donate}</p>
                         <CryptoAssets data={donationAddresses} size={24} />
                     </section>
                 </Col>
