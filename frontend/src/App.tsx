@@ -144,15 +144,6 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
             });
         }
 
-        if (allowedCookieState['performance'] && !document.getElementById('new-relic')) {
-            const script = document.createElement('script');
-            script.id = 'new-relic';
-            script.src = '/scripts/nr.js';
-            script.async = true;
-
-            document.head.appendChild(script);
-        }
-
         if (historyListener !== undefined) {
             return historyListener;
         }
@@ -161,6 +152,10 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
     useEffect(() => {
         localStorage.setItem('theme', theme);
     }, [theme]);
+
+    useEffect(() => {
+        localStorage.setItem('allowedCookieState', JSON.stringify(allowedCookieState));
+    }, [allowedCookieState]);
 
     //HACK Fix this odd issue
     useEffect(() => {

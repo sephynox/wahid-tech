@@ -48,3 +48,15 @@ export const stripTagsUnsafe = (input: string): string => {
 export const unixDaysAgo = (n: number): number => {
     return Math.floor(new Date(new Date().setDate(new Date().getDate() - n)).getTime() / 1000);
 };
+
+//TODO This probably does not work properly
+export const purgeCookies = (c?: Array<string>, whitelist?: boolean): void => {
+    const cookies = document.cookie.split(';');
+
+    for (let i = 0; i < cookies.length; ++i) {
+        const cookie = cookies[i].split('=')[0];
+
+        if (!cookie || c && ((whitelist && c.includes(cookie)) || (!whitelist && !c.includes(cookie)))) continue;
+        document.cookie = cookie + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
+};

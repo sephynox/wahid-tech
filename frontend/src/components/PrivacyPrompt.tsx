@@ -10,6 +10,7 @@ type Props = {
     text: string;
     show: boolean;
     settings: Record<string, PrivacySetting>;
+    readonly defaults: Record<string, PrivacySetting>;
     acceptAllText: string;
     rejectAllText: string;
     customizeText: string;
@@ -46,6 +47,7 @@ const PrivacyPrompt = (props: Props): JSX.Element => {
     const [promptActive, setPromptActive] = useState(props.show ? PrivacyPromptState.ACTIVE : PrivacyPromptState.INACTIVE);
     const [customizeActive, setCustomizeActive] = useState(PrivacyPromptState.INACTIVE);
     const [settings, setSettings] = useState(props.settings);
+    const [defaults] = useState(props.defaults);
 
     const toggleCustomizeState = () => {
         setCustomizeActive(customizeActive === PrivacyPromptState.ACTIVE ? PrivacyPromptState.INACTIVE : PrivacyPromptState.ACTIVE);
@@ -55,9 +57,10 @@ const PrivacyPrompt = (props: Props): JSX.Element => {
         const state: PrivacyCookieState = {};
 
         for (const key in settings) {
-            state[key] = reject && !settings[key].locked ? false : accept ?? settings[key].active;
+            state[key] = reject && !settings[key].locked ? false : accept ? defaults[key].active : settings[key].active;
         }
 
+        setCustomizeActive(PrivacyPromptState.INACTIVE);
         props.settingsCallback(state);
     };
 

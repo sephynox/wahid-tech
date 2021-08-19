@@ -70,6 +70,10 @@ export const socialLinks: Array<SocialBlock> = [
 ];
 
 export const systemEvents: Record<string, EventArgs> = {
+    'change_theme': {
+        category: 'Style',
+        action: 'Theme',
+    },
     'disqus_comment': {
         category: 'Social',
         action: 'Comment',

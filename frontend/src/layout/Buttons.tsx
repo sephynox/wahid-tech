@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppContext } from '../App';
-import { systemLanguages } from '../Data';
+import { systemEvents, systemLanguages } from '../Data';
 import { Themes } from '../tools/Themes';
 
 const Buttons: React.FunctionComponent = (): JSX.Element => {
@@ -16,6 +16,7 @@ const Buttons: React.FunctionComponent = (): JSX.Element => {
             mode = Themes.DARK;
         }
 
+        appContext.logEvent({ ...systemEvents['change_theme'], label: mode.toString() });
         appContext.setTheme(mode);
     };
 
