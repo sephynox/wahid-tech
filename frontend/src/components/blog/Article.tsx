@@ -64,7 +64,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                 <meta property="og:title" content={data.title} />
                 <meta property="og:type" content="article" />
                 <meta property="og:url" content={article_full_url} />
-                <meta property="og:image" content={'images/blog/' + data.image.url} />
+                <meta property="og:image" content={data.image.url} />
                 <meta property="og:description" content={data.description} />
                 <meta property="article:published_time" content={meta_date} />
                 <meta property="article:modified_time" content={meta_modified} />

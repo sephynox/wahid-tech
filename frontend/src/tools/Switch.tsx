@@ -49,7 +49,7 @@ const SwitchStyle = styled.div<Theme>`
 
     & button[disabled] {
         cursor: not-allowed;
-        background-color: ${(props: ThemeEngine) => props.theme.hr} !important;
+        background-color: ${(props: ThemeEngine) => props.theme.backgroundOption} !important;
 
         ~ .handle {
             cursor: not-allowed;
@@ -65,6 +65,7 @@ const SwitchStyle = styled.div<Theme>`
         height: ${(props: Props) => props.size}px;
         width: ${(props: Props) => props.size * 2}px;
         border-radius: ${(props: Props) => props.size}px;
+        background-color: ${(props: ThemeEngine) => props.theme.backgroundDelta};
 
         &:focus,
         &.focus {

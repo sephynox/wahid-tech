@@ -90,9 +90,9 @@ const MarketProfile = (): JSX.Element => {
                                     <dt className="capitalize">YTD {t('change')}:</dt>
                                     <dd className="text-right">{StyledPercentage(assetData.deltaY, i18next.language)}</dd>
                                     <dt className="capitalize">{t('all_time_high')}:</dt>
-                                    <dd className="text-right">{formatPrice(assetData.ath ?? 0, 9, i18next.language)} {StyledPercentage(athDelta, i18next.language)}</dd>
+                                    <dd className="text-right">{formatPrice(assetData.ath ?? 0, 8, i18next.language)} {StyledPercentage(athDelta, i18next.language)}</dd>
                                     <dt className="capitalize">{t('all_time_low')}:</dt>
-                                    <dd className="text-right">{formatPrice(assetData.atl ?? 0, 9, i18next.language)} {StyledPercentage(atlDelta, i18next.language)}</dd>
+                                    <dd className="text-right">{formatPrice(assetData.atl ?? 0, 8, i18next.language)} {StyledPercentage(atlDelta, i18next.language)}</dd>
                                     <dt className="capitalize">{t('market_capitalization')}:</dt>
                                     <dd className="text-right">{formatPrice(assetData.cap ?? 0, Constants.DEFAULT_PRICE_PLACES, i18next.language)}</dd>
                                     <dt className="capitalize">{t('fully_diluted_valuation')}:</dt>

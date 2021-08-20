@@ -249,7 +249,7 @@ const PrivacyPromptStyle = styled.div`
         }
 
         & .privacy-prompt-customize.active {
-            padding-bottom: 10px;
+            padding-bottom: 70px;
         }
     }
 `;

@@ -33,6 +33,7 @@ body {
     background-color: ${(props: ThemeEngine) => props.theme.background};
     color: ${(props: ThemeEngine) => props.theme.text};
     transition: all 0.25s linear;
+    font-size: 1em;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
         "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
         sans-serif;

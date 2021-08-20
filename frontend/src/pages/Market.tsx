@@ -39,7 +39,7 @@ export const MarketContext = createContext<{
     refreshData: () => undefined,
     setDateStart: () => undefined,
     dispatchAssetData: () => undefined,
-    marketDataByline: function marketDataByline() { return <></> },
+    marketDataByline: function marketDataByline() { return <div></div> },
 });
 
 const Market = (): JSX.Element => {
