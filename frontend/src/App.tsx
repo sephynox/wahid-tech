@@ -157,17 +157,6 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
         localStorage.setItem('allowedCookieState', JSON.stringify(allowedCookieState));
     }, [allowedCookieState]);
 
-    //HACK Fix this odd issue
-    useEffect(() => {
-        const bugListener = history.listen(() => {
-            document.querySelectorAll('body>div:not(#root):not(.modal):not(.modal-backdrop)')
-                .forEach((el) => {
-                    try { el.remove(); } catch (e) { }
-                });
-        });
-        return bugListener;
-    }, [history]);
-
     return (
         <ThemeProvider theme={availableThemes[theme]}>
             <div className={"App " + (navState === NavState.OPEN ? Constants.NAVIGATION_ACTIVE_CLASS : '')}>

@@ -17,7 +17,6 @@ import MarketHome from '../components/market/MarketHome';
 import MarketProfile from '../components/market/MarketProfile';
 import { MarketType } from '../tools/MarketData';
 import SwipeDown from '../components/SwipeDown';
-import { formatFirstUpper } from '../utils/data-formatters';
 import { unixDaysAgo } from '../utils/data-helpers';
 
 //import StockChart from '../components/StockChart';
@@ -49,6 +48,8 @@ const Market = (): JSX.Element => {
     const defaultStart: number = unixDaysAgo(366);
     const localAssetState: AssetState = { ...initialAssetState, ...JSON.parse(localStorage.getItem('assetData') ?? '{}') };
 
+    const [loaderToast, setLoaderToast] = useState('');
+    const [dismissToast, setDismissToast] = useState(false);
     const [assetData, dispatchAssetData] = useReducer(assetReducer, localAssetState);
     const [dateStart, setDateStart] = useState(defaultStart);
 
@@ -57,12 +58,9 @@ const Market = (): JSX.Element => {
     const assetKey = assetPath[1];
 
     const refreshData = (type: MarketType, reducer: Dispatch<AssetState>, assetKey?: string) => {
-        //BUG Does not actually work
-        toast.promise(fetchAssetMarketData(type)(reducer), {
-            loading: `${formatFirstUpper(t('loading'))}...`,
-            success: `${formatFirstUpper(t('updated'))}!`,
-            error: formatFirstUpper(t('error')),
-        });
+        setDismissToast(false);
+        setLoaderToast(toast.loading(`${t('button.loading')}...`));
+        fetchAssetMarketData(type)(reducer);
 
         if (assetKey) {
             fetchAssetPriceData(type, assetKey, dateStart)(reducer);
@@ -145,8 +143,24 @@ const Market = (): JSX.Element => {
             fetchCryptoMarketStoreData();
         }, 60000);
 
+        if (loaderToast) {
+            switch (assetData.type) {
+                case AssetStates.FETCHED_ASSET_MARKET_DATA:
+                    setDismissToast(true);
+                    toast.success(`${t('button.data_updated')}!`);
+                    break;
+            }
+        }
+
         return () => clearTimeout(timer);
-    }, [assetType, assetKey, assetData, dateStart]);
+    }, [assetType, assetKey, assetData, dateStart, loaderToast, t]);
+
+    useEffect(() => {
+        if (loaderToast && dismissToast) {
+            toast.dismiss(loaderToast);
+            setLoaderToast('');
+        }
+    }, [loaderToast, dismissToast]);
 
     return (
         <MarketContext.Provider value={providerData}>

@@ -15,5 +15,6 @@ export const SITE_BLOG_ARTICLE_BASE_URL = SITE_BASE_URL + SITE_BLOG_ARTICLE_PATH
 export const SITE_MARKET_PATH_BASE_URL = SITE_BASE_URL + SITE_MARKET_ASSET_PATH;
 export const SITE_CONTACT_ENDPOINT = 'https://yq4ye3ydvk.execute-api.us-east-2.amazonaws.com/production';
 export const COINGECKO_API_ENDPOINT = 'https://api.coingecko.com/api/v3';
+export const WTECH_API_ENDPOINT = 'https://api.wahid.tech/v1';
 export const NAVIGATION_ACTIVE_CLASS = 'mobile-nav-active';
 export const NEWSAPI_API_KEY = '16076ae004314ba9bfe314648d737456';

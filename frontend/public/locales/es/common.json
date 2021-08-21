@@ -7,6 +7,7 @@
     "about": "acerca",
     "donate": "donar",
     "asset": "activo",
+    "email": "email",
     "address": "dirección",
     "copy": "copiar",
     "cookie": "cookie",
@@ -69,7 +70,13 @@
         "close": "Cerrar",
         "customize": "Personalizar",
         "read": "Leer",
-        "send_message": "Enviar Mensaje"
+        "loading": "Cargando",
+        "sending": "Enviando",
+        "retry": "Reintentar",
+        "data_updated": "Datos Actualizados",
+        "data_refreshed": "Datos Actualizados",
+        "send_message": "Enviar Mensaje",
+        "message_sent": "Mensaje Enviado"
     },
     "time": {
         "seconds": "segundos",

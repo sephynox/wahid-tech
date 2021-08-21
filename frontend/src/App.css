@@ -501,15 +501,15 @@ section .title p {
     margin-top: 40px;
 }
 
-#contact .php-email-form {
+#contact form {
     width: 100%;
 }
 
-#contact .php-email-form .form-group {
+#contact .form-group {
     padding-bottom: 8px;
 }
 
-#contact .php-email-form .error-message {
+#contact .error-message {
     display: none;
     background: #ed3c0d;
     text-align: left;
@@ -517,11 +517,11 @@ section .title p {
     font-weight: 600;
 }
 
-#contact .php-email-form .error-message br+br {
+#contact .error-message br+br {
     margin-top: 25px;
 }
 
-#contact .php-email-form .sent-message {
+#contact .sent-message {
     display: none;
     background: #18d26e;
     text-align: center;
@@ -529,13 +529,13 @@ section .title p {
     font-weight: 600;
 }
 
-#contact .php-email-form .loading {
+#contact .loading {
     display: none;
     text-align: center;
     padding: 15px;
 }
 
-#contact .php-email-form .loading:before {
+#contact .loading:before {
     content: "";
     display: inline-block;
     border-radius: 50%;
@@ -547,22 +547,22 @@ section .title p {
     animation: animate-loading 1s linear infinite;
 }
 
-#contact .php-email-form input,
-#contact .php-email-form textarea {
+#contact input,
+#contact textarea {
     border-radius: 4px;
     box-shadow: none;
     font-size: 14px;
 }
 
-#contact .php-email-form input {
+#contact input {
     height: 44px;
 }
 
-#contact .php-email-form textarea {
+#contact textarea {
     padding: 10px 12px;
 }
 
-#contact .php-email-form button[type="submit"] {
+#contact button[type="submit"] {
     background: #0563bb;
     color: rgba(255, 255, 255);
     border: 0;
@@ -571,8 +571,18 @@ section .title p {
     border-radius: 50px;
 }
 
-#contact .php-email-form button[type="submit"]:hover {
+#contact button[type="submit"]:hover {
     background: #0678e3;
+}
+
+.captcha {
+    padding: 0;
+    width: 304px;
+    height: 78px;
+}
+
+.captcha.is-invalid {
+    width: 340px;
 }
 
 @media (min-width: 992px) {

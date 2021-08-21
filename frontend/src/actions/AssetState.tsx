@@ -19,7 +19,6 @@ export type AssetState =
     | { type: AssetStates.FETCHED_ASSET_MARKET_DATA, class: MarketType, data: AssetStateData }
     | { type: AssetStates.FETCHED_ASSET_PRICE_DATA, class: MarketType, key: string, data: AssetStateData };
 
-
 export const initialAssetState: AssetState = {
     type: AssetStates.EMPTY,
     data: { [MarketType.CRYPTO]: {}, [MarketType.STOCK]: {}, [MarketType.COMMODITY]: {}, }

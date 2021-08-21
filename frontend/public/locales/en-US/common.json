@@ -7,6 +7,7 @@
     "about": "about",
     "donate": "donate",
     "asset": "asset",
+    "email": "email",
     "address": "address",
     "copy": "copy",
     "cookie": "cookie",
@@ -69,7 +70,13 @@
         "close": "Close",
         "customize": "Customize",
         "read": "Read",
-        "send_message": "Send Message"
+        "loading": "Loading",
+        "sending": "Sending",
+        "retry": "Retry",
+        "data_updated": "Data Updated",
+        "data_refreshed": "Data Refreshed",
+        "send_message": "Send Message",
+        "message_sent": "Message Sent"
     },
     "time": {
         "seconds": "seconds",

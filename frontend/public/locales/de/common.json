@@ -7,6 +7,7 @@
     "about": "über",
     "donate": "schenken",
     "asset": "der vermögenswert",
+    "email": "email",
     "address": "die adresse",
     "copy": "kopieren",
     "cookie": "cookie",
@@ -69,7 +70,13 @@
         "close": "Zumachen",
         "customize": "Anpassen",
         "read": "Lesen",
-        "send_message": "Sende Nachricht"
+        "loading": "Ladeinformationen",
+        "sending": "Senden",
+        "retry": "Erneut Versuchen",
+        "data_updated": "Daten Aktualisiert",
+        "data_refreshed": "Daten Aufgefrischt",
+        "send_message": "Sende Nachricht",
+        "message_sent": "Nachricht Gesendet"
     },
     "time": {
         "seconds": "sekunden",

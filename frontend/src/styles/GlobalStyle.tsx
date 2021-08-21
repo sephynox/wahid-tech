@@ -61,6 +61,10 @@ code {
     background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }
 
+.captcha.is-invalid {
+    background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
+}
+
 .color.red {
     color: ${(props: ThemeEngine) => props.theme.dangerText};
 }
@@ -141,8 +145,8 @@ hr.nav-menu-buttons {
     border-top: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }
 
-#contact .php-email-form input,
-#contact .php-email-form textarea {
+#contact input,
+#contact textarea {
     color: ${(props: ThemeEngine) => props.theme.text};
     background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }
