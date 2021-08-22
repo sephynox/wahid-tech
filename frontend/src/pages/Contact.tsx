@@ -1,5 +1,5 @@
 import React, { createRef, FormEvent, useReducer, useRef, useState } from 'react';
-import { Button, Col, Container, Form, Row, Spinner } from 'react-bootstrap';
+import { Alert, Button, Col, Container, Form, Row, Spinner } from 'react-bootstrap';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
@@ -16,8 +16,7 @@ const Contact = (): JSX.Element => {
     const { t, i18n } = useTranslation();
 
     const [theme] = useState(() => localStorage.getItem('theme') || 'light');
-    const [loaderToast, setLoaderToast] = useState('');
-    const [dismissToast, setDismissToast] = useState(false);
+    const [showServerError, setShowServerError] = useState(false);
     const [sendButtonDisabled, setSendButtonDisabled] = useState(false);
     const [sendButtonText, setSendButtonText] = useState<string>(t('button.send_message'));
     const [contactRequest, setContactRequest] = useState(initialContactData);
@@ -28,12 +27,17 @@ const Contact = (): JSX.Element => {
         setSendButtonDisabled(false);
     };
 
+    const resetForm = () => {
+        setShowServerError(true);
+        setSendButtonDisabled(false);
+        form.current?.resetFields();
+    };
+
     const updateContactRequest = (event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setContactRequest({ ...contactRequest, [event.currentTarget.name]: event.currentTarget.value });
 
         if (sendButtonDisabled) {
-            setSendButtonDisabled(false);
-            form.current?.resetFields();
+            resetForm();
         }
     };
 
@@ -49,46 +53,42 @@ const Contact = (): JSX.Element => {
         }
     };
 
-    const contact_text = 'Get in touch if you believe I can help or if you would like to contribute to the blog, platform code, or have an idea to share.';
-
     useEffect(() => {
         switch (apiRequest.type) {
             case WTechAPIStates.SUBMITTING_CONTACT_FORM:
-                setDismissToast(false);
                 setSendButtonText(`${t('button.sending')}...`);
-                setLoaderToast(toast.loading(`${t('button.sending')}...`));
                 break;
             case WTechAPIStates.SUBMITTED_CONTACT_FORM:
-                setDismissToast(true);
                 setSendButtonText(`${t('button.message_sent')}!`);
                 toast.success(`${t('button.message_sent')}!`);
                 break;
             case WTechAPIStates.SUBMITTED_CONTACT_FORM_ERROR:
+                toast.dismiss();
                 toast.error(`${formatFirstUpper(t('error'))}!`);
                 setSendButtonText(`${t('button.retry')}`);
-                setDismissToast(true);
                 setSendButtonDisabled(false);
+                setShowServerError(true);
                 break;
         }
     }, [apiRequest, t]);
-
-    useEffect(() => {
-        if (loaderToast && dismissToast) {
-            toast.dismiss(loaderToast);
-            setLoaderToast('');
-        }
-    }, [loaderToast, dismissToast]);
 
     return (
         <Container id="contact">
             <section>
                 <div className="title">
                     <h2 className="capitalize">{t('contact')}</h2>
-                    <p>{contact_text}</p>
+                    <p>{t('content.contact')}</p>
                 </div>
                 <Row className="mt-1">
                     <Col lg={8} className="mt-6 mt-lg-0">
                         <FormWithConstraints ref={form} onSubmit={submitContact} noValidate>
+                            <Row>
+                                <Col>
+                                    {apiRequest.type === WTechAPIStates.SUBMITTED_CONTACT_FORM_ERROR
+                                        ? <Alert variant="danger" show={showServerError} onClose={() => setShowServerError(false)} dismissible>{apiRequest.error ?? ''}</Alert>
+                                        : null}
+                                </Col>
+                            </Row>
                             <Row>
                                 <Col className="form-group">
                                     <FieldFeedbacks for="name">
@@ -141,6 +141,7 @@ const Contact = (): JSX.Element => {
                                         value={contactRequest.subject}
                                         onChange={updateContactRequest}
                                         placeholder={formatTitleCase(t('subject'))}
+                                        autoComplete="off"
                                         required minLength={4}
                                     />
                                 </Col>
@@ -177,13 +178,12 @@ const Contact = (): JSX.Element => {
                                 <Col xs={12} sm={12} md={12} lg={6}></Col>
                                 <Col xs={12} sm={12} md={12} lg={6} className="contact-button mt-xs-2">
                                     <Button className="capitalize" type="submit" disabled={sendButtonDisabled}>
-                                        {loaderToast && <Spinner
+                                        {apiRequest.type === WTechAPIStates.SUBMITTING_CONTACT_FORM && <Spinner
                                             as="span"
                                             animation="border"
                                             size="sm"
                                             role="status"
                                             aria-hidden="true"
-
                                         />} {sendButtonText}
                                     </Button>
                                 </Col>
