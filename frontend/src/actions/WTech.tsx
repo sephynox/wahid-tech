@@ -47,11 +47,8 @@ export const apiReducer = (
 
 export const submitContactForm = (data: ContactData) => async (dispatch: Dispatch<WTechAPIState>): Promise<void> => {
     dispatch({ type: WTechAPIStates.SUBMITTING_CONTACT_FORM, });
-    return WTechAPI.post(`contact`).then(
-        (result) => {
-            //console.log(result);
-            dispatch({ type: WTechAPIStates.SUBMITTED_CONTACT_FORM });
-        },
+    return WTechAPI.post(`contact`, data).then(
+        () => dispatch({ type: WTechAPIStates.SUBMITTED_CONTACT_FORM }),
         (error) => dispatch({ type: WTechAPIStates.SUBMITTED_CONTACT_FORM_ERROR, response: error.response }),
     );
 };

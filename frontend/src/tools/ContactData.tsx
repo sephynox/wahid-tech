@@ -13,7 +13,7 @@ export const initialContactData: ContactData = {
     'g-recaptcha-response': '',
 }
 
-export interface RecaptchaData {
+export interface RecaptchaData extends Record<string, string | null> {
     'g-recaptcha-response': string | null;
 }
 

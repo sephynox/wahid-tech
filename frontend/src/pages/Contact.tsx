@@ -59,6 +59,7 @@ const Contact = (): JSX.Element => {
                 setSendButtonText(`${t('button.sending')}...`);
                 break;
             case WTechAPIStates.SUBMITTED_CONTACT_FORM:
+                setContactRequest(initialContactData);
                 setSendButtonText(`${t('button.message_sent')}!`);
                 toast.success(`${t('button.message_sent')}!`);
                 break;
@@ -77,10 +78,15 @@ const Contact = (): JSX.Element => {
             <section>
                 <div className="title">
                     <h2 className="capitalize">{t('contact')}</h2>
-                    <p>{t('content.contact')}</p>
+                    {apiRequest.type !== WTechAPIStates.SUBMITTED_CONTACT_FORM && <p>{t('content.contact')}</p>}
                 </div>
                 <Row className="mt-1">
-                    <Col lg={8} className="mt-6 mt-lg-0">
+                    <Col lg={8} className="mt-6 mt-lg-0">{apiRequest.type === WTechAPIStates.SUBMITTED_CONTACT_FORM
+                        ?
+                        <Container className="pt-5">
+                            <h3>Your message was successfully sent.</h3>
+                        </Container>
+                        :
                         <FormWithConstraints ref={form} onSubmit={submitContact} noValidate>
                             <Row>
                                 <Col>
@@ -188,7 +194,7 @@ const Contact = (): JSX.Element => {
                                     </Button>
                                 </Col>
                             </Row>
-                        </FormWithConstraints>
+                        </FormWithConstraints>}
                     </Col>
                 </Row>
             </section>
