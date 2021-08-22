@@ -1,6 +1,6 @@
 
 import { Dispatch } from 'react';
-import axios from 'axios';
+import axios, { AxiosResponse, AxiosError } from 'axios';
 import * as Constants from '../Constants';
 import ContactData from '../tools/ContactData';
 
@@ -12,12 +12,17 @@ export enum WTechAPIStates {
     SUBMITTED_CONTACT_FORM_ERROR,
 };
 
+export type ErrorResponse = {
+    errorType: string,
+    errorMessage: string,
+}
+
 export type WTechAPIState =
     | { type: WTechAPIStates.EMPTY, }
     | { type: WTechAPIStates.SUBMITTING_CONTACT_FORM, }
     | { type: WTechAPIStates.SUBMITTED_CONTACT_FORM, }
-    | { type: WTechAPIStates.SUBMITTED_CONTACT_FORM_ERROR, error: string, }
-    | { type: WTechAPIStates.ERROR, error: string, }
+    | { type: WTechAPIStates.SUBMITTED_CONTACT_FORM_ERROR, response?: AxiosResponse<ErrorResponse>, error?: string, }
+    | { type: WTechAPIStates.ERROR, error: AxiosError, };
 
 export const initialWTechAPIState: WTechAPIState = {
     type: WTechAPIStates.EMPTY,
@@ -32,6 +37,7 @@ export const apiReducer = (
         case WTechAPIStates.SUBMITTED_CONTACT_FORM:
             return { ...currentState, type: action.type };
         case WTechAPIStates.SUBMITTED_CONTACT_FORM_ERROR:
+            return { ...currentState, type: action.type, error: action.response?.data.errorMessage }
         case WTechAPIStates.ERROR:
             return { ...currentState, type: action.type, error: action.error };
         default:
@@ -43,10 +49,10 @@ export const submitContactForm = (data: ContactData) => async (dispatch: Dispatc
     dispatch({ type: WTechAPIStates.SUBMITTING_CONTACT_FORM, });
     return WTechAPI.post(`contact`).then(
         (result) => {
-            console.log(result);
+            //console.log(result);
             dispatch({ type: WTechAPIStates.SUBMITTED_CONTACT_FORM });
         },
-        (error) => dispatch({ type: WTechAPIStates.SUBMITTED_CONTACT_FORM_ERROR, error: error }),
+        (error) => dispatch({ type: WTechAPIStates.SUBMITTED_CONTACT_FORM_ERROR, response: error.response }),
     );
 };
 

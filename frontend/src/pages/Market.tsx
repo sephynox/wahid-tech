@@ -48,8 +48,7 @@ const Market = (): JSX.Element => {
     const defaultStart: number = unixDaysAgo(366);
     const localAssetState: AssetState = { ...initialAssetState, ...JSON.parse(localStorage.getItem('assetData') ?? '{}') };
 
-    const [loaderToast, setLoaderToast] = useState('');
-    const [dismissToast, setDismissToast] = useState(false);
+    const [loaderToast, setLoaderToast] = useState<string | null>(null);
     const [assetData, dispatchAssetData] = useReducer(assetReducer, localAssetState);
     const [dateStart, setDateStart] = useState(defaultStart);
 
@@ -58,7 +57,6 @@ const Market = (): JSX.Element => {
     const assetKey = assetPath[1];
 
     const refreshData = (type: MarketType, reducer: Dispatch<AssetState>, assetKey?: string) => {
-        setDismissToast(false);
         setLoaderToast(toast.loading(`${t('button.loading')}...`));
         fetchAssetMarketData(type)(reducer);
 
@@ -146,21 +144,15 @@ const Market = (): JSX.Element => {
         if (loaderToast) {
             switch (assetData.type) {
                 case AssetStates.FETCHED_ASSET_MARKET_DATA:
-                    setDismissToast(true);
+                    toast.dismiss(loaderToast);
                     toast.success(`${t('button.data_updated')}!`);
+                    setLoaderToast(null);
                     break;
             }
         }
 
         return () => clearTimeout(timer);
     }, [assetType, assetKey, assetData, dateStart, loaderToast, t]);
-
-    useEffect(() => {
-        if (loaderToast && dismissToast) {
-            toast.dismiss(loaderToast);
-            setLoaderToast('');
-        }
-    }, [loaderToast, dismissToast]);
 
     return (
         <MarketContext.Provider value={providerData}>

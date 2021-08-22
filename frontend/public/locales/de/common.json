@@ -102,7 +102,7 @@
         "required_cookies": "These cookies are considered mandatory for proper operation of the website. They cannot be disabled without rendering the platform unusable. The cookies are used to facilitate authentication when logged into the platform.",
         "analytics_cookies": "This site utilizes Google Analytics to provide analytical information for improving the quality of the platform through gathering usage data. You may disable these cookies although, allowing them will provide valuable data for us to improve.",
         "performance_cookies": "This site utilizes New Relic for performance monitoring and debugging. New Relic does not retain any personal data collected by the Browser Agent. Keeping this setting enabled will help us diagnose issues with the platform.",
-        "advertising_cookies": "This site does not utilize third-party advertising services however, Google may add these cookies regardless. They can be safely disabled and are disable by default.",
+        "advertising_cookies": "This site does not utilize third-party advertising services however, Google may add these cookies regardless. They can be safely disabled and are disabled by default.",
         "disqus_cookies": "Comments are powered using the Disqus platform. Disqus utilizes a number of cookies to power their functionality. Disabling these cookies will prevent you from using Disqus to comment.",
         "disqus_disabled": "Disqus is disabled. To participate in discussions, you will need to allow Disqus cookies."
     }

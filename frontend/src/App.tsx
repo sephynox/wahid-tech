@@ -2,6 +2,7 @@ import React, { createContext, Dispatch, Suspense, useEffect, useState, useReduc
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import ReactGA, { EventArgs } from 'react-ga';
+import { toast } from 'react-hot-toast';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './scss/custom.scss';
 import './App.css';
@@ -140,6 +141,7 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
             ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID ?? '', { debug: testMode });
 
             historyListener = history.listen(() => {
+                toast.dismiss();
                 ReactGA.pageview(window.location.pathname + window.location.search);
             });
         }

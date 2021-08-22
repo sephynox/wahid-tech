@@ -25,6 +25,10 @@ body>div:not(#root):not(.modal):not(.modal-backdrop) {
     display: none;
 }
 
+a.nav-link {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
     body {
         overflow-x: hidden;
