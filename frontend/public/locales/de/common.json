@@ -92,6 +92,16 @@
         "separator": ".",
         "fractional": ","
     },
+    "validation": {
+        "contact_missing_name": "Bitte geben Sie den Namen des Absenders ein",
+        "contact_missing_email": "Bitte geben Sie eine E-Mail Adresse ein",
+        "contact_valid_email": "Geben Sie eine gültige E-Mail Adresse ein",
+        "contact_missing_subject": "Bitte geben Sie einen Betreff für die Nachricht ein",
+        "contact_short_subject": "Geben Sie einen längeren Nachrichtentitel ein",
+        "contact_missing_message": "Bitte geben Sie eine Nachricht ein",
+        "contact_short_message": "Geben Sie eine echte Nachricht ein",
+        "contact_message_success": "Ihre Nachricht wurde erfolgreich gesendet"
+    },
     "content": {
         "home": "An informational website and technology blog.",
         "blog": "A technology blog analyzing technology through various lenses, disciplines and views.",
@@ -105,5 +115,8 @@
         "advertising_cookies": "This site does not utilize third-party advertising services however, Google may add these cookies regardless. They can be safely disabled and are disabled by default.",
         "disqus_cookies": "Comments are powered using the Disqus platform. Disqus utilizes a number of cookies to power their functionality. Disabling these cookies will prevent you from using Disqus to comment.",
         "disqus_disabled": "Disqus is disabled. To participate in discussions, you will need to allow Disqus cookies."
+    },
+    "eggs": {
+        "robot": "01010010 01101111 01100010 01101111 01110100 00111111"
     }
 }

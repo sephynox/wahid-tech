@@ -84,7 +84,7 @@ const Contact = (): JSX.Element => {
                     <Col lg={8} className="mt-6 mt-lg-0">{apiRequest.type === WTechAPIStates.SUBMITTED_CONTACT_FORM
                         ?
                         <Container className="pt-5">
-                            <h3>Your message was successfully sent.</h3>
+                            <h3>{t('validation.contact_message_success')}.</h3>
                         </Container>
                         :
                         <FormWithConstraints ref={form} onSubmit={submitContact} noValidate>
@@ -98,19 +98,19 @@ const Contact = (): JSX.Element => {
                             <Row>
                                 <Col className="form-group">
                                     <FieldFeedbacks for="name">
-                                        <FieldFeedback when="valueMissing" error>Please enter a sender name.</FieldFeedback>
+                                        <FieldFeedback when="valueMissing" error>{t('validation.contact_missing_name')}.</FieldFeedback>
                                     </FieldFeedbacks>
                                     <FieldFeedbacks for="email">
-                                        <FieldFeedback when="valueMissing" error>Please enter an email address.</FieldFeedback>
-                                        <FieldFeedback when="typeMismatch" error>Please enter a valid email.</FieldFeedback>
+                                        <FieldFeedback when="valueMissing" error>{t('validation.contact_missing_email')}.</FieldFeedback>
+                                        <FieldFeedback when="typeMismatch" error>{t('validation.contact_valid_email')}.</FieldFeedback>
                                     </FieldFeedbacks>
                                     <FieldFeedbacks for="subject">
-                                        <FieldFeedback when="valueMissing" error>Please enter a subject.</FieldFeedback>
-                                        <FieldFeedback when="tooShort" error>Please enter a longer subject.</FieldFeedback>
+                                        <FieldFeedback when="valueMissing" error>{t('validation.contact_missing_subject')}.</FieldFeedback>
+                                        <FieldFeedback when="tooShort" error>{t('validation.contact_short_subject')}.</FieldFeedback>
                                     </FieldFeedbacks>
                                     <FieldFeedbacks for="message">
-                                        <FieldFeedback when="valueMissing" error>Please enter a message.</FieldFeedback>
-                                        <FieldFeedback when="tooShort" error>Please enter an actual message.</FieldFeedback>
+                                        <FieldFeedback when="valueMissing" error>{t('validation.contact_missing_message')}.</FieldFeedback>
+                                        <FieldFeedback when="tooShort" error>{t('validation.contact_short_message')}.</FieldFeedback>
                                     </FieldFeedbacks>
                                 </Col>
                             </Row>
@@ -177,7 +177,7 @@ const Contact = (): JSX.Element => {
                                             onChange={setRecaptcha}
                                         />
                                     </div>
-                                    <Form.Control.Feedback type="invalid">Are you a robot?</Form.Control.Feedback>
+                                    <Form.Control.Feedback type="invalid">{t('eggs.robot')}</Form.Control.Feedback>
                                 </Col>
                             </Row>
                             <Row>
