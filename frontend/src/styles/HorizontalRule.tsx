@@ -5,7 +5,7 @@ const HorizontalRule = styled.hr`
     background-color: ${(props: ThemeEngine) => props.theme.hr};
     position: relative;
     width: 50%;
-    margin: 20px 0;
+    margin: 0 0 20px 0;
     opacity: 0.75;
 
     &:after {

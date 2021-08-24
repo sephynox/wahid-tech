@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import Highcharts from 'highcharts/highstock';
 import {
@@ -18,8 +19,7 @@ import { HighchartsStockChart, Navigator, RangeSelector } from 'react-jsx-highst
 import * as Constants from '../Constants';
 import { MarketPriceData } from '../tools/MarketData';
 import LoaderSpinner from '../tools/LoaderSpinner';
-import { formatFirstUpper, formatNumber, formatPrice, formatShortNumber } from '../utils/data-formatters';
-import i18next from 'i18next';
+import { formatFirstUpper, formatPrice, formatShortNumber } from '../utils/data-formatters';
 
 type Props = {
     dataSet: MarketPriceData,
@@ -58,11 +58,11 @@ const StockChart = ({ title, dataSet, height, symbol, xAxis = 'Time', defaultRan
     return (
         <HighchartsProvider Highcharts={Highcharts}>
             <HighchartsStockChart updateArgs={[true, true, true]}>
-                <Chart marginLeft={20} marginRight={20} zoomType="x" height={height} numberFormatter={(n: number) => formatNumber(n, i18next.language)} />
+                <Chart marginLeft={20} marginRight={20} zoomType="x" height={height} numberFormatter={(n: number) => formatPrice(n, Constants.DEFAULT_PRICE_PLACES, i18next.language)} />
                 <Title>{title}</Title>
                 <Loading isLoading={!loaded}><LoaderSpinner width="50%" height={5} /></Loading>
                 <Legend layout="horizontal" />
-                <Tooltip valuePrefix={symbol} />
+                <Tooltip />
                 <XAxis labels={{ formatter: (ctx) => Intl.DateTimeFormat(i18next.language).format(new Date(ctx.value ? ctx.value : 0)) }}>
                     <XAxis.Title>{xAxis}</XAxis.Title>
                 </XAxis>

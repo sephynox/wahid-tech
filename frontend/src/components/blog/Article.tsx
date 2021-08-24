@@ -7,10 +7,14 @@ import SocialLinks from '../../tools/SocialLinks';
 import { Breadcrumbs } from '../../layout/Navigation';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
-import { Button, Container } from 'react-bootstrap';
+import { Button, Container, Figure } from 'react-bootstrap';
 import HorizontalRule from '../../styles/HorizontalRule';
 import { AppContext } from '../../App';
 import { systemEvents } from '../../Data';
+import { BlogPost } from '../../styles/BlogPost';
+import Citation from '../../tools/Citation';
+import References from '../../tools/References';
+import APACitation from '../../tools/APACitation';
 
 type Props = {
     data: ArticleData;
@@ -33,10 +37,12 @@ export interface ArticleData {
     description: string;
     image: ArticleImage;
     date: Date;
-    modified?: Date;
     authors: Array<ArticleAuthor>;
     title: string;
+    references: Array<Citation>;
     component: React.FunctionComponent;
+    modified?: Date;
+    comments?: boolean;
 }
 
 const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
@@ -70,77 +76,86 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                 <meta property="article:modified_time" content={meta_modified} />
             </Helmet>
             <Breadcrumbs links={[
-                { text: 'blog', class: 'capitalize', path: Constants.SITE_BLOG_PATH_BASE },
-                { text: 'article', path: '', class: 'capitalize', active: true }
+                { text: t('blog'), class: 'capitalize', path: Constants.SITE_BLOG_PATH_BASE },
+                { text: t('article'), path: '', class: 'capitalize', active: true }
             ]} />
-            <section className="article-container">
-                <div className="title">
-                    <Container className="image-container mb-5">
+            <BlogPost>
+                <section>
+                    <Figure>
                         <img src={data.image.url} alt={data.image.alt} />
+                    </Figure>
+                    <h2 className="text-xs-center">{data.title}</h2>
+                    <Container>
+                        <dl className="dl-horizontal dl-custom">
+                            <dt className="capitalize">{t('byline')}:</dt>
+                            <dd id="article_authors">{article_authors}</dd>
+                            <dt className="capitalize">{t('published')}:</dt>
+                            <dd id="article_date_posted">{publish_date}</dd>
+                            {modified_date !== null ? (
+                                <>
+                                    <dt className="capitalize">{t('last_update')}:</dt>
+                                    <dd id="modified">{modified_date}</dd>
+                                </>
+                            ) : null}
+                            <dt className="capitalize">{t('summary')}:</dt>
+                            <dd id="article_abstract">{data.description}</dd>
+                            <dt className="capitalize no-print">{t('share')}:</dt>
+                            <dd className="no-print">
+                                <SocialLinks url={article_full_url} title={data.title} />
+                            </dd>
+                        </dl>
                     </Container>
-                    <h2>{data.title}</h2>
-                    <dl className="dl-horizontal dl-custom">
-                        <dt className="capitalize">{t('byline')}:</dt>
-                        <dd id="article_authors">{article_authors}</dd>
-                        <dt className="capitalize">{t('published')}:</dt>
-                        <dd id="article_date_posted">{publish_date}</dd>
-                        {modified_date !== null ? (
-                            <>
-                                <dt className="capitalize">{t('last_update')}:</dt>
-                                <dd id="modified">{modified_date}</dd>
-                            </>
-                        ) : null}
-                        <dt className="capitalize">{t('summary')}:</dt>
-                        <dd id="article_abstract">{data.description}</dd>
-                        <dt className="capitalize no-print">{t('share')}:</dt>
-                        <dd className="no-print">
-                            <SocialLinks url={article_full_url} title={data.title} />
-                        </dd>
-                    </dl>
-                </div>
-                <div className="article-body">
-                    <p className="article-story-line capitalize text-xs-center">{t('full_story')}</p>
-                    <HorizontalRule />
-                    <MyArticle />
-                    <HorizontalRule />
-                    <p className="article-story-line capitalize">{t('citations')}</p>
-                    <CitationGuide
-                        authors={data.authors}
-                        publisher={Constants.SITE_NAME}
-                        title={data.title}
-                        date_year={data.date.getFullYear()}
-                        date_month={data.date.toLocaleString('default', { month: 'long' })}
-                        date_day={data.date.getDate()}
-                    />
-                    <hr className="mt-5" />
-                    <p className="article-story-line capitalize">{t('comments')}</p>
-                    <div className="article-end-comments">
-                        {appContext.allowedCookieState['disqus']
-                            ? <DiscussionEmbed
-                                shortname="wahidtech"
-                                config={{
-                                    onNewComment: () => { appContext.logEvent(systemEvents['disqus_comment']) },
-                                    url: article_full_url,
-                                    identifier: data.path,
-                                    title: data.title,
-                                    language: i18n.language.replace('-', '_'),
-                                }}
-                            />
-                            :
-                            <p>
-                                {t('content.disqus_disabled')}<br />
-                                <Button
-                                    className="capitalize"
-                                    onClick={appContext.togglePrivacySelector}
-                                    variant="link"
-                                >
-                                    {t('data_privacy')}
-                                </Button>
-                            </p>
-                        }
-                    </div>
-                </div>
-            </section>
+                </section>
+                <section>
+                    <Container>
+                        <h3>{t('full_story')}</h3>
+                        <HorizontalRule />
+                        <MyArticle />
+                        <HorizontalRule />
+                    </Container>
+                    <Container>
+                        <h3>{t('references')}</h3>
+                        <References data={data.references} Format={APACitation} />
+                    </Container>
+                    <Container>
+                        <h3>{t('citations')}</h3>
+                        <CitationGuide
+                            authors={data.authors}
+                            publisher={Constants.SITE_NAME}
+                            title={data.title}
+                            date_year={data.date.getFullYear()}
+                            date_month={data.date.toLocaleString('default', { month: 'long' })}
+                            date_day={data.date.getDate()}
+                        />
+                    </Container>{data.comments &&
+                        <Container className="mt-3">
+                            <h3>{t('comments')}</h3>
+                            {appContext.allowedCookieState['disqus']
+                                ? <DiscussionEmbed
+                                    shortname="wahidtech"
+                                    config={{
+                                        onNewComment: () => { appContext.logEvent(systemEvents['disqus_comment']) },
+                                        url: article_full_url,
+                                        identifier: data.path,
+                                        title: data.title,
+                                        language: i18n.language.replace('-', '_'),
+                                    }}
+                                />
+                                :
+                                <p>
+                                    {t('content.disqus_disabled')}<br />
+                                    <Button
+                                        className="capitalize"
+                                        onClick={appContext.togglePrivacySelector}
+                                        variant="link"
+                                    >
+                                        {t('data_privacy')}
+                                    </Button>
+                                </p>
+                            }
+                        </Container>}
+                </section>
+            </BlogPost>
         </Container>
     );
 };

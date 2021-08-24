@@ -52,7 +52,7 @@ const APACitation = ({
     return (
         <HangingIndent id={id !== undefined ? id : undefined}>
             {author_list}. ({date_string}). {chapter !== undefined ? <> {chapter}. In </> : undefined}
-            <i className={journal === undefined ? undefined : 'no-italic'}>{title}</i>.
+            <i className={journal === undefined ? undefined : 'no-italic'}><cite>{title}</cite></i>.
             {journal !== undefined ? (
                 <>
                     {' '}

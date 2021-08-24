@@ -747,51 +747,6 @@ hr.article-divider-bottom {
     margin-top: 30px;
 }
 
-p.article-image {
-    margin: 40px;
-    text-align: center;
-}
-
-.container.image-container {
-    padding: 50px;
-    text-align: center;
-}
-
-.container.image-container img {
-    max-width: 100%;
-    height: auto;
-}
-
-.container.image-container p {
-    padding-top: 10px;
-}
-
-.article-body {
-    margin-top: 10px;
-}
-
-.article-body h3 {
-    margin-top: 30px;
-    font-size: 1.3rem;
-}
-
-.article-container {
-    max-width: 800px;
-}
-
-.article-story-line {
-    padding-top: 10px;
-    color: #595959;
-}
-
-.article-quote-author {
-    color: #595959
-}
-
-.article-end-comments {
-    margin-bottom: 100px;
-}
-
 @media (min-width: 992px) {}
 
 @media screen and (max-width: 992px) {

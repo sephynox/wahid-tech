@@ -17,7 +17,7 @@ i18next
     .init({
         ns: Object.values(i18nNamespace),
         defaultNS: 'common',
-        debug: 'production' !== process.env.NODE_ENV,
+        debug: Constants.DEV_MODE,
         fallbackLng: Constants.DEFAULT_LANG,
         saveMissing: false,
         react: {

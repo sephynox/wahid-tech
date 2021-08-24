@@ -1,49 +1,48 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
-import APACitation from '../../../tools/APACitation';
+import { Figure } from 'react-bootstrap';
 import Quote from '../../Quote';
 
 const ADecentralizedFuture = (): JSX.Element => {
-    const { t } = useTranslation();
-
     return (
         <>
+            <h4>Introduction</h4>
             <p>
-                The internet is arguably the most important innovation in our modern times. I remember the
+                The internet is arguably one of the most important innovations in our modern times. I remember the
                 internet&apos;s &ldquo;Netscape moment&rdquo; though I was only a child at the time. As an engineer and
                 technologist, I would have been ecstatic to live through the Netscape moment with what I know today.
-                However, as we know--at least, for now--we cannot go back in time. Although, history has an interesting
-                habit of rhyming and we may very well be experiencing the next technological breakthrough of our time.
+                However, as we know&mdash;at least, for now&mdash;we cannot go back in time. Although, history has an
+                interesting habit of rhyming and we may very well be experiencing the next technological breakthrough
+                of our time which can once again redefine the way we interact in our societies.
             </p>
-            <Container className="image-container">
+            <Figure>
                 <img src="/images/blog/internet-a-fad.webp" alt="Daily Mail Internet a Fad Article" />
-                <p>
-                    Afshar, V. @ValaAfshar. (2018, April 18). Internet ‘may be just a passing fad as millions give up on it’,
+                <figcaption>
+                    Afshar, V. @ValaAfshar. (2018, April 18). <cite>Internet ‘may be just a passing fad as millions give up on it’</cite>,
                     December 2000.
                     &nbsp;<a target="_new" href="https://web.archive.org/web/20210523195547/https://twitter.com/ValaAfshar/status/1383904613598859270">Twitter</a>.
-                </p>
-            </Container>
+                </figcaption>
+            </Figure>
             <p>
-                What many forget is that the internet was met with a surprising amount of skepticism and at one point
-                considered a &ldquo;passing fad&rdquo; by newspaper outlets like the Daily Mail. Quite frankly, it is
-                easy to forget such things--when was the last time you questioned the importance of electricity? However,
-                not unlike others throughout history who felt threatened by innovative technologies, the Daily Mail made
-                statements that today would be considered absurd. One may even argue that today&apos;s experts may be
-                tomorrow&apos;s fools and to support that point, we need only to look back in history.
+                What many do not realize today is that the internet was met with a surprising amount of skepticism and
+                at one point considered a &ldquo;passing fad&rdquo; by newspaper outlets like the Daily Mail. Quite
+                frankly, it is easy to forget such things&mdash;when was the last time you questioned the importance
+                of electricity? However, not unlike others throughout history who felt threatened by innovative
+                technologies, the Daily Mail made statements that today would be considered absurd. One may even
+                argue that today&apos;s experts may be tomorrow&apos;s fools and to support that point, we need
+                only to look back in history.
             </p>
-            <h3>Yesterday&apos;s Experts</h3>
+            <Figure>
+                <img src="/images/blog/apple-iphone-jobs.jpg" alt="Steve Jobs unveiling the first iPhone" />
+                <figcaption>
+                    Time Magazine. (2017, January 09). <i><cite>Watch Steve Jobs unveil the first iPhone 10 years ago today.</cite></i>
+                    &nbsp;<a target="_new" href="https://web.archive.org/web/20170110053025if_/http://time.com/hive.org/web/20170110053025/http://time.com/4628515/steve-jobs-iphone-launch-keynote-2007">Time Magazine</a>.
+                </figcaption>
+            </Figure>
+            <h4>Yesterday&apos;s Experts</h4>
             <Quote
                 quote="iPhone is nothing more than a luxury bauble that will appeal to a few gadget freaks."
                 author="Matthew Lynn"
             />
-            <Container className="image-container">
-                <img src="/images/blog/apple-iphone-jobs.jpg" alt="Steve Jobs unveiling the first iPhone" />
-                <p>
-                    Time Magazine. (2017, January 09). <i>Watch Steve Jobs unveil the first iPhone 10 years ago today.</i>
-                    &nbsp;<a target="_new" href="https://web.archive.org/web/20170110053025if_/http://time.com/hive.org/web/20170110053025/http://time.com/4628515/steve-jobs-iphone-launch-keynote-2007">Time Magazine</a>.
-                </p>
-            </Container>
             <p>
                 We will start with something more familiar as the further back in time we go, the more ridiculous the
                 statements begin to sound. Thus, the first stop we will arrive at is the original iPhone. Some of us may
@@ -69,10 +68,6 @@ const ADecentralizedFuture = (): JSX.Element => {
                 what you would pay today for a wagon and a pair of horses. The money spent in the keep of the horses
                 will be saved and the danger to life will be much reduced.&rdquo; (Winton, 2017).
             </p>
-            <Quote
-                quote="Printed books will never equal scribed books, especially because the spelling and ornamentation of some printed books is often neglected."
-                author="Johannes Trithemius"
-            />
             <p>
                 Which brings us to our final stop in history: the printing press. The printing press is arguably the
                 most important technological innovation in human history. It was here that information society took its
@@ -86,15 +81,15 @@ const ADecentralizedFuture = (): JSX.Element => {
                 (Chenoweth, 2019). Such a statement today would be utterly absurd and history is quite littered with
                 these examples.
             </p>
-            <Container className="image-container">
+            <Figure>
                 <img src="/images/blog/crowe-fraud-small.png" alt="Crowe - Global losses of fraud equate to USD 5.127 trillion" />
-                <p>
-                    CroweGlobal @CroweGlobal. (2019, July 11). Report reveals #fraud costs the global economy $5.127
-                    trillion with losses rising by 56% in the past decade.
+                <figcaption>
+                    CroweGlobal @CroweGlobal. (2019, July 11). <cite>Report reveals #fraud costs the global economy $5.127
+                        trillion with losses rising by 56% in the past decade.</cite>
                     &nbsp;<a target="_new" href="https://web.archive.org/web/20210816045808/https://twitter.com/croweglobal/status/1149375727042777088">Twitter</a>.
-                </p>
-            </Container>
-            <h3>The Issues of Trust</h3>
+                </figcaption>
+            </Figure>
+            <h4>The Issues of Trust</h4>
             <Quote
                 quote="The root problem with conventional currency is all the trust that's required to make it work."
                 author="Satoshi Nakamoto"
@@ -102,13 +97,13 @@ const ADecentralizedFuture = (): JSX.Element => {
             <p>
                 Over five-hundred years ago, Fra Luca Bartolomeo de Pacioli published the famous book, &ldquo;Summa de
                 arithmetica&rdquo; with the help of the printing press. This book was known for describing the
-                principles of double-entry bookkeeping--principles which are largely unchanged to this day. This earned
-                Pacioli the moniker of &ldquo;The Father of Accounting and Bookkeeping.&rdquo; Unfortunately, a problem
-                with this system was that it required trust in the bookkeeper. Even in modern times, this failure of
-                trust has been felt in examples such as Enron, WorldCom, Tyco, Freddie Mac, AIG, Lehman Brothers, Bernie
-                Madoff, and many others. Yet, instances of fraud can be seen throughout all of history with the first
-                record of fraud occurring in 300 B.C. when a Greek merchant attempted to commit insurance fraud but
-                instead drowned when he was caught in the act (Beattie, 2019).
+                principles of double-entry bookkeeping&mdash;principles which are largely unchanged to this day. This
+                earned Pacioli the moniker of &ldquo;The Father of Accounting and Bookkeeping.&rdquo; Unfortunately, a
+                problem with this system was that it required trust in the bookkeeper. Even in modern times, this
+                failure of trust has been felt in examples such as Enron, WorldCom, Tyco, Freddie Mac, AIG,
+                Lehman Brothers, Bernie Madoff, and many others. Yet, instances of fraud can be seen throughout all
+                of history with the first record of fraud occurring in 300 B.C. when a Greek merchant attempted to
+                commit insurance fraud but instead drowned when he was caught in the act (Beattie, 2019).
             </p>
             <p>
                 However, fraud has not subsided over time but instead, has accelerated to numbers that are
@@ -116,24 +111,62 @@ const ADecentralizedFuture = (): JSX.Element => {
                 consulting firms, &ldquo;fraud losses equate to a shocking US$5.127 trillion each year, which represents
                 almost 70% of the $7.442 trillion which world spends on healthcare each year&rdquo; (Crowe Global,
                 2019). Moreover, if this were not troubling enough, one of the major enablers of this systematic problem
-                is the same group responsible for ensuring it does not occur: banks.
+                is the same group expected to ensure it does not occur: banks.
             </p>
-            <Container className="image-container">
+            <Figure>
                 <img src="/images/blog/fincen-files-top-banks.jpg" alt="Top banks suspicious transaction amounts" />
-                <p>
-                    ICIJ. (2020, September 20). <i>Global banks defy U.S. crackdowns by serving oligarchs, criminals and terrorists.</i>
+                <figcaption>
+                    ICIJ. (2020, September 20). <i><cite>Global banks defy U.S. crackdowns by serving oligarchs, criminals and terrorists.</cite></i>
                     &nbsp;<a target="_new" href="https://web.archive.org/web/20210630030416/https://www.icij.org/investigations/fincen-files/global-banks-defy-u-s-crackdowns-by-serving-oligarchs-criminals-and-terrorists">ICIJ</a>.
-                </p>
-            </Container>
+                </figcaption>
+            </Figure>
             <p>
-                In 2020 while the world was being ravaged by the Coronavirus, the International Consortium of Investigative
-                Journalists, the same group famously known for the Panama Papers, released a damning report on the
-                international banking system. The report concluded that &ldquo;more than $2 trillion in transactions
-                between  1999 and 2017 that were flagged by financial institutions’ internal compliance officers&rdquo;
-                with that number considered &ldquo;just a drop in a far larger flood of dirty money gushing through banks
-                around the world&rdquo; (ICIJ, 2020).
+                In 2020 while the world was being ravaged by the Coronavirus, the International Consortium of
+                Investigative Journalists, the same group famously known for the Panama Papers, released a damning
+                report on the international banking system. The report concluded that &ldquo;more than $2 trillion in
+                transactions between 1999 and 2017 that were flagged by financial institutions’ internal compliance
+                officers&rdquo; with that number considered &ldquo;just a drop in a far larger flood of dirty money
+                gushing through banks around the world&rdquo; (ICIJ, 2020). This same report is now a Pulitzer Prize
+                finalist (Hudson, 2021). However, this should not come as a shock as big banks were largely responsible
+                for the 2008 sub-prime mortgage crisis which thrust the world into a global recession. The same crisis
+                which led to statements like banks being &ldquo;too big to fail&rdquo; but in reality, banks that are
+                too big to fail are too big to exist. Despite their central role in the disaster, their punishment was
+                to receive billions of dollars in emergency bailout money while average Americans lost their homes.
             </p>
-            <h3>Decentralized Ledger Technology</h3>
+            <p>
+                The scandals from large banks never end with latest (as of this writing) being the anti-trust lawsuit
+                filed by the New Mexico State Investment Council &ldquo;claiming Bank of America Corporation,
+                Citigroup Inc., Goldman Sachs Group Inc., and other top financial institutions rigged the credit
+                default swap market by manipulating a key benchmark&rdquo; (Sovereign Wealth Fund Institute, 221).
+                Prior to that, there was Wells Fargo&apos;s fake account scandal which the bank opened fraudulent
+                accounts for millions of customers without their knowledge (Flitter, 2020). There was also
+                JP Morgan&apos;s manipulation of precious-metals and treasury markets which resulted in a Racketeer
+                Influenced and Corrupt Organizations (RICO) case with multiple individuals indicted and a near billion
+                dollar fine (The Economist, 2020). U.S. Banks are not the only bad actors either with investigations
+                into Australia&apos;s biggest banks having &ldquo;revealed rampant wrongdoing across the industry,
+                including fees charged to the accounts of dead people and bribes paid to win mortgage business&rdquo;
+                (Schroeder, 2019). This was all just in the last few years.
+            </p>
+            <p>
+                Finally, there is the best one of them all, the bank for which I could devote an entire article to
+                its scandals, questionable dealings, and storied history: Deutsche Bank. From helping pillage the
+                Jewish people on behalf of the Nazis and lending the money to build Auschwitz (Perryer, 2019) to
+                laundering over a trillion dollars of dirty money including to the Russian mafia and terrorists
+                (ICIJ, 2020) the bank has a rap sheet as long as it gets. However, after the ICIJ report the bank
+                stated &ldquo;We are a different bank now&rdquo; as a response. Have they changed? Of course not, as
+                recently the bank has been caught misleading investor about ESG standards (Kowsmann &amp; Brown, 2021),
+                continuing to fail to address money laundering controls (Kowsmann &amp; Strasburg, 2021), continuing
+                to be embroiled in multiple scandals due to engaging in shady practices such as mis-selling foreign
+                exchange derivatives in Spain and &ldquo;turning a blind eye to a years-long Ponzi scheme that
+                involved fraudulent investments in Florida&rdquo; (Arons, 2021), and of course, paying millions in
+                fines for having &ldquo;engaged in a criminal scheme to conceal payments to so-called consultants
+                worldwide who served as conduits for bribes to foreign officials and others so that they could unfairly
+                obtain and retain lucrative business projects&rdquo; (U.S. DOJ, 2021). Frankly, with the number of
+                scandals, mind-boggling amount of dirty money, and the amount of money paid to eventual and former
+                government leaders from Wall Street companies and big banks, banks will continue to operate as what
+                can only be described as a global syndicate and criminal cartel.
+            </p>
+            <h4>Decentralized Ledger Technology</h4>
             <Quote
                 quote="You must remember that every invention of this kind which is made adds to the general wealth by introducing a new system of greater economy of force. A great invention which facilitates commerce, enriches a country just as much as the discovery of vast hoards of gold."
                 author="Alexander Winton"
@@ -144,11 +177,11 @@ const ADecentralizedFuture = (): JSX.Element => {
                 is the consensus derived decentralized ledger technology (DLT). Not all cryptocurrencies
                 utilize blockchains and cryptocurrencies are not the only applications for DLT.
             </p>
-            <Container className="image-container">
+            <Figure>
                 <img src="/images/blog/bitcoin-ether-xrp.webp" alt="Bitcoin Ethereum Ripple XRP" />
-                <p>XRP, Ethereum, and Bitcoin</p>
-            </Container>
-            <h3>Cryptocurrencies</h3>
+                <figcaption>XRP, Ethereum, and Bitcoin</figcaption>
+            </Figure>
+            <h4>Cryptocurrencies</h4>
             <Quote quote="Anyone could create money; the problem is to get it accepted." author="Hyman Minsky" />
             <p>
                 One of the most subtle differences that is lost on many individuals in regards to cryptocurrencies is
@@ -167,43 +200,93 @@ const ADecentralizedFuture = (): JSX.Element => {
                 point he later reiterated by saying &ldquo;I don&apos;t believe we shall ever have a good money again
                 before we take the thing out of the hands of government, that is, we can’t take them violently out of
                 the hands of government, all we can do is by some sly roundabout way introduce something they can’t
-                stop.&rdquo; (Smith, 2019). If this does not sound like cryptocurrencies, I am not sure what Hayek could
-                possibly have been referring to.
+                stop.&rdquo; (Smith, 2019). If this does not sound like cryptocurrencies, I am not sure what Hayek
+                could possibly have been referring to.
             </p>
-            <h3>Tomorrow&apos;s Fools</h3>
+            <h4>Tomorrow&apos;s Fools</h4>
             <Quote
-                quote="There is no evidence that we are getting a great technology--unless 'great technology' doesn't mean 'useful.'"
+                quote="There is no evidence that we are getting a great technology&mdash;unless 'great technology' doesn't mean 'useful.'"
                 author="Nassim Taleb"
             />
             <p>
-                Thus, we come to the so-called experts of today and their very loud criticisms toward distributed ledger
-                technology (DLT) and cryptocurrencies.
+                Thus, we come to the so-called experts of today and their very loud criticisms toward distributed
+                ledger technology (DLT) and cryptocurrencies.
             </p>
-            <h3>The Powers That Be</h3>
+            <p>
+                In the end, this noise will subside and those dismissing the validity, value, or applications of
+                decentralized ledger technology will be forgotten in the dustbin of history. Afterall, we no longer
+                listen to the words of those that stated the internet was not going to be important, that Amazon is a
+                ponzi scheme, or that the automobile would have little impact on our societies.
+            </p>
+            <h4>The Status Quo</h4>
             <p>
                 Federal Reserve chair Jerome Powell and Secretary of the Treasury, Janet Yellen have been the most
-                outspoken critics of cryptocurrency from within the government. Despite their positions, they too are
-                dinosaurs of a bygone era that are totally out-of-touch with reality. Jerome Powell&apos;s remark that
-                &ldquo;You wouldn&apos;t need stablecoins; you wouldn&apos;t need cryptocurrencies, if you had a digital
-                U.S. currency&rdquo; is particularly absurd seeing as if that statement were to hold true, then we equally
-                would not have a need for commodities such as gold either. Furthermore his statement that &ldquo;We have
-                a tradition in this country where the public&apos;s money is held in what is supposed to be a very safe
-                asset&rdquo; is equally invalid seeing as that this supposed safe asset is losing its purchasing power
-                each year with wages unable to keep up with the very inflation they are creating and clearly unable
-                to control.
+                outspoken critics of cryptocurrency from within the U.S. government. Despite their positions, they too
+                are relics of a bygone era that are totally out-of-touch with reality. Jerome Powell&apos;s remark that
+                &ldquo;You wouldn&apos;t need stablecoins; you wouldn&apos;t need cryptocurrencies, if you had a
+                digital U.S. currency&rdquo; is particularly absurd seeing as if that statement were to hold true,
+                then we equally would not have a need for commodities such as gold or any currency other than the
+                dollar worldwide. Furthermore his statement that &ldquo;We have a tradition in this country where
+                the public&apos;s money is held in what is supposed to be a very safe asset&rdquo; is equally invalid
+                seeing as that this supposed safe asset is losing its purchasing power each year with wages unable to
+                keep up with the very inflation they are creating.
+            </p>
+            <Figure>
+                <img src="/images/blog/dollar-weapon.jpg" alt="Dollars Gun" />
+                <figcaption>Weaponization of the U.S. Dollar</figcaption>
+            </Figure>
+            <p>
+                Additionally, as the U.S. dollar global reserve drops to &ldquo;its lowest level in 25 years&rdquo;
+                with some analysts saying that &ldquo;this partly reflects the declining role of the US dollar in the
+                global economy, in the face of competition from other currencies used by central banks for international
+                transactions&rdquo; (Arslanalp &amp; Simpson-Bell, 2021); with some nations like Russia shedding the
+                U.S. dollar from their National Wealth Fund (Korsunskaya &amp; Marrow, 2021); and with the
+                European Union looking to &ldquo;cut reliance on U.S. dollar&rdquo; (Strupczewski, 2021), the so-called
+                &ldquo;safe-asset&rdquo; is losing its grip on the world. This is clearly not a trend limited to our
+                rival nations who state &ldquo;We need to move away from using international payment systems controlled
+                by the West&rdquo; (Tétrault-Farber &amp; Osborn, 2021) but also friendlier nations that are
+                hypercritical of the phenomenon known as the &ldquo;weaponization&rdquo; of the dollar and the SWIFT
+                banking network. There is only so long that a nation can abuse its status as the world reserve currency
+                before other nations decide to move on to something else. In the case of Russia, China, El Salvador,
+                The EU, and many others, they are very well already on their way.
             </p>
             <p>
-                My favorite was Janet Yellen&apos;s statements where she said &ldquo;I think many [cryptocurrencies] are
-                used, at least in a transaction sense, mainly for illicit financing&rdquo; when questioned about
-                the technology&apos;s potential terrorism risk. Yet, the cryptocurrency market in its totality as of
-                this writing sits at around $1.978 trillion which is less that the amount reported in the FinCen files.
-                Furthermore, her responses were hyperbole seeing as in &ldquo;2020, the criminal share of all
-                cryptocurrency activity fell to just 0.34% ($10.0 billion in transaction volume)&rdquo; (Lennon, 2021).
-                What this sounds like is simply an echo from the McCarthy era. Except, today&apos;s word is
-                &ldquo;terrorism&rdquo; and quite frankly, if terrorist financing is of actual concern to our
-                governmental officials then they should not be looking at cryptocurrency, but rather the traditional
-                banking system.
+                Moreover, Janet Yellen&apos;s statements where she stated &ldquo;I think many [cryptocurrencies] are
+                used, at least in a transaction sense, mainly for illicit financing&rdquo; (Lennon, 2021) when
+                questioned about the technology&apos;s potential terrorism risk. Yet, the cryptocurrency market in
+                its totality as of this writing sits at around $1.978 trillion which is less that the amount reported
+                in the FinCen files. Furthermore, her responses were hyperbole seeing as Lennon goes on to state that
+                in &ldquo;2020, the criminal share of all cryptocurrency activity fell to just 0.34% ($10.0 billion in
+                transaction volume).&rdquo; What this sounds like is simply an echo from the McCarthy era. Except,
+                today&apos;s word is &ldquo;terrorism&rdquo; and quite frankly, if terrorist financing is of actual
+                concern to our governmental officials then they should not be looking at cryptocurrency, but rather
+                the traditional banking system.
             </p>
+            <p>
+                This is a particularly concerning trend especially due to the nature of Janet Yellen&apos;s sources
+                of income. Between 2019 and 2020, Yellen collected a whopping $7.26 million from several speeches
+                she had delivered during various engagements. While the former Fed Chair, now Secretary of the
+                Treasury was not employed by the US government at the time that money was received, the fact that
+                a majority of her clients were Wall Street banks and large corporations outlines an alarming trend
+                of corporate influence over those claiming to represent our best interests. This is not unlike Jay
+                Clayton who spent his career &ldquo;protecting some of the biggest names on Wall Street&rdquo; and
+                also made $7 million from Wallstreet&apos;s elite the year prior to appointment as the chair of
+                the very agency that is supposed to keep Wallstreet in check: The Securities and Exchange Commission
+                (Merle, 2017).
+            </p>
+            <p>
+                Furthermore, Clayton&apos;s ethics conflicts requiring him to recuse himself from cases involving
+                former clients and employers made him virtually ineffective for enforcement actions against the
+                majority of Wall Street actors.
+            </p>
+            <Figure>
+                <img src="/images/blog/pew-wealth-disparity.webp" alt="Charts displaying income disparity" />
+                <figcaption>
+                    Pew Research Center. (2020, January 9). <i><cite>Trends in income and wealth inequality.</cite></i>
+                    &nbsp;<a target="_new" href="https://web.archive.org/web/20210821052153/https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality">Pew Research Center</a>.
+                </figcaption>
+            </Figure>
+            <h4>The Rest of Us</h4>
             <Quote
                 quote="Income growth has been most rapid for the top 5% of families"
                 author="Pew Research Center"
@@ -212,195 +295,64 @@ const ADecentralizedFuture = (): JSX.Element => {
                 The Pew Research Center shows that the &ldquo;share of American adults who live in middle-income
                 households has decreased from 61% in 1971 to 51% in 2019&rdquo; and that from &ldquo;1970 to 2018, the
                 share of aggregate income going to middle-class households fell from 62% to 43%. Over the same period,
-                the share held by upper-income households increased from 29% to 48%&rdquo; ().
+                the share held by upper-income households increased from 29% to 48%&rdquo; (Pew Research Center, 2020).
             </p>
             <p>
                 However, despite this, what is most absurd is the hubris of our leaders for believing that a small group
                 of politically appointed bureaucrats has the ability to exercise control over something as complex as
                 a first world economy. An examination of the results through history shows that not only are they unable
-                to meet goals, they are also unable to remain independent--a critical aspect of being a central bank.
+                to meet goals, they are also unable to remain independent&mdash;a critical aspect of being a central bank.
             </p>
-            <h3>The Forgotten</h3>
+            <h4>The Forgotten</h4>
             <Quote
                 quote="There's no stopping crypto, [it's] the future and we won't let some old fools take our future from us ... We're Nigerians. Using the crypto is a way out of poverty for the youth."
                 author="Nigerian Bitcoin User"
             />
             <p>
                 Aside from the growing wealth disparities in the first world, there are those that have never had
-                access to the financial system in any capacity. Despite the trillions of dollars in suspect transactions,
-                assets, and revenues by banks &ldquo;too big to fail,&rdquo; nearly 2 billion people in the world remain
-                unbanked or underbanked. The sad truth is that they are in this state not because it is not possible to
-                provide financial inclusion for these people, it is simply not profitable to do so. In fact, in nations
-                such as Ghana and Uganda, cellular airtime minutes are used as money as &ldquo;airtime&apos;s value does
-                not rely directly on a government&apos;s stability or ability to hold down inflation&rdquo;
-                (The Economist, 2013). Despite still requiring telecom companies as an intermediary, this example shows
-                that instruments other than central bank issued currencies can be used as mediums of exchange, stores
-                of value, and units of account without the need of banks.
+                access to the financial system in any capacity. Despite the trillions of dollars in suspect
+                transactions, assets, and revenues by banks &ldquo;too big to fail,&rdquo; nearly 2 billion people
+                in the world remain unbanked or underbanked. The sad truth is that they are in this state not because
+                it is not possible to provide financial inclusion for these people, it is simply not profitable to
+                do so. In fact, in nations such as Ghana and Uganda, cellular airtime minutes are used as money as
+                &ldquo;airtime&apos;s value does not rely directly on a government&apos;s stability or ability to
+                hold down inflation&rdquo; (The Economist, 2013). Despite still requiring telecom companies as an
+                intermediary, this example shows that instruments other than central bank issued currencies can be
+                used as mediums of exchange, stores of value, and units of account without the need of banks.
+            </p>
+            <p>
+                Another important scenario is the complete failure of governments. This is something that occurs
+                far more often than many realize. There are two recent examples of this in 2021 alone. The first was
+                in Myanmar when the country&apos;s military staged a coup d&apos;état earlier in the year after
+                alleging&mdash;without evidence&mdash;that the election was the result of voter fraud. Despite the
+                National League for Democracy (NLD) winning the election with an overwhelming majority and the
+                nation&apos;s election commission rejecting the military&apos;s claims, the Tatmadaw seized power
+                in the country, arresting elected officials and throwing the national into chaos (Maizland, 2021).
+            </p>
+            <p>
+                The second example is the takeover of Afghanistan by the Taliban following the withdrawal of
+                U.S. Forces from the region.
             </p>
             <p>
                 Thus, cryptocurrencies can have a major impact on the unbanked and underbanked providing financial
-                inclusion that banks simply cannot care to provide.
+                inclusion that banks unable to or simply unwilling to provide.
             </p>
-            <h3>The Future</h3>
+            <h4>The Future</h4>
             <Quote
                 quote="The only way to discover the limits of the possible is to go beyond them into the impossible."
                 author="Arthur C. Clarke"
             />
             <p>TODO</p>
-            <h3>Final Thoughts</h3>
-            <p>TODO</p>
-            <hr className="article-divider-bottom" />
-            <p className="article-story-line capitalize">{t('references')}</p>
-            <APACitation
-                id="citation-aarons-2021"
-                authors={[{ given: 'Steven', family: 'Arons' }]}
-                date_year={2021}
-                date_month="July"
-                date_day={7}
-                title="Deutsche bank enabled 'massive' U.S. ponzi scheme, lawsuit says"
-                publisher="Bloomberg"
-                archive="https://web.archive.org/web/20210724135440if_/https://www.bloomberg.com/news/articles/2021-07-23/deutsche-bank-enabled-massive-u-s-ponzi-scheme-lawsuit-says"
-                url="https://www.bloomberg.com/news/articles/2021-07-23/deutsche-bank-enabled-massive-u-s-ponzi-scheme-lawsuit-says"
-            />
-            <APACitation
-                id="citation-beattie-2019"
-                authors={[{ given: 'Andrew', family: 'Beattie' }]}
-                date_year={2019}
-                date_month="November"
-                date_day={7}
-                title="The pioneers of financial fraud"
-                publisher="Investopedia"
-                archive="https://web.archive.org/web/20191112200830/https://www.investopedia.com/articles/financial-theory/09/history-of-fraud.asp"
-                url="https://www.investopedia.com/articles/financial-theory/09/history-of-fraud.asp"
-            />
-            <APACitation
-                id="citation-chenoweth-2019"
-                authors={[{ given: 'Katie', family: 'Chenoweth' }]}
-                page_start={67}
-                date_year={2019}
-                title="In the prosthetic tongue printing technology and the rise of the French language"
-                publisher="University of Pennsylvania Press"
-            />
-            <APACitation
-                id="citation-crowe-2019"
-                date_year={2019}
-                date_month="July"
-                date_day={12}
-                title="Fraud costs the global economy over US$5 trillion"
-                site="Crowe"
-                publisher="Crowe Global"
-                archive="https://web.archive.org/web/20201212015823/https://www.crowe.com/global/news/fraud-costs-the-global-economy-over-us$5-trillion"
-                url="https://www.crowe.com/global/news/fraud-costs-the-global-economy-over-us$5-trillion"
-            />
-            <APACitation
-                id="citation-hertig-2021"
-                authors={[{ given: 'Alyssa', family: 'Hertig' }]}
-                date_year={2021}
-                date_month="February"
-                date_day={9}
-                title="Nigerians look to P2P exchanges after crypto ban"
-                site="CoinDesk"
-                publisher="CoinDesk"
-                archive="https://web.archive.org/web/20210209195034/https://www.coindesk.com/bitcoin-cant-be-stopped-nigerians-look-to-p2p-exchanges-after-crypto-ban"
-                url="https://www.coindesk.com/bitcoin-cant-be-stopped-nigerians-look-to-p2p-exchanges-after-crypto-ban"
-            />
-            <APACitation
-                id="citation-economist-2013"
-                date_year={2013}
-                date_month="January"
-                date_day={19}
-                title="Airtime is money"
-                site="The Economist"
-                publisher="The Economist"
-                archive="https://web.archive.org/web/20210418020533/https://www.economist.com/finance-and-economics/2013/01/19/airtime-is-money"
-                url="https://www.economist.com/finance-and-economics/2013/01/19/airtime-is-money"
-            />
-            <APACitation
-                id="citation-hayek-1999"
-                authors={[{ given: 'Friedrich', middle: 'August', family: 'Hayek' }]}
-                page_start={230}
-                date_year={1999}
-                chapter="Toward A Free Market Monetary System"
-                title="The collected works of F. A. Hayek"
-                volume={6}
-                publisher="University of Chicago Press"
-            />
-            <APACitation
-                id="citation-lee-2021"
-                authors={[{ given: 'Isabelle', family: 'Lee' }]}
-                date_year={2021}
-                date_month="June"
-                date_day={23}
-                title="Bitcoin is worth zero and there is no evidence that blockchain is a useful technology, Black Swan author Nassim Taleb says"
-                site="Business Insider"
-                publisher="Business Insider"
-                archive="https://web.archive.org/web/20210730201022/https://markets.businessinsider.com/news/currencies/bitcoin-price-worth-zero-black-swan-author-nassim-taleb-blockchain-2021-6"
-                url="https://markets.businessinsider.com/news/currencies/bitcoin-price-worth-zero-black-swan-author-nassim-taleb-blockchain-2021-6"
-            />
-            <APACitation
-                id="citation-lennon-2021"
-                authors={[{ given: 'Hailey', family: 'Lennon' }]}
-                date_year={2021}
-                date_month="January"
-                date_day={19}
-                title="The false narrative of Bitcoin’s role in illicit activity"
-                site="Forbes"
-                publisher="Forbes Magazine"
-                archive="https://web.archive.org/web/20210224214412/https://www.forbes.com/sites/haileylennon/2021/01/19/the-false-narrative-of-bitcoins-role-in-illicit-activity"
-                url="https://www.forbes.com/sites/haileylennon/2021/01/19/the-false-narrative-of-bitcoins-role-in-illicit-activity"
-            />
-            <APACitation
-                id="citation-minsky-2008"
-                authors={[{ given: 'Hyman', middle: 'Philip', family: 'Minsky' }]}
-                page_start={17}
-                date_year={2008}
-                title="Stabilizing an unstable economy"
-                publisher="McGraw-Hill"
-            />
-            <APACitation
-                id="citation-nakamoto-2009"
-                authors={[{ given: 'Nakamoto', family: 'Satoshi' }]}
-                date_year={2009}
-                date_month="February"
-                date_day={11}
-                title="Bitcoin open source implementation of p2p currency"
-                publisher="P2P Foundation"
-                archive="https://web.archive.org/web/20090221024857/https://p2pfoundation.ning.com/forum/topics/bitcoin-open-source"
-                url="https://p2pfoundation.ning.com/forum/topics/bitcoin-open-source"
-            />
-            <APACitation
-                id="citation-smith-2019"
-                authors={[{ given: 'Graham', family: 'Smith' }]}
-                date_year={2019}
-                date_month="July"
-                date_day={19}
-                title="Hayek's 1984: Rediscovered footage shows Austrian economist predicting bitcoin"
-                publisher="Bitcoin.com"
-                archive="https://web.archive.org/web/20210225224718/https://news.bitcoin.com/hayeks-1984-rediscovered-footage-shows-austrian-economist-predicting-bitcoin"
-                url="https://news.bitcoin.com/hayeks-1984-rediscovered-footage-shows-austrian-economist-predicting-bitcoin"
-            />
-            <APACitation
-                id="citation-weissmann-2012"
-                authors={[{ given: 'Jordan', family: 'Weissmann' }]}
-                date_year={2012}
-                date_month="June"
-                date_day={29}
-                title="iPhone turns 5: A short history of its famously and loudly wrong critics"
-                publisher="The Atlantic"
-                archive="https://web.archive.org/web/20210304042535/https://www.theatlantic.com/business/archive/2012/06/iphone-turns-5-a-short-history-of-its-famously-and-loudly-wrong-critics/259171"
-                url="https://www.theatlantic.com/business/archive/2012/06/iphone-turns-5-a-short-history-of-its-famously-and-loudly-wrong-critics/259171"
-            />
-            <APACitation
-                id="citation-winton-2017"
-                authors={[{ given: 'Alexander', family: 'Winton' }]}
-                date_year={2017}
-                date_month="January"
-                date_day={9}
-                title="Get a horse! America's skepticism toward the first automobiles"
-                publisher="The Saturday Evening Post"
-                archive="https://web.archive.org/web/20190330062821/https://www.saturdayeveningpost.com/2017/01/get-horse-americas-skepticism-toward-first-automobiles"
-                url="https://www.saturdayeveningpost.com/2017/01/get-horse-americas-skepticism-toward-first-automobiles"
-            />
+            <h4>Final Thoughts</h4>
+            <p>
+                The only constant in life is change and that is something we as a civilization struggle to accept. As
+                we enter this brave new world, it is important to realize that humanity is at a precipice. Whether the
+                next level on the Kardashev scale, a grand stage, or simply a new chapter in our story, we are
+                entering an exciting era. From quantum computing, fusion energy, decentralized computing, and space
+                exploration, it is hard to not think that our story is just beginning. However, there are grave issues
+                such as climate change and war which threaten the very existence of our species. It is up to us,
+                the people, to ensure that we have a future&mdash;no one will do it for us.
+            </p>
         </>
     );
 };

@@ -13,7 +13,7 @@ const Quote = ({ quote, author }: Props): JSX.Element => {
         <Blockquote>
             <span>&ldquo;{quote}&rdquo;</span>
             <br />
-            <span className="article-quote-author">- {author}</span>
+            <cite>- {author}</cite>
         </Blockquote>
     );
 };

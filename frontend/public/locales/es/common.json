@@ -55,7 +55,7 @@
     "market_data": "datos del mercado",
     "max_supply": "suministro máximo",
     "circulating_supply": "cantidad circulante",
-    "fully_diluted_valuation": "valoración tras la dilución total",
+    "fully_diluted_valuation": "valoración totalmente diluida",
     "market_capitalization": "capitalización de mercado",
     "data_from": "datos de",
     "latest_blog_post": "última publicación de blog",
@@ -103,20 +103,20 @@
         "contact_message_success": "Su mensaje ha sido enviado con éxito"
     },
     "content": {
-        "home": "An informational website and technology blog.",
-        "blog": "A technology blog analyzing technology through various lenses, disciplines and views.",
-        "contact": "Get in touch if you believe I can help or if you would like to contribute to the blog, platform code, or have an idea to share.",
-        "donate": "Proceeds will be used to maintain and enhance the platform as well as for developing quality content for the blog.",
+        "home": "Un sitio web informativo y un blog de tecnología.",
+        "blog": "Un blog de tecnología que analiza la tecnología a través de varias lentes, disciplinas y puntos de vista.",
+        "contact": "Comunícate conmigo si crees que puedo ayudarte o si quieres contribuir al blog, al código de la plataforma o tienes una idea que compartir.",
+        "donate": "Los ingresos se utilizarán para mantener y mejorar la plataforma, así como para desarrollar contenidos de calidad para el blog.",
         "about": "I began my journey in software development when I was  13 years old. After almost two decades, technology has become a part of me. However, technology does not exist in a vacuum, and in order to understand technology one must understand its effects through history, on society, and the within the various disciplines it forever changes. It is this holistic and fundamental understanding that allows one to truly appreciate and understand the implications of technology upon humanity.",
-        "privacy_consent": "By clicking “Accept All”, you consent to our website's use of cookies to give you the most relevant experience by remembering your preferences and repeat visits. However, you may select “Customize” to provide controlled consent.",
-        "required_cookies": "These cookies are considered mandatory for proper operation of the website. They cannot be disabled without rendering the platform unusable. These cookies are used to facilitate authentication when logged into the platform.",
-        "analytics_cookies": "This site utilizes Google Analytics to provide analytical information for improving the quality of the platform through gathering usage data. You may disable these cookies although, allowing them will provide valuable data for us to improve.",
-        "performance_cookies": "This site utilizes New Relic for performance monitoring and debugging. New Relic does not retain any personal data collected by the Browser Agent. Keeping this setting enabled will help us diagnose issues with the platform.",
-        "advertising_cookies": "This site does not utilize third-party advertising services however, Google may add these cookies regardless. They can be safely disabled and are disabled by default.",
-        "disqus_cookies": "Comments are powered using the Disqus platform. Disqus utilizes a number of cookies to power their functionality. Disabling these cookies will prevent you from using Disqus to comment.",
-        "disqus_disabled": "Disqus is disabled. To participate in discussions, you will need to allow Disqus cookies."
+        "privacy_consent": "Al hacer clic en “Aceptar todo”, usted acepta que nuestro sitio web utilice cookies para ofrecerle la experiencia más relevante al recordar sus preferencias y repetir las visitas. Sin embargo, puede seleccionar “Personalizar” para dar un consentimiento controlado",
+        "required_cookies": "Estas cookies se consideran obligatorias para el correcto funcionamiento del sitio web. No se pueden desactivar sin que la plataforma quede inutilizada. Estas cookies se utilizan para facilitar la autenticación al iniciar la sesión en la plataforma.",
+        "analytics_cookies": "Este sitio utiliza Google Analytics para proporcionar información analítica para mejorar la calidad de la plataforma mediante la recopilación de datos de uso. Usted puede desactivar estas cookies aunque, si las permite, nos proporcionará datos valiosos para mejorar. Las cookies pueden cambiar a discreción de Google.",
+        "performance_cookies": "Este sitio utiliza New Relic para la monitorización y depuración del rendimiento. New Relic no conserva ningún dato personal recogido por el agente del navegador. Mantener esta configuración activada nos ayudará a diagnosticar problemas con la plataforma. Las cookies pueden cambiar a discreción de New Relic.",
+        "advertising_cookies": "Este sitio no utiliza servicios de publicidad de terceros, sin embargo, Google puede añadir estas cookies a pesar de ello. Se pueden desactivar de forma segura y están desactivadas por defecto.",
+        "disqus_cookies": "Los comentarios se alimentan mediante la plataforma Disqus. Disqus utiliza una serie de cookies para potenciar su funcionalidad. Si desactiva estas cookies, no podrá utilizar Disqus para comentar. Las cookies pueden cambiar a discreción de Disqus.",
+        "disqus_disabled": "Disqus está deshabilitado. Para participar en los debates, deberá permitir las cookies de Disqus."
     },
     "eggs": {
-        "robot": "01010010 01101111 01100010 01101111 01110100 00111111"
+        "robot": "01000010 01101111 01110100 00111111"
     }
 }

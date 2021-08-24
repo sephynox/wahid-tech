@@ -7,11 +7,11 @@ import i18next, { i18nNamespace } from '../../services/i18n';
 import StockChart from '../StockChart';
 import { Breadcrumbs } from '../../layout/Navigation';
 import { MarketContext } from '../../pages/Market';
+import { AssetStates } from '../../actions/AssetState';
 import LoaderContent from '../../tools/LoaderContent';
 import { MarketPriceData, MarketType } from '../../tools/MarketData';
 import ReadMore from '../../tools/ReadMore';
 import { formatFirstUpper, formatNumber, formatPrice } from '../../utils/data-formatters';
-import { AssetStates } from '../../actions/AssetState';
 import StyledPercentage from '../../tools/StyledPercentage';
 import IconButton from '../../tools/IconButton';
 import HorizontalRule from '../../styles/HorizontalRule';
@@ -31,7 +31,7 @@ const MarketProfile = (): JSX.Element => {
     return (
         <Container>
             <Breadcrumbs links={[
-                { text: 'markets', class: 'capitalize', path: Constants.SITE_MARKET_PATH_BASE },
+                { text: t('markets'), class: 'capitalize', path: Constants.SITE_MARKET_PATH_BASE },
                 { text: `${t(type)} /`, path: '', class: 'capitalize', active: true }
             ]} />
 
@@ -64,7 +64,6 @@ const MarketProfile = (): JSX.Element => {
                             <HorizontalRule />
                         </Col>
                     </Row>
-
                     <Row>
                         <Col xs={{ span: 12, order: 2 }} md={{ span: 12, order: 2 }} lg={{ span: 6, order: 1 }} xl={{ span: 6, order: 1 }}>
                             <section>

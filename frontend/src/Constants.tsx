@@ -1,3 +1,4 @@
+export const DEV_MODE = 'production' !== process.env.NODE_ENV;
 export const SITE_NAME = 'WTech';
 export const MY_NAME = 'Tanveer Wahid';
 export const MY_EMAIL = 'tan@wahid.email';
@@ -13,8 +14,10 @@ export const SITE_MARKET_PATH_BASE = '/financial-markets/';
 export const SITE_MARKET_ASSET_PATH = SITE_MARKET_PATH_BASE + 'asset/';
 export const SITE_BLOG_ARTICLE_BASE_URL = SITE_BASE_URL + SITE_BLOG_ARTICLE_PATH;
 export const SITE_MARKET_PATH_BASE_URL = SITE_BASE_URL + SITE_MARKET_ASSET_PATH;
-export const WTECH_API_ENDPOINT = 'https://dev-api.wahid.tech/v1'
-export const SITE_CONTACT_ENDPOINT = WTECH_API_ENDPOINT + '/contact';
 export const COINGECKO_API_ENDPOINT = 'https://api.coingecko.com/api/v3';
+export const WTECH_API_ENDPOINT_PROD = 'https://api.wahid.tech/v1';
+export const WTECH_API_ENDPOINT_DEV = 'https://dev-api.wahid.tech/v1';
+export const WTECH_API_ENDPOINT = DEV_MODE ? WTECH_API_ENDPOINT_DEV : WTECH_API_ENDPOINT_PROD;
+export const SITE_CONTACT_ENDPOINT = WTECH_API_ENDPOINT + '/contact';
 // export const WTECH_API_ENDPOINT = 'https://api.wahid.tech/v1';
 export const NAVIGATION_ACTIVE_CLASS = 'mobile-nav-active';

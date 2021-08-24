@@ -58,7 +58,7 @@ const ChicagoCitation = ({
 
     return (
         <HangingIndent id={id !== undefined ? id : undefined}>
-            {authors_list}, {title}
+            {authors_list}, <cite>{title}</cite>
             {site !== undefined ? <i> {site}</i> : <i> {publisher}</i>}
             {blog ? ' (blog)' : ''}, {date_string},{' '}
             {url !== undefined ? (

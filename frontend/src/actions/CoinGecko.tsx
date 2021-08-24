@@ -81,7 +81,7 @@ const importData = (coin: CoinGeckoCoinData): MarketData => {
             Object.keys(coin[key] as Record<keyof typeof systemLanguages, string>).forEach((locale) => {
                 const lang = i18nKeyExchange[locale] !== undefined ? i18nKeyExchange[locale] : locale;
                 translations.data[lang] = { [coin.id + '_' + key]: stripTagsUnsafe(data[locale] ?? '') };
-                i18next.addResourceBundle(lang, i18nNamespace.EXTERNAL, translations.data[lang]);
+                i18next.addResourceBundle(lang, i18nNamespace.EXTERNAL, translations.data[lang], true, false);
             });
         }
     });

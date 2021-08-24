@@ -8,4 +8,8 @@ export const Blockquote = styled.blockquote`
     border-left: 1px solid ${(props: ThemeEngine) => props.theme.text};
     font-size: 1.2rem;
     color: ${(props: ThemeEngine) => props.theme.textAlt};
+
+    & cite {
+        color: #595959;
+    }
 `;

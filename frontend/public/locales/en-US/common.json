@@ -108,7 +108,7 @@
         "contact": "Get in touch if you believe I can help or if you would like to contribute to the blog, platform code, or have an idea to share.",
         "donate": "Proceeds will be used to maintain and enhance the platform as well as for developing quality content for the blog.",
         "about": "I began my journey in software development when I was  13 years old. After almost two decades, technology has become a part of me. However, technology does not exist in a vacuum, and in order to understand technology one must understand its effects through history, on society, and the within the various disciplines it forever changes. It is this holistic and fundamental understanding that allows one to truly appreciate and understand the implications of technology upon humanity.",
-        "privacy_consent": "By clicking “Accept All”, you consent to our website's use of cookies to give you the most relevant experience by remembering your preferences and repeat visits. However, you may select “Customize” to provide controlled consent.",
+        "privacy_consent": "By clicking “Accept All”, you consent to our website's use of cookies to provide you with the most relevant experience by remembering your preferences and repeat visits. However, you can select “Customize” to give controlled consent.",
         "required_cookies": "These cookies are considered mandatory for proper operation of the website. They cannot be disabled without rendering the platform unusable. These cookies are used to facilitate authentication when logged into the platform.",
         "analytics_cookies": "This site utilizes Google Analytics to provide analytical information for improving the quality of the platform through gathering usage data. You may disable these cookies although, allowing them will provide valuable data for us to improve. Cookies may change at discretion of Google.",
         "performance_cookies": "This site utilizes New Relic for performance monitoring and debugging. New Relic does not retain any personal data collected by the Browser Agent. Keeping this setting enabled will help us diagnose issues with the platform. Cookies may change at discretion of New Relic.",
@@ -117,6 +117,6 @@
         "disqus_disabled": "Disqus is disabled. To participate in discussions, you will need to allow Disqus cookies."
     },
     "eggs": {
-        "robot": "01010010 01101111 01100010 01101111 01110100 00111111"
+        "robot": "01000010 01101111 01110100 00111111"
     }
 }

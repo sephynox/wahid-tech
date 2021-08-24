@@ -57,7 +57,7 @@ const MLACitation = ({
 
     return (
         <HangingIndent id={id !== undefined ? id : undefined}>
-            {author_list}. {title}
+            {author_list}. <cite>{title}</cite>
             {site !== undefined ? <i> {site}</i> : <i> {publisher}</i>}, {date_string},{' '}
             {url !== undefined ? (
                 <>
