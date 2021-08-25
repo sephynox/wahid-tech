@@ -6,7 +6,7 @@ export const Blockquote = styled.blockquote`
     margin-bottom: 20px;
     padding-left: 10px;
     border-left: 1px solid ${(props: ThemeEngine) => props.theme.text};
-    font-size: 1.2rem;
+    font-size: 1.2em;
     color: ${(props: ThemeEngine) => props.theme.textAlt};
 
     & cite {

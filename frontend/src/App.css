@@ -759,12 +759,6 @@ hr.article-divider-bottom {
     }
 }
 
-@media screen and (max-width: 768px) {
-    .container.image-container {
-        padding: 20px;
-    }
-}
-
 /*--------------------------------------------------------------
 # Social
 --------------------------------------------------------------*/

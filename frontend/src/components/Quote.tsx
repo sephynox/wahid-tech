@@ -11,7 +11,7 @@ const Quote = ({ quote, author }: Props): JSX.Element => {
 
     return (
         <Blockquote>
-            <span>&ldquo;{quote}&rdquo;</span>
+            <em>&ldquo;{quote}&rdquo;</em>
             <br />
             <cite>- {author}</cite>
         </Blockquote>

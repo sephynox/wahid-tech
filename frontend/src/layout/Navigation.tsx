@@ -82,7 +82,7 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({ navLinks }: Navi
         to,
         className = 'nav-link',
         activeClassName = 'active',
-        exact = true
+        exact = false
     }: NavBlock): JSX.Element => {
         const { t } = useTranslation();
         return (

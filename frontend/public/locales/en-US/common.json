@@ -49,6 +49,7 @@
     "analytics": "analytics",
     "required": "required",
     "refresh": "refresh",
+    "table_of_contents": "table of contents",
     "data_privacy": "data privacy",
     "all_time_high": "all-time high",
     "all_time_low": "all-time low",

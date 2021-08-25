@@ -5,7 +5,15 @@ import Quote from '../../Quote';
 const ADecentralizedFuture = (): JSX.Element => {
     return (
         <>
-            <h4>Introduction</h4>
+            <Figure>
+                <img src="/images/blog/internet-a-fad.webp" alt="Daily Mail Internet a Fad Article" />
+                <figcaption>
+                    Afshar, V. @ValaAfshar. (2018, April 18). <cite>Internet ‘may be just a passing fad as millions give up on it&apos;</cite>,
+                    December 2000.
+                    &nbsp;<a target="_new" href="https://web.archive.org/web/20210523195547/https://twitter.com/ValaAfshar/status/1383904613598859270">Twitter</a>.
+                </figcaption>
+            </Figure>
+            <h4 id="Introduction">Introduction</h4>
             <p>
                 The internet is arguably one of the most important innovations in our modern times. I remember the
                 internet&apos;s &ldquo;Netscape moment&rdquo; though I was only a child at the time. As an engineer and
@@ -14,14 +22,6 @@ const ADecentralizedFuture = (): JSX.Element => {
                 interesting habit of rhyming and we may very well be experiencing the next technological breakthrough
                 of our time which can once again redefine the way we interact in our societies.
             </p>
-            <Figure>
-                <img src="/images/blog/internet-a-fad.webp" alt="Daily Mail Internet a Fad Article" />
-                <figcaption>
-                    Afshar, V. @ValaAfshar. (2018, April 18). <cite>Internet ‘may be just a passing fad as millions give up on it’</cite>,
-                    December 2000.
-                    &nbsp;<a target="_new" href="https://web.archive.org/web/20210523195547/https://twitter.com/ValaAfshar/status/1383904613598859270">Twitter</a>.
-                </figcaption>
-            </Figure>
             <p>
                 What many do not realize today is that the internet was met with a surprising amount of skepticism and
                 at one point considered a &ldquo;passing fad&rdquo; by newspaper outlets like the Daily Mail. Quite
@@ -31,43 +31,62 @@ const ADecentralizedFuture = (): JSX.Element => {
                 argue that today&apos;s experts may be tomorrow&apos;s fools and to support that point, we need
                 only to look back in history.
             </p>
-            <Figure>
-                <img src="/images/blog/apple-iphone-jobs.jpg" alt="Steve Jobs unveiling the first iPhone" />
-                <figcaption>
-                    Time Magazine. (2017, January 09). <i><cite>Watch Steve Jobs unveil the first iPhone 10 years ago today.</cite></i>
-                    &nbsp;<a target="_new" href="https://web.archive.org/web/20170110053025if_/http://time.com/hive.org/web/20170110053025/http://time.com/4628515/steve-jobs-iphone-launch-keynote-2007">Time Magazine</a>.
-                </figcaption>
-            </Figure>
-            <h4>Yesterday&apos;s Experts</h4>
+            <h4 id="Yesterdays-Experts">Yesterday&apos;s Experts</h4>
+            <Quote
+                quote="The truth in no online database will replace your daily newspaper,
+                       no CD-ROM can take the place of a competent teacher and no computer network will change the way
+                       government works"
+                author="Clifford Stoll"
+            />
+            <p>
+                The Daily Mail also was not the only critic of the internet. Even prominent computer scientists like
+                Clifford Stoll were unable to see the internet&apos;s potential. In 1995, Stoll wrote a piece in
+                Newsweek that aged quite poorly and today sounds nothing more than an old man yelling at children
+                to get off of his lawn. He stated &ldquo;Visionaries see a future of telecommuting workers,
+                interactive libraries and multimedia classrooms. They speak of electronic town meetings and
+                virtual communities. Commerce and business will shift from offices and malls to networks and modems.
+                And the freedom of digital networks will make government more democratic. Baloney. Do our computer
+                pundits lack all common sense? The truth in no online database will replace your daily newspaper,
+                no CD-ROM can take the place of a competent teacher and no computer network will change the way
+                government works&rdquo; (Stoll, 1995). The irony is that essentially everything Stoll said would
+                not come to pass did happen and more. The man literally says &ldquo;Bah&rdquo; to the prospect of
+                computer-aided education&mdash;something not only common practice today but essentially mandatory
+                if you are to survive in the modern age.
+            </p>
             <Quote
                 quote="iPhone is nothing more than a luxury bauble that will appeal to a few gadget freaks."
                 author="Matthew Lynn"
             />
             <p>
                 We will start with something more familiar as the further back in time we go, the more ridiculous the
-                statements begin to sound. Thus, the first stop we will arrive at is the original iPhone. Some of us may
-                be aware of Steve Balmer&apos;s now famous criticisms of the device for which he stated &ldquo;I said that
-                is the most expensive phone in the world and it doesn&apos;t appeal to business customers because it
-                doesn&apos;t have a keyboard which makes it not a very good email machine.&rdquo; Although that was not
-                the only criticism as others like Matthew Lynn declared that the &ldquo;iPhone is nothing more than a
-                luxury bauble that will appeal to a few gadget freaks&rdquo; or &ldquo;John Dvorak&apos;s predication
-                that there was &ldquo;no likelihood&rdquo; Apple could succeed in the phone business&rdquo; (Weissmann,
-                2012). Today, the iPhone is arguably the most successful electronic device ever conceived.
+                statements begin to sound. Thus, the first stop we will arrive at is the original iPhone. Some of us
+                may be aware of Steve Balmer&apos;s now famous criticisms of the device for which he stated &ldquo;I
+                said that is the most expensive phone in the world and it doesn&apos;t appeal to business customers
+                because it doesn&apos;t have a keyboard which makes it not a very good email machine.&rdquo; Although
+                that was not the only criticism as others like Matthew Lynn declared that the &ldquo;iPhone is nothing
+                more than a luxury bauble that will appeal to a few gadget freaks&rdquo; or &ldquo;John Dvorak&apos;s
+                predication that there was &ldquo;no likelihood&rdquo; Apple could succeed in the phone business&rdquo;
+                (Weissmann, 2012). Today, the iPhone is arguably the most successful electronic device ever conceived.
             </p>
             <p>
                 While a keyboard-less smartphone may be more understandable in recent times, one example that I always
                 like to fall back on was the original skepticism that the first automobiles faced in America. Alexander
                 Winton, a pioneer of the automotive industry was once told that &ldquo;You&apos;re crazy if you think
-                this fool contraption you’ve been wasting your time on will ever displace the horse.&rdquo; However,
-                what was most amazing was that the horseless carriage was &ldquo;such an amazing production that no one
-                believed it&rdquo; (Winton, 2017). It was this disbelief and utter lack of imagination to the possibilities
-                for the technology that left so-called experts making statements which never aged well. Although, true
-                futurists such as Thomas Edison saw the potential stating &ldquo;Talking of horseless carriage suggests
-                to my mind that the horse is doomed. The bicycle, which, 10 years ago, was a curiosity, is now a
-                necessity. It is found everywhere. Ten years from now you will be able to buy a horseless vehicle for
-                what you would pay today for a wagon and a pair of horses. The money spent in the keep of the horses
-                will be saved and the danger to life will be much reduced.&rdquo; (Winton, 2017).
+                this fool contraption you&apos;ve been wasting your time on will ever displace the horse.&rdquo;
+                However, what was most amazing was that the horseless carriage was &ldquo;such an amazing production
+                that no one believed it&rdquo; (Winton, 2017). It was this disbelief and utter lack of imagination to
+                the possibilities for the technology that left so-called experts making statements which never aged
+                well. Although, true futurists such as Thomas Edison saw the potential stating &ldquo;Talking of
+                horseless carriage suggests to my mind that the horse is doomed. The bicycle, which, 10 years ago, was
+                a curiosity, is now a necessity. It is found everywhere. Ten years from now you will be able to buy a
+                horseless vehicle for what you would pay today for a wagon and a pair of horses. The money spent in
+                the keep of the horses will be saved and the danger to life will be much reduced.&rdquo; (Winton, 2017).
             </p>
+            <Quote
+                quote="Printed books will never equal scribed books, especially because the spelling and ornamentation 
+                       of some printed books is often neglected."
+                author="Johannes Trithemius"
+            />
             <p>
                 Which brings us to our final stop in history: the printing press. The printing press is arguably the
                 most important technological innovation in human history. It was here that information society took its
@@ -75,11 +94,29 @@ const ADecentralizedFuture = (): JSX.Element => {
                 Roman Catholic Church. The printing press was a splash that caused ripples throughout society leading to
                 entirely new fields of study that could be written down and shared in a fungible manner. Despite this,
                 the experts of the day had a different and exceedingly laughable interpretation at the time. One example
-                is Johannes Trithemius, a well-known German scribe known for writing the book &ldquo;Steganographia,&rdquo;
-                a book on steganography written in 1499 who wrote &ldquo;Printed books will never equal scribed books,
-                especially because the spelling and ornamentation of some printed books is often neglected.&rdquo;
-                (Chenoweth, 2019). Such a statement today would be utterly absurd and history is quite littered with
-                these examples.
+                is Johannes Trithemius, a well-known German scribe known for writing the book
+                &ldquo;Steganographia,&rdquo; a book on steganography written in 1499 who wrote &ldquo;Printed books
+                will never equal scribed books, especially because the spelling and ornamentation of some printed books
+                is often neglected.&rdquo; (Chenoweth, 2019). Such a statement is utterly absurd and history is quite
+                littered with these examples as the same narrow-minded and short sighted statements are still made by
+                so-called experts today about emerging technologies.
+            </p>
+            <h4 id="Decentralized-Ledger-Technology">Decentralized Ledger Technology</h4>
+            <Quote
+                quote="You must remember that every invention of this kind which is made adds to the general wealth 
+                       by introducing a new system of greater economy of force. A great invention which facilitates 
+                       commerce, enriches a country just as much as the discovery of vast hoards of gold."
+                author="Alexander Winton"
+            />
+            <p>
+                The phrase &ldquo;blockchain&rdquo; has been used a number of times to explain how cryptocurrencies
+                operate however, the word &ldquo;blockchain&rdquo; is a bit of a misnomer itself. The true innovation
+                is the consensus derived decentralized ledger technology (DLT). Not all cryptocurrencies
+                utilize blockchains and cryptocurrencies are not the only applications for DLT. In fact, cryptocurrency
+                is a proof-of-concept for DLT with applications in every possible field and in every vertical.
+            </p>
+            <p>
+                Thus, DLT and other blockchain technologies act as
             </p>
             <Figure>
                 <img src="/images/blog/crowe-fraud-small.png" alt="Crowe - Global losses of fraud equate to USD 5.127 trillion" />
@@ -89,7 +126,7 @@ const ADecentralizedFuture = (): JSX.Element => {
                     &nbsp;<a target="_new" href="https://web.archive.org/web/20210816045808/https://twitter.com/croweglobal/status/1149375727042777088">Twitter</a>.
                 </figcaption>
             </Figure>
-            <h4>The Issues of Trust</h4>
+            <h4 id="The-Issues-of-Trust">The Issues of Trust</h4>
             <Quote
                 quote="The root problem with conventional currency is all the trust that's required to make it work."
                 author="Satoshi Nakamoto"
@@ -108,13 +145,13 @@ const ADecentralizedFuture = (): JSX.Element => {
             <p>
                 However, fraud has not subsided over time but instead, has accelerated to numbers that are
                 incomprehensible. According to Crowe Global, a network of separate and independent accounting and
-                consulting firms, &ldquo;fraud losses equate to a shocking US$5.127 trillion each year, which represents
-                almost 70% of the $7.442 trillion which world spends on healthcare each year&rdquo; (Crowe Global,
-                2019). Moreover, if this were not troubling enough, one of the major enablers of this systematic problem
-                is the same group expected to ensure it does not occur: banks.
+                consulting firms, &ldquo;fraud losses equate to a shocking US$5.127 trillion each year, which
+                represents almost 70% of the $7.442 trillion which world spends on healthcare each year&rdquo;
+                (Crowe Global, 2019). Moreover, if this were not troubling enough, one of the major enablers of this
+                systematic problem is the same group expected to ensure it does not occur: banks.
             </p>
             <Figure>
-                <img src="/images/blog/fincen-files-top-banks.jpg" alt="Top banks suspicious transaction amounts" />
+                <img src="/images/blog/top-4-banks-fincen-files.png" alt="Bitcoin Ethereum XRP Binance Cardano Stellar" />
                 <figcaption>
                     ICIJ. (2020, September 20). <i><cite>Global banks defy U.S. crackdowns by serving oligarchs, criminals and terrorists.</cite></i>
                     &nbsp;<a target="_new" href="https://web.archive.org/web/20210630030416/https://www.icij.org/investigations/fincen-files/global-banks-defy-u-s-crackdowns-by-serving-oligarchs-criminals-and-terrorists">ICIJ</a>.
@@ -124,7 +161,7 @@ const ADecentralizedFuture = (): JSX.Element => {
                 In 2020 while the world was being ravaged by the Coronavirus, the International Consortium of
                 Investigative Journalists, the same group famously known for the Panama Papers, released a damning
                 report on the international banking system. The report concluded that &ldquo;more than $2 trillion in
-                transactions between 1999 and 2017 that were flagged by financial institutions’ internal compliance
+                transactions between 1999 and 2017 that were flagged by financial institutions&apos; internal compliance
                 officers&rdquo; with that number considered &ldquo;just a drop in a far larger flood of dirty money
                 gushing through banks around the world&rdquo; (ICIJ, 2020). This same report is now a Pulitzer Prize
                 finalist (Hudson, 2021). However, this should not come as a shock as big banks were largely responsible
@@ -164,33 +201,29 @@ const ADecentralizedFuture = (): JSX.Element => {
                 obtain and retain lucrative business projects&rdquo; (U.S. DOJ, 2021). Frankly, with the number of
                 scandals, mind-boggling amount of dirty money, and the amount of money paid to eventual and former
                 government leaders from Wall Street companies and big banks, banks will continue to operate as what
-                can only be described as a global syndicate and criminal cartel.
+                can only be described as a global criminal cartel.
             </p>
-            <h4>Decentralized Ledger Technology</h4>
-            <Quote
-                quote="You must remember that every invention of this kind which is made adds to the general wealth by introducing a new system of greater economy of force. A great invention which facilitates commerce, enriches a country just as much as the discovery of vast hoards of gold."
-                author="Alexander Winton"
-            />
-            <p>
-                The phrase &ldquo;blockchain&rdquo; has been used a number of times to explain how cryptocurrencies
-                operate however, the word &ldquo;blockchain&rdquo; is a bit of a misnomer itself. The true innovation
-                is the consensus derived decentralized ledger technology (DLT). Not all cryptocurrencies
-                utilize blockchains and cryptocurrencies are not the only applications for DLT.
-            </p>
-            <Figure>
-                <img src="/images/blog/bitcoin-ether-xrp.webp" alt="Bitcoin Ethereum Ripple XRP" />
-                <figcaption>XRP, Ethereum, and Bitcoin</figcaption>
-            </Figure>
-            <h4>Cryptocurrencies</h4>
+            <h4 id="Cryptocurrencies">Cryptocurrencies</h4>
             <Quote quote="Anyone could create money; the problem is to get it accepted." author="Hyman Minsky" />
             <p>
                 One of the most subtle differences that is lost on many individuals in regards to cryptocurrencies is
                 that with traditional payment methods, what is actually occurring is the <i>communication</i> of the
                 transfer of value. With cryptocurrencies, what you have is the <i>actual transfer of value</i>. This
-                goes back to the history of the internet and the original dilemma of the ability to transfer value over
-                the internet.
+                goes back to the history of the internet and the original dilemma of the ability to transfer value
+                over the internet. This problem was eventually tackled head on in 1994 just prior to the
+                internet&apos;s Netscape moment by Pizza Hut with the release of &ldquo;PizzaNet.&rdquo; The service
+                allowed people to order pizzas online (Schrage, 1994). While there are many stories of  what the
+                first actual commercial transaction over the internet was, Pizza Hut gets the widest recognition for
+                being one of the first commercial operations online. Unsurprisingly, the approach was still somewhat
+                mocked, considered &ldquo;half-baked&rdquo; and geeky at the time, but more importantly, the system
+                did not facilitate the transfer of value over the net as payment was made upon delivery.
             </p>
-            <p>TODO</p>
+            <p>
+                This tradition was continued as history has a tendency to rhyme. On May 22, 2010, an individual used
+                bitcoin to pay for pizza in what is widely regarded as the first use of cryptocurrency in a
+                commercial transaction (Moore, 2020). Laszlo Hanyecz paid 10,000 bitcoin for his pizzas which at
+                today&apos;s value sits at around $483,784,000.
+            </p>
             <p>
                 Moreover, Nobel Memorial Prize in Economics winner, Friedrich August von Hayek has stated that &ldquo;I
                 am more convinced than ever that if we ever again are going to have a decent money, it will not come
@@ -198,49 +231,34 @@ const ADecentralizedFuture = (): JSX.Element => {
                 which it can trust and use can not only be an extremely profitable business; it imposes on the issuer a
                 discipline to which the government has never been and cannot be subject&rdquo; (Hayek 1999). This was a
                 point he later reiterated by saying &ldquo;I don&apos;t believe we shall ever have a good money again
-                before we take the thing out of the hands of government, that is, we can’t take them violently out of
-                the hands of government, all we can do is by some sly roundabout way introduce something they can’t
-                stop.&rdquo; (Smith, 2019). If this does not sound like cryptocurrencies, I am not sure what Hayek
-                could possibly have been referring to.
-            </p>
-            <h4>Tomorrow&apos;s Fools</h4>
-            <Quote
-                quote="There is no evidence that we are getting a great technology&mdash;unless 'great technology' doesn't mean 'useful.'"
-                author="Nassim Taleb"
-            />
-            <p>
-                Thus, we come to the so-called experts of today and their very loud criticisms toward distributed
-                ledger technology (DLT) and cryptocurrencies.
-            </p>
-            <p>
-                In the end, this noise will subside and those dismissing the validity, value, or applications of
-                decentralized ledger technology will be forgotten in the dustbin of history. Afterall, we no longer
-                listen to the words of those that stated the internet was not going to be important, that Amazon is a
-                ponzi scheme, or that the automobile would have little impact on our societies.
-            </p>
-            <h4>The Status Quo</h4>
-            <p>
-                Federal Reserve chair Jerome Powell and Secretary of the Treasury, Janet Yellen have been the most
-                outspoken critics of cryptocurrency from within the U.S. government. Despite their positions, they too
-                are relics of a bygone era that are totally out-of-touch with reality. Jerome Powell&apos;s remark that
-                &ldquo;You wouldn&apos;t need stablecoins; you wouldn&apos;t need cryptocurrencies, if you had a
-                digital U.S. currency&rdquo; is particularly absurd seeing as if that statement were to hold true,
-                then we equally would not have a need for commodities such as gold or any currency other than the
-                dollar worldwide. Furthermore his statement that &ldquo;We have a tradition in this country where
-                the public&apos;s money is held in what is supposed to be a very safe asset&rdquo; is equally invalid
-                seeing as that this supposed safe asset is losing its purchasing power each year with wages unable to
-                keep up with the very inflation they are creating.
+                before we take the thing out of the hands of government, that is, we can&apos;t take them violently out
+                of the hands of government, all we can do is by some sly roundabout way introduce something they
+                can&apos;t stop.&rdquo; (Smith, 2019). If this does not sound like cryptocurrencies, I am not sure what
+                Hayek could possibly have been referring to.
             </p>
             <Figure>
-                <img src="/images/blog/dollar-weapon.jpg" alt="Dollars Gun" />
+                <img src="/images/blog/weaponized-dollar.jpg" alt="Dollars Gun" />
                 <figcaption>Weaponization of the U.S. Dollar</figcaption>
             </Figure>
+            <h4 id="The-Status-Quo">The Status Quo</h4>
+            <p>
+                However, on the other hand, Federal Reserve chair Jerome Powell and Secretary of the Treasury,
+                Janet Yellen have been the most outspoken critics of cryptocurrency from within the U.S. government.
+                Despite their positions, they too are relics of a bygone era that are totally out-of-touch with
+                reality. Jerome Powell&apos;s remark that &ldquo;You wouldn&apos;t need stablecoins; you
+                wouldn&apos;t need cryptocurrencies, if you had a digital U.S. currency&rdquo; is particularly absurd
+                seeing as if that statement were to hold true, then we equally would not have a need for commodities
+                such as gold or any currency other than the dollar worldwide. Furthermore his statement that &ldquo;We
+                have a tradition in this country where the public&apos;s money is held in what is supposed to be a
+                very safe asset&rdquo; is equally invalid seeing as that this supposed safe asset is losing its
+                purchasing power each year with wages unable to keep up with the very inflation they are creating.
+            </p>
             <p>
                 Additionally, as the U.S. dollar global reserve drops to &ldquo;its lowest level in 25 years&rdquo;
                 with some analysts saying that &ldquo;this partly reflects the declining role of the US dollar in the
-                global economy, in the face of competition from other currencies used by central banks for international
-                transactions&rdquo; (Arslanalp &amp; Simpson-Bell, 2021); with some nations like Russia shedding the
-                U.S. dollar from their National Wealth Fund (Korsunskaya &amp; Marrow, 2021); and with the
+                global economy, in the face of competition from other currencies used by central banks for
+                international transactions&rdquo; (Arslanalp &amp; Simpson-Bell, 2021); with some nations like Russia
+                shedding the U.S. dollar from their National Wealth Fund (Korsunskaya &amp; Marrow, 2021); and with the
                 European Union looking to &ldquo;cut reliance on U.S. dollar&rdquo; (Strupczewski, 2021), the so-called
                 &ldquo;safe-asset&rdquo; is losing its grip on the world. This is clearly not a trend limited to our
                 rival nations who state &ldquo;We need to move away from using international payment systems controlled
@@ -258,26 +276,11 @@ const ADecentralizedFuture = (): JSX.Element => {
                 in the FinCen files. Furthermore, her responses were hyperbole seeing as Lennon goes on to state that
                 in &ldquo;2020, the criminal share of all cryptocurrency activity fell to just 0.34% ($10.0 billion in
                 transaction volume).&rdquo; What this sounds like is simply an echo from the McCarthy era. Except,
-                today&apos;s word is &ldquo;terrorism&rdquo; and quite frankly, if terrorist financing is of actual
+                today&apos;s word is &ldquo;terrorism&rdquo; and quite frankly, if terrorism financing is of actual
                 concern to our governmental officials then they should not be looking at cryptocurrency, but rather
-                the traditional banking system.
-            </p>
-            <p>
-                This is a particularly concerning trend especially due to the nature of Janet Yellen&apos;s sources
-                of income. Between 2019 and 2020, Yellen collected a whopping $7.26 million from several speeches
-                she had delivered during various engagements. While the former Fed Chair, now Secretary of the
-                Treasury was not employed by the US government at the time that money was received, the fact that
-                a majority of her clients were Wall Street banks and large corporations outlines an alarming trend
-                of corporate influence over those claiming to represent our best interests. This is not unlike Jay
-                Clayton who spent his career &ldquo;protecting some of the biggest names on Wall Street&rdquo; and
-                also made $7 million from Wallstreet&apos;s elite the year prior to appointment as the chair of
-                the very agency that is supposed to keep Wallstreet in check: The Securities and Exchange Commission
-                (Merle, 2017).
-            </p>
-            <p>
-                Furthermore, Clayton&apos;s ethics conflicts requiring him to recuse himself from cases involving
-                former clients and employers made him virtually ineffective for enforcement actions against the
-                majority of Wall Street actors.
+                the traditional banking system. This is especially pressing as a &ldquo;new lawsuit says the banks,
+                including Deutsche Bank and Standard Chartered, ignored warnings that their customers were helping
+                to finance attackers targeting Americans in Afghanistan&rdquo; (Flitter, 2021).
             </p>
             <Figure>
                 <img src="/images/blog/pew-wealth-disparity.webp" alt="Charts displaying income disparity" />
@@ -286,7 +289,7 @@ const ADecentralizedFuture = (): JSX.Element => {
                     &nbsp;<a target="_new" href="https://web.archive.org/web/20210821052153/https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality">Pew Research Center</a>.
                 </figcaption>
             </Figure>
-            <h4>The Rest of Us</h4>
+            <h4 id="The-Rest-of-Us">The Rest of Us</h4>
             <Quote
                 quote="Income growth has been most rapid for the top 5% of families"
                 author="Pew Research Center"
@@ -298,14 +301,16 @@ const ADecentralizedFuture = (): JSX.Element => {
                 the share held by upper-income households increased from 29% to 48%&rdquo; (Pew Research Center, 2020).
             </p>
             <p>
-                However, despite this, what is most absurd is the hubris of our leaders for believing that a small group
-                of politically appointed bureaucrats has the ability to exercise control over something as complex as
-                a first world economy. An examination of the results through history shows that not only are they unable
-                to meet goals, they are also unable to remain independent&mdash;a critical aspect of being a central bank.
+                However, despite this, what is most absurd is the hubris of our leaders for believing that a small
+                group of politically appointed bureaucrats has the ability to exercise control over something as
+                complex as a first world economy. An examination of the results through history shows that not only
+                are they unable to meet goals, they are also unable to remain independent&mdash;a critical aspect of
+                being a central bank.
             </p>
-            <h4>The Forgotten</h4>
+            <h4 id="The-Forgotten">The Forgotten</h4>
             <Quote
-                quote="There's no stopping crypto, [it's] the future and we won't let some old fools take our future from us ... We're Nigerians. Using the crypto is a way out of poverty for the youth."
+                quote="There's no stopping crypto, [it's] the future and we won't let some old fools take our future 
+                       from us ... We're Nigerians. Using the crypto is a way out of poverty for the youth."
                 author="Nigerian Bitcoin User"
             />
             <p>
@@ -331,19 +336,122 @@ const ADecentralizedFuture = (): JSX.Element => {
             </p>
             <p>
                 The second example is the takeover of Afghanistan by the Taliban following the withdrawal of
-                U.S. Forces from the region.
+                U.S. Forces from the region. The nation&apos;s financial infrastructure all but collapsed with
+                bank runs, cash shortages, and a failing currency making an already devastating situation worse
+                for millions of Afghanis. One individual stated &ldquo;I live above two banks and three ATM machines,
+                but they&apos;ve been off since Thursday&rdquo;. Moreover, &rdquo;Western Union has suspended all
+                services and even the centuries-old &rdquo;hawala&ldquo; system &mdash; which facilitates
+                cross-border transactions via a sophisticated network of money exchangers and personal contacts
+                &mdash; for now, remains closed&ldquo; (Sigalos, 2021) effectively cutting the people off from
+                the global financial system.
+            </p>
+            <p>
+                However, what is most impressive is that people outside of finance and banking can really make a
+                difference in the world which exemplifies the very nature of decentralization. A case and point:
+                Akon&apos;s Akoin. Akon is working to provide the very financial inclusion banks could care less to
+                provide to people in African nations. The artist even incorporates some of the critical intricacies
+                with value transfer in the region by tokenizing cellular minutes which are already being used as a
+                form of money in places like Kenya (The Economist, 2013). His message is one that is heard and felt
+                all too often in such areas, that the current systems offer nothing more than &ldquo;weak and
+                over-inflated fiat currencies that prevent citizens from accessing financial services western
+                countries take for granted&rdquo; (Stevens, 2021). Akon&apos;s point is well made as when the U.S.
+                dollar experiences inflation, second and third world nations hurt the most. It is this simple
+                correlation that exposes the myth of inflation being a positive thing&mdash;inflation only benefits
+                the wealthy.
             </p>
             <p>
                 Thus, cryptocurrencies can have a major impact on the unbanked and underbanked providing financial
-                inclusion that banks unable to or simply unwilling to provide.
+                inclusion that banks unable to or simply unwilling to provide. Moreover, DLT has several applications
+                in these scenarios from facilitating payments, identity, and even voting. While voting systems
+                using DLT are not ready for mainstream application, the technology can offer a way to virtually
+                eliminate cases of voter fraud, prevent gerrymandering, and encourage more people to vote through
+                an increased level of convenience. Even in countries like the United States, allegation of voter
+                fraud have drawn disconcerting parallels with events in less democratic nations such as Myanmar. The
+                allegations alone have had a damaging effect on reputations, undermined trust in democratic processes,
+                and continues to divide an already divided nation.
             </p>
-            <h4>The Future</h4>
+            <Figure>
+                <img src="/images/blog/decentral-world.jpg" alt="A Decentralized World" />
+                <figcaption>A Decentralized World</figcaption>
+            </Figure>
+            <h4 id="The-Future">The Future</h4>
             <Quote
                 quote="The only way to discover the limits of the possible is to go beyond them into the impossible."
                 author="Arthur C. Clarke"
             />
-            <p>TODO</p>
-            <h4>Final Thoughts</h4>
+            <p>
+                As the possibilities of DLT endless, societies can begin to restore their faith in systems that
+                have failed them for generations. The road ahead is not going to be easy with much of the DLT space
+                today not unlike the wild west as are all new frontiers. However, as adoption increases and new
+                networks arise, a world completely powered by DLT will be unrecognizable from today.
+            </p>
+            <p>
+                While not many people think about some of the more insignificant minutia of our day-to-day, there
+                are several things that are done today simply because that is how they always have been done. For
+                example, payday can occur weekly, bi-weekly, semi-monthly, monthly, or by any other arbitrary
+                denomination. It is not something we often think of, it just it. However, what if money could
+                be thought of in an entirely different way? Perhaps money could become more akin to bandwidth with
+                payroll done every second. This approach could give individuals far more control of their finances
+                with the ability to fine tune savings, bills, an retirement in real-time.
+            </p>
+            <p>
+                Thus, credit applications could do away with credit scores and simply determine an individual&apos;s
+                average available bandwidth over a predetermined period of time. This could also change the way bills
+                are paid by delegating bandwidth toward bills which automatically adjust interest rates within a
+                predetermined range accepted by both parties and enforced via smart contracts. The same can apply to
+                savings and retirement accounts allowing individuals to simply dial-up or dial down their various
+                account streams based on their inbound and outbound streams. Account pools can allow individuals
+                to predetermine their future finances whether for retirement or knowing exactly how long until a
+                pool will run out.
+            </p>
+            <p>
+                However, money is not the only application for DLT technology. Anything from movie tickets, licenses,
+                academic degrees, certifications credentials, warranties, certificates of authenticity, and artwork
+                can be a non-fungible or semi-fungible token (NFT/SFT). Businesses can leverage promotions that
+                can span many years with loyal customers never missing out. For example, a movie theater can offer
+                discounts for multi-part movies that hold the ticket NFT for previous installments. Collectibles can
+                be issued for those that visited a theater for a movie and special editions can be minted for those
+                that saw an entire trilogy in theaters. This could conceivably extend to products where individuals
+                that own an obsolete version of a product can receive a special promotional price for upgrading. Of
+                course, commerce is not the only aspect but property deeds, automotive titles, lease and mortgage
+                agreements, and more can all be tokenized in an internet of value.
+            </p>
+            <p>
+                With governmental adoption, W2s and other tax forms can be minted by addresses with EIN NFTs which
+                could trigger the income stream to an employee address. However, this could conceivably open
+                multiple streams of value at once: one to an employee, and the second directly to the IRS for
+                taxes virtually eliminating tax evasion. Census data can be collected more easily and accurately
+                and maintained with minimal effort especially when government networks interoperate with one
+                another. Eventually, voting can be done using DLT which would not only eliminate any possible fraud,
+                but more importantly, the legitimacy of an election cannot be questioned.
+            </p>
+            <p>
+                Additionally, no more will exist the days of guessing wildly at how to control something as complex
+                as a first-world economy. Instead of massive injections of cash, or removing massive amounts of
+                cash from circulation using slow and antiquated methods of buying and selling bonds, self-organizing
+                systems can make nano-scale changes to macroeconomic variables and automatically adjust factors
+                to maintain and achieve key economic targets. These economies are as complex and interconnected as
+                living entities and as such, should be treated that way using self-organizing system principles. Not
+                only can this approach help ensure more stable economies but the instantaneous feedback loops can
+                allow governments to create more accurate future projections for economic growth. We can once again
+                have sound money issued by central banks.
+            </p>
+            <p>
+                This is the nature of self-organizing systems which enable our societies to have a measure of
+                control in order to predetermine the consequences of our actions. Our societies have been traveling
+                a path of decentralization for quite some time. From Martin Luther&apos;s 95 Theses and the printing
+                press, to the Civil Rights movement and broadcast media, until now, a financial and economic revolution
+                with decentralized ledger technology. We have been breaking down centralized nexuses of power and
+                empowering more individual people over time and with DLT, we are approaching a technological
+                singularity point. The future described above may sound far-fetched today, but as we begin to move
+                into a world where issues of trust are thing of the past, anything is possible.
+            </p>
+            <h4 id="Conclusion">Conclusion</h4>
+            <Quote
+                quote="If communities are to engage in exchange and forge functioning societies, they must find a way 
+                       to arrive at a commonly accepted foundation of truth."
+                author="Paul Vigna &amp; Michael J. Casey"
+            />
             <p>
                 The only constant in life is change and that is something we as a civilization struggle to accept. As
                 we enter this brave new world, it is important to realize that humanity is at a precipice. Whether the
@@ -352,6 +460,17 @@ const ADecentralizedFuture = (): JSX.Element => {
                 exploration, it is hard to not think that our story is just beginning. However, there are grave issues
                 such as climate change and war which threaten the very existence of our species. It is up to us,
                 the people, to ensure that we have a future&mdash;no one will do it for us.
+            </p>
+            <p>
+                For me, Jack Dorsey&apos;s statement where he hopes the technology &ldquo;creates world peace or
+                helps create world peace&rdquo; is far more accurate than many today realize. Dorsey goes on to
+                say that &ldquo;It may sound a bit ridiculous but you fix that foundational level and everything
+                above it improves. It is in the long-term but my hope is definitely peace&rdquo; (Salvo, 2021).
+                DLT <i>is</i> a foundational technology that may very well solve one of the most difficult problems
+                in our societies: trust. Large, centralized organizations can no longer act as the gatekeepers to
+                society&apos;s interests. Financial fraud will enter the halls of extinction and so too may the
+                large monolithic organization. Instead of trust in money, we would have belief in ideas and thus,
+                such ideas created by anyone. That is the future of DLT and consequently, the future of human society.
             </p>
         </>
     );
