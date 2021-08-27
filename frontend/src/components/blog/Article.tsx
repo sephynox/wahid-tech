@@ -9,7 +9,6 @@ import { AppContext } from '../../App';
 import * as Constants from '../../Constants';
 import { systemEvents } from '../../Data';
 import { Breadcrumbs } from '../../layout/Navigation';
-import { Section } from '../../styles/Section';
 import { DefinitionList } from '../../styles/DefinitionList';
 import HorizontalRule from '../../styles/HorizontalRule';
 import Tocbot from '../Tocbot';
@@ -113,12 +112,10 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                             headingSelector="h4, h5, h6" />
                     </Container>
                 </header>
-                <Section>
-                    <h3>{t('full_story')}</h3>
-                    <HorizontalRule />
-                    <MyArticle />
-                    <HorizontalRule />
-                </Section>
+                <h3>{t('full_story')}</h3>
+                <HorizontalRule />
+                <MyArticle />
+                <HorizontalRule />
                 <footer>
                     <details>
                         <summary><h3>{t('references')}</h3></summary>
@@ -171,6 +168,8 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
 export default Article;
 
 const ArticleStyle = styled.article`
+    max-width: 800px;
+
     & section {
         padding: 0;
     }

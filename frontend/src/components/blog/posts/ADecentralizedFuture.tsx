@@ -3,8 +3,8 @@ import { Figure } from 'react-bootstrap';
 import Quote from '../../Quote';
 
 const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
-    return (
-        <>
+    return (<>
+        <section>
             <h4 id="Introduction">Introduction</h4>
             <p>
                 The internet is arguably one of the most important innovations in our modern times. I remember the
@@ -23,6 +23,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 may even argue that today&apos;s experts may be tomorrow&apos;s fools and to support that point, we
                 need only to look back in history.
             </p>
+        </section>
+        <section>
             <Figure>
                 <img src="/images/blog/internet-a-fad.webp" alt="Daily Mail Internet a Fad Article" />
                 <figcaption>
@@ -102,6 +104,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 littered with these examples as the same narrow-minded and short sighted statements are still made by
                 so-called experts today about emerging technologies.
             </p>
+        </section>
+        <section>
             <h4 id="Distributed-Ledger-Technology">Distributed Ledger Technology</h4>
             <Quote
                 quote="You must remember that every invention of this kind which is made adds to the general wealth 
@@ -173,6 +177,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 classes as all things can be tokenized. Solving the issues of trust can open up an unimaginable amount
                 of opportunities as trust is a problem that has existed in our societies since the very beginning.
             </p>
+        </section>
+        <section>
             <Figure>
                 <img src="/images/blog/crowe-fraud-small.png" alt="Crowe - Global losses of fraud equate to USD 5.127 trillion" />
                 <figcaption>
@@ -263,6 +269,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 and former government leaders from Wall Street companies and big banks, banks will continue to
                 operate as what can only be described as a global criminal cartel.
             </p>
+        </section>
+        <section>
             <h4 id="Cryptocurrencies">Cryptocurrencies</h4>
             <Quote quote="Anyone could create money; the problem is to get it accepted." author="Hyman Minsky" />
             <p>
@@ -322,6 +330,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 can&apos;t stop.&rdquo; (Smith, 2019). If this does not sound like cryptocurrencies, I am not sure what
                 Hayek could possibly have been referring to.
             </p>
+        </section>
+        <section>
             <Figure>
                 <img src="/images/blog/weaponized-dollar.jpg" alt="Dollars Gun" />
                 <figcaption>Weaponization of the U.S. Dollar</figcaption>
@@ -368,6 +378,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 including Deutsche Bank and Standard Chartered, ignored warnings that their customers were helping
                 to finance attackers targeting Americans in Afghanistan&rdquo; (Flitter, 2021).
             </p>
+        </section>
+        <section>
             <Figure>
                 <img src="/images/blog/pew-wealth-disparity.webp" alt="Charts displaying income disparity" />
                 <figcaption>
@@ -393,6 +405,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 are they unable to meet goals, they are also unable to remain independent&mdash;a critical aspect of
                 being a central bank.
             </p>
+        </section>
+        <section>
             <h4 id="The-Forgotten">The Forgotten</h4>
             <Quote
                 quote="There's no stopping crypto, [it's] the future and we won't let some old fools take our future 
@@ -456,6 +470,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 allegations alone have had a damaging effect on reputations, undermined trust in democratic processes,
                 and continues to divide an already divided nation.
             </p>
+        </section>
+        <section>
             <Figure>
                 <img src="/images/blog/decentral-world.jpg" alt="A Decentralized World" />
                 <figcaption>A Decentralized World</figcaption>
@@ -532,6 +548,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 singularity point. The future described above may sound far-fetched today, but as we begin to move
                 into a world where issues of trust are thing of the past, anything is possible.
             </p>
+        </section>
+        <section>
             <h4 id="Conclusion">Conclusion</h4>
             <Quote
                 quote="If communities are to engage in exchange and forge functioning societies, they must find a way 
@@ -559,8 +577,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 large monolithic organization. Instead of trust in money, we would have belief in ideas and thus,
                 such ideas created by anyone. That is the future of DLT and consequently, the future of human society.
             </p>
-        </>
-    );
+        </section>
+    </>);
 };
 
 export default ADecentralizedFuture;
