@@ -21,8 +21,8 @@ const Buttons: React.FunctionComponent = (): JSX.Element => {
     };
 
     return (
-        <div className="nav-menu nav-menu-buttons">
-            <hr className="nav-menu mt-2 mb-3" />
+        <div className="nav-menu-buttons">
+            <hr className="mt-3 mb-3" />
             <ul>
                 <li>
                     <button className="nav-link" onClick={toggleTheme}>

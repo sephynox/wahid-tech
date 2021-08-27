@@ -83,7 +83,7 @@ const Market = (): JSX.Element => {
 
         return (
             <span>
-                {t('data_from')} <a target="_new" href={sourceLink}>{sourceName}</a>
+                {t('data_from')} <a target="_blank" href={sourceLink} rel="noreferrer">{sourceName}</a>
             </span>
         );
     };
@@ -103,10 +103,10 @@ const Market = (): JSX.Element => {
     // }
 
     // <Web3ReactProvider getLibrary={getLibrary}>
-    // <section id="market" className="d-flex flex-column">
+    // <Section id="market" className="d-flex flex-column">
     //     Hello World!
     //     {/* <CandleStickChart width="100%" data={{}} ratio="1.0" /> */}
-    //     </section>
+    //     </Section>
     // </Web3ReactProvider>
 
     useEffect(() => {

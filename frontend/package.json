@@ -28,6 +28,7 @@
         "classnames": "^2.3.1",
         "csstype": "^2.6.2",
         "disqus-react": "^1.1.1",
+        "embeddable-nfts": "^0.4.8",
         "ethers": "^5.4.3",
         "highcharts": "^9.1.2",
         "i18next": "^20.3.5",
@@ -60,6 +61,7 @@
         "react-swipeable": "^6.1.2",
         "react-typed": "^1.2.0",
         "styled-components": "^5.3.0",
+        "tocbot": "^4.13.1",
         "typescript": "^4.3.5",
         "validator": "^13.6.0",
         "web-vitals": "^1.0.1",
@@ -70,6 +72,7 @@
         "@typescript-eslint/eslint-plugin": "^4.28.5",
         "@typescript-eslint/parser": "^4.28.5",
         "babel-eslint": "^10.1.0",
+        "babel-plugin-styled-components": "^1.13.2",
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-prettier": "^3.4.0",
@@ -78,6 +81,9 @@
         "prettier": "^2.3.2",
         "sass-loader": "^12.0.0",
         "webpack": "^5.51.1"
+    },
+    "babel": {
+        "plugins": ["babel-plugin-styled-components"]
     },
     "scripts": {
         "start": "react-scripts start --host 0.0.0.0",

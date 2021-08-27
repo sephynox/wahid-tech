@@ -47,7 +47,7 @@ a {
 }
 
 a:hover {
-    color: ${(props: ThemeEngine) => props.theme.linkHover}
+    color: ${(props: ThemeEngine) => props.theme.linkHover};
     text-decoration: none;
 }
 
@@ -242,7 +242,7 @@ a.page-link {
 a.page-item.active .page-link {
     background-color: ${(props: ThemeEngine) => props.theme.info};
     color: ${(props: ThemeEngine) => props.theme.text};
-    border-color: {(props: ThemeEngine) => props.theme.info};
+    border-color: ${(props: ThemeEngine) => props.theme.info};
 }
 
 button.btn-secondary {
@@ -255,12 +255,5 @@ button.btn-secondary:hover {
     color: ${(props: ThemeEngine) => props.theme.text};
     background-color: ${(props: ThemeEngine) => props.theme.info};
     border-color: ${(props: ThemeEngine) => props.theme.info};
-}
-
-@media screen and (max-width: 768px) {
-    #header {
-      background-color: ${(props: ThemeEngine) => props.theme.background};
-      border-right: 1px solid ${(props: ThemeEngine) => props.theme.backgroundDelta};
-    }
 }
 `;

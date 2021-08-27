@@ -18,7 +18,7 @@ const MarketList = <T,>({ data }: Props<T>): JSX.Element => {
         { key: 'name', dataField: 'name', text: 'Name', sort: true, formatter: (c: string, r: MarketData) => formatName(r) },
         { key: 'price', dataField: 'price', text: 'Price', sort: true, formatter: (c: number) => formatPrice(c, Constants.DEFAULT_PRICE_PLACES, i18next.language) },
         { key: 'delta1', dataField: 'delta1', text: '1D', sort: true, formatter: (c: number) => StyledPercentage(c, i18next.language) },
-        { key: 'delta7', dataField: 'delta7', text: '7D', sort: true, formatter: (c: number) => StyledPercentage(c, i18next.language) },
+        { key: 'delta7', dataField: 'delta7', headerClasses: 'hide-mobile-xxs', classes: 'hide-mobile-xxs', text: '7D', sort: true, formatter: (c: number) => StyledPercentage(c, i18next.language) },
         { key: 'delta30', dataField: 'delta30', headerClasses: 'hide-mobile', classes: 'hide-mobile', text: '30D', sort: true, formatter: (c: number) => StyledPercentage(c, i18next.language) },
         { key: 'deltaY', dataField: 'deltaY', headerClasses: 'hide-mobile', classes: 'hide-mobile', text: '1Y', sort: true, formatter: (c: number) => StyledPercentage(c, i18next.language) },
         { key: 'cap', dataField: 'cap', headerClasses: 'hide-mobile', classes: 'hide-mobile', text: 'Market Cap', sort: true, formatter: (c: number) => formatPrice(c, Constants.DEFAULT_PRICE_PLACES, i18next.language) },

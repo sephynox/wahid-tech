@@ -6,14 +6,14 @@ import { toast } from 'react-hot-toast';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './scss/custom.scss';
 import './App.css';
-import * as Constants from './Constants';
 import { socialLinks } from './Data';
 import { GlobalStyle } from './styles/GlobalStyle';
-import { NavToggle, NavState } from './layout/Navigation';
+import { NavState } from './layout/Navigation';
 import Overlay, { OverlayState } from './layout/Overlay';
 import Toaster from './layout/Toaster';
 import Header from './layout/Header';
 import Body from './layout/Body';
+import Footer from './layout/Footer';
 import Privacy from './layout/Privacy';
 import { LanguageSelectorState } from './layout/LanguageSelector';
 import { ExternalLocaleState, externalLocaleReducer, initialExternalLocaleState } from './actions/ExternalLocale';
@@ -22,6 +22,7 @@ import BackTop from './tools/BackTop';
 import { SocialBlock } from './tools/SocialLinks';
 import { Themes, availableThemes } from './tools/Themes';
 import LoaderSpinner from './tools/LoaderSpinner';
+import { Section } from './styles/Section';
 
 export const AppContext = createContext<{
     testMode: boolean,
@@ -160,22 +161,22 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
     }, [allowedCookieState]);
 
     return (
-        <ThemeProvider theme={availableThemes[theme]}>
-            <div className={"App " + (navState === NavState.OPEN ? Constants.NAVIGATION_ACTIVE_CLASS : '')}>
+        <Suspense fallback={<LoaderSpinner type="Pulse" size={20} />}>
+            <ThemeProvider theme={availableThemes[theme]}>
                 <AppContext.Provider value={appContext}>
-                    <Suspense fallback={<LoaderSpinner type="Pulse" size={20} />}>
-                        <Privacy />
-                        <Toaster />
-                        <NavToggle />
+                    <Section className={"App" + (navState === NavState.OPEN ? ' mobile-nav-active' : '')}>
                         <Header />
                         <Body />
+                        <Footer />
+                        <Privacy />
+                        <Toaster />
                         <Overlay state={overlayState as OverlayState} />
                         <BackTop />
                         <GlobalStyle />
-                    </Suspense>
+                    </Section>
                 </AppContext.Provider>
-            </div>
-        </ThemeProvider>
+            </ThemeProvider>
+        </Suspense>
     );
 }
 

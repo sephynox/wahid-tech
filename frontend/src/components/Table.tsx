@@ -59,3 +59,4 @@ export type Column = {
 };
 
 export default Table;
+

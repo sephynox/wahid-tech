@@ -1,7 +1,8 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import MarketList from './MarketList';
+import { Section } from '../../styles/Section';
 import { MarketContext } from '../../pages/Market';
 import IconButton from '../../tools/IconButton';
 import { MarketType } from '../../tools/MarketData';
@@ -20,27 +21,24 @@ const MarketHome: React.FunctionComponent = (): JSX.Element => {
     };
 
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <section>
-                        <div className="title">
-                            <h2 className="capitalize">{title}</h2>
-                        </div>
-                    </section>
-                </Col>
-                <Col className="text-right d-none d-md-block d-xl-block d-lg-block">
-                    <IconButton
-                        title={t('refresh')}
-                        onClick={refreshData}
-                        icon="bi-arrow-repeat"
-                        size={30}></IconButton>
-                </Col>
-            </Row>
-            <MarketList data={listData} />
-
-            <div className="space-bottom text-right capitalize">{marketContext.marketDataByline(marketType)}</div>
-        </Container>
+        <>
+            <Section>
+                <header>
+                    <h2 className="capitalize">{title}</h2>
+                </header>
+                <Row>
+                    <Col className="text-right d-none d-md-block d-xl-block d-lg-block">
+                        <IconButton
+                            title={t('refresh')}
+                            onClick={refreshData}
+                            icon="bi-arrow-repeat"
+                            size={30}></IconButton>
+                    </Col>
+                </Row>
+                <MarketList data={listData} />
+                <div className="space-bottom text-right capitalize">{marketContext.marketDataByline(marketType)}</div>
+            </Section>
+        </>
     );
 };
 

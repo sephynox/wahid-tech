@@ -1,11 +1,12 @@
 import React from 'react';
+import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import * as Constants from '../Constants';
 import { donationAddresses } from '../Data';
+import { Section } from '../styles/Section';
 import Data, { Posts } from '../components/blog/Data';
-import CryptoAssets from '../tools/CryptoAssets';
 import Postcard from '../components/Postcard';
-import { Col, Container, Row } from 'react-bootstrap';
+import CryptoAssets from '../tools/CryptoAssets';
 
 const Home = (): JSX.Element => {
     const { t } = useTranslation();
@@ -16,21 +17,17 @@ const Home = (): JSX.Element => {
     const donate = t('content.donate');
 
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <section>
-                        <div className="title">
-                            <h2>{title}</h2>
-                            <p>{subtext}</p>
-                        </div>
-                    </section>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={12} md={12} lg={6} xl={6}>
-                    <section>
-                        <h3 className="capitalize">{t('latest_blog_post')}</h3>
+        <>
+            <Section>
+                <h2>{title}</h2>
+                <header>
+                    <em>{subtext}</em>
+                </header>
+            </Section>
+            <Section>
+                <h3 className="capitalize mb-3">{t('latest_blog_post')}</h3>
+                <Row>
+                    <Col xs={12} md={12} lg={6} xl={4}>
                         <Postcard
                             height={600}
                             title={article.title}
@@ -39,19 +36,17 @@ const Home = (): JSX.Element => {
                             image={article.image}
                             link={Constants.SITE_BLOG_ARTICLE_PATH + article.path}
                         />
-                    </section>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <section>
-                        <h3 className="capitalize">{t('donate')}</h3>
-                        <p>{donate}</p>
-                        <CryptoAssets data={donationAddresses} size={24} />
-                    </section>
-                </Col>
-            </Row>
-        </Container>
+                    </Col>
+                </Row>
+            </Section>
+            <Section>
+                <header>
+                    <h3 className="capitalize">{t('donate')}</h3>
+                    <p>{donate}</p>
+                </header>
+                <CryptoAssets data={donationAddresses} size={24} />
+            </Section>
+        </>
     );
 };
 

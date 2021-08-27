@@ -1,17 +1,20 @@
 import React, { useContext } from 'react';
+import { Button, Container, Figure } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import Helmet from 'react-helmet';
+import styled from 'styled-components';
 import { DiscussionEmbed } from 'disqus-react';
+import i18next from 'i18next';
+import { AppContext } from '../../App';
 import * as Constants from '../../Constants';
+import { systemEvents } from '../../Data';
+import { Breadcrumbs } from '../../layout/Navigation';
+import { Section } from '../../styles/Section';
+import { DefinitionList } from '../../styles/DefinitionList';
+import HorizontalRule from '../../styles/HorizontalRule';
+import Tocbot from '../Tocbot';
 import CitationGuide from '../../tools/CitationGuide';
 import SocialLinks from '../../tools/SocialLinks';
-import { Breadcrumbs } from '../../layout/Navigation';
-import { useTranslation } from 'react-i18next';
-import i18next from 'i18next';
-import { Button, Container, Figure } from 'react-bootstrap';
-import HorizontalRule from '../../styles/HorizontalRule';
-import { AppContext } from '../../App';
-import { systemEvents } from '../../Data';
-import { BlogPost } from '../../styles/BlogPost';
 import Citation from '../../tools/Citation';
 import References from '../../tools/References';
 import APACitation from '../../tools/APACitation';
@@ -65,7 +68,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
         : undefined;
 
     return (
-        <Container>
+        <>
             <Helmet>
                 <meta property="og:title" content={data.title} />
                 <meta property="og:type" content="article" />
@@ -79,14 +82,14 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                 { text: t('blog'), class: 'capitalize', path: Constants.SITE_BLOG_PATH_BASE },
                 { text: t('article'), path: '', class: 'capitalize', active: true }
             ]} />
-            <BlogPost>
-                <section>
+            <ArticleStyle>
+                <header>
                     <Figure>
                         <img src={data.image.url} alt={data.image.alt} />
                     </Figure>
                     <h2 className="text-xs-center">{data.title}</h2>
                     <Container>
-                        <dl className="dl-horizontal dl-custom">
+                        <DefinitionList>
                             <dt className="capitalize">{t('byline')}:</dt>
                             <dd id="article_authors">{article_authors}</dd>
                             <dt className="capitalize">{t('published')}:</dt>
@@ -103,22 +106,26 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                             <dd className="no-print">
                                 <SocialLinks url={article_full_url} title={data.title} />
                             </dd>
-                        </dl>
+                        </DefinitionList>
+                        <Tocbot
+                            header={t('table_of_contents')}
+                            contentSelector="article"
+                            headingSelector="h4, h5, h6" />
                     </Container>
-                </section>
-                <section>
-                    <Container>
-                        <h3>{t('full_story')}</h3>
-                        <HorizontalRule />
-                        <MyArticle />
-                        <HorizontalRule />
-                    </Container>
-                    <Container>
-                        <h3>{t('references')}</h3>
+                </header>
+                <Section>
+                    <h3>{t('full_story')}</h3>
+                    <HorizontalRule />
+                    <MyArticle />
+                    <HorizontalRule />
+                </Section>
+                <footer>
+                    <details>
+                        <summary><h3>{t('references')}</h3></summary>
                         <References data={data.references} Format={APACitation} />
-                    </Container>
-                    <Container>
-                        <h3>{t('citations')}</h3>
+                    </details>
+                    <details>
+                        <summary><h3>{t('citations')}</h3></summary>
                         <CitationGuide
                             authors={data.authors}
                             publisher={Constants.SITE_NAME}
@@ -127,9 +134,10 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                             date_month={data.date.toLocaleString('default', { month: 'long' })}
                             date_day={data.date.getDate()}
                         />
-                    </Container>{data.comments &&
-                        <Container className="mt-3">
-                            <h3>{t('comments')}</h3>
+                    </details>
+                    {data.comments &&
+                        <details open>
+                            <summary><h3>{t('comments')}</h3></summary>
                             {appContext.allowedCookieState['disqus']
                                 ? <DiscussionEmbed
                                     shortname="wahidtech"
@@ -153,11 +161,66 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                                     </Button>
                                 </p>
                             }
-                        </Container>}
-                </section>
-            </BlogPost>
-        </Container>
+                        </details>}
+                </footer>
+            </ArticleStyle>
+        </>
     );
 };
 
 export default Article;
+
+const ArticleStyle = styled.article`
+    & section {
+        padding: 0;
+    }
+
+    & section h2 {
+        margin-bottom: 20px;
+    }
+
+    & h3 {
+        margin: 20px 0 20px 0;
+        font-size: 1.3em;
+        display: inline-block;
+        text-transform: capitalize;
+        color: #595959;
+    }
+
+    & section h4 {
+        margin-top: 30px;
+        font-size: 1.2em;
+    }
+
+    & figure {
+        padding: 50px;
+        text-align: center;
+    }
+
+    & figure img {
+        max-width: 100%;
+    }
+
+    & figure figcaption {
+        display: inherit;
+        padding-top: 20px;
+    }
+
+    & .container {
+        padding: 0;
+    }
+
+    @media screen and (max-width: 768px) {
+        & #story {
+            text-align: justify;
+        }
+
+        & em {
+            text-align: center;
+        }
+
+        & figure {
+            padding: 10px;
+        }    
+    }
+`;

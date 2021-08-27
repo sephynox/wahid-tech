@@ -2,8 +2,9 @@ import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import * as Constants from '../../Constants';
-import Postcard from '../Postcard';
 import Data, { Posts } from './Data';
+import { Section } from '../../styles/Section';
+import Postcard from '../Postcard';
 
 const BlogHome: React.FunctionComponent = (): JSX.Element => {
     const { t } = useTranslation();
@@ -27,14 +28,13 @@ const BlogHome: React.FunctionComponent = (): JSX.Element => {
         );
     });
     return (
-        <section className="container">
-            <div className="title">
+        <Section>
+            <header>
                 <h2>{title}</h2>
-                <p>{subtext}</p>
-            </div>
+                <em>{subtext}</em>
+            </header>
             <Row>{list}</Row>
-            <div className="space-bottom"></div>
-        </section>
+        </Section>
     );
 };
 

@@ -15,7 +15,7 @@ export type SocialBlock = {
 };
 
 export const SocialLink = ({ title, icon, url }: SocialBlock): JSX.Element => (
-    <SocialLinkStyle href={url} target="_new" title={title}><i className={icon}></i></SocialLinkStyle>
+    <SocialLinkStyle href={url} target="_blank" title={title}><i className={icon}></i></SocialLinkStyle>
 );
 
 const SocialLinks: React.FunctionComponent<Props> = ({ url, title }: Props): JSX.Element => {

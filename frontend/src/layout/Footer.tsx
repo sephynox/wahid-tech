@@ -8,12 +8,8 @@ const Footer: React.FunctionComponent = (): JSX.Element => {
     const { t } = useTranslation();
 
     return (
-        <FooterStyle id="footer" className="justify-content-center">
-            <div className="container">
-                <div className="copyright capitalize">
-                    {t('copyright')} <strong>{Constants.MY_NAME}</strong>.
-                </div>
-            </div>
+        <FooterStyle id="footer" className="justify-content-center copyright capitalize">
+            {t('copyright')} <strong>{Constants.MY_NAME}</strong>.
         </FooterStyle>
     );
 };

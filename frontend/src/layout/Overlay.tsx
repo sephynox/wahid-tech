@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export enum OverlayState {
     SHOW = 'active',
@@ -7,8 +8,26 @@ export enum OverlayState {
 
 const Overlay = ({ state }: { state: OverlayState }): JSX.Element => {
     return (
-        <div id="overlay" className={state as string}></div>
+        <OverlayStyle id="overlay" className={state as string}></OverlayStyle>
     );
 };
 
 export default Overlay;
+
+const OverlayStyle = styled.div`
+    position: fixed;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2;
+    cursor: pointer;
+
+    &.active {
+        display: block;
+    }
+`;

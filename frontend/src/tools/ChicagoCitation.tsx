@@ -63,7 +63,7 @@ const ChicagoCitation = ({
             {blog ? ' (blog)' : ''}, {date_string},{' '}
             {url !== undefined ? (
                 <>
-                    <a href={archive !== undefined ? archive : url} target="_new">
+                    <a href={archive !== undefined ? archive : url} target="_blank">
                         {url}
                     </a>
                     .
