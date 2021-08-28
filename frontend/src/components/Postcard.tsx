@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { ThemeEngine } from '../styles/GlobalStyle';
@@ -16,14 +15,12 @@ type Props = {
     link: string;
     date: Date;
     image: Image;
+    linkText: string;
     height?: number;
     imagePadding?: number;
-    linkText?: string;
 };
 
 const Postcard: React.FunctionComponent<Props> = (props): JSX.Element => {
-    const { t } = useTranslation();
-    const linkText = props.linkText ?? 'button.read';
     const imagePad = props.imagePadding ?? 0;
 
     return (
@@ -35,7 +32,7 @@ const Postcard: React.FunctionComponent<Props> = (props): JSX.Element => {
                 <h3 className="card-title">{props.title}</h3>
                 <p>{props.date.toLocaleDateString()}</p>
                 <p className="card-text">{props.text}</p>
-                <NavLink className="btn btn-primary capitalize" to={props.link}>{t(linkText)}</NavLink>
+                <NavLink className="btn btn-primary capitalize" to={props.link}>{props.linkText}</NavLink>
             </div>
         </PostcardStyle>
     );

@@ -5,9 +5,8 @@ export const DefinitionList = styled.dl`
         text-align: left;
         margin-left: calc(30% + 20px);
         padding-bottom: 5px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        line-break: strict;
+        word-wrap: break-word;
     }
 
     & dt {
@@ -18,9 +17,7 @@ export const DefinitionList = styled.dl`
         font-style: italic;
         color: #595959;
         padding-bottom: 5px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        line-break: strict;
     }
 
     @media screen and (max-width: 768px) {

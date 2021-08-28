@@ -56,6 +56,10 @@ code {
     monospace;
 }
 
+div.card {
+    background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended} !important;
+}
+
 .captcha.is-invalid {
     background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }

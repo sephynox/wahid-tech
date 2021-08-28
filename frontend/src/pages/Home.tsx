@@ -37,6 +37,7 @@ const Home = (): JSX.Element => {
                             text={article.description}
                             image={article.image}
                             imagePadding={20}
+                            linkText={t('button.read')}
                             link={Constants.SITE_BLOG_ARTICLE_PATH + article.path}
                         />
                     </Section>

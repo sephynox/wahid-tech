@@ -6,7 +6,6 @@ import { Themes } from '../tools/Themes';
 
 const Buttons: React.FunctionComponent = (): JSX.Element => {
     const appContext = useContext(AppContext);
-
     const { t, i18n } = useTranslation();
 
     const toggleTheme = () => {

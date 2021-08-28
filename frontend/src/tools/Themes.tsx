@@ -1,3 +1,6 @@
+import OpenSeaDark from '../resources/images/opensea-dark.png'
+import OpenSeaLight from '../resources/images/opensea-light.png'
+
 export enum Themes {
     LIGHT = 'light',
     DARK = 'dark',
@@ -17,7 +20,6 @@ export type Theme = {
     backgroundIcon: string;
     backgroundOption: string;
     backgroundExtended: string;
-    backgroundBlog: string;
     backgroundDelta: string;
     link: string;
     linkHover: string;
@@ -37,6 +39,7 @@ export type Theme = {
     success: string;
     successText: string;
     successBorder: string;
+    images: Record<string, string>;
 };
 
 export const lightTheme: Theme = {
@@ -48,7 +51,6 @@ export const lightTheme: Theme = {
     backgroundIcon: 'rgb(255, 255, 255)',
     backgroundOption: '#b7bec4',
     backgroundExtended: 'rgba(244, 244, 244)',
-    backgroundBlog: 'rgb(255, 255, 255)',
     backgroundDelta: 'rgba(0, 0, 0, .1)',
     link: 'rgb(11, 134, 249)',
     linkHover: 'rgb(38, 107, 172)',
@@ -68,6 +70,9 @@ export const lightTheme: Theme = {
     success: 'rgb(19, 162, 7)',
     successText: 'rgb(19, 162, 7)',
     successBorder: 'rgb(19, 162, 7)',
+    images: {
+        opensea: OpenSeaLight
+    }
 };
 
 export const darkTheme: Theme = {
@@ -79,7 +84,6 @@ export const darkTheme: Theme = {
     backgroundIcon: 'rgb(87, 87, 87)',
     backgroundOption: '#6c757d',
     backgroundExtended: 'rgb(32, 34, 34)',
-    backgroundBlog: 'rgb(32, 34, 34)',
     backgroundDelta: 'rgba(0, 0, 0)',
     link: 'rgb(81, 139, 193)',
     linkHover: 'rgb(6, 125, 237)',
@@ -99,6 +103,9 @@ export const darkTheme: Theme = {
     success: 'rgb(32, 253, 13)',
     successText: 'rgb(32, 253, 13)',
     successBorder: 'rgb(32, 253, 13)',
+    images: {
+        opensea: OpenSeaDark
+    }
 };
 
 export const availableThemes: Record<string, Theme> = {

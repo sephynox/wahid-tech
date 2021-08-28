@@ -22,6 +22,7 @@ const BlogHome: React.FunctionComponent = (): JSX.Element => {
                     date={article.date}
                     text={article.description}
                     image={article.image}
+                    linkText={t('button.read')}
                     imagePadding={20}
                     link={Constants.SITE_BLOG_ARTICLE_PATH + article.path}
                 />

@@ -6,6 +6,7 @@ const Data: Record<string, Nft> = {
         id: 41578729,
         token_id: "5320",
         num_sales: 0,
+        top_bid: 1,
         image_url: "/images/nfts/beached-whale.png",
         listing_date: new Date(2021, 8, 21, 19, 28, 18, 679839),
         name: "Beached Whale",

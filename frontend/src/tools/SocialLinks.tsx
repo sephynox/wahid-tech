@@ -19,9 +19,15 @@ export const SocialLink = ({ title, icon, url }: SocialBlock): JSX.Element => (
     <SocialLinkStyle href={url} target="_blank" title={title}><i className={icon}></i></SocialLinkStyle>
 );
 
-const SocialLinks: React.FunctionComponent<Props> = ({ title, url = window.location.href }: Props): JSX.Element => {
+const SocialLinks: React.FunctionComponent<Props> = (props): JSX.Element => {
+    props = { url: props.url ?? window.location.href, ...props };
+
     const appContext = useContext(AppContext);
-    return (<>{appContext.socialLinks.map((l: SocialBlock, i): JSX.Element => <SocialLink key={i} {...l} />)}</>);
+    const links = appContext.socialLinks.map((l: SocialBlock, i): JSX.Element => (
+        <SocialLink key={i} {...{ ...l, url: l.url + props.url }} />
+    ));
+
+    return (<>{links}</>);
 };
 
 export default SocialLinks;

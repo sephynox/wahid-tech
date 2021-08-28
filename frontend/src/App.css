@@ -150,6 +150,10 @@ figure figcaption {
         align-items: center;
         justify-content: center;
     }
+
+    .pr-0-sm {
+        padding-right: 0;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -158,7 +162,11 @@ figure figcaption {
     }
 }
 
-@media (min-width: 992px) {}
+@media screen and (max-width: 992px) {
+    .pr-0-md {
+        padding-right: 0;
+    }
+}
 
 /*--------------------------------------------------------------
 # Preloader

@@ -11,6 +11,8 @@ import NotFound from '../../pages/NotFound';
 import { NftContract } from '../../actions/OpenSea';
 import { DefinitionList } from '../../styles/DefinitionList';
 import SocialLinks from '../../tools/SocialLinks';
+import OpenSea from './OpenSea';
+import { formatNumber } from '../../utils/data-formatters';
 
 enum ModalState {
     OPEN,
@@ -29,9 +31,10 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
     }
 
     const contract: NftContract = data.asset_contract;
+    const price: string = formatNumber(data.top_bid ?? 1, i18next.language, 18, { minimumFractionDigits: 5 });
     const title: string = data.name ?? t('no_name');
     const subtext: string = data.description ?? t('no_description');
-    const image: string = data.image_url;
+    const image = { url: data.image_url, alt: data.name };
     const owner: string = data.owner?.address;
     const created: string = Intl.DateTimeFormat(i18next.language).format(data.listing_date);
     const sale_date: string = data.last_sale ? Intl.DateTimeFormat(i18next.language).format(data.last_sale) : '';
@@ -45,8 +48,8 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
             <h2 className="capitalize mb-5">{title}</h2>
             <Row>
                 <Col xs={12} md={12} lg={6} xl={6}>
-                    <Figure className="pointer pl-0" onClick={() => setModalState(ModalState.OPEN)}>
-                        <img src={image} alt={subtext} />
+                    <Figure className="pointer pl-0 pr-0-md" onClick={() => setModalState(ModalState.OPEN)}>
+                        <img src={image.url} alt={subtext} />
                         <figcaption><em>{subtext}</em></figcaption>
                     </Figure>
                 </Col>
@@ -61,18 +64,18 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                         <dt className="capitalize">{t('max_supply')}:</dt>
                         <dd className="text-right">{contract.total_supply}</dd>
                         <dt className="capitalize no-print">{t('share')}:</dt>
-                        <dd className="no-print text-right"><SocialLinks title={title} /></dd>
+                        <dd className="no-print text-right"><SocialLinks title={title} url={window.location.href} /></dd>
                     </DefinitionList>
                     {!owner
                         ?
                         <>
-                            {/* <h4>For Sale</h4>
-                            TODO get working with React 
-                            <nft-card
-                                tokenAddress={contract}
-                                tokenId={data.id.toString()}
-                                network={Network.Main}
-                            /> */}
+                            <h4>For Sale</h4>
+                            <OpenSea
+                                address={contract.address}
+                                price={price}
+                                button={t('purchase')}
+                                image={image}
+                            />
                         </>
                         :
                         <>
@@ -93,7 +96,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 </Modal.Header>
                 <Modal.Body>
                     <Figure>
-                        <img src={image} alt={subtext} />
+                        <img src={image.url} alt={subtext} />
                         <figcaption><em>{subtext}</em></figcaption>
                     </Figure>
                 </Modal.Body>
@@ -109,6 +112,6 @@ export default NftProfile;
 
 const ModalStyle = styled(Modal)`
     .modal-large {
-        max-width: calc(100% - 20px);
+        max-width: 100vh;
     }
 `;

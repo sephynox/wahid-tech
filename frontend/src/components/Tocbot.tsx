@@ -103,6 +103,7 @@ const Tocbot: React.FunctionComponent<Props> = (props: Props): JSX.Element => {
 
     useEffect(() => {
         const classRef = `.${element.current?.className.replace(" ", ".")}`;
+
         tocbot.init(Object.assign({
             tocSelector: `${classRef} div aside`,
             scrollSmooth: true,

@@ -293,6 +293,7 @@ const Privacy: React.FunctionComponent = (): JSX.Element => {
             script.async = true;
 
             document.head.appendChild(script);
+            return () => document.getElementById('new-relic')?.remove();
         }
 
         localStorage.setItem('privacyPromptComplete', privacyPromptComplete ? 'true' : 'false');
