@@ -20,6 +20,9 @@ const Data: PostData = {
             url: '/images/blog/cryptocurrencies.png',
             alt: 'Bitcoin XRP Ethereum Cryptocurrencies',
         },
+        tags: [
+            "dlt", "blockchain", "cryptocurrency"
+        ],
         references: [
             {
                 id: "citation-aarons-2021",

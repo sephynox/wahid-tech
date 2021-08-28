@@ -17,6 +17,7 @@ import SocialLinks from '../../tools/SocialLinks';
 import Citation from '../../tools/Citation';
 import References from '../../tools/References';
 import APACitation from '../../tools/APACitation';
+import Tags from '../../tools/Tags';
 
 type Props = {
     data: ArticleData;
@@ -41,6 +42,7 @@ export interface ArticleData {
     date: Date;
     authors: Array<ArticleAuthor>;
     title: string;
+    tags: Array<string>;
     references: Array<Citation>;
     component: React.FunctionComponent;
     modified?: Date;
@@ -53,11 +55,9 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
 
     const article_full_url = Constants.SITE_BLOG_ARTICLE_BASE_URL + data.path;
     const article_authors = data.authors
-        .map(
-            (author: ArticleAuthor) =>
-                author.given + (author.middle !== undefined ? author.middle.substr(0, 1) + '. ' : ' ') + author.family,
-        )
-        .join(', ');
+        .map((author: ArticleAuthor) =>
+            author.given + (author.middle !== undefined ? author.middle.substr(0, 1) + '. ' : ' ') + author.family,
+        ).join(', ');
     const MyArticle = data.component;
     const publish_date = Intl.DateTimeFormat(i18next.language).format(data.date);
     const modified_date = data.modified ? Intl.DateTimeFormat(i18next.language).format(data.modified) : null;
@@ -104,6 +104,9 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                             <dt className="capitalize no-print">{t('share')}:</dt>
                             <dd className="no-print">
                                 <SocialLinks url={article_full_url} title={data.title} />
+                            </dd>
+                            <dd className="no-print">
+                                <Tags tags={data.tags} />
                             </dd>
                         </DefinitionList>
                         <Tocbot
@@ -189,20 +192,6 @@ const ArticleStyle = styled.article`
     & section h4 {
         margin-top: 30px;
         font-size: 1.2em;
-    }
-
-    & figure {
-        padding: 50px;
-        text-align: center;
-    }
-
-    & figure img {
-        max-width: 100%;
-    }
-
-    & figure figcaption {
-        display: inherit;
-        padding-top: 20px;
     }
 
     & .container {

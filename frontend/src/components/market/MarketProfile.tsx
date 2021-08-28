@@ -17,6 +17,7 @@ import ReadMore from '../../tools/ReadMore';
 import { formatFirstUpper, formatNumber, formatPrice } from '../../utils/data-formatters';
 import StyledPercentage from '../../tools/StyledPercentage';
 import IconButton from '../../tools/IconButton';
+import NotFound from '../../pages/NotFound';
 
 const MarketProfile = (): JSX.Element => {
     const { type, id } = useParams<{ type: MarketType, id: string }>();
@@ -29,6 +30,10 @@ const MarketProfile = (): JSX.Element => {
     const refreshData = () => {
         marketContext.refreshData(type ?? MarketType.CRYPTO, marketContext.dispatchAssetData, id);
     };
+
+    if (assetData === undefined) {
+        return <NotFound />;
+    }
 
     return (
         <Container>

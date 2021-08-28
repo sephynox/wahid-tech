@@ -127,11 +127,13 @@ export default Tocbot;
 
 const TocStyle = styled.div`
     height: auto;
+    pointer-events: none;
     width: 100%;
 
     & div aside {
         transform: none;
         display: block;
+        pointer-events: all;
         background-color: rgba(255, 255, 255, 0);
     }
 

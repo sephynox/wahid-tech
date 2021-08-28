@@ -6,6 +6,7 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Market from './pages/Market';
+import Nft from './pages/Nft';
 import { AssetData } from './tools/MarketData';
 import { SocialBlock } from './tools/SocialLinks';
 
@@ -22,6 +23,12 @@ export const navLinks: Array<NavBlock> = [
         icon: 'icon bi-graph-up',
         to: '/financial-markets',
         component: Market,
+    },
+    {
+        text: 'NFTs',
+        icon: 'icon bi-images',
+        to: '/nfts',
+        component: Nft,
     },
     {
         text: 'blog',

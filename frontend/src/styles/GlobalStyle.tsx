@@ -56,11 +56,6 @@ code {
     monospace;
 }
 
-#footer {
-    color: ${(props: ThemeEngine) => props.theme.text};
-    background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
-}
-
 .captcha.is-invalid {
     background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }
@@ -75,10 +70,6 @@ code {
 
 .color.grey {
     color: ${(props: ThemeEngine) => props.theme.hr};
-}
-
-.social-links a:hover {
-    color: ${(props: ThemeEngine) => props.theme.info};
 }
 
 .nav-menu a span {

@@ -52,6 +52,44 @@ article {
     max-width: 800px;
 }
 
+figure {
+    padding: 50px;
+    text-align: center;
+}
+
+figure img {
+    max-width: 100%;
+}
+
+figure figcaption {
+    display: inherit;
+    padding-top: 20px;
+}
+
+.spacer {
+    flex-grow: .25;
+}
+
+.mr-0 {
+    margin-right: 0;
+}
+
+.pr-0 {
+    padding-right: 0;
+}
+
+.ml-0 {
+    margin-left: 0;
+}
+
+.pl-0 {
+    padding-left: 0;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+
 .text-right {
     text-align: right !important;
 }
@@ -96,6 +134,10 @@ article {
 }
 
 @media screen and (max-width: 768px) {
+    figure {
+        padding: 10px;
+    }
+
     .text-xs-center {
         text-align: center;
     }

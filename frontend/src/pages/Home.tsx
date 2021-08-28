@@ -4,14 +4,16 @@ import { useTranslation } from 'react-i18next';
 import * as Constants from '../Constants';
 import { donationAddresses } from '../Data';
 import { Section } from '../styles/Section';
-import Data, { Posts } from '../components/blog/Data';
+import NftData, { Nfts } from '../components/nft/Data';
+import BlogData, { Posts } from '../components/blog/Data';
 import Postcard from '../components/Postcard';
 import CryptoAssets from '../tools/CryptoAssets';
 
 const Home = (): JSX.Element => {
     const { t } = useTranslation();
 
-    const article = Data[Posts[0]];
+    const article = BlogData[Posts[0]];
+    const nft = NftData[Nfts[0]];
     const title = Constants.SITE_NAME;
     const subtext = t('content.home');
     const donate = t('content.donate');
@@ -24,21 +26,36 @@ const Home = (): JSX.Element => {
                     <em>{subtext}</em>
                 </header>
             </Section>
-            <Section>
-                <h3 className="capitalize mb-3">{t('latest_blog_post')}</h3>
-                <Row>
-                    <Col xs={12} md={12} lg={6} xl={4}>
+            <Row>
+                <Col xs={6} md={6} lg={6} xl={6}>
+                    <Section>
+                        <h3 className="capitalize mb-3">{t('latest_blog_post')}</h3>
                         <Postcard
-                            height={600}
+                            height={700}
                             title={article.title}
                             date={article.date}
                             text={article.description}
                             image={article.image}
+                            imagePadding={20}
                             link={Constants.SITE_BLOG_ARTICLE_PATH + article.path}
                         />
-                    </Col>
-                </Row>
-            </Section>
+                    </Section>
+                </Col>
+                <Col xs={6} md={6} lg={6} xl={6}>
+                    <Section>
+                        <h3 className="capitalize mb-3">{t('latest_nft')}</h3>
+                        <Postcard
+                            height={700}
+                            title={nft.name}
+                            image={{ url: nft.image_url, alt: nft.name }}
+                            text={nft.description}
+                            link={Constants.SITE_NFT_ASSET_PATH + Nfts[0]}
+                            date={nft.listing_date}
+                            linkText={t('view')}
+                        />
+                    </Section>
+                </Col>
+            </Row>
             <Section>
                 <header>
                     <h3 className="capitalize">{t('donate')}</h3>

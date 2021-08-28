@@ -5,6 +5,9 @@ export const DefinitionList = styled.dl`
         text-align: left;
         margin-left: calc(30% + 20px);
         padding-bottom: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     & dt {
@@ -27,7 +30,7 @@ export const DefinitionList = styled.dl`
         }
 
         & dd {
-            width: 70%;
+            width: calc(70% - 20px);
         }
     }
 

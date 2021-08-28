@@ -2,31 +2,40 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { ArticleImage } from './blog/Article';
 import { ThemeEngine } from '../styles/GlobalStyle';
 import Theme from '../tools/Themes';
+
+interface Image {
+    url: string,
+    alt: string,
+};
 
 type Props = {
     title: string;
     text: string;
     link: string;
     date: Date;
-    image: ArticleImage;
+    image: Image;
     height?: number;
+    imagePadding?: number;
     linkText?: string;
 };
 
-const Postcard = ({ title, text, link, date, image, height = 500, linkText = 'button.read' }: Props): JSX.Element => {
+const Postcard: React.FunctionComponent<Props> = (props): JSX.Element => {
     const { t } = useTranslation();
+    const linkText = props.linkText ?? 'button.read';
+    const imagePad = props.imagePadding ?? 0;
 
     return (
-        <PostcardStyle height={height}>
-            <img className="card-img-top" src={image.url} alt={image.alt} />
+        <PostcardStyle padding={imagePad} height={props.height}>
+            <header>
+                <img className="card-img-top" src={props.image.url} alt={props.image.alt} />
+            </header>
             <div className="card-body">
-                <h3 className="card-title">{title}</h3>
-                <p>{date.toLocaleDateString()}</p>
-                <p className="card-text">{text}</p>
-                <NavLink className="btn btn-primary capitalize" to={link}>{t(linkText)}</NavLink>
+                <h3 className="card-title">{props.title}</h3>
+                <p>{props.date.toLocaleDateString()}</p>
+                <p className="card-text">{props.text}</p>
+                <NavLink className="btn btn-primary capitalize" to={props.link}>{t(linkText)}</NavLink>
             </div>
         </PostcardStyle>
     );
@@ -35,11 +44,15 @@ const Postcard = ({ title, text, link, date, image, height = 500, linkText = 'bu
 export default Postcard;
 
 const PostcardStyle = styled.article<Theme>`
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     height: ${(props: { height: number }) => props.height}px;
     background-color: ${(props: ThemeEngine) => props.theme.background};
     border: 1px solid ${(props: ThemeEngine) => props.theme.backgroundAlt};
+
+    & header {
+        display: inline-flex;
+    }
 
     & .card-body {
         display: flex;
@@ -61,21 +74,26 @@ const PostcardStyle = styled.article<Theme>`
         -ms-line-clamp: 5;
     }
 
-    & img {
-        padding: 20px;
-        display: block;
-        max-width: 545px;
+    & header img {
+        padding: ${(props: { padding: number }) => props.padding}px;;
+        max-height: 350px;
         margin-left: auto;
         margin-right: auto;
     }
 
     @media (min-width: 992px) {
-        & :nth-child(odd) {
+        :nth-child(odd) {
             margin-bottom: 10px;
         }
     }
 
     @media screen and (max-width: 992px) {
         margin-bottom: 10px;
+    }
+
+    @media screen and (max-width: 768px) {
+        & header img {
+            padding: 0;
+        }
     }
 `;

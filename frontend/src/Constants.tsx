@@ -1,3 +1,4 @@
+export const SITE_BASE_URL = window.location.origin;
 export const DEV_MODE = 'production' !== process.env.NODE_ENV;
 export const SITE_NAME = 'WTech';
 export const MY_NAME = 'Tanveer Wahid';
@@ -7,11 +8,12 @@ export const DEFAULT_CURRENCY = 'USD';
 export const DEFAULT_PRICE_PLACES = 2;
 export const DEFAULT_PERCENT_PLACES = 2;
 export const DEFAULT_PRICE_PERCENTAGE_CHANGES = '24h,7d,30d,1y';
-export const SITE_BASE_URL = 'https://wahid.tech';
 export const SITE_BLOG_PATH_BASE = '/technology-blog/';
 export const SITE_BLOG_ARTICLE_PATH = SITE_BLOG_PATH_BASE + 'posts/';
 export const SITE_MARKET_PATH_BASE = '/financial-markets/';
 export const SITE_MARKET_ASSET_PATH = SITE_MARKET_PATH_BASE + 'asset/';
+export const SITE_NFT_PATH_BASE = '/nfts/';
+export const SITE_NFT_ASSET_PATH = SITE_NFT_PATH_BASE + 'asset/';
 export const SITE_BLOG_ARTICLE_BASE_URL = SITE_BASE_URL + SITE_BLOG_ARTICLE_PATH;
 export const SITE_MARKET_PATH_BASE_URL = SITE_BASE_URL + SITE_MARKET_ASSET_PATH;
 export const COINGECKO_API_ENDPOINT = 'https://api.coingecko.com/api/v3';
