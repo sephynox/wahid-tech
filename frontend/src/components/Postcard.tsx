@@ -1,13 +1,10 @@
+import i18next from 'i18next';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { ThemeEngine } from '../styles/GlobalStyle';
+import { Image } from './Lightbox';
 import Theme from '../tools/Themes';
-
-interface Image {
-    url: string,
-    alt: string,
-};
 
 type Props = {
     title: string;
@@ -30,7 +27,7 @@ const Postcard: React.FunctionComponent<Props> = (props): JSX.Element => {
             </header>
             <div className="card-body">
                 <h3 className="card-title">{props.title}</h3>
-                <p>{props.date.toLocaleDateString()}</p>
+                <p>{props.date.toLocaleDateString(i18next.language)}</p>
                 <p className="card-text">{props.text}</p>
                 <NavLink className="btn btn-primary capitalize" to={props.link}>{props.linkText}</NavLink>
             </div>
@@ -72,7 +69,7 @@ const PostcardStyle = styled.article<Theme>`
     }
 
     & header img {
-        padding: ${(props: { padding: number }) => props.padding}px;;
+        padding: ${(props: { padding: number }) => props.padding}px;
         max-height: 350px;
         margin-left: auto;
         margin-right: auto;

@@ -27,7 +27,7 @@ const Home = (): JSX.Element => {
                 </header>
             </Section>
             <Row>
-                <Col xs={6} md={6} lg={6} xl={6}>
+                <Col xs={12} sm={12} md={6} lg={6} xl={6}>
                     <Section>
                         <h3 className="capitalize mb-3">{t('latest_blog_post')}</h3>
                         <Postcard
@@ -42,7 +42,7 @@ const Home = (): JSX.Element => {
                         />
                     </Section>
                 </Col>
-                <Col xs={6} md={6} lg={6} xl={6}>
+                <Col xs={12} sm={12} md={6} lg={6} xl={6}>
                     <Section>
                         <h3 className="capitalize mb-3">{t('latest_nft')}</h3>
                         <Postcard

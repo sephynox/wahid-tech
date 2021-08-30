@@ -1,4 +1,5 @@
 import { Nft } from "../../actions/OpenSea";
+import ImageBeachedWhale from '../../resources/images/nfts/beached-whale.png';
 
 // TODO Get OpenSea API approval
 const Data: Record<string, Nft> = {
@@ -7,8 +8,8 @@ const Data: Record<string, Nft> = {
         token_id: "5320",
         num_sales: 0,
         top_bid: 1,
-        image_url: "/images/nfts/beached-whale.png",
-        listing_date: new Date(2021, 8, 21, 19, 28, 18, 679839),
+        image_url: ImageBeachedWhale,
+        listing_date: new Date(2021, 7, 29, 19, 28, 18),
         name: "Beached Whale",
         description: "Among the vast ocean that is the mempool, the dark forest of cyberspace, there exist hidden paradises of boundless treasure lost in time. These caches of riches washed up upon shores long forgotten yet they remain untouched, beached whales. Photo Credit: Foundry Co (Pixaby)",
         external_link: "https://wahid.eth/",

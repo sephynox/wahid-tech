@@ -4,12 +4,13 @@ import { Eth } from 'react-cryptocoins';
 import styled from 'styled-components';
 import QRCode from 'qrcode.react';
 import { ThemeEngine } from '../../styles/GlobalStyle';
+import { Image } from '../Lightbox';
 
 type Props = {
     button: string;
     address: string;
     price: string;
-    image: { url: string, alt: string };
+    image: Image;
 }
 
 const OpenSea: React.FunctionComponent<Props> = (props): JSX.Element => {

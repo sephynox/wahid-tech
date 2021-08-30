@@ -286,6 +286,8 @@ const Privacy: React.FunctionComponent = (): JSX.Element => {
             purgeCookies(allowedCookies, true);
         }
 
+        localStorage.setItem('privacyPromptComplete', privacyPromptComplete ? 'true' : 'false');
+
         if (appContext.allowedCookieState['performance'] && !document.getElementById('new-relic')) {
             const script = document.createElement('script');
             script.id = 'new-relic';
@@ -295,8 +297,6 @@ const Privacy: React.FunctionComponent = (): JSX.Element => {
             document.head.appendChild(script);
             return () => document.getElementById('new-relic')?.remove();
         }
-
-        localStorage.setItem('privacyPromptComplete', privacyPromptComplete ? 'true' : 'false');
     }, [allowedCookies, privacyPromptComplete, appContext.allowedCookieState]);
 
     return (

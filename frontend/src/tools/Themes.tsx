@@ -43,7 +43,7 @@ export type Theme = {
 };
 
 export const lightTheme: Theme = {
-    name: 'light',
+    name: Themes.LIGHT,
     border: '1px solid rgba(0, 0, 0, .125)',
     borderAlt: '1px solid rgba(0,0,0,.125)',
     background: 'rgb(255, 255, 255)',
@@ -76,7 +76,7 @@ export const lightTheme: Theme = {
 };
 
 export const darkTheme: Theme = {
-    name: 'dark',
+    name: Themes.DARK,
     border: '1px solid rgba(169, 155, 134, 0.13)',
     borderAlt: '1px solid rgba(169, 155, 134, 0.13)',
     background: 'rgb(18, 18, 19)',

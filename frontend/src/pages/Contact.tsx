@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { Section } from '../styles/Section';
 import { apiReducer, initialWTechAPIState, submitContactForm, WTechAPIStates } from '../actions/WTech';
 import { initialContactData } from '../tools/ContactData';
+import { Themes } from '../tools/Themes';
 import { formatFirstUpper, formatTitleCase } from '../utils/data-formatters';
 
 const Contact = (): JSX.Element => {
@@ -15,7 +16,7 @@ const Contact = (): JSX.Element => {
     const recaptchaRef = createRef();
     const { t, i18n } = useTranslation();
 
-    const [theme] = useState(() => localStorage.getItem('theme') || 'light');
+    const [theme] = useState(() => localStorage.getItem('theme') || Themes.LIGHT);
     const [showServerError, setShowServerError] = useState(false);
     const [sendButtonDisabled, setSendButtonDisabled] = useState(false);
     const [sendButtonText, setSendButtonText] = useState<string>(t('button.send_message'));

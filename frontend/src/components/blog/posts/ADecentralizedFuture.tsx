@@ -1,5 +1,6 @@
 import React from 'react';
 import { Figure } from 'react-bootstrap';
+import LightBox from '../../Lightbox';
 import Quote from '../../Quote';
 
 const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
@@ -28,9 +29,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
             <Figure>
                 <img src="/images/blog/internet-a-fad.webp" alt="Daily Mail Internet a Fad Article" />
                 <figcaption>
-                    Afshar, V. @ValaAfshar. (2018, April 18).
-                    <cite>Internet ‘may be just a passing fad as millions give up on it&apos;</cite>,
-                    December 2000.
+                    Afshar, V. @ValaAfshar. (2018, April 18). <cite>Internet ‘may be just a passing fad as millions give up on it&apos;</cite>, December 2000.
                     &nbsp;<a target="_blank" href="https://web.archive.org/web/20210523195547/https://twitter.com/ValaAfshar/status/1383904613598859270" rel="noreferrer">Twitter</a>.
                 </figcaption>
             </Figure>
@@ -44,8 +43,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
             <p>
                 The Daily Mail also was not the only critic of the internet. Even prominent computer scientists like
                 Clifford Stoll were unable to see the internet&apos;s potential. In 1995, Stoll wrote a piece in
-                Newsweek that aged quite poorly and today sounds nothing more than an old man yelling at children
-                to get off of his lawn. He stated &ldquo;Visionaries see a future of telecommuting workers,
+                Newsweek that aged quite poorly and today sounds like nothing more than an old man yelling at
+                children to get off of his lawn. He stated &ldquo;Visionaries see a future of telecommuting workers,
                 interactive libraries and multimedia classrooms. They speak of electronic town meetings and
                 virtual communities. Commerce and business will shift from offices and malls to networks and modems.
                 And the freedom of digital networks will make government more democratic. Baloney. Do our computer
@@ -134,17 +133,21 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 many times so far, I personally have never been satisfied with the explanations. A DLT network
                 is comprised of three main components: the database (a blockchain or other method), a network,
                 and the application. The image above is a blockchain in its simplest form. A blockchain is an ordered,
-                and incremental database with each block having a sequential block number that contains an index,
-                a timestamp, the one-way cryptographic hash of the block before it, and any data. So what is the
-                deal with Merkle trees? A Merkle Tree allows for quicker, more efficient verification of the chain
-                but also as a measure to conserve space, memory, and CPU usage as &ldquo;old blocks can then be
-                compacted by stubbing off branches of the tree&rdquo; (Nakamoto, 2009). The diagram below demonstrates
-                a Merkle Tree and how blocks can be compacted to a top hash or Merkle Root by pairs. In the case of
-                an odd number, the remainder is copied and paired with itself.
+                and incremental database with each block (or state) having a sequential block number that contains an
+                index, a timestamp, the one-way cryptographic hash of the block before it, and any data. The
+                cryptographic hash is a string of characters which will always be the same so long as the data being
+                hashed remains constant. If the data changes in any way, the hash will be completely different. So
+                what is the deal with Merkle trees? A Merkle Tree allows for quicker, more efficient verification of
+                the chain but also as a measure to conserve space, memory, and CPU usage as &ldquo;old blocks can then
+                be compacted by stubbing off branches of the tree&rdquo; (Nakamoto, 2009). Essentially, the integrity
+                of the entire chain can be ensured by verifying the top hash (or Merkle Root) instead of having to
+                verify every transaction and every block which would be time consuming. The diagram below demonstrates
+                a Merkle Tree and how blocks can be compacted to a top hash by pairs. In the case of an odd number,
+                the remainder is copied and paired with itself.
             </p>
             <Figure>
                 <img src="/images/blog/merkle-tree-example.png" alt="An Example of Merkle Tree" />
-                <figcaption>An Example of Merkle Tree</figcaption>
+                <figcaption>An Example of Merkle Tree. <a target="_blank" href="https://web.archive.org/web/20210829211910/https://en.wikipedia.org/wiki/Merkle_tree" rel="noreferrer">Wikipedia</a>.</figcaption>
             </Figure>
             <p>
                 But what of the others? We have heard the phrase &ldquo;decentralized&rdquo; and
@@ -165,8 +168,12 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
             </p>
             <p>
                 The differences lay in their intricacies as all decentralized networks are distributed but not all
-                distributed networks are decentralized.So how does a decentralized network operate on a distributed
-                ledger? Ah, yes, so this is precisely why I dislike the majority of explanations on the technology.
+                distributed networks are decentralized. So how does a decentralized network operate on a distributed
+                ledger? Ah, yes, so this is precisely why I dislike the majority of explanations on the technology
+                as this part may be confusing for many people. A DLT can utilize a database such as a blockchain
+                and distribute that database across multiple nodes in the the network. As a result, the database is
+                now distributed across a network but is not necessarily decentralized as this ledger can be under
+                the control of a single authority. TODO
             </p>
             <p>
                 Thus, DLT and other blockchain technologies <i>can</i> create immutable records (though current
@@ -215,11 +222,9 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 systematic problem is the same group expected to ensure it does not occur: banks.
             </p>
             <Figure>
-                <img src="/images/blog/top-4-banks-fincen-files.png" alt="Bitcoin Ethereum XRP Binance Cardano Stellar" />
+                <LightBox imageLight={"/images/blog/top-5-banks-fincen-files.png"} imageDark={"/images/blog/top-5-banks-fincen-files-dark.png"} imageAlt="Chart displaying the Top 5 banks in FinCen files by amount" />
                 <figcaption>
-                    ICIJ. (2020, September 20). <i>
-                        <cite>Global banks defy U.S. crackdowns by serving oligarchs, criminals and terrorists.</cite>
-                    </i>
+                    [Data] ICIJ. (2020, September 20). <i><cite>Global banks defy U.S. crackdowns by serving oligarchs, criminals and terrorists.</cite></i>
                     &nbsp;<a target="_blank" href="https://web.archive.org/web/20210630030416/https://www.icij.org/investigations/fincen-files/global-banks-defy-u-s-crackdowns-by-serving-oligarchs-criminals-and-terrorists" rel="noreferrer">ICIJ</a>.
                 </figcaption>
             </Figure>
@@ -233,14 +238,16 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 finalist (Hudson, 2021). However, this should not come as a shock as big banks were largely responsible
                 for the 2008 sub-prime mortgage crisis which thrust the world into a global recession. The same crisis
                 which led to statements like banks being &ldquo;too big to fail&rdquo; but in reality, banks that are
-                too big to fail are too big to exist. Despite their central role in the disaster, their punishment was
-                to receive billions of dollars in emergency bailout money while average Americans lost their homes.
+                too big to fail are too big to exist for the simple reason that they have become a single point of
+                failure and single points of failure are security risks in any critical infrastructure. Furthermore,
+                despite their central role in the disaster, their punishment was to receive billions of dollars in
+                emergency bailout money while average Americans lost their homes.
             </p>
             <p>
                 The scandals from large banks never end with latest (as of this writing) being the anti-trust lawsuit
                 filed by the New Mexico State Investment Council &ldquo;claiming Bank of America Corporation,
                 Citigroup Inc., Goldman Sachs Group Inc., and other top financial institutions rigged the credit
-                default swap market by manipulating a key benchmark&rdquo; (Sovereign Wealth Fund Institute, 221).
+                default swap market by manipulating a key benchmark&rdquo; (Sovereign Wealth Fund Institute, 2021).
                 Prior to that, there was Wells Fargo&apos;s fake account scandal which the bank opened fraudulent
                 accounts for millions of customers without their knowledge (Flitter, 2020). There was also
                 JP Morgan&apos;s manipulation of precious-metals and treasury markets which resulted in a Racketeer
@@ -293,14 +300,15 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 today&apos;s value sits at around $483,784,000. However, this begs the question about what the value
                 should be of cryptocurrencies. The truth is, they are worth whatever we as a society believe they
                 are worth as everything is a speculative asset including land and gold. The only reason gold has
-                value is because we deem it so. This comes down the functions of money and the properties that make
-                a medium more or less viable as a form of money.
+                value is because we deem it so and other mediums such as cowry shells and sticks have also been used
+                in the past as money. This comes down the functions of money and the properties that make a medium
+                more or less viable as a form of money.
             </p>
             <p>
                 Money has three functions: a store of value, a medium of exchange, and a unit of account. This much
                 is pretty textbook however, one point I find is often lost is the difference between money and
                 currency. The difference is that currency has all the attributes of money except it is <i>not</i> a
-                store of value and instead, a promissory not. As such, fiat is a currency and it not money but the
+                store of value and instead, a promissory note. As such, fiat is a currency and it not money but the
                 medium by which money is transferred. This subtle difference emerged for reasons of convenience as
                 gold coin was less portable than paper notes. This brings us to the properties of money (and
                 currency) of which portability is a major plus. Others include durability, divisibility, supply,
@@ -381,9 +389,9 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
         </section>
         <section>
             <Figure>
-                <img src="/images/blog/pew-wealth-disparity.webp" alt="Charts displaying income disparity" />
+                <img src="/images/blog/pew-wealth-disparity.jpg" alt="Charts displaying income disparity" />
                 <figcaption>
-                    Pew Research Center. (2020, January 9). <i><cite>Trends in income and wealth inequality.</cite></i>
+                    Pew Research Center. (2020, January 9). <i><cite>Trends in income and wealth inequality</cite></i>.
                     &nbsp;<a target="_blank" href="https://web.archive.org/web/20210821052153/https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality" rel="noreferrer">Pew Research Center</a>.
                 </figcaption>
             </Figure>
@@ -397,13 +405,28 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 households has decreased from 61% in 1971 to 51% in 2019&rdquo; and that from &ldquo;1970 to 2018, the
                 share of aggregate income going to middle-class households fell from 62% to 43%. Over the same period,
                 the share held by upper-income households increased from 29% to 48%&rdquo; (Pew Research Center, 2020).
+                At the end of 2020, the top 1% of households command $34.52T or approximately 32% of the wealth in the
+                U.S. as well as more than the 50-90 percentile and bottom 50 percent combined which command
+                approximately 29%. This puts the top 1% almost 9 points higher than in 1989 while the entire bottom
+                50% sits at almost 10 points lower than in 1989 (The Fed, 2021). Additionally, the median sale price
+                of houses in the last three decades has quadrupled putting home ownership for many out of reach
+                while dependance on banking institutions for home buying increases.
             </p>
+            <Figure>
+                <LightBox imageLight={"/images/blog/housing-prices-median.png"} imageDark={"/images/blog/housing-prices-median-dark.png"} imageAlt="Charts displaying median sale price of houses in the United States" />
+                <figcaption>
+                    [Data] St. Louis Fed. (2021, July 26). <i><cite>Median Sales Price of Houses Sold for the United States</cite></i>. FRED. https://fred.stlouisfed.org/series/MSPUS.
+                    &nbsp;<a target="_blank" href="https://web.archive.org/web/20210829220949/https://fred.stlouisfed.org/series/MSPUS" rel="noreferrer">St. Louis Fed</a>.
+                </figcaption>
+            </Figure>
             <p>
-                However, despite this, what is most absurd is the hubris of our leaders for believing that a small
-                group of politically appointed bureaucrats has the ability to exercise control over something as
-                complex as a first world economy. An examination of the results through history shows that not only
-                are they unable to meet goals, they are also unable to remain independent&mdash;a critical aspect of
-                being a central bank.
+                Moreover, a Federal Reserve report on U.S. household economic well-being showed that the median
+                savings of American households sitting at just $5,300 (The Fed, 2020). Additionally, 24% of surveyed
+                would opt to incur some form of revolving debt if faced with a $400 emergency expense. An additional
+                12% stated that they would not be able to pay for the expense as well as another 8% stating they would
+                sell something. The situation shows the vulnerability of such households as &ldquo;volatile income and
+                low savings can turn common experiences&mdash;such as waiting a few days for a bank deposit to be
+                available&mdash;into a problem for some&rdquo; (The Fed, 2019).
             </p>
         </section>
         <section>
@@ -422,8 +445,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 do so. In fact, in nations such as Ghana and Uganda, cellular airtime minutes are used as money as
                 &ldquo;airtime&apos;s value does not rely directly on a government&apos;s stability or ability to
                 hold down inflation&rdquo; (The Economist, 2013). Despite still requiring telecom companies as an
-                intermediary, this example shows that instruments other than central bank issued currencies can be
-                used as mediums of exchange, stores of value, and units of account without the need of banks.
+                intermediary, this example shows that modern instruments other than central bank issued currencies
+                can be used as mediums of exchange, stores of value, and units of account without the need of banks.
             </p>
             <p>
                 Another important scenario is the complete failure of governments. This is something that occurs
@@ -451,7 +474,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 Akon&apos;s Akoin. Akon is working to provide the very financial inclusion banks could care less to
                 provide to people in African nations. The artist even incorporates some of the critical intricacies
                 with value transfer in the region by tokenizing cellular minutes which are already being used as a
-                form of money in places like Kenya (The Economist, 2013). His message is one that is heard and felt
+                form of money as mentioned above in places like Kenya. His message is one that is heard and felt
                 all too often in such areas, that the current systems offer nothing more than &ldquo;weak and
                 over-inflated fiat currencies that prevent citizens from accessing financial services western
                 countries take for granted&rdquo; (Stevens, 2021). Akon&apos;s point is well made as when the U.S.
@@ -482,7 +505,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 author="Arthur C. Clarke"
             />
             <p>
-                As the possibilities of DLT endless, societies can begin to restore their faith in systems that
+                As the possibilities of DLT are endless, societies can begin to restore their faith in systems that
                 have failed them for generations. The road ahead is not going to be easy with much of the DLT space
                 today not unlike the wild west as are all new frontiers. However, as adoption increases and new
                 networks arise, a world completely powered by DLT will be unrecognizable from today.
@@ -494,7 +517,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 denomination. It is not something we often think of, it just it. However, what if money could
                 be thought of in an entirely different way? Perhaps money could become more akin to bandwidth with
                 payroll done every second. This approach could give individuals far more control of their finances
-                with the ability to fine tune savings, bills, an retirement in real-time.
+                with the ability to fine tune savings, bills, and even retirement in real-time.
             </p>
             <p>
                 Thus, credit applications could do away with credit scores and simply determine an individual&apos;s
@@ -503,8 +526,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 predetermined range accepted by both parties and enforced via smart contracts. The same can apply to
                 savings and retirement accounts allowing individuals to simply dial-up or dial down their various
                 account streams based on their inbound and outbound streams. Account pools can allow individuals
-                to predetermine their future finances whether for retirement or knowing exactly how long until a
-                pool will run out.
+                to predetermine their future finances whether for retirement or simply knowing exactly how long until
+                a pool will run out at its current rates.
             </p>
             <p>
                 However, money is not the only application for DLT technology. Anything from movie tickets, licenses,
@@ -517,6 +540,20 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 that own an obsolete version of a product can receive a special promotional price for upgrading. Of
                 course, commerce is not the only aspect but property deeds, automotive titles, lease and mortgage
                 agreements, and more can all be tokenized in an internet of value.
+            </p>
+            <p>
+                Even industries like healthcare can greatly benefit from DLT and the democratization of healthcare
+                data. Interoperable healthcare networks powered using DLT can offer a single source of truth
+                for a patient&apos;s healthcare data. This not only eliminates issues of patient misidentification
+                and incomplete records, it allows for near-perfect data liquidity. Healthcare bills, prescriptions,
+                and insurance can be minted as NFTs which ensure bills, prescriptions, referrals, etc. are not lost,
+                not able to be forged, and not double-spent greatly reducing healthcare administrative costs. Data
+                breaches would also not expose millions of patient records at a time. Furthermore, with improved
+                data liquidity and real-time de-identification of data, organizations like the CDC and WHO can
+                receive streams of population health data in real-time allowing these critical organizations to
+                monitor possible outbreaks before they become epidemic. Perhaps, it may even be possible to pinpoint
+                sources of outbreaks by cross-referencing regions of increased reports of say, salmonella, with
+                agricultural supply chain data automatically.
             </p>
             <p>
                 With governmental adoption, W2s and other tax forms can be minted by addresses with EIN NFTs which
@@ -539,14 +576,15 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 have sound money issued by central banks.
             </p>
             <p>
-                This is the nature of self-organizing systems which enable our societies to have a measure of
+                This is the nature of self-organizing systems which enable our societies to have some measure of
                 control in order to predetermine the consequences of our actions. Our societies have been traveling
                 a path of decentralization for quite some time. From Martin Luther&apos;s 95 Theses and the printing
-                press, to the Civil Rights movement and broadcast media, until now, a financial and economic
-                revolution with distributed ledger technology. We have been breaking down centralized nexuses of
-                power and empowering more individual people over time and with DLT, we are approaching a technological
-                singularity point. The future described above may sound far-fetched today, but as we begin to move
-                into a world where issues of trust are thing of the past, anything is possible.
+                press, to the Civil Rights movement and broadcast media, until now, a technological, financial,
+                economic, social, and artistic revolution&mdash;a modern renaissance&mdash;with distributed ledger
+                technology. We have been breaking down centralized nexuses of power and empowering more individual
+                people over time and with DLT, we are approaching a technological singularity point. The future
+                described above may sound far-fetched today, but as we begin to move into a world where issues of
+                trust become a thing of the past, anything is possible.
             </p>
         </section>
         <section>
@@ -563,8 +601,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 entering an exciting era. From quantum computing, fusion energy, decentralized networks, artificial
                 intelligence, and space exploration, it is hard to not think that our story is just beginning.
                 However, there are grave issues such as climate change and war which threaten the very existence of
-                our species. It is up to us, the people, to ensure that we have a future&mdash;no one will do it for
-                us.
+                our species. It is up to us, the people, to ensure that we have a future and demand that our leaders
+                protect and nurture that future.
             </p>
             <p>
                 For me, Jack Dorsey&apos;s statement where he hopes the technology &ldquo;creates world peace or

@@ -12,6 +12,7 @@ import { Breadcrumbs } from '../../layout/Navigation';
 import { DefinitionList } from '../../styles/DefinitionList';
 import HorizontalRule from '../../styles/HorizontalRule';
 import Tocbot from '../Tocbot';
+import { Image } from '../Lightbox';
 import CitationGuide from '../../tools/CitationGuide';
 import SocialLinks from '../../tools/SocialLinks';
 import Citation from '../../tools/Citation';
@@ -29,16 +30,11 @@ export interface ArticleAuthor {
     family: string;
 }
 
-export interface ArticleImage {
-    url: string;
-    alt: string;
-}
-
 export interface ArticleData {
     id: number;
     path: string;
     description: string;
-    image: ArticleImage;
+    image: Image;
     date: Date;
     authors: Array<ArticleAuthor>;
     title: string;

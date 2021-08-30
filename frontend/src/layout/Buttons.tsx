@@ -26,7 +26,7 @@ const Buttons: React.FunctionComponent = (): JSX.Element => {
                 <li>
                     <button className="nav-link" onClick={toggleTheme}>
                         <i className={appContext.theme === Themes.LIGHT ? 'icon bi-moon-fill' : 'icon bi-sun-fill'}></i>
-                        <span className="capitalize">&nbsp;{appContext.theme === Themes.LIGHT ? t('dark') : t('light')}</span>
+                        <span className="capitalize">&nbsp;{t(appContext.theme)}</span>
                     </button>
                 </li>
                 <li>
