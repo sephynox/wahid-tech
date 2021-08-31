@@ -61,7 +61,7 @@ const MLACitation = ({
             {site !== undefined ? <i> {site}</i> : <i> {publisher}</i>}, {date_string},{' '}
             {url !== undefined ? (
                 <>
-                    <a href={archive !== undefined ? archive : url} target="_blank">
+                    <a href={archive !== undefined ? archive : url} rel="noreferrer" target="_blank">
                         {url}
                     </a>
                     . Accessed {date_today}.

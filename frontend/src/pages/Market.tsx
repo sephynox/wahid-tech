@@ -151,7 +151,10 @@ const Market = (): JSX.Element => {
             }
         }
 
-        return () => clearTimeout(timer);
+        return () => {
+            clearTimeout(timer);
+            toast.dismiss();
+        };
     }, [assetType, assetKey, assetData, dateStart, loaderToast, t]);
 
     return (

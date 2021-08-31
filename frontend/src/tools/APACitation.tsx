@@ -63,7 +63,7 @@ const APACitation = ({
             <span> {site !== undefined ? site : publisher}</span>.{' '}
             {url !== undefined ? (
                 <>
-                    <a href={archive !== undefined ? archive : url} target="_blank">
+                    <a href={archive !== undefined ? archive : url} rel="noreferrer" target="_blank">
                         {url}
                     </a>
                     .

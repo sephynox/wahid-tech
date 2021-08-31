@@ -13,7 +13,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 and technologist, I would have been ecstatic to live through the Netscape moment with what I know
                 today. However, as we know&mdash;at least, for now&mdash;we cannot go back in time. Although, history
                 has an interesting habit of rhyming and we may very well be experiencing the next technological
-                breakthrough of our time which can once again redefine the way we interact in our societies.
+                breakthrough of our time which might once again redefine the way we interact in our societies.
             </p>
             <p>
                 What many do not realize today is that the internet was met with a surprising amount of skepticism
@@ -21,34 +21,29 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 Quite frankly, it is easy to forget such things&mdash;when was the last time you questioned the
                 importance of electricity? However, not unlike others throughout history who felt threatened by
                 innovative technologies, the Daily Mail made statements that today would be considered absurd. One
-                may even argue that today&apos;s experts may be tomorrow&apos;s fools and to support that point, we
+                may even argue that today&apos;s pundits may be tomorrow&apos;s fools and to support that point, we
                 need only to look back in history.
             </p>
         </section>
         <section>
             <Figure>
                 <img src="/images/blog/internet-a-fad.webp" alt="Daily Mail Internet a Fad Article" />
-                <figcaption>
-                    Afshar, V. @ValaAfshar. (2018, April 18). <cite>Internet ‘may be just a passing fad as millions give up on it&apos;</cite>, December 2000.
-                    &nbsp;<a target="_blank" href="https://web.archive.org/web/20210523195547/https://twitter.com/ValaAfshar/status/1383904613598859270" rel="noreferrer">Twitter</a>.
-                </figcaption>
+                <figcaption>Afshar, V. @ValaAfshar. (2018, April 18). <cite>Internet ‘may be just a passing fad as millions give up on it&apos;</cite>, December 2000. <a target="_blank" href="https://web.archive.org/web/20210523195547/https://twitter.com/ValaAfshar/status/1383904613598859270" rel="noreferrer">Twitter</a>.</figcaption>
             </Figure>
             <h4 id="Yesterdays-Experts">Yesterday&apos;s Experts</h4>
             <Quote
-                quote="The truth in no online database will replace your daily newspaper,
-                       no CD-ROM can take the place of a competent teacher and no computer network will change the way
-                       government works"
+                quote="The truth is no online database will replace your daily newspaper, no CD-ROM can take the place 
+                       of a competent teacher and no computer network will change the way government works"
                 author="Clifford Stoll"
             />
             <p>
                 The Daily Mail also was not the only critic of the internet. Even prominent computer scientists like
                 Clifford Stoll were unable to see the internet&apos;s potential. In 1995, Stoll wrote a piece in
-                Newsweek that aged quite poorly and today sounds like nothing more than an old man yelling at
-                children to get off of his lawn. He stated &ldquo;Visionaries see a future of telecommuting workers,
+                Newsweek that aged quite poorly. He stated &ldquo;Visionaries see a future of telecommuting workers,
                 interactive libraries and multimedia classrooms. They speak of electronic town meetings and
                 virtual communities. Commerce and business will shift from offices and malls to networks and modems.
                 And the freedom of digital networks will make government more democratic. Baloney. Do our computer
-                pundits lack all common sense? The truth in no online database will replace your daily newspaper,
+                pundits lack all common sense? The truth is no online database will replace your daily newspaper,
                 no CD-ROM can take the place of a competent teacher and no computer network will change the way
                 government works&rdquo; (Stoll, 1995). The irony is that essentially everything Stoll said would
                 not come to pass did happen and more. The man literally says &ldquo;Bah&rdquo; to the prospect of
@@ -61,13 +56,13 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
             />
             <p>
                 While the internet is the obvious example, the further back in time we go, the more ridiculous the
-                statements begin to sound. Thus, the first stop we will arrive at is the original iPhone. Some of us
-                may be aware of Steve Balmer&apos;s now famous criticisms of the device for which he stated &ldquo;I
-                said that is the most expensive phone in the world and it doesn&apos;t appeal to business customers
-                because it doesn&apos;t have a keyboard which makes it not a very good email machine.&rdquo; Although
-                that was not the only criticism as others like Matthew Lynn declared that the &ldquo;iPhone is nothing
-                more than a luxury bauble that will appeal to a few gadget freaks&rdquo; or &ldquo;John Dvorak&apos;s
-                predication that there was &ldquo;no likelihood&rdquo; Apple could succeed in the phone business&rdquo;
+                statements begin to sound. Some of us may be aware of Steve Balmer&apos;s now famous criticisms of
+                the device that changed mobile phones forever of which he stated &ldquo;I said that is the most
+                expensive phone in the world and it doesn&apos;t appeal to business customers because it doesn&apos;t
+                have a keyboard which makes it not a very good email machine.&rdquo; Although that was not the only
+                criticism as others like Matthew Lynn declared that the &ldquo;iPhone is nothing more than a luxury
+                bauble that will appeal to a few gadget freaks&rdquo; or &ldquo;John Dvorak&apos;s predication that
+                there was &ldquo;no likelihood&rdquo; Apple could succeed in the phone business&rdquo;
                 (Weissmann, 2012). Today, the iPhone is arguably the most successful electronic device ever conceived.
             </p>
             <p>
@@ -75,14 +70,13 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 like to fall back on was the original skepticism that the first automobiles faced in America. Alexander
                 Winton, a pioneer of the automotive industry was once told that &ldquo;You&apos;re crazy if you think
                 this fool contraption you&apos;ve been wasting your time on will ever displace the horse.&rdquo;
-                However, what was most amazing was that the horseless carriage was &ldquo;such an amazing production
+                Although, what was most amazing was that the horseless carriage was &ldquo;such an amazing production
                 that no one believed it&rdquo; (Winton, 2017). It was this disbelief and utter lack of imagination to
                 the possibilities for the technology that left so-called experts making statements which never aged
-                well. Although, true futurists such as Thomas Edison saw the potential stating &ldquo;Talking of
+                well. However, true futurists such as Thomas Edison saw the potential stating &ldquo;Talking of
                 horseless carriage suggests to my mind that the horse is doomed. The bicycle, which, 10 years ago, was
                 a curiosity, is now a necessity. It is found everywhere. Ten years from now you will be able to buy a
-                horseless vehicle for what you would pay today for a wagon and a pair of horses. The money spent in
-                the keep of the horses will be saved and the danger to life will be much reduced.&rdquo; (Winton, 2017).
+                horseless vehicle for what you would pay today for a wagon and a pair of horses.&rdquo; (Winton, 2017).
             </p>
             <Quote
                 quote="Printed books will never equal scribed books, especially because the spelling and ornamentation 
@@ -93,15 +87,15 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 Which brings us to our final stop in history: the printing press. The printing press is arguably the
                 most important technological innovation in human history. It was here that information society took its
                 first steps toward the decentralization of information starting with the authority built up around the
-                Roman Catholic Church. The printing press was a splash that caused ripples throughout society leading
-                to entirely new fields of study that could be written down and shared in a fungible manner. Despite
-                this, the experts of the day had a different and exceedingly laughable interpretation at the time.
-                One example is Johannes Trithemius, a well-known German scribe known for writing the book
+                Roman Catholic Church. The printing press was a splash that caused ripples throughout the world leading
+                to entirely new fields of study that could be printed and shared in a fungible manner. Despite
+                this, the experts of the day had a different and exceedingly laughable interpretation. One example is
+                Johannes Trithemius, a well-known German scribe known for writing the book
                 &ldquo;Steganographia,&rdquo; a book on steganography written in 1499 who wrote &ldquo;Printed books
                 will never equal scribed books, especially because the spelling and ornamentation of some printed books
-                is often neglected.&rdquo; (Chenoweth, 2019). Such a statement is utterly absurd and history is quite
-                littered with these examples as the same narrow-minded and short sighted statements are still made by
-                so-called experts today about emerging technologies.
+                is often neglected.&rdquo; (Chenoweth, 2019). Such a statement is absurd and history is littered
+                with these examples as the same narrow-minded and short sighted statements are still made by pundits
+                today about emerging technologies.
             </p>
         </section>
         <section>
@@ -116,8 +110,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 The phrase &ldquo;blockchain&rdquo; has been used a number of times to explain how cryptocurrencies
                 operate however, the word &ldquo;blockchain&rdquo; is a bit of a misnomer itself. Some networks like
                 Hedera Hashgraph utilize a directed acyclic graph instead of a blockchain. A blockchain in its
-                most simple form is just a sequential database. While Bitcoin is credited as the first
-                blockchain, there was one that predated it and has been published in the New York Times since 1995
+                most simple form is just a sequential database. While Bitcoin is credited as the first blockchain,
+                there was one that predated it and has been published in the New York Times since 1995
                 (Oberhaus, 2018)&mdash;a fitting harbinger of the technology given 1995 was the Internet&apos;s
                 Netscape moment. The true innovation is the consensus derived distributed ledger technology (DLT).
                 Not all cryptocurrencies utilize blockchain and cryptocurrencies are not the only applications for
@@ -129,12 +123,11 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 <figcaption>A Simple Blockchain</figcaption>
             </Figure>
             <p>
-                How exactly does a <i>simple</i> blockchain-powered DLT network work? While this has been explained
-                many times so far, I personally have never been satisfied with the explanations. A DLT network
+                How exactly does a <i>simple</i> blockchain-powered DLT network work? A DLT network
                 is comprised of three main components: the database (a blockchain or other method), a network,
                 and the application. The image above is a blockchain in its simplest form. A blockchain is an ordered,
                 and incremental database with each block (or state) having a sequential block number that contains an
-                index, a timestamp, the one-way cryptographic hash of the block before it, and any data. The
+                index, a timestamp, a one-way cryptographic hash of the block before it, and any data. The
                 cryptographic hash is a string of characters which will always be the same so long as the data being
                 hashed remains constant. If the data changes in any way, the hash will be completely different. So
                 what is the deal with Merkle trees? A Merkle Tree allows for quicker, more efficient verification of
@@ -152,49 +145,69 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
             <p>
                 But what of the others? We have heard the phrase &ldquo;decentralized&rdquo; and
                 &ldquo;distributed&rdquo; to describe these networks but what do they actually mean? A distributed
-                network is one that distributes a task load across multiple interconnected nodes in order to achieve
-                a common goal and receives information/instructions from a singular source. As such, these networks
-                can very well be governed under a single authority such as a content-driven network (CDN). In a
-                decentralized network, each node operates with only the information it has also known as decision
-                locality in order to accomplish its goal. This is how networks like Bitcoin, Ethereum, XRP,
-                etc. work. A rudimentary example of a decentralized network is an polygyne ant colony (or a colony
-                with multiple queens). Such colonies are decentralized as each ant operates on local information
-                to perform its tasks and each ant may be conducting a different task but if one queen were to die,
-                other queens would still continue to govern the colonies. On the other hand, a distributed network
-                can be loosely related to a bee hive as the hive has a single queen and the bees work toward
-                a singular and common goal. If the queen were to die, the bees will notice the absence of the
-                pheromones produced (aka the instructions from the central authority) and if unable to replace the
-                queen, the colony will die off as well.
+                network is one that spreads a task load across multiple interconnected nodes in order to achieve
+                a common goal and each node can communicate with one another to facilitate that goal but operates as
+                a single system. As such, these networks can very well be governed under a single authority such as a
+                content-driven network (CDN). In a decentralized network, each node operates with only the information
+                it has also known as decision locality in order to accomplish its goal. This is how networks like
+                Bitcoin, Ethereum, XRP, etc. work. A rudimentary example of a decentralized network is an polygyne
+                ant colony (or a colony with multiple queens). Such colonies are decentralized as each ant operates
+                on local information to perform its tasks and each ant may be conducting a different task but if
+                one queen (or colony) were to die, other queens and colonies would still continue to operate.
             </p>
             <p>
-                The differences lay in their intricacies as all decentralized networks are distributed but not all
-                distributed networks are decentralized. So how does a decentralized network operate on a distributed
-                ledger? Ah, yes, so this is precisely why I dislike the majority of explanations on the technology
-                as this part may be confusing for many people. A DLT can utilize a database such as a blockchain
-                and distribute that database across multiple nodes in the the network. As a result, the database is
-                now distributed across a network but is not necessarily decentralized as this ledger can be under
-                the control of a single authority. TODO
+                There are some explanations that state that distributed networks are geographically dispersed. This
+                is not entirely accurate as distributed computing systems can be physically close together although
+                such a configuration would reduce fault tolerance. The key takeaway is that a distributed network
+                distributes a task load across multiples nodes which work together toward a common goal. A
+                decentralized network consists of multiple nodes that operate independently as their own authority
+                using local information to accomplish its goal. The differences lay in their intricacies as all
+                decentralized networks are distributed but not all distributed networks are decentralized. Although,
+                the words distributed and decentralized can be applied to more than just computer networks, the
+                current scope focuses on computer networks.
+            </p>
+            <p>
+                So how does a decentralized network operate on a distributed ledger? A DLT network can utilize a
+                database such as a blockchain and distribute that database across multiple nodes in the the network.
+                As the ledgers should all be the same and the instruction set is provided by the application which
+                acts as the single system, the ledgers are distributed. However, the application and the method for
+                establishing consensus are decentralized as the application cannot be unilaterally modified and each
+                node is operating on its own to determine the next block using local information. As the ledger is
+                the same and spread across multiple nodes but controlled by the application, it is distributed. As the
+                application cannot be modified by singular source and each node is its own authority, the network
+                operating the application is decentralized. OK, then where does the local information used by the
+                decentralized nodes come from? The mempool.
+            </p>
+            <p>
+                Sigh, what is the mempool? The mempool is an often unnoticed part of DLT networks an can go by
+                different names such as a transaction pool, queue, etc. Since the entire premise of DLT is to create
+                a permanent record of transactions, transactions must first exist somewhere prior to being recorded in
+                the ledgers. This is not unlike how information is stored in a computer&apos;s volatile memory prior
+                to being committed to non-volatile storage (i.e., RAM vs Harddrive). Each node has its own mempool
+                which it attempts to synchronize with other nodes. When a transaction is signed, the DApp, wallet,
+                etc. they are using sends the transaction to a gateway node which will verify if the transaction
+                is well-formed and valid before adding it to its mempool. The node will then broadcast its transactions
+                to other nodes on the network which will receive the transaction and also validate them prior to
+                adding them to their own mempool and further broadcasting until the pool is replicated network-wide.
+                From here, miners or validators can pull transactions from the mempool and add them to blocks.
             </p>
             <p>
                 Thus, DLT and other blockchain technologies <i>can</i> create immutable records (though current
                 implementations are not entirely immutable) of events that cannot be doctored or as Casey and Vigna
                 put it, a &ldquo;Truth Machine&rdquo; (Casey &amp; Vigna, 2018). As a result, the applications for
                 the technology are immeasurable and it is often mistakenly considered a new asset class for this
-                reason. The <i>truth</i> is, it not a new asset class but rather, it can very well be all asset
-                classes as all things can be tokenized. Solving the issues of trust can open up an unimaginable amount
-                of opportunities as trust is a problem that has existed in our societies since the very beginning.
+                reason. The <i>truth</i> is, it is not a new asset class but rather, it can very well be all asset
+                classes as all things can be tokenized. In addition, we are beginning to change the paradigm of how
+                we build software as often important elements of software such as security, interoperability, and
+                privacy are no longer tacked-on afterthoughts but foundational layers of a platform. Moreover,
+                solving the issues of trust can open up an unimaginable amount of opportunities as trust is a
+                foundational problem that has existed in our societies since the very beginning.
             </p>
         </section>
         <section>
             <Figure>
                 <img src="/images/blog/crowe-fraud-small.png" alt="Crowe - Global losses of fraud equate to USD 5.127 trillion" />
-                <figcaption>
-                    CroweGlobal @CroweGlobal. (2019, July 11).
-                    <cite>
-                        Report reveals #fraud costs the global economy $5.127
-                        trillion with losses rising by 56% in the past decade.
-                    </cite>
-                    &nbsp;<a target="_blank" href="https://web.archive.org/web/20210816045808/https://twitter.com/croweglobal/status/1149375727042777088" rel="noreferrer">Twitter</a>.
+                <figcaption>CroweGlobal @CroweGlobal. (2019, July 11). <cite>Report reveals #fraud costs the global economy $5.127 trillion with losses rising by 56% in the past decade.</cite> <a target="_blank" href="https://web.archive.org/web/20210816045808/https://twitter.com/croweglobal/status/1149375727042777088" rel="noreferrer">Twitter</a>.
                 </figcaption>
             </Figure>
             <h4 id="The-Issues-of-Trust">The Issues of Trust</h4>
@@ -218,33 +231,32 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 incomprehensible. According to Crowe Global, a network of separate and independent accounting and
                 consulting firms, &ldquo;fraud losses equate to a shocking US$5.127 trillion each year, which
                 represents almost 70% of the $7.442 trillion which world spends on healthcare each year&rdquo;
-                (Crowe Global, 2019). Moreover, if this were not troubling enough, one of the major enablers of this
+                (Crowe Global, 2019). This is clearly not sustainable and is a major concern for our economic and
+                financial systems. Moreover, if this were not troubling enough, one of the major enablers of this
                 systematic problem is the same group expected to ensure it does not occur: banks.
             </p>
             <Figure>
                 <LightBox imageLight={"/images/blog/top-5-banks-fincen-files.png"} imageDark={"/images/blog/top-5-banks-fincen-files-dark.png"} imageAlt="Chart displaying the Top 5 banks in FinCen files by amount" />
-                <figcaption>
-                    [Data] ICIJ. (2020, September 20). <i><cite>Global banks defy U.S. crackdowns by serving oligarchs, criminals and terrorists.</cite></i>
-                    &nbsp;<a target="_blank" href="https://web.archive.org/web/20210630030416/https://www.icij.org/investigations/fincen-files/global-banks-defy-u-s-crackdowns-by-serving-oligarchs-criminals-and-terrorists" rel="noreferrer">ICIJ</a>.
-                </figcaption>
+                <figcaption>[Data] ICIJ. (2020, September 20). <i><cite>Global banks defy U.S. crackdowns by serving oligarchs, criminals and terrorists.</cite></i> <a target="_blank" href="https://web.archive.org/web/20210630030416/https://www.icij.org/investigations/fincen-files/global-banks-defy-u-s-crackdowns-by-serving-oligarchs-criminals-and-terrorists" rel="noreferrer">ICIJ</a>.</figcaption>
             </Figure>
             <p>
                 In 2020 while the world was being ravaged by the Coronavirus, the International Consortium of
-                Investigative Journalists, the same group famously known for the Panama Papers, released a damning
-                report on the international banking system. The report concluded that &ldquo;more than $2 trillion in
-                transactions between 1999 and 2017 that were flagged by financial institutions&apos; internal compliance
-                officers&rdquo; with that number considered &ldquo;just a drop in a far larger flood of dirty money
-                gushing through banks around the world&rdquo; (ICIJ, 2020). This same report is now a Pulitzer Prize
-                finalist (Hudson, 2021). However, this should not come as a shock as big banks were largely responsible
-                for the 2008 sub-prime mortgage crisis which thrust the world into a global recession. The same crisis
-                which led to statements like banks being &ldquo;too big to fail&rdquo; but in reality, banks that are
-                too big to fail are too big to exist for the simple reason that they have become a single point of
-                failure and single points of failure are security risks in any critical infrastructure. Furthermore,
-                despite their central role in the disaster, their punishment was to receive billions of dollars in
-                emergency bailout money while average Americans lost their homes.
+                Investigative Journalists (ICIJ), the same group famously known for the Panama Papers, released a
+                damning report on the international banking system. The report concluded that &ldquo;more than $2
+                trillion in transactions between 1999 and 2017 that were flagged by financial institutions&apos;
+                internal compliance officers&rdquo; with that number considered &ldquo;just a drop in a far larger
+                flood of dirty money gushing through banks around the world&rdquo; (ICIJ, 2020). This same report is
+                now a Pulitzer Prize finalist (Hudson, 2021). However, this should not come as a shock as big banks
+                were largely responsible for the 2008 sub-prime mortgage crisis and enabled by the government which
+                thrust the world into a global recession. The same crisis which led to statements like banks being
+                &ldquo;too big to fail.&rdquo; In reality, banks that are too big to fail are too big to exist for
+                the simple reason that they have become a single point of failure and single points of failure are
+                security risks in any critical infrastructure. Furthermore, despite their central role in the disaster,
+                their punishment was to receive billions of dollars in emergency bailout money while average Americans
+                lost their homes.
             </p>
             <p>
-                The scandals from large banks never end with latest (as of this writing) being the anti-trust lawsuit
+                The scandals from large banks never end as the latest (as of this writing) being the anti-trust lawsuit
                 filed by the New Mexico State Investment Council &ldquo;claiming Bank of America Corporation,
                 Citigroup Inc., Goldman Sachs Group Inc., and other top financial institutions rigged the credit
                 default swap market by manipulating a key benchmark&rdquo; (Sovereign Wealth Fund Institute, 2021).
@@ -258,26 +270,29 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 (Schroeder, 2019). This was all just in the last few years.
             </p>
             <p>
-                Finally, there is the best one of them all, the bank for which I could devote an entire article to
-                its scandals, questionable dealings, and storied history: Deutsche Bank. From helping pillage the
-                Jewish people on behalf of the Nazis and lending the money to build Auschwitz (Perryer, 2019) to
-                laundering over a trillion dollars of dirty money including to the Russian mafia and terrorists
-                (ICIJ, 2020) the bank has a rap sheet as long as it gets. However, after the ICIJ report the bank
-                stated &ldquo;We are a different bank now&rdquo; as a response. Have they changed? Of course not, as
-                recently the bank has been caught misleading investor about ESG standards (Kowsmann &amp; Brown, 2021),
-                continuing to fail to address money laundering controls (Kowsmann &amp; Strasburg, 2021), continuing
-                to be embroiled in multiple scandals due to engaging in shady practices such as mis-selling foreign
-                exchange derivatives in Spain and &ldquo;turning a blind eye to a years-long Ponzi scheme that
-                involved fraudulent investments in Florida&rdquo; (Arons, 2021), and of course, paying millions in
-                fines for having &ldquo;engaged in a criminal scheme to conceal payments to so-called consultants
-                worldwide who served as conduits for bribes to foreign officials and others so that they could
-                unfairly obtain and retain lucrative business projects&rdquo; (U.S. DOJ, 2021). Frankly, with the
-                number of scandals, mind-boggling amount of dirty money, and the amount of money paid to eventual
-                and former government leaders from Wall Street companies and big banks, banks will continue to
-                operate as what can only be described as a global criminal cartel.
+                Of course, what would the banking system be without organizations like Deutsche Bank. From helping
+                pillage the Jewish people on behalf of the Nazis and lending the money to build Auschwitz
+                (Perryer, 2019) to laundering over a trillion dollars of suspect transactions including to the Russian
+                mafia and terrorists (ICIJ, 2020; Flitter, 2021) the bank has a rap sheet as long as it gets. However,
+                after the ICIJ report the bank stated &ldquo;We are a different bank now&rdquo; as a response. Have
+                they changed? You decide, as recently the bank has been accused of misleading investor about ESG
+                standards (Kowsmann &amp; Brown, 2021); been put on notice for continuing to fail to address money
+                laundering controls (Kowsmann &amp; Strasburg, 2021); continuing to be embroiled in scandals such as
+                being accused of engaging in practices like mis-selling foreign exchange derivatives in Spain;
+                &ldquo;turning a blind eye to a years-long Ponzi scheme that involved fraudulent investments in
+                Florida&rdquo; (Arons, 2021); and of course, paying millions in fines for having &ldquo;engaged in a
+                criminal scheme to conceal payments to so-called consultants worldwide who served as conduits for
+                bribes to foreign officials and others so that they could unfairly obtain and retain lucrative business
+                projects&rdquo; (U.S. DOJ, 2021). Frankly, with the number of scandals, mind-boggling amount of dirty
+                money, and the relatively small fines paid to regulators by Wall Street companies and big banks, such
+                organizations may very well continue to operate as what can be described as a global criminal cartel.
             </p>
         </section>
         <section>
+            <Figure>
+                <img src="/images/blog/cryptocurrencies.png" alt="Various cryptocurrencies" />
+                <figcaption>Various cryptocurrencies. Image credit designwebjae, <a target="_blank" href="https://web.archive.org/web/20210831013935/https://pixabay.com/users/designwebjae-1753371/" rel="noreferrer">Pixaby</a></figcaption>
+            </Figure>
             <h4 id="Cryptocurrencies">Cryptocurrencies</h4>
             <Quote quote="Anyone could create money; the problem is to get it accepted." author="Hyman Minsky" />
             <p>
@@ -287,7 +302,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 goes back to the history of the internet and the original dilemma of the ability to transfer value
                 over the internet. This problem was eventually tackled head on in 1994 just prior to the
                 internet&apos;s Netscape moment by Pizza Hut with the release of &ldquo;PizzaNet.&rdquo; The service
-                allowed people to order pizzas online (Schrage, 1994). While there are many stories of  what the
+                allowed people to order pizzas online (Schrage, 1994). While there are many stories of what the
                 first actual commercial transaction over the internet was, Pizza Hut gets the widest recognition for
                 being one of the first commercial operations online. Unsurprisingly, the approach was still somewhat
                 mocked, considered &ldquo;half-baked&rdquo; and geeky at the time, but more importantly, the system
@@ -296,22 +311,26 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
             <p>
                 This tradition was continued as history has a tendency to rhyme. On May 22, 2010, an individual used
                 bitcoin to pay for pizza in what is widely regarded as the first use of cryptocurrency in a
-                commercial transaction (Moore, 2020). Laszlo Hanyecz paid 10,000 bitcoin for his pizzas which at
+                commercial transaction (Moore, 2020). Laszlo Hanyecz paid 10,000 bitcoin for his pizzas which using
                 today&apos;s value sits at around $483,784,000. However, this begs the question about what the value
-                should be of cryptocurrencies. The truth is, they are worth whatever we as a society believe they
+                of cryptocurrencies should be. The truth is, they are worth whatever we as a society believe they
                 are worth as everything is a speculative asset including land and gold. The only reason gold has
                 value is because we deem it so and other mediums such as cowry shells and sticks have also been used
-                in the past as money. This comes down the functions of money and the properties that make a medium
+                in the past as money. Furthermore, the notion that gold has intrinsic value because it is tangible is
+                absurd as any company can tell you that intangible things like intellectual property do indeed have
+                immense value. Part of this comes down the functions of money and the properties that make a medium
                 more or less viable as a form of money.
             </p>
             <p>
                 Money has three functions: a store of value, a medium of exchange, and a unit of account. This much
                 is pretty textbook however, one point I find is often lost is the difference between money and
                 currency. The difference is that currency has all the attributes of money except it is <i>not</i> a
-                store of value and instead, a promissory note. As such, fiat is a currency and it not money but the
-                medium by which money is transferred. This subtle difference emerged for reasons of convenience as
-                gold coin was less portable than paper notes. This brings us to the properties of money (and
-                currency) of which portability is a major plus. Others include durability, divisibility, supply,
+                store of value and instead, a promissory note. The first examples of such notes originated in China
+                and were known as &ldquo;Jiaozi.&rdquo; It is fitting from a historical perspective that China today
+                is the first major economy to reinvent money with their digital Yuan. Thus, fiat is a currency and
+                not money but the medium by which money is transferred. This subtle difference emerged for reasons of
+                convenience as gold coin was less portable than paper notes. Which brings us to the properties of money
+                (and currency) of which includes portability. Others include durability, divisibility, supply,
                 fungibility (or uniformity), its rate of adoption, and its security (or ability to counterfeit). When
                 compared to traditional paper currency, cryptocurrencies have far superior properties. For example,
                 you cannot break a bitcoin (although not unlike paper money, it can be lost forever), it can be
@@ -320,29 +339,34 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
             </p>
             <p>
                 Although not currently widely adopted, its adoption is increasing especially as nations like El
-                Salvador adopt the technology as legal currency (Renteria, Wilson, &amp; Strohecker, 2021). Although
-                Bitcoin is only one of many and not all cryptocurrencies have fixed supplies. Some like Ethereum
-                implement &ldquo;tokenomics&rdquo; which allow new ether to be issued through mining or staking
-                and other ether to removed by burning some during each transaction. This can potentially offer
-                governments revolutionary new ways of self-organizing macroeconomic policy.
+                Salvador adopt the technology as legal currency (Renteria, Wilson, &amp; Strohecker, 2021). Moreover,
+                good money should not be useful for other purposes. For example, salt and spice was also used as
+                money at one point in history. The issue with these mediums was that in addition to being used as
+                currency, they also needed to be used for other purposes such as cooking or for the preservation of
+                perishables. In comparison, gold was purely decorative and had no practical applications. However,
+                today, as we very well know, gold has significant applications in science and technology.
+                Additionally, Bitcoin is only one of many and not all cryptocurrencies have fixed supplies. Some like
+                Ethereum implement a form of &ldquo;tokenomics&rdquo; which allow new ether to be issued through
+                mining or staking and other ether to removed by burning some during each transaction. This can
+                potentially offer governments revolutionary new ways of self-organizing macroeconomic policy.
             </p>
             <p>
-                Moreover, Nobel Memorial Prize in Economics winner, Friedrich August von Hayek has stated that &ldquo;I
-                am more convinced than ever that if we ever again are going to have a decent money, it will not come
-                from government: it will be issued by private enterprise, because providing the public with good money
-                which it can trust and use can not only be an extremely profitable business; it imposes on the issuer a
-                discipline to which the government has never been and cannot be subject&rdquo; (Hayek 1999). This was a
-                point he later reiterated by saying &ldquo;I don&apos;t believe we shall ever have a good money again
-                before we take the thing out of the hands of government, that is, we can&apos;t take them violently out
-                of the hands of government, all we can do is by some sly roundabout way introduce something they
-                can&apos;t stop.&rdquo; (Smith, 2019). If this does not sound like cryptocurrencies, I am not sure what
-                Hayek could possibly have been referring to.
+                That said, Nobel Memorial Prize in Economics winner, Friedrich August von Hayek has stated that
+                &ldquo;I am more convinced than ever that if we ever again are going to have a decent money, it will
+                not come from government: it will be issued by private enterprise, because providing the public with
+                good money which it can trust and use can not only be an extremely profitable business; it imposes on
+                the issuer a discipline to which the government has never been and cannot be subject&rdquo;
+                (Hayek 1999). This was a point he later reiterated by saying &ldquo;I don&apos;t believe we shall ever
+                have a good money again before we take the thing out of the hands of government, that is, we can&apos;t
+                take them violently out of the hands of government, all we can do is by some sly roundabout way
+                introduce something they can&apos;t stop.&rdquo; (Smith, 2019). If this does not sound like
+                cryptocurrencies, I am not sure what Hayek could possibly have been referring to.
             </p>
         </section>
         <section>
             <Figure>
                 <img src="/images/blog/weaponized-dollar.jpg" alt="Dollars Gun" />
-                <figcaption>Weaponization of the U.S. Dollar</figcaption>
+                <figcaption>Weaponization of the U.S. Dollar. Image credit geralt, <a target="_blank" href="https://web.archive.org/web/20210830203452/https://pixabay.com/users/geralt-9301/" rel="noreferrer">Pixaby</a></figcaption>
             </Figure>
             <h4 id="The-Status-Quo">The Status Quo</h4>
             <p>
@@ -370,21 +394,22 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 hypercritical of the phenomenon known as the &ldquo;weaponization&rdquo; of the dollar and the SWIFT
                 banking network. There is only so long that a nation can abuse its status as the world reserve currency
                 before other nations decide to move on to something else. In the case of Russia, China, El Salvador,
-                The EU, and many others, they are very well already on their way.
+                The EU, and many others, they are very well are already on their way.
             </p>
             <p>
-                Moreover, Janet Yellen&apos;s statements where she stated &ldquo;I think many [cryptocurrencies] are
-                used, at least in a transaction sense, mainly for illicit financing&rdquo; (Lennon, 2021) when
-                questioned about the technology&apos;s potential terrorism risk. Yet, the cryptocurrency market in
-                its totality as of this writing sits at around $1.978 trillion which is less that the amount reported
-                in the FinCen files. Furthermore, her responses were hyperbole seeing as Lennon goes on to state that
-                in &ldquo;2020, the criminal share of all cryptocurrency activity fell to just 0.34% ($10.0 billion in
-                transaction volume).&rdquo; What this sounds like is simply an echo from the McCarthy era. Except,
-                today&apos;s word is &ldquo;terrorism&rdquo; and quite frankly, if terrorism financing is of actual
-                concern to our governmental officials then they should not be looking at cryptocurrency, but rather
-                the traditional banking system. This is especially pressing as a &ldquo;new lawsuit says the banks,
-                including Deutsche Bank and Standard Chartered, ignored warnings that their customers were helping
-                to finance attackers targeting Americans in Afghanistan&rdquo; (Flitter, 2021).
+                Moreover, Janet Yellen stated &ldquo;I think many [cryptocurrencies] are used, at least in a
+                transaction sense, mainly for illicit financing&rdquo; (Lennon, 2021) when questioned about the
+                technology&apos;s potential terrorism risk. Yet, the cryptocurrency market in its totality as of this
+                writing sits at around $1.978 trillion which is less that the total amount reported in the FinCen
+                files regarding big banks. Furthermore, her responses were not only hyperbole but flat-out incorrect
+                seeing as Lennon goes on to state that in &ldquo;2020, the criminal share of all cryptocurrency
+                activity fell to just 0.34% ($10.0 billion in transaction volume).&rdquo; What she really sounds like
+                is simply an echo from the McCarthy era. Except, today&apos;s word is &ldquo;terrorism&rdquo; and
+                frankly, if terrorism financing is of actual concern to our governmental officials then they should
+                not be looking at cryptocurrency, but rather the traditional banking system. This is especially
+                pressing as a &ldquo;new lawsuit filed accuses banks, including Deutsche Bank and Standard Chartered,
+                of ignoring warnings that their customers were helping to finance attackers targeting Americans in
+                Afghanistan&rdquo; (Flitter, 2021).
             </p>
         </section>
         <section>
@@ -401,16 +426,18 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 author="Pew Research Center"
             />
             <p>
-                The Pew Research Center shows that the &ldquo;share of American adults who live in middle-income
-                households has decreased from 61% in 1971 to 51% in 2019&rdquo; and that from &ldquo;1970 to 2018, the
-                share of aggregate income going to middle-class households fell from 62% to 43%. Over the same period,
-                the share held by upper-income households increased from 29% to 48%&rdquo; (Pew Research Center, 2020).
-                At the end of 2020, the top 1% of households command $34.52T or approximately 32% of the wealth in the
-                U.S. as well as more than the 50-90 percentile and bottom 50 percent combined which command
-                approximately 29%. This puts the top 1% almost 9 points higher than in 1989 while the entire bottom
-                50% sits at almost 10 points lower than in 1989 (The Fed, 2021). Additionally, the median sale price
-                of houses in the last three decades has quadrupled putting home ownership for many out of reach
-                while dependance on banking institutions for home buying increases.
+                Additionally, wealth is yet to be decentralized and the current path we are on takes us in the exact
+                opposite direction. The Pew Research Center shows that the &ldquo;share of American adults who live
+                in middle-income households has decreased from 61% in 1971 to 51% in 2019&rdquo; and that from
+                &ldquo;1970 to 2018, the share of aggregate income going to middle-class households fell from 62%
+                to 43%. Over the same period, the share held by upper-income households increased from 29% to
+                48%&rdquo; (Pew Research Center, 2020). At the end of 2020, the top 1% of households control
+                $34.52T or approximately 32% of the wealth in the U.S. as well as more than the 50-90 percentile and
+                bottom 50 percent combined which command approximately 29%. This puts the top 1% almost 9 points
+                higher than in 1989 while the entire bottom 50% sits at almost 10 points lower than in 1989
+                (The Fed, 2021). Additionally, the median sale price of houses in the last three decades has
+                quadrupled putting home ownership for many out of reach while dependance on banking institutions for
+                home buying increases.
             </p>
             <Figure>
                 <LightBox imageLight={"/images/blog/housing-prices-median.png"} imageDark={"/images/blog/housing-prices-median-dark.png"} imageAlt="Charts displaying median sale price of houses in the United States" />
@@ -421,12 +448,26 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
             </Figure>
             <p>
                 Moreover, a Federal Reserve report on U.S. household economic well-being showed that the median
-                savings of American households sitting at just $5,300 (The Fed, 2020). Additionally, 24% of surveyed
-                would opt to incur some form of revolving debt if faced with a $400 emergency expense. An additional
-                12% stated that they would not be able to pay for the expense as well as another 8% stating they would
-                sell something. The situation shows the vulnerability of such households as &ldquo;volatile income and
-                low savings can turn common experiences&mdash;such as waiting a few days for a bank deposit to be
-                available&mdash;into a problem for some&rdquo; (The Fed, 2019).
+                savings of American households sitting at just $5,300 (The Fed, 2020). Additionally, when it comes to
+                unexpected costs, 24% of surveyed would opt to incur some form of revolving debt if faced with a
+                $400 emergency expense. An additional 12% stated that they would not be able to pay for the expense
+                as well as another 8% stating they would sell something. The situation shows the vulnerability of
+                such households as &ldquo;volatile income and low savings can turn common experiences&mdash;such as
+                waiting a few days for a bank deposit to be available&mdash;into a problem for some&rdquo;
+                (The Fed, 2019). This culminates into an alarming trend where the top 1% of households are accumulating
+                more wealth while the rest of the nation is being left with less.
+            </p>
+            <p>
+                Additionally, money is not the only thing slowly being siphoned from the majority of people. Central
+                nexuses of power such as big tech have been criticized for their practices of censorship. While the
+                issues of misinformation are of great concern, there is collateral damage especially when such
+                protests are directed toward our governments in peaceful manners. A case and point is a recent attempt
+                by cryptocurrency YouTuber Ben Armstrong also known as &ldquo;BitBoy&rdquo; to organize a peaceful
+                online protest against the SECs actions against Ripple Labs. This protest was to simply leave bad
+                reviews on the SEC&apos;s Google business page for their Atlanta, Georgia offices. Since then, Google
+                has seemingly now removed the majority of the reviews. Regardless of what one may believe about the
+                YouTube influencer&apos;s content, the fact that a private corporation has eradicated traces of a
+                very public and peaceful protest against a government organization <i>is</i> a cause for concern.
             </p>
         </section>
         <section>
@@ -466,10 +507,11 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 services and even the centuries-old &rdquo;hawala&ldquo; system &mdash; which facilitates
                 cross-border transactions via a sophisticated network of money exchangers and personal contacts
                 &mdash; for now, remains closed&ldquo; (Sigalos, 2021) effectively cutting the people off from
-                the global financial system.
+                the global financial system. In times of need, it is clear that people in these regions cannot rely on
+                institutions to come to their aid and individuals are left to fend for themselves.
             </p>
             <p>
-                However, what is most impressive is that people outside of finance and banking can really make a
+                However, what is impressive though is that people outside of finance and banking can really make a
                 difference in the world which exemplifies the very nature of decentralization. A case and point:
                 Akon&apos;s Akoin. Akon is working to provide the very financial inclusion banks could care less to
                 provide to people in African nations. The artist even incorporates some of the critical intricacies
@@ -484,20 +526,26 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
             </p>
             <p>
                 Thus, cryptocurrencies can have a major impact on the unbanked and underbanked providing financial
-                inclusion that banks unable to or simply unwilling to provide. Moreover, DLT has several applications
-                in these scenarios from facilitating payments, identity, and even voting. While voting systems
-                using DLT are not ready for mainstream application, the technology can offer a way to virtually
-                eliminate cases of voter fraud, prevent gerrymandering, and encourage more people to vote through
-                an increased level of convenience. Even in countries like the United States, allegation of voter
-                fraud have drawn disconcerting parallels with events in less democratic nations such as Myanmar. The
-                allegations alone have had a damaging effect on reputations, undermined trust in democratic processes,
-                and continues to divide an already divided nation.
+                inclusion that banks are either unable to or simply unwilling to provide. Additionally, The Pew
+                Charitable Trusts has reported that &ldquo;6 in 10 unbanked consumers have a smartphone&rdquo; which
+                shows that the technology can be made readily available to these individuals. Although, one challenge
+                is that &ldquo;they are nearly twice as likely as banked consumers to suspend or cancel their cellphone
+                plans because of the cost of maintaining coverage&rdquo; (Pew Charitable Trusts, 2016). As improvements
+                to cellular infrastructure and even satellite internet become more readily available, some of these
+                concerns can be remedied. Moreover, DLT has several other applications in these scenarios aside from
+                facilitating payments. Some include ensuring identity, securing property rights, and even facilitating
+                elections. While voting systems using DLT are not ready for mainstream application, the technology can
+                eventually offer a way to virtually eliminate cases of voter fraud, prevent gerrymandering, and
+                encourage more people to vote through an increased level of convenience. Even in countries like the
+                United States, allegation of voter fraud have drawn disconcerting parallels with events in less
+                democratic nations such as Myanmar. The allegations alone have had a damaging effect on reputations,
+                undermined trust in democratic processes, and continues to divide an already divided nation.
             </p>
         </section>
         <section>
             <Figure>
                 <img src="/images/blog/decentral-world.jpg" alt="A Decentralized World" />
-                <figcaption>A Decentralized World</figcaption>
+                <figcaption>A Decentralized World. Image credit <a target="_blank" href="https://web.archive.org/web/20210831013812/https://pixabay.com/" rel="noreferrer">Pixaby</a></figcaption>
             </Figure>
             <h4 id="The-Future">The Future</h4>
             <Quote
@@ -537,9 +585,10 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 discounts for multi-part movies that hold the ticket NFT for previous installments. Collectibles can
                 be issued for those that visited a theater for a movie and special editions can be minted for those
                 that saw an entire trilogy in theaters. This could conceivably extend to products where individuals
-                that own an obsolete version of a product can receive a special promotional price for upgrading. Of
-                course, commerce is not the only aspect but property deeds, automotive titles, lease and mortgage
-                agreements, and more can all be tokenized in an internet of value.
+                that own an obsolete version of a product can receive a special promotional price for upgrading. As a
+                result, the way advertising and direct marketing is done could be changed entirely. Of course, commerce
+                is not the only aspect but property deeds, automotive titles, lease and mortgage agreements, and more
+                can all be tokenized in an internet of value.
             </p>
             <p>
                 Even industries like healthcare can greatly benefit from DLT and the democratization of healthcare
@@ -557,12 +606,13 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
             </p>
             <p>
                 With governmental adoption, W2s and other tax forms can be minted by addresses with EIN NFTs which
-                could trigger the income stream to an employee address. However, this could conceivably open
-                multiple streams of value at once: one to an employee, and the second directly to the IRS for
+                could trigger the start of an income stream to an employee address. However, this could conceivably
+                open multiple streams of value at once: one to an employee, and the second directly to the IRS for
                 taxes virtually eliminating tax evasion. Census data can be collected more easily and accurately
                 and maintained with minimal effort especially when government networks interoperate with one
                 another. Eventually, voting can be done using DLT which would not only eliminate any possible fraud,
-                but more importantly, the legitimacy of an election cannot be questioned.
+                prevent gerrymandering, and encourage more people to vote thanks to convenience, but also,
+                the legitimacy of an election cannot be called into question.
             </p>
             <p>
                 Additionally, no more will exist the days of guessing wildly at how to control something as complex
@@ -573,8 +623,17 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 living entities and as such, should be treated that way using self-organizing system principles. Not
                 only can this approach help ensure more stable economies but the instantaneous feedback loops can
                 allow governments to create more accurate future projections for economic growth. We can once again
-                have sound money issued by central banks.
+                have sound money issued by central banks. Finally, software will come to life and thrive in cyberspace
+                as self-organizing entities that are fully autonomous.
             </p>
+        </section>
+        <section>
+            <h4 id="Conclusion">Conclusion</h4>
+            <Quote
+                quote="If communities are to engage in exchange and forge functioning societies, they must find a way 
+                       to arrive at a commonly accepted foundation of truth."
+                author="Paul Vigna &amp; Michael J. Casey"
+            />
             <p>
                 This is the nature of self-organizing systems which enable our societies to have some measure of
                 control in order to predetermine the consequences of our actions. Our societies have been traveling
@@ -586,14 +645,6 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 described above may sound far-fetched today, but as we begin to move into a world where issues of
                 trust become a thing of the past, anything is possible.
             </p>
-        </section>
-        <section>
-            <h4 id="Conclusion">Conclusion</h4>
-            <Quote
-                quote="If communities are to engage in exchange and forge functioning societies, they must find a way 
-                       to arrive at a commonly accepted foundation of truth."
-                author="Paul Vigna &amp; Michael J. Casey"
-            />
             <p>
                 The only constant in life is change and that is something we as a civilization struggle to accept. As
                 we enter this brave new world, it is important to realize that humanity is at a precipice. Whether the

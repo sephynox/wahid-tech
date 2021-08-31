@@ -9,7 +9,15 @@ export const Blockquote = styled.blockquote`
     font-size: 1.2em;
     color: ${(props: ThemeEngine) => props.theme.textAlt};
 
-    & cite {
+    & em {
+        margin-top: 10px;
+        margin-bottom: 10px;
         color: #595959;
+    }
+
+    @media screen and (max-width: 768px) {
+        & em {
+            text-align: right;
+        }
     }
 `;

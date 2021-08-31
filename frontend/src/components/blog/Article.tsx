@@ -39,6 +39,7 @@ export interface ArticleData {
     authors: Array<ArticleAuthor>;
     title: string;
     tags: Array<string>;
+    readTime: number;
     references: Array<Citation>;
     component: React.FunctionComponent;
     modified?: Date;
@@ -101,9 +102,12 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                             <dd className="no-print">
                                 <SocialLinks url={article_full_url} title={data.title} />
                             </dd>
+                            <dt className="capitalize no-print">{t('tags')}:</dt>
                             <dd className="no-print">
                                 <Tags tags={data.tags} />
                             </dd>
+                            <dt className="capitalize no-print">{t('length')}:</dt>
+                            <dd className="no-print">{data.readTime} {t('time.minutes')}</dd>
                         </DefinitionList>
                         <Tocbot
                             header={t('table_of_contents')}
@@ -195,13 +199,7 @@ const ArticleStyle = styled.article`
     }
 
     @media screen and (max-width: 768px) {
-        & #story {
-            text-align: justify;
-        }
-
-        & em {
-            text-align: center;
-        }
+        text-align: justify;
 
         & figure {
             padding: 10px;

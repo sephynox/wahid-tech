@@ -30,6 +30,7 @@
     "read_seen": "seen",
     "byline": "by",
     "published": "published",
+    "length": "length",
     "last_update": "last update",
     "summary": "summary",
     "full_story": "full story",
