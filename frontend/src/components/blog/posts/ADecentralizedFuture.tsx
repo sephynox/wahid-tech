@@ -12,7 +12,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 internet&apos;s &ldquo;Netscape moment&rdquo; though I was only a child at the time. As an engineer
                 and technologist, I would have been ecstatic to live through the Netscape moment with what I know
                 today. However, as we know&mdash;at least, for now&mdash;we cannot go back in time. Although, history
-                has an interesting habit of rhyming and we may very well be experiencing the next technological
+                has an interesting habit of rhyming, and we may very well be experiencing the next technological
                 breakthrough of our time which might once again redefine the way we interact in our societies.
             </p>
             <p>
@@ -57,7 +57,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
             <p>
                 While the internet is the obvious example, the further back in time we go, the more ridiculous the
                 statements begin to sound. Some of us may be aware of Steve Balmer&apos;s now famous criticisms of
-                the device that changed mobile phones forever of which he stated &ldquo;I said that is the most
+                the device that changed mobile phones forever of which he stated, &ldquo;I said that is the most
                 expensive phone in the world and it doesn&apos;t appeal to business customers because it doesn&apos;t
                 have a keyboard which makes it not a very good email machine.&rdquo; Although that was not the only
                 criticism as others like Matthew Lynn declared that the &ldquo;iPhone is nothing more than a luxury
@@ -93,8 +93,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 Johannes Trithemius, a well-known German scribe known for writing the book
                 &ldquo;Steganographia,&rdquo; a book on steganography written in 1499 who wrote &ldquo;Printed books
                 will never equal scribed books, especially because the spelling and ornamentation of some printed books
-                is often neglected.&rdquo; (Chenoweth, 2019). Such a statement is absurd and history is littered
-                with these examples as the same narrow-minded and short sighted statements are still made by pundits
+                is often neglected.&rdquo; (Chenoweth, 2019). Such a statement is absurd, and history is littered
+                with these examples as the same narrow-minded and short-sighted statements are still made by pundits
                 today about emerging technologies.
             </p>
         </section>
@@ -129,7 +129,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 and incremental database with each block (or state) having a sequential block number that contains an
                 index, a timestamp, a one-way cryptographic hash of the block before it, and any data. The
                 cryptographic hash is a string of characters which will always be the same so long as the data being
-                hashed remains constant. If the data changes in any way, the hash will be completely different. So
+                hashed remains constant. If the data changes in any way, the hash will be completely different. So,
                 what is the deal with Merkle trees? A Merkle Tree allows for quicker, more efficient verification of
                 the chain but also as a measure to conserve space, memory, and CPU usage as &ldquo;old blocks can then
                 be compacted by stubbing off branches of the tree&rdquo; (Nakamoto, 2009). Essentially, the integrity
@@ -150,7 +150,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 a single system. As such, these networks can very well be governed under a single authority such as a
                 content-driven network (CDN). In a decentralized network, each node operates with only the information
                 it has also known as decision locality in order to accomplish its goal. This is how networks like
-                Bitcoin, Ethereum, XRP, etc. work. A rudimentary example of a decentralized network is an polygyne
+                Bitcoin, Ethereum, XRP, etc. work. A rudimentary example of a decentralized network is a polygyne
                 ant colony (or a colony with multiple queens). Such colonies are decentralized as each ant operates
                 on local information to perform its tasks and each ant may be conducting a different task but if
                 one queen (or colony) were to die, other queens and colonies would still continue to operate.
@@ -167,8 +167,8 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 current scope focuses on computer networks.
             </p>
             <p>
-                So how does a decentralized network operate on a distributed ledger? A DLT network can utilize a
-                database such as a blockchain and distribute that database across multiple nodes in the the network.
+                So, how does a decentralized network operate on a distributed ledger? A DLT network can utilize a
+                database such as a blockchain and distribute that database across multiple nodes in the network.
                 As the ledgers should all be the same and the instruction set is provided by the application which
                 acts as the single system, the ledgers are distributed. However, the application and the method for
                 establishing consensus are decentralized as the application cannot be unilaterally modified and each
@@ -179,7 +179,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 decentralized nodes come from? The mempool.
             </p>
             <p>
-                Sigh, what is the mempool? The mempool is an often unnoticed part of DLT networks an can go by
+                Sigh, what is the mempool? The mempool is an often-unnoticed part of DLT networks and can go by
                 different names such as a transaction pool, queue, etc. Since the entire premise of DLT is to create
                 a permanent record of transactions, transactions must first exist somewhere prior to being recorded in
                 the ledgers. This is not unlike how information is stored in a computer&apos;s volatile memory prior
@@ -210,7 +210,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 <figcaption>CroweGlobal @CroweGlobal. (2019, July 11). <cite>Report reveals #fraud costs the global economy $5.127 trillion with losses rising by 56% in the past decade.</cite> <a target="_blank" href="https://web.archive.org/web/20210816045808/https://twitter.com/croweglobal/status/1149375727042777088" rel="noreferrer">Twitter</a>.
                 </figcaption>
             </Figure>
-            <h4 id="The-Issues-of-Trust">The Issues of Trust</h4>
+            <h4 id="Issues-of-Trust">Issues of Trust</h4>
             <Quote
                 quote="The root problem with conventional currency is all the trust that's required to make it work."
                 author="Satoshi Nakamoto"
@@ -263,11 +263,11 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 Prior to that, there was Wells Fargo&apos;s fake account scandal which the bank opened fraudulent
                 accounts for millions of customers without their knowledge (Flitter, 2020). There was also
                 JP Morgan&apos;s manipulation of precious-metals and treasury markets which resulted in a Racketeer
-                Influenced and Corrupt Organizations (RICO) case with multiple individuals indicted and a near billion
-                dollar fine (The Economist, 2020). U.S. Banks are not the only bad actors either with investigations
-                into Australia&apos;s biggest banks having &ldquo;revealed rampant wrongdoing across the industry,
-                including fees charged to the accounts of dead people and bribes paid to win mortgage business&rdquo;
-                (Schroeder, 2019). This was all just in the last few years.
+                Influenced and Corrupt Organizations (RICO) case with multiple individuals indicted and a near
+                billion-dollar fine (The Economist, 2020). U.S. Banks are not the only bad actors either with
+                investigations into Australia&apos;s biggest banks having &ldquo;revealed rampant wrongdoing across
+                the industry, including fees charged to the accounts of dead people and bribes paid to win mortgage
+                business&rdquo; (Schroeder, 2019). This was all just in the last few years.
             </p>
             <p>
                 Of course, what would the banking system be without organizations like Deutsche Bank. From helping
@@ -296,7 +296,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
             <h4 id="Cryptocurrencies">Cryptocurrencies</h4>
             <Quote quote="Anyone could create money; the problem is to get it accepted." author="Hyman Minsky" />
             <p>
-                One of the most subtle differences that is lost on many individuals in regards to cryptocurrencies is
+                One of the most subtle differences that is lost on many individuals in regard to cryptocurrencies is
                 that with traditional payment methods, what is actually occurring is the <i>communication</i> of the
                 transfer of value. With cryptocurrencies, what you have is the <i>actual transfer of value</i>. This
                 goes back to the history of the internet and the original dilemma of the ability to transfer value
@@ -309,7 +309,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 did not facilitate the transfer of value over the net as payment was made upon delivery.
             </p>
             <p>
-                This tradition was continued as history has a tendency to rhyme. On May 22, 2010, an individual used
+                This tradition was continued as history tends to rhyme. On May 22, 2010, an individual used
                 bitcoin to pay for pizza in what is widely regarded as the first use of cryptocurrency in a
                 commercial transaction (Moore, 2020). Laszlo Hanyecz paid 10,000 bitcoin for his pizzas which using
                 today&apos;s value sits at around $483,784,000. However, this begs the question about what the value
@@ -347,7 +347,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 today, as we very well know, gold has significant applications in science and technology.
                 Additionally, Bitcoin is only one of many and not all cryptocurrencies have fixed supplies. Some like
                 Ethereum implement a form of &ldquo;tokenomics&rdquo; which allow new ether to be issued through
-                mining or staking and other ether to removed by burning some during each transaction. This can
+                mining or staking and other ether to be removed by burning some during each transaction. This can
                 potentially offer governments revolutionary new ways of self-organizing macroeconomic policy.
             </p>
             <p>
@@ -376,7 +376,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 reality. Jerome Powell&apos;s remark that &ldquo;You wouldn&apos;t need stablecoins; you
                 wouldn&apos;t need cryptocurrencies, if you had a digital U.S. currency&rdquo; is particularly absurd
                 seeing as if that statement were to hold true, then we equally would not have a need for commodities
-                such as gold or any currency other than the dollar worldwide. Furthermore his statement that &ldquo;We
+                such as gold or any currency other than the dollar worldwide. Furthermore, his statement that &ldquo;We
                 have a tradition in this country where the public&apos;s money is held in what is supposed to be a
                 very safe asset&rdquo; is equally invalid seeing as that this supposed safe asset is losing its
                 purchasing power each year with wages unable to keep up with the very inflation they are creating.
@@ -389,12 +389,12 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 shedding the U.S. dollar from their National Wealth Fund (Korsunskaya &amp; Marrow, 2021); and with the
                 European Union looking to &ldquo;cut reliance on U.S. dollar&rdquo; (Strupczewski, 2021), the so-called
                 &ldquo;safe-asset&rdquo; is losing its grip on the world. This is clearly not a trend limited to our
-                rival nations who state &ldquo;We need to move away from using international payment systems controlled
-                by the West&rdquo; (Tétrault-Farber &amp; Osborn, 2021) but also friendlier nations that are
+                rival nations who state, &ldquo;We need to move away from using international payment systems
+                controlled by the West&rdquo; (Tétrault-Farber &amp; Osborn, 2021) but also friendlier nations that are
                 hypercritical of the phenomenon known as the &ldquo;weaponization&rdquo; of the dollar and the SWIFT
                 banking network. There is only so long that a nation can abuse its status as the world reserve currency
                 before other nations decide to move on to something else. In the case of Russia, China, El Salvador,
-                The EU, and many others, they are very well are already on their way.
+                The EU, and many others, they are very well already on their way.
             </p>
             <p>
                 Moreover, Janet Yellen stated &ldquo;I think many [cryptocurrencies] are used, at least in a
@@ -405,7 +405,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 seeing as Lennon goes on to state that in &ldquo;2020, the criminal share of all cryptocurrency
                 activity fell to just 0.34% ($10.0 billion in transaction volume).&rdquo; What she really sounds like
                 is simply an echo from the McCarthy era. Except, today&apos;s word is &ldquo;terrorism&rdquo; and
-                frankly, if terrorism financing is of actual concern to our governmental officials then they should
+                frankly, if terrorism financing is of actual concern to our governmental officials, then they should
                 not be looking at cryptocurrency, but rather the traditional banking system. This is especially
                 pressing as a &ldquo;new lawsuit filed accuses banks, including Deutsche Bank and Standard Chartered,
                 of ignoring warnings that their customers were helping to finance attackers targeting Americans in
@@ -461,9 +461,9 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 Additionally, money is not the only thing slowly being siphoned from the majority of people. Central
                 nexuses of power such as big tech have been criticized for their practices of censorship. While the
                 issues of misinformation are of great concern, there is collateral damage especially when such
-                protests are directed toward our governments in peaceful manners. A case and point is a recent attempt
+                protests are directed toward our governments in peaceful manners. A case and point: A recent attempt
                 by cryptocurrency YouTuber Ben Armstrong also known as &ldquo;BitBoy&rdquo; to organize a peaceful
-                online protest against the SECs actions against Ripple Labs. This protest was to simply leave bad
+                online protest against the SEC action against Ripple Labs. This protest was to simply leave bad
                 reviews on the SEC&apos;s Google business page for their Atlanta, Georgia offices. Since then, Google
                 has seemingly now removed the majority of the reviews. Regardless of what one may believe about the
                 YouTube influencer&apos;s content, the fact that a private corporation has eradicated traces of a
@@ -502,11 +502,11 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 The second example is the takeover of Afghanistan by the Taliban following the withdrawal of
                 U.S. Forces from the region. The nation&apos;s financial infrastructure all but collapsed with
                 bank runs, cash shortages, and a failing currency making an already devastating situation worse
-                for millions of Afghanis. One individual stated &ldquo;I live above two banks and three ATM machines,
-                but they&apos;ve been off since Thursday&rdquo;. Moreover, &rdquo;Western Union has suspended all
-                services and even the centuries-old &rdquo;hawala&ldquo; system &mdash; which facilitates
+                for millions of Afghanis. One individual stated, &ldquo;I live above two banks and three ATM machines,
+                but they&apos;ve been off since Thursday&rdquo;. Moreover, &ldquo;Western Union has suspended all
+                services and even the centuries-old &ldquo;hawala&rdquo; system &mdash; which facilitates
                 cross-border transactions via a sophisticated network of money exchangers and personal contacts
-                &mdash; for now, remains closed&ldquo; (Sigalos, 2021) effectively cutting the people off from
+                &mdash; for now, remains closed&rdquo; (Sigalos, 2021) effectively cutting the people off from
                 the global financial system. In times of need, it is clear that people in these regions cannot rely on
                 institutions to come to their aid and individuals are left to fend for themselves.
             </p>
@@ -562,15 +562,15 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 While not many people think about some of the more insignificant minutia of our day-to-day, there
                 are several things that are done today simply because that is how they always have been done. For
                 example, payday can occur weekly, bi-weekly, semi-monthly, monthly, or by any other arbitrary
-                denomination. It is not something we often think of, it just it. However, what if money could
+                denomination. It is not something we often think of it just it. However, what if money could
                 be thought of in an entirely different way? Perhaps money could become more akin to bandwidth with
                 payroll done every second. This approach could give individuals far more control of their finances
                 with the ability to fine tune savings, bills, and even retirement in real-time.
             </p>
             <p>
                 Thus, credit applications could do away with credit scores and simply determine an individual&apos;s
-                average available bandwidth over a predetermined period of time. This could also change the way bills
-                are paid by delegating bandwidth toward bills which automatically adjust interest rates within a
+                average available bandwidth over a predetermined period of time. This could also change the way we pay
+                bills by delegating bandwidth toward bills which automatically adjust interest rates within a
                 predetermined range accepted by both parties and enforced via smart contracts. The same can apply to
                 savings and retirement accounts allowing individuals to simply dial-up or dial down their various
                 account streams based on their inbound and outbound streams. Account pools can allow individuals
@@ -587,7 +587,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 that saw an entire trilogy in theaters. This could conceivably extend to products where individuals
                 that own an obsolete version of a product can receive a special promotional price for upgrading. As a
                 result, the way advertising and direct marketing is done could be changed entirely. Of course, commerce
-                is not the only aspect but property deeds, automotive titles, lease and mortgage agreements, and more
+                is not the only aspect but property deeds, automotive titles, lease, mortgage agreements, and more
                 can all be tokenized in an internet of value.
             </p>
             <p>
@@ -616,12 +616,12 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
             </p>
             <p>
                 Additionally, no more will exist the days of guessing wildly at how to control something as complex
-                as a first-world economy. Instead of massive injections of cash, or removing massive amounts of
+                as a first-world economy. Instead of massive injections of cash or removing massive amounts of
                 cash from circulation using slow and antiquated methods of buying and selling bonds, self-organizing
                 systems can make nano-scale changes to macroeconomic variables and automatically adjust factors
                 to maintain and achieve key economic targets. These economies are as complex and interconnected as
                 living entities and as such, should be treated that way using self-organizing system principles. Not
-                only can this approach help ensure more stable economies but the instantaneous feedback loops can
+                only can this approach help ensure more stable economies, but the instantaneous feedback loops can
                 allow governments to create more accurate future projections for economic growth. We can once again
                 have sound money issued by central banks. Finally, software will come to life and thrive in cyberspace
                 as self-organizing entities that are fully autonomous.
@@ -638,7 +638,7 @@ const ADecentralizedFuture: React.FunctionComponent = (): JSX.Element => {
                 This is the nature of self-organizing systems which enable our societies to have some measure of
                 control in order to predetermine the consequences of our actions. Our societies have been traveling
                 a path of decentralization for quite some time. From Martin Luther&apos;s 95 Theses and the printing
-                press, to the Civil Rights movement and broadcast media, until now, a technological, financial,
+                press to the Civil Rights movement and broadcast media, until now, a technological, financial,
                 economic, social, and artistic revolution&mdash;a modern renaissance&mdash;with distributed ledger
                 technology. We have been breaking down centralized nexuses of power and empowering more individual
                 people over time and with DLT, we are approaching a technological singularity point. The future
