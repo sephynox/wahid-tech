@@ -28,6 +28,18 @@ export const chunkArray = <T,>(array: Array<T>, chunkSize: number): Array<Array<
     return chunkedArray;
 }
 
+// Thanks https://stackoverflow.com/a/61414961/8177368
+export type RecordableKeys<T> = {
+    [K in keyof T]: T[K] extends string | number | symbol ? K : never
+}[keyof T];
+
+export const arrayToRecord = <
+    T extends { [P in RecordableKeys<T>]: string | number | symbol },
+    K extends RecordableKeys<T>
+>(array: T[], selector: K): Record<T[K], T> => {
+    return array.reduce((acc, item) => ({ ...acc, [item[selector]]: item }), {} as Record<T[K], T>)
+}
+
 export const addDataPoint = (data: number[][], toAdd: number[]): number[][] => {
     if (!toAdd) toAdd = createDataPoint();
 

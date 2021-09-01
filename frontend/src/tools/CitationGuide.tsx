@@ -6,7 +6,7 @@ import MLACitation from './MLACitation';
 import ChicagoCitation from './ChicagoCitation';
 import Citation from './Citation';
 
-const CitationGuide = ({ authors, publisher, title, date_year, date_month, date_day }: Citation): JSX.Element => {
+const CitationGuide = ({ id, authors, publisher, title, date_year, date_month, date_day }: Citation): JSX.Element => {
     const url = window.location.href.split('?')[0];
 
     return (
@@ -14,6 +14,7 @@ const CitationGuide = ({ authors, publisher, title, date_year, date_month, date_
             <Tabs defaultActiveKey="apa" id="article-citations" className="mb-5">
                 <Tab eventKey="apa" title="APA">
                     <APACitation
+                        id={`citation-apa-${id.toLowerCase()}-${date_year}`}
                         authors={authors}
                         date_year={date_year}
                         date_month={date_month}
@@ -25,6 +26,7 @@ const CitationGuide = ({ authors, publisher, title, date_year, date_month, date_
                 </Tab>
                 <Tab eventKey="mla" title="MLA">
                     <MLACitation
+                        id={`citation-mla-${id.toLowerCase()}-${date_year}`}
                         authors={authors}
                         date_year={date_year}
                         date_month={date_month}
@@ -37,6 +39,7 @@ const CitationGuide = ({ authors, publisher, title, date_year, date_month, date_
                 <Tab eventKey="chicago" title="Chicago">
                     <ChicagoCitation
                         blog
+                        id={`citation-chicago-${id.toLowerCase()}-${date_year}`}
                         authors={authors}
                         date_year={date_year}
                         date_month={date_month}

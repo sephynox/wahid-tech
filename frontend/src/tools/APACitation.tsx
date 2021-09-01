@@ -3,6 +3,61 @@ import { ArticleAuthor } from '../components/blog/Article';
 import Citation from './Citation';
 import { HangingIndent } from '../styles/HangingIndent';
 
+
+export const APAInline: React.FunctionComponent<{ r: Citation | Array<Citation> }> = ({ r }): JSX.Element => {
+    const citations: Array<Citation> = Array.isArray(r) ? r : [r];
+
+    const getUrl = (ref: Citation): string | undefined => {
+        return ref.archive ?? ref.url;
+    };
+
+    const getAuthors = (ref: Citation): string => {
+        let authors: Array<ArticleAuthor> = [];
+        let glue = ', ';
+        let post = '';
+
+        if (ref.authors === undefined) {
+            return ref.publisher;
+        }
+
+        if (ref.authors.length < 3) {
+            authors = ref.authors;
+            glue = ' & ';
+        } else if (ref.authors.length === 3) {
+            const pop = ref.authors[2].family ?? '';
+            authors = ref.authors.slice(0, 2);
+
+            if (pop) {
+                post = ', & ' + pop;
+            }
+        } else if (ref.authors.length > 3) {
+            authors = ref.authors.slice(0, 3);
+            post = ', et al.';
+        }
+
+        return authors.map((author) => author.family).join(glue) + post;
+    };
+
+    const getDate = (ref: Citation): string => {
+        if (!ref.date_year) {
+            return 'n.d.';
+        }
+
+        return ref.date_year.toString();
+    };
+
+    const getCite = (ref: Citation, index: number): JSX.Element => {
+        if (getUrl(ref) !== undefined) {
+            return <a key={index} target="_blank" href={getUrl(ref)} rel="noreferrer">{getAuthors(ref)}, {getDate(ref)}</a>
+        } else {
+            return <>{getAuthors(ref)}, {getDate(ref)}</>;
+        }
+    };
+
+    const l = citations.length;
+    return <>({citations.map((ref, i) => { return <span key={i}>{getCite(ref, i)}{i + 1 !== l ? '; ' : ''}</span> })})</>;
+};
+
 //TODO
 const APACitation = ({
     id,

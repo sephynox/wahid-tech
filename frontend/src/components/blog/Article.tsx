@@ -15,10 +15,12 @@ import Tocbot from '../Tocbot';
 import { Image } from '../Lightbox';
 import CitationGuide from '../../tools/CitationGuide';
 import SocialLinks from '../../tools/SocialLinks';
-import Citation from '../../tools/Citation';
+import Citation, { InTextCitations } from '../../tools/Citation';
 import References from '../../tools/References';
 import APACitation from '../../tools/APACitation';
 import Tags from '../../tools/Tags';
+import { formatNumber } from '../../utils/data-formatters';
+import { arrayToRecord } from '../../utils/data-helpers';
 
 type Props = {
     data: ArticleData;
@@ -28,7 +30,7 @@ export interface ArticleAuthor {
     given: string;
     middle?: string;
     family: string;
-}
+};
 
 export interface ArticleData {
     id: number;
@@ -41,16 +43,17 @@ export interface ArticleData {
     tags: Array<string>;
     readTime: number;
     references: Array<Citation>;
-    component: React.FunctionComponent;
+    component: React.FunctionComponent<InTextCitations>;
     modified?: Date;
     comments?: boolean;
-}
+};
 
 const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
     const { t, i18n } = useTranslation();
     const appContext = useContext(AppContext);
 
     const article_full_url = Constants.SITE_BLOG_ARTICLE_BASE_URL + data.path;
+    const article_references = arrayToRecord(data.references, 'id');
     const article_authors = data.authors
         .map((author: ArticleAuthor) =>
             author.given + (author.middle !== undefined ? author.middle.substr(0, 1) + '. ' : ' ') + author.family,
@@ -107,7 +110,9 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                                 <Tags tags={data.tags} />
                             </dd>
                             <dt className="capitalize no-print">{t('length')}:</dt>
-                            <dd className="no-print">{data.readTime} {t('time.minutes')}</dd>
+                            <dd className="no-print">
+                                {formatNumber(data.readTime, i18next.language, 0)} {t('time.minutes')}
+                            </dd>
                         </DefinitionList>
                         <Tocbot
                             header={t('table_of_contents')}
@@ -117,7 +122,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                 </header>
                 <h3>{t('full_story')}</h3>
                 <HorizontalRule />
-                <MyArticle />
+                <MyArticle r={article_references} />
                 <HorizontalRule />
                 <footer>
                     <details>
@@ -127,6 +132,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                     <details>
                         <summary><h3>{t('citations')}</h3></summary>
                         <CitationGuide
+                            id={data.authors[0].family}
                             authors={data.authors}
                             publisher={Constants.SITE_NAME}
                             title={data.title}

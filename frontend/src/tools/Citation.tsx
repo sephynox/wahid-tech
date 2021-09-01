@@ -1,6 +1,11 @@
 import { ArticleAuthor } from '../components/blog/Article';
 
+export interface InTextCitations {
+    r: Record<string, Citation>
+};
+
 interface Citation {
+    id: string;
     title: string;
     publisher: string;
     authors?: Array<ArticleAuthor>;
@@ -8,7 +13,6 @@ interface Citation {
     date_month?: string;
     date_year?: number;
     date_day?: number;
-    id?: string;
     url?: string;
     archive?: string;
     chapter?: string;

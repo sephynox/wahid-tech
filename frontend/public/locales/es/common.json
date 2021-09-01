@@ -25,6 +25,7 @@
     "contract": "contrato",
     "owner": "propietario",
     "details": "detalles",
+    "tags": "tags",
     "view": "examinar",
     "name": "nombre",
     "read_seen": "visto",

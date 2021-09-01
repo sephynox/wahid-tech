@@ -25,6 +25,7 @@
     "contract": "contract",
     "owner": "owner",
     "details": "details",
+    "tags": "tags",
     "view": "view",
     "name": "name",
     "read_seen": "seen",
