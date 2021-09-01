@@ -5,14 +5,15 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import LoaderSpinner from '../tools/LoaderSpinner';
 
 type Props = {
+    keyField: string;
     columns: Array<Column>;
     data: Array<any>;
-    page?: number,
-    sizePerPage?: number,
-    defaultSort?: Sort<any>
+    page?: number;
+    sizePerPage?: number;
+    defaultSort?: Sort<any>;
 };
 
-const Table = ({ columns, data, defaultSort, page = 1, sizePerPage = 10 }: Props): JSX.Element => {
+const Table = ({ keyField, columns, data, defaultSort, page = 1, sizePerPage = 10 }: Props): JSX.Element => {
     const defaultSorted: Sort<any> = {
         dataField: 'name',
         order: 'asc'
@@ -30,7 +31,7 @@ const Table = ({ columns, data, defaultSort, page = 1, sizePerPage = 10 }: Props
 
     return (
         <BootstrapTable bootstrap4
-            keyField='id'
+            keyField={keyField}
             noDataIndication={() => <LoaderSpinner width="50%" height={5} />}
             defaultSorted={defaultSort ? [{ ...defaultSorted, ...defaultSort }] : [defaultSorted]}
             data={data}

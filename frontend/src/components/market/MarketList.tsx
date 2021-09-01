@@ -32,7 +32,7 @@ const MarketList = <T,>({ data }: Props<T>): JSX.Element => {
         );
     };
 
-    return (<Table data={data} columns={marketColumns} defaultSort={defaultSorted} />);
+    return (<Table keyField="key" data={data} columns={marketColumns} defaultSort={defaultSorted} />);
 };
 
 export default MarketList;

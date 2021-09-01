@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { toast } from 'react-hot-toast';
 import styled from 'styled-components';
-import { Section } from '../styles/Section';
 import { apiReducer, initialWTechAPIState, submitContactForm, WTechAPIStates } from '../actions/WTech';
 import { initialContactData } from '../tools/ContactData';
 import { Themes } from '../tools/Themes';
@@ -79,7 +78,7 @@ const Contact = (): JSX.Element => {
             <h2 className="capitalize">{t('contact')}</h2>
             {apiRequest.type !== WTechAPIStates.SUBMITTED_CONTACT_FORM && <em>{t('content.contact')}</em>}
             <Row className="mt-1">
-                <Col lg={8} className="mt-6 mt-lg-0">{apiRequest.type === WTechAPIStates.SUBMITTED_CONTACT_FORM
+                <Col lg={12} className="mt-6 mt-lg-0">{apiRequest.type === WTechAPIStates.SUBMITTED_CONTACT_FORM
                     ?
                     <Container className="pt-5">
                         <h3>{t('validation.contact_message_success')}.</h3>
@@ -201,7 +200,7 @@ const Contact = (): JSX.Element => {
 
 export default Contact;
 
-const ContactStyle = styled(Section)`
+const ContactStyle = styled.article`
     & form {
         width: 100%;
     }

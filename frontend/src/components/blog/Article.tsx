@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Button, Container, Figure } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import { DiscussionEmbed } from 'disqus-react';
 import i18next from 'i18next';
@@ -52,6 +52,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
     const { t, i18n } = useTranslation();
     const appContext = useContext(AppContext);
 
+    const disqus_lang = i18n.language === 'en-US' ? 'en' : i18n.language.replace('-', '_');
     const article_full_url = Constants.SITE_BLOG_ARTICLE_BASE_URL + data.path;
     const article_references = arrayToRecord(data.references, 'id');
     const article_authors = data.authors
@@ -152,7 +153,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                                         url: article_full_url,
                                         identifier: data.path,
                                         title: data.title,
-                                        language: i18n.language.replace('-', '_'),
+                                        language: disqus_lang,
                                     }}
                                 />
                                 :

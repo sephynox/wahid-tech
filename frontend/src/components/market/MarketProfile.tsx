@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import * as Constants from '../../Constants';
 import i18next, { i18nNamespace } from '../../services/i18n';
 import StockChart from '../StockChart';
@@ -36,7 +36,7 @@ const MarketProfile = (): JSX.Element => {
     }
 
     return (
-        <Container>
+        <Section>
             <Breadcrumbs links={[
                 { text: t('markets'), class: 'capitalize', path: Constants.SITE_MARKET_PATH_BASE },
                 { text: `${t(type)} /`, path: '', class: 'capitalize', active: true }
@@ -119,7 +119,7 @@ const MarketProfile = (): JSX.Element => {
                     : <LoaderContent type="profile" />
             }
             <div className="space-bottom text-right capitalize">{marketContext.marketDataByline(type)}</div>
-        </Container>
+        </Section>
     );
 };
 

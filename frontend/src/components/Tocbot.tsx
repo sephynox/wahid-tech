@@ -4,6 +4,8 @@ import 'tocbot/src/scss/tocbot.scss';
 import styled from 'styled-components';
 import * as tocbot from 'tocbot';
 import { Container } from 'react-bootstrap';
+import { ThemeEngine } from '../styles/GlobalStyle';
+import { Theme } from '../tools/Themes';
 
 type Props = {
     // Where to grab the headings to build the table of contents.
@@ -102,16 +104,18 @@ const Tocbot: React.FunctionComponent<Props> = (props: Props): JSX.Element => {
     const element = useRef<HTMLBaseElement>(null);
 
     useEffect(() => {
-        const classRef = `.${element.current?.className.replace(" ", ".")}`;
+        const classRef = `.${element.current?.className.replace(" ", ".")} div aside`;
 
         tocbot.init(Object.assign({
-            tocSelector: `${classRef} div aside`,
+            tocSelector: classRef,
             scrollSmooth: true,
             scrollContainer: "body",
             onClick: (e: Event) => e.preventDefault()
         }, props));
 
-        return () => tocbot.destroy();
+        // HACK
+        // eslint-disable-next-line
+        return () => element.current !== null && tocbot.destroy();
     });
 
     return (
@@ -126,7 +130,7 @@ const Tocbot: React.FunctionComponent<Props> = (props: Props): JSX.Element => {
 
 export default Tocbot;
 
-const TocStyle = styled.div`
+const TocStyle = styled.div<Theme>`
     height: auto;
     pointer-events: none;
     width: 100%;
@@ -140,6 +144,10 @@ const TocStyle = styled.div`
 
     & div aside .toc-list {
         padding-left: 50px;
+    }
+
+    & .is-active-link::before {
+        background-color: ${(props: ThemeEngine) => props.theme.info};
     }
 
     @media (min-width: 1250px){

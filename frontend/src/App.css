@@ -66,6 +66,10 @@ figure figcaption {
     padding-top: 20px;
 }
 
+.max-1200 {
+    max-width: 1200px;
+}
+
 .spacer {
     flex-grow: .25;
 }

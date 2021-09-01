@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://wahid.text/</loc>
-        <lastmod>2021-08-14</lastmod>
+        <loc>https://wahid.tech/</loc>
+        <lastmod>2021-08-31</lastmod>
+    </url>
+    <url>
+        <loc>https://wahid.tech/financial-markets</loc>
+        <lastmod>2021-08-31</lastmod>
+    </url>
+    <url>
+        <loc>https://wahid.tech/nfts</loc>
+        <lastmod>2021-08-31</lastmod>
+    </url>
+    <url>
+        <loc>https://wahid.tech/technology-blog</loc>
+        <lastmod>2021-08-31</lastmod>
+    </url>
+    <url>
+        <loc>https://wahid.tech/contact</loc>
+        <lastmod>2021-08-31</lastmod>
+    </url>
+    <url>
+        <loc>https://wahid.tech/about</loc>
+        <lastmod>2021-08-31</lastmod>
     </url>
 </urlset>

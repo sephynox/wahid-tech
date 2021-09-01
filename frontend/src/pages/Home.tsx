@@ -26,7 +26,7 @@ const Home = (): JSX.Element => {
                     <em>{subtext}</em>
                 </header>
             </Section>
-            <Row>
+            <Row className="max-1200">
                 <Col xs={12} sm={12} md={6} lg={6} xl={6}>
                     <Section>
                         <h3 className="capitalize mb-3">{t('latest_blog_post')}</h3>
