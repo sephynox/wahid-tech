@@ -3,12 +3,11 @@ import { ArticleAuthor } from '../components/blog/Article';
 import Citation from './Citation';
 import { HangingIndent } from '../styles/HangingIndent';
 
-
 export const APAInline: React.FunctionComponent<{ r: Citation | Array<Citation> }> = ({ r }): JSX.Element => {
     const citations: Array<Citation> = Array.isArray(r) ? r : [r];
 
     const getUrl = (ref: Citation): string | undefined => {
-        return ref.archive ?? ref.url;
+        return ref.url;
     };
 
     const getAuthors = (ref: Citation): string => {

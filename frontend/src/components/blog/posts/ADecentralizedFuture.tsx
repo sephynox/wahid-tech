@@ -281,7 +281,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 Of course, what would the banking system be without organizations like Deutsche Bank. From helping
                 pillage the Jewish people on behalf of the Nazis and lending the money to build
                 Auschwitz <APAInline r={r['citation-perryer-2019']} /> to laundering over a trillion dollars of suspect
-                transactions including to the Russian mafia and
+                transactions including allegedly to the Russian mafia and
                 terrorists <APAInline r={[r['citation-icij-2020'], r['citation-flitter-2021']]} /> the bank has a
                 rap sheet as long as it gets. However, after the ICIJ report the bank stated &ldquo;We are a different
                 bank now&rdquo; as a response. Have they changed? You decide, as recently the bank has been accused of
@@ -290,7 +290,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 controls <APAInline r={r['citation-kowsmann-strasburg-2021']} />; continuing to be embroiled in
                 scandals such as being accused of engaging in practices like mis-selling foreign exchange derivatives
                 in Spain; &ldquo;turning a blind eye to a years-long Ponzi scheme that involved fraudulent investments
-                in Florida&rdquo; <APAInline r={r['citation-aarons-2021']} />; and of course, paying millions in fines
+                in Florida&rdquo; <APAInline r={r['citation-arons-2021']} />; and of course, paying millions in fines
                 for having &ldquo;engaged in a criminal scheme to conceal payments to so-called consultants worldwide
                 who served as conduits for bribes to foreign officials and others so that they could unfairly obtain
                 and retain lucrative business projects&rdquo; <APAInline r={r['citation-doj-2021']} />.
@@ -535,7 +535,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 form of money as mentioned above in places like Kenya. His message is one that is heard and felt
                 all too often in such areas, that the current systems offer nothing more than &ldquo;weak and
                 over-inflated fiat currencies that prevent citizens from accessing financial services western
-                countries take for granted&rdquo; <APAInline r={r['citation-stevens-2021']} />. Akon&apos;s point is
+                countries take for granted&rdquo; <APAInline r={r['citation-stevens-2020']} />. Akon&apos;s point is
                 well made as when the U.S. dollar experiences inflation, second and third world nations hurt the most.
                 It is this simple correlation that exposes the myth of inflation being a positive thing&mdash;inflation
                 only benefits the wealthy.

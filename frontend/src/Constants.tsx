@@ -21,4 +21,3 @@ export const WTECH_API_ENDPOINT_PROD = 'https://api.wahid.tech/v1';
 export const WTECH_API_ENDPOINT_DEV = 'https://dev-api.wahid.tech/v1';
 export const WTECH_API_ENDPOINT = DEV_MODE ? WTECH_API_ENDPOINT_DEV : WTECH_API_ENDPOINT_PROD;
 export const SITE_CONTACT_ENDPOINT = WTECH_API_ENDPOINT + '/contact';
-// export const WTECH_API_ENDPOINT = 'https://api.wahid.tech/v1';
