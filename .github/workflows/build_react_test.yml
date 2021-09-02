@@ -6,21 +6,18 @@ jobs:
   build:
     name: Test React App
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 15.x]
 
     steps:
       - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v2.3.0
-        with:
-          working-directory: ./frontend
-          cmd: install
-      - uses: borales/actions-yarn@v2.3.0
-        with:
-          working-directory: ./frontend
-          cmd: build
-      - uses: borales/actions-yarn@v2.3.0
-        with:
-          working-directory: ./frontend
-          cmd: test
+      - name: Install dependencies
+        uses: borales/actions-yarn@v2.3.0
+        working-directory: ./frontend
+        run: yarn install
+      - name: Build application
+        uses: borales/actions-yarn@v2.3.0
+        working-directory: ./frontend
+        run: yarn build
+      - name: Test application
+        uses: borales/actions-yarn@v2.3.0
+        working-directory: ./frontend
+        run: yarn test
