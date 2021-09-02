@@ -9,7 +9,7 @@ describe("when rendered with two columns and data", () => {
             data: [{ name: 'Marge' }, { name: 'Homer' }, { name: 'Lisa' }, { name: 'Bart' }]
         };
 
-        render(<Table {...props} />);
+        render(<Table keyField="name" {...props} />);
 
         props.columns.forEach((datum) => {
             expect(screen.getByText(new RegExp(datum.text, 'i'))).toBeInTheDocument();

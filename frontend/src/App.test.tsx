@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import * as Constants from './Constants';
+import { render } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 
-test('renders site name', () => {
-  render(<App />);
-  const linkElement = screen.getByText(new RegExp(Constants.SITE_NAME, 'i'));
-  expect(linkElement).toBeInTheDocument();
+test('Renders Site', () => {
+  render(<Router><App /></Router>);
+  const linkElement = document.getElementsByTagName('main');
+  expect(linkElement[0]).toBeInTheDocument();
 });
