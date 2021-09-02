@@ -41,7 +41,7 @@ export const Breadcrumbs = ({ links }: BreadcrumbsProps): JSX.Element => {
     const { t } = useTranslation();
     return (
         <Breadcrumb>
-            <Breadcrumb.Item className="capitalize" linkAs={NavLink} linkProps={{ to: "/" }}>{t('home')}</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={NavLink} linkProps={{ to: "/" }}>{t('home')}</Breadcrumb.Item>
             {links.map((crumb: Crumb, i: number) => (
                 <Breadcrumb.Item
                     key={i}
@@ -92,7 +92,7 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({ navLinks }: Navi
                 activeClassName={activeClassName}
                 to={to}
             >
-                <i className={'nav-link' + icon}></i> <span className="capitalize">{t(text, text)}</span>
+                <i className={'nav-link' + icon}></i> <span>{t(text, text)}</span>
             </NavLink>
         );
     };

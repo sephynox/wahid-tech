@@ -32,7 +32,7 @@ const QRCodeModal = ({ state, stateManager, asset }: Props): JSX.Element => {
     return (
         <ModalStyle show={state === QRModalState.OPEN} onHide={closeQRModal} dialogClassName="modal-large" centered>
             <Modal.Header>
-                <Modal.Title className="capitalize">{asset.name}</Modal.Title>
+                <Modal.Title>{asset.name}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Container>
@@ -45,9 +45,9 @@ const QRCodeModal = ({ state, stateManager, asset }: Props): JSX.Element => {
                         </Col>
                         <Col xs={12} sm={12} md={8} lg={8} xl={8}>
                             <DefinitionList>
-                                <dt className="capitalize">{t('asset')}:</dt>
+                                <dt>{t('asset')}:</dt>
                                 <dd>{asset.name}</dd>
-                                <dt className="capitalize">{t('address')}:</dt>
+                                <dt>{t('address')}:</dt>
                                 <dd className="word-wrap"><ReadMore text={asset.address} charactersMax={12} copy /></dd>
                             </DefinitionList>
                         </Col>

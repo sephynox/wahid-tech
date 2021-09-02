@@ -65,7 +65,7 @@ const Contact = (): JSX.Element => {
                 break;
             case WTechAPIStates.SUBMITTED_CONTACT_FORM_ERROR:
                 toast.dismiss();
-                toast.error(`${formatFirstUpper(t('error'))}!`);
+                toast.error(`${formatFirstUpper(t('error.error'))}!`);
                 setSendButtonText(`${t('button.retry')}`);
                 setSendButtonDisabled(false);
                 setShowServerError(true);
@@ -75,7 +75,7 @@ const Contact = (): JSX.Element => {
 
     return (
         <ContactStyle id="contact">
-            <h2 className="capitalize">{t('contact')}</h2>
+            <h2>{t('contact')}</h2>
             {apiRequest.type !== WTechAPIStates.SUBMITTED_CONTACT_FORM && <em>{t('content.contact')}</em>}
             <Row className="mt-1">
                 <Col lg={12} className="mt-6 mt-lg-0">{apiRequest.type === WTechAPIStates.SUBMITTED_CONTACT_FORM
@@ -180,7 +180,7 @@ const Contact = (): JSX.Element => {
                         <Row>
                             <Col xs={12} sm={12} md={12} lg={6}></Col>
                             <Col xs={12} sm={12} md={12} lg={6} className="contact-button mt-xs-2">
-                                <Button className="capitalize" type="submit" disabled={sendButtonDisabled}>
+                                <Button type="submit" disabled={sendButtonDisabled}>
                                     {apiRequest.type === WTechAPIStates.SUBMITTING_CONTACT_FORM && <Spinner
                                         as="span"
                                         animation="border"

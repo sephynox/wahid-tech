@@ -24,7 +24,7 @@ const MarketHome: React.FunctionComponent = (): JSX.Element => {
         <>
             <Section>
                 <header>
-                    <h2 className="capitalize">{title}</h2>
+                    <h2>{title}</h2>
                 </header>
                 <Row>
                     <Col className="text-right d-none d-md-block d-xl-block d-lg-block">
@@ -36,7 +36,7 @@ const MarketHome: React.FunctionComponent = (): JSX.Element => {
                     </Col>
                 </Row>
                 <MarketList data={listData} />
-                <div className="space-bottom text-right capitalize">{marketContext.marketDataByline(marketType)}</div>
+                <div className="text-right">{marketContext.marketDataByline(marketType)}</div>
             </Section>
         </>
     );

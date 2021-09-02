@@ -176,11 +176,11 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 As the ledgers should all be the same and the instruction set is provided by the application which
                 acts as the single system, the ledgers are distributed. However, the application and the method for
                 establishing consensus are decentralized as the application cannot be unilaterally modified and each
-                node is operating on its own to determine the next block using local information. As the ledger is
-                the same and spread across multiple nodes but controlled by the application, it is distributed. As the
-                application cannot be modified by singular source and each node is its own authority, the network
-                operating the application is decentralized. OK, then where does the local information used by the
-                decentralized nodes come from? The mempool.
+                node is operating on information locality to determine the next block. So, as the ledger is the same
+                and spread across multiple nodes but controlled by the application, it is distributed. As the
+                application cannot be modified by singular source and each node is its own authority, the
+                application is decentralized. OK, then where does this local information used by the decentralized
+                nodes come from? The mempool.
             </p>
             <p>
                 Sigh, what is the mempool? The mempool is an often-unnoticed part of DLT networks and can go by
@@ -191,7 +191,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 which it attempts to synchronize with other nodes. When a transaction is signed, the DApp, wallet,
                 etc. they are using sends the transaction to a gateway node which will verify if the transaction
                 is well-formed and valid before adding it to its mempool. The node will then broadcast its transactions
-                to other nodes on the network which will receive the transaction and also validate them prior to
+                to other nodes on the network which will receive the transactions and also validate them prior to
                 adding them to their own mempool and further broadcasting until the pool is replicated network-wide.
                 From here, miners or validators can pull transactions from the mempool and add them to blocks.
             </p>
@@ -320,15 +320,15 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
             <p>
                 This tradition was continued as history tends to rhyme. On May 22, 2010, an individual used
                 bitcoin to pay for pizza in what is widely regarded as the first use of cryptocurrency in a
-                commercial transaction (Moore, 2020). Laszlo Hanyecz paid 10,000 bitcoin for his pizzas which using
-                today&apos;s value sits at around $483,784,000. However, this begs the question about what the value
-                of cryptocurrencies should be. The truth is, they are worth whatever we as a society believe they
-                are worth as everything is a speculative asset including land and gold. The only reason gold has
-                value is because we deem it so and other mediums such as cowry shells and sticks have also been used
-                in the past as money. Furthermore, the notion that gold has intrinsic value because it is tangible is
-                absurd as any company can tell you that intangible things like intellectual property do indeed have
-                immense value. Part of this comes down the functions of money and the properties that make a medium
-                more or less viable as a form of money.
+                commercial transaction <APAInline r={r['citation-moore-2020']} />. Laszlo Hanyecz paid 10,000 bitcoin
+                for his pizzas which using today&apos;s value sits at around $483,784,000. However, this begs the
+                question about what the value of cryptocurrencies should be. The truth is, they are worth whatever we
+                as a society believe they are worth as everything is a speculative asset including land and gold. The
+                only reason gold has value is because we deem it so and other mediums such as cowry shells and sticks
+                have also been used in the past as money. Furthermore, the notion that gold has intrinsic value because
+                it is tangible is absurd as any company can tell you that intangible things like intellectual property
+                do indeed have immense value. Part of this comes down the functions of money and the properties that
+                make a medium more or less viable as a form of money.
             </p>
             <p>
                 Money has three functions: a store of value, a medium of exchange, and a unit of account. This much
@@ -385,12 +385,17 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 Janet Yellen have been the most outspoken critics of cryptocurrency from within the U.S. government.
                 Despite their positions, they have clear misunderstandings not just about the technology but the
                 implications of it. Jerome Powell&apos;s remark that &ldquo;You wouldn&apos;t need stablecoins; you
-                wouldn&apos;t need cryptocurrencies, if you had a digital U.S. currency&rdquo; is particularly absurd
-                seeing as if that statement were to hold true, then we equally would not have a need for commodities
-                such as gold or any currency other than the dollar worldwide. Furthermore, his statement that &ldquo;We
-                have a tradition in this country where the public&apos;s money is held in what is supposed to be a
-                very safe asset&rdquo; is equally invalid seeing as that this supposed safe asset is losing its
-                purchasing power each year with wages unable to keep up with the very inflation they are creating.
+                wouldn&apos;t need cryptocurrencies, if you had a digital U.S.
+                currency&rdquo; <APAInline r={r['citation-sigalos-2021a']} /> is particularly absurd seeing as if that
+                statement were to hold true, then we equally would not have a need for commodities such as gold or any
+                currency other than the dollar worldwide. It also important to note that any central bank digital
+                currency (CBDC) currently being discussed will not be decentralized and will ultimately be <i>no
+                    different than current fiat currencies</i> beyond being in digital form and thus, completely collapses
+                Mr. Powell&apos;s argument. Furthermore, his statement that &ldquo;We have a tradition in this country
+                where the public&apos;s money is held in what is supposed to be a very safe
+                asset&rdquo; <APAInline r={r['citation-sigalos-2021a']} /> is equally invalid seeing as that this
+                supposed safe asset is losing its purchasing power each year with wages unable to keep up with the
+                very inflation they are creating.
             </p>
             <p>
                 Additionally, as the U.S. dollar global reserve drops to &ldquo;its lowest level in 25 years&rdquo;
@@ -409,13 +414,30 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 China, El Salvador, The EU, and many others, they are very well already on their way.
             </p>
             <p>
-                Moreover, Janet Yellen stated &ldquo;I think many [cryptocurrencies] are used, at least in a
+                So, why is the U.S. dollar the world reserve currency anyway? This goes back to the end of the second
+                world war in what was known as the &ldquo;Bretton Woods System&rdquo;. In July of 1944, representatives
+                from members of the U.N Monetary and Financial Conference met in Bretton Woods, New Hampshire which
+                is where the agreement&apos;s name originated. The goal of the Bretton Woods System was to establish
+                a system for foreign exchange. The architects of the Bretton Woods system wanted to establish a
+                neutral currency to be used as the world reserve currency which they coined the &ldquo;Bancor.&rdquo;
+                In addition, the Bretton Woods System also established the International Monetary Fund and the World
+                Bank. Although, the bancor did not happen as envisioned and instead, the U.S. dollar was used instead
+                as the dollar at the time was pegged to the value of gold&mdash;this was one of the agreement&apos;s
+                primary provisions. However, in 1970, then U.S. president Richard Nixon disconnected the dollar from
+                the gold standard effectively dissolving the Bretton Woods System. Thus, the U.S. dollar being the
+                world reserve currency is nothing more than a relic of a failed system from a bygone era and it is
+                important that we recognize that and find ways to move on from it. This is especially problematic today
+                as a single central bank can exercise unilateral control over a currency many nations have come to
+                depend on.
+            </p>
+            <p>
+                Finally, Janet Yellen stated &ldquo;I think many [cryptocurrencies] are used, at least in a
                 transaction sense, mainly for illicit financing&rdquo; <APAInline r={r['citation-lennon-2021']} /> when
                 questioned about the technology&apos;s potential terrorism risk. Yet, the cryptocurrency market
                 in its totality as of this writing sits at around $1.978 trillion which is less that the total amount
                 reported in the FinCen files regarding big banks. Furthermore, her responses were not only hyperbole
                 but flat-out incorrect seeing as Lennon goes on to state that in &ldquo;2020, the criminal share of all
-                cryptocurrency activity fell to just 0.34% ($10.0 billion in transaction volume).&rdquo; What she
+                cryptocurrency activity fell to just 0.34% ($10.0 billion in transaction volume).&rdquo; What Yellen
                 really sounds like is simply an echo from the McCarthy era. Except, today&apos;s word is
                 &ldquo;terrorism&rdquo; and frankly, if terrorism financing is of actual concern to our governmental
                 officials, then they should not be looking at cryptocurrency, but rather the traditional banking
@@ -521,7 +543,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 but they&apos;ve been off since Thursday&rdquo;. Moreover, &ldquo;Western Union has suspended all
                 services and even the centuries-old &ldquo;hawala&rdquo; system &mdash; which facilitates
                 cross-border transactions via a sophisticated network of money exchangers and personal contacts
-                &mdash; for now, remains closed&rdquo; <APAInline r={r['citation-sigalos-2021']} /> effectively cutting
+                &mdash; for now, remains closed&rdquo; <APAInline r={r['citation-sigalos-2021a']} /> effectively cutting
                 the people off from the global financial system. In times of need, it is clear that people in these
                 regions cannot rely on institutions to come to their aid and individuals are left to fend for
                 themselves.

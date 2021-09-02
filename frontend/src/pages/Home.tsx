@@ -29,7 +29,7 @@ const Home = (): JSX.Element => {
             <Row className="max-1200">
                 <Col xs={12} sm={12} md={6} lg={6} xl={6}>
                     <Section>
-                        <h3 className="capitalize mb-3">{t('latest_blog_post')}</h3>
+                        <h3 className="mb-3">{t('latest_blog_post')}</h3>
                         <Postcard
                             height={700}
                             title={article.title}
@@ -44,7 +44,7 @@ const Home = (): JSX.Element => {
                 </Col>
                 <Col xs={12} sm={12} md={6} lg={6} xl={6}>
                     <Section>
-                        <h3 className="capitalize mb-3">{t('latest_nft')}</h3>
+                        <h3 className="mb-3">{t('latest_nft')}</h3>
                         <Postcard
                             height={700}
                             title={nft.name}
@@ -59,7 +59,7 @@ const Home = (): JSX.Element => {
             </Row>
             <Section>
                 <header>
-                    <h3 className="capitalize">{t('donate')}</h3>
+                    <h3>{t('donate')}</h3>
                     <p>{donate}</p>
                 </header>
                 <CryptoAssets data={donationAddresses} size={24} />

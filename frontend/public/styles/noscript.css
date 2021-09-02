@@ -1,0 +1,22 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+noscript {
+    background-color: rgb(34, 34, 34);
+    height: 100vh;
+    vertical-align: middle;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+}
+
+noscript h1 {
+    color: white;
+}
+
+noscript div {
+    margin: auto;
+}

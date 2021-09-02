@@ -79,8 +79,8 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                 <meta property="article:modified_time" content={meta_modified} />
             </Helmet>
             <Breadcrumbs links={[
-                { text: t('blog'), class: 'capitalize', path: Constants.SITE_BLOG_PATH_BASE },
-                { text: t('article'), path: '', class: 'capitalize', active: true }
+                { text: t('blog'), path: Constants.SITE_BLOG_PATH_BASE },
+                { text: t('article'), path: '', active: true }
             ]} />
             <ArticleStyle>
                 <header>
@@ -90,30 +90,24 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                     <h2 className="text-xs-center">{data.title}</h2>
                     <Container>
                         <DefinitionList>
-                            <dt className="capitalize">{t('byline')}:</dt>
-                            <dd id="article_authors">{article_authors}</dd>
-                            <dt className="capitalize">{t('published')}:</dt>
-                            <dd id="article_date_posted">{publish_date}</dd>
+                            <dt>{t('byline')}:</dt>
+                            <dd>{article_authors}</dd>
+                            <dt>{t('published')}:</dt>
+                            <dd>{publish_date}</dd>
                             {modified_date !== null ? (
                                 <>
-                                    <dt className="capitalize">{t('last_update')}:</dt>
-                                    <dd id="modified">{modified_date}</dd>
+                                    <dt>{t('last_update')}:</dt>
+                                    <dd>{modified_date}</dd>
                                 </>
                             ) : null}
-                            <dt className="capitalize">{t('summary')}:</dt>
-                            <dd id="article_abstract">{data.description}</dd>
-                            <dt className="capitalize no-print">{t('share')}:</dt>
-                            <dd className="no-print">
-                                <SocialLinks url={article_full_url} title={data.title} />
-                            </dd>
-                            <dt className="capitalize no-print">{t('tags')}:</dt>
-                            <dd className="no-print">
-                                <Tags tags={data.tags} />
-                            </dd>
-                            <dt className="capitalize no-print">{t('length')}:</dt>
-                            <dd className="no-print">
-                                {formatNumber(data.readTime, i18next.language, 0)} {t('time.minutes')}
-                            </dd>
+                            <dt>{t('summary')}:</dt>
+                            <dd>{data.description}</dd>
+                            <dt>{t('share')}:</dt>
+                            <dd><SocialLinks url={article_full_url} title={data.title} /></dd>
+                            <dt>{t('tags')}:</dt>
+                            <dd><Tags tags={data.tags} /></dd>
+                            <dt>{t('length')}:</dt>
+                            <dd>{formatNumber(data.readTime, i18next.language, 0)} {t('time.minutes')}</dd>
                         </DefinitionList>
                         <Tocbot
                             header={t('table_of_contents')}
@@ -160,7 +154,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                                 <p>
                                     {t('content.disqus_disabled')}<br />
                                     <Button
-                                        className="capitalize"
+
                                         onClick={appContext.togglePrivacySelector}
                                         variant="link"
                                     >
@@ -206,7 +200,13 @@ const ArticleStyle = styled.article`
     }
 
     @media screen and (max-width: 768px) {
-        text-align: justify;
+        & footer p {
+            text-align: left;
+        }
+
+        & section p {
+            text-align: justify;
+        }
 
         & figure {
             padding: 10px;

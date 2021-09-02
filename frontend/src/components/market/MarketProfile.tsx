@@ -38,8 +38,8 @@ const MarketProfile = (): JSX.Element => {
     return (
         <Section>
             <Breadcrumbs links={[
-                { text: t('markets'), class: 'capitalize', path: Constants.SITE_MARKET_PATH_BASE },
-                { text: `${t(type)} /`, path: '', class: 'capitalize', active: true }
+                { text: t('markets'), path: Constants.SITE_MARKET_PATH_BASE },
+                { text: `${t(type)} /`, path: '', active: true }
             ]} />
 
             {marketContext.assetData.type !== AssetStates.ERROR && assetData !== undefined
@@ -74,7 +74,7 @@ const MarketProfile = (): JSX.Element => {
                     <Row>
                         <Col xs={{ span: 12, order: 2 }} md={{ span: 12, order: 2 }} lg={{ span: 6, order: 1 }} xl={{ span: 6, order: 1 }}>
                             <Section>
-                                <h3 className="capitalize">{t('about')} {assetData.name}</h3>
+                                <h3>{t('about')} {assetData.name}</h3>
                                 <ReadMore
                                     text={t(i18nNamespace.EXTERNAL + ':' + id + '_description')}
                                     charactersMax={300}
@@ -83,31 +83,31 @@ const MarketProfile = (): JSX.Element => {
                         </Col>
                         <Col xs={{ span: 12, order: 1 }} md={{ span: 12, order: 1 }} lg={{ span: 6, order: 2 }} xl={{ span: 6, order: 2 }}>
                             <Section>
-                                <h3 className="capitalize">{t('statistics')}</h3>
+                                <h3>{t('statistics')}</h3>
                                 <DefinitionList>
-                                    <dt className="capitalize xs-right">{t('price')}:</dt>
+                                    <dt className="xs-right">{t('price')}:</dt>
                                     <dd className="text-right">{formatPrice(assetData.price ?? 0, 9, i18next.language)}</dd>
-                                    <dt className="capitalize xs-right">1D {t('change')}:</dt>
+                                    <dt className="xs-right">1D {t('change')}:</dt>
                                     <dd className="text-right">{StyledPercentage(assetData.delta1, i18next.language)}</dd>
-                                    <dt className="capitalize xs-right">7D {t('change')}:</dt>
+                                    <dt className="xs-right">7D {t('change')}:</dt>
                                     <dd className="text-right">{StyledPercentage(assetData.delta7, i18next.language)}</dd>
-                                    <dt className="capitalize xs-right">30D {t('change')}:</dt>
+                                    <dt className="xs-right">30D {t('change')}:</dt>
                                     <dd className="text-right">{StyledPercentage(assetData.delta30, i18next.language)}</dd>
-                                    <dt className="capitalize xs-right">YTD {t('change')}:</dt>
+                                    <dt className="xs-right">YTD {t('change')}:</dt>
                                     <dd className="text-right">{StyledPercentage(assetData.deltaY, i18next.language)}</dd>
-                                    <dt className="capitalize xs-right">{t('all_time_high')}:</dt>
+                                    <dt className="xs-right">{t('all_time_high')}:</dt>
                                     <dd className="text-right">{formatPrice(assetData.ath ?? 0, 8, i18next.language)} {StyledPercentage(athDelta, i18next.language)}</dd>
-                                    <dt className="capitalize xs-right">{t('all_time_low')}:</dt>
+                                    <dt className="xs-right">{t('all_time_low')}:</dt>
                                     <dd className="text-right">{formatPrice(assetData.atl ?? 0, 8, i18next.language)} {StyledPercentage(atlDelta, i18next.language)}</dd>
-                                    <dt className="capitalize xs-right">{t('market_capitalization')}:</dt>
+                                    <dt className="xs-right">{t('market_capitalization')}:</dt>
                                     <dd className="text-right">{formatPrice(assetData.cap ?? 0, Constants.DEFAULT_PRICE_PLACES, i18next.language)}</dd>
-                                    <dt className="capitalize xs-right">{t('fully_diluted_valuation')}:</dt>
+                                    <dt className="xs-right">{t('fully_diluted_valuation')}:</dt>
                                     <dd className="text-right">{formatPrice(assetData.total_value ?? 0, Constants.DEFAULT_PRICE_PLACES, i18next.language)}</dd>
-                                    <dt className="capitalize xs-right">24H {t('volume')}:</dt>
+                                    <dt className="xs-right">24H {t('volume')}:</dt>
                                     <dd className="text-right">{formatPrice(assetData.volume ?? 0, Constants.DEFAULT_PRICE_PLACES, i18next.language)}</dd>
-                                    <dt className="capitalize xs-right">{t('circulating_supply')}:</dt>
+                                    <dt className="xs-right">{t('circulating_supply')}:</dt>
                                     <dd className="text-right">{formatNumber(assetData.circulating_supply ?? 0, i18next.language, 0)}</dd>
-                                    <dt className="capitalize xs-right">{t('max_supply')}:</dt>
+                                    <dt className="xs-right">{t('max_supply')}:</dt>
                                     <dd className="text-right">{!assetData.max_supply ? '-' : formatNumber(assetData.max_supply ?? 0, i18next.language, 0)}</dd>
                                 </DefinitionList>
                             </Section>
@@ -118,7 +118,7 @@ const MarketProfile = (): JSX.Element => {
                     ? 'Error'
                     : <LoaderContent type="profile" />
             }
-            <div className="space-bottom text-right capitalize">{marketContext.marketDataByline(type)}</div>
+            <div className="text-right">{marketContext.marketDataByline(type)}</div>
         </Section>
     );
 };

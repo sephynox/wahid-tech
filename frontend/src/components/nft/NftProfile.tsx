@@ -6,7 +6,6 @@ import i18next from 'i18next';
 import styled from 'styled-components';
 import { Section } from '../../styles/Section';
 import Data from './Data';
-//import 'embeddable-nfts/src/nft-card';
 import NotFound from '../../pages/NotFound';
 import { NftContract } from '../../actions/OpenSea';
 import { DefinitionList } from '../../styles/DefinitionList';
@@ -45,7 +44,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
 
     return (
         <Section>
-            <h2 className="capitalize mb-5">{title}</h2>
+            <h2 className="mb-5">{title}</h2>
             <Row>
                 <Col xs={12} md={12} lg={6} xl={6}>
                     <Figure className="pointer pl-0 pr-0-md" onClick={() => setModalState(ModalState.OPEN)}>
@@ -55,23 +54,25 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 </Col>
                 <Col xs={12} md={12} lg={6} xl={6} className="d-flex flex-column">
                     <div className="spacer"></div>
-                    <h3 className="capitalize pt-5">{t('details')}</h3>
+                    <h3 className="pt-5">{t('details')}</h3>
                     <DefinitionList>
-                        <dt className="capitalize">{t('contract')}:</dt>
-                        <dd className="text-right">{contract.address}</dd>
-                        <dt className="capitalize">{t('published')}:</dt>
+                        <dt>{t('contract')}:</dt>
+                        <dd className="text-right">
+                            <a target="_blank" href={`${contract.network}${contract.address}`} rel="noreferrer">{contract.address}</a>
+                        </dd>
+                        <dt>{t('published')}:</dt>
                         <dd className="text-right">{created}</dd>
-                        <dt className="capitalize">{t('max_supply')}:</dt>
+                        <dt>{t('max_supply')}:</dt>
                         <dd className="text-right">{contract.total_supply}</dd>
-                        <dt className="capitalize no-print">{t('share')}:</dt>
-                        <dd className="no-print text-right"><SocialLinks title={title} url={window.location.href} /></dd>
+                        <dt>{t('share')}:</dt>
+                        <dd className="text-right"><SocialLinks title={title} url={window.location.href} /></dd>
                     </DefinitionList>
                     {!owner
                         ?
                         <>
                             <h4>For Sale</h4>
                             <OpenSea
-                                address={contract.address}
+                                address={data.permalink}
                                 price={price}
                                 button={t('purchase')}
                                 image={image}
@@ -81,9 +82,9 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                         <>
                             <h4>Sold</h4>
                             <DefinitionList>
-                                <dt className="capitalize">{t('owner')}:</dt>
+                                <dt>{t('owner')}:</dt>
                                 <dd className="text-right">{owner ? owner : t('no_owner')}</dd>
-                                <dt className="capitalize">{t('last_sale')}:</dt>
+                                <dt>{t('last_sale')}:</dt>
                                 <dd className="text-right">{sale_date ? sale_date : t('no_owner')}</dd>
                             </DefinitionList>
                         </>
@@ -92,7 +93,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
             </Row>
             <ModalStyle show={modalState === ModalState.OPEN} onHide={closeModal} dialogClassName="modal-large" centered>
                 <Modal.Header>
-                    <Modal.Title className="capitalize">{title}</Modal.Title>
+                    <Modal.Title>{title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Figure>
@@ -101,7 +102,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                     </Figure>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className="capitalize" variant="secondary" onClick={closeModal}>{t('close')}</Button>
+                    <Button variant="secondary" onClick={closeModal}>{t('close')}</Button>
                 </Modal.Footer>
             </ModalStyle>
         </Section>

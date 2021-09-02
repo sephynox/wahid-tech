@@ -30,7 +30,7 @@ const SwipeDown: React.FunctionComponent<Props> = (props): JSX.Element => {
     return (
         <SwipeDownStyle {...swipeHandlers} style={{ marginTop: swipeMargin }}>
             <div className={`swipe-indicator ${swipeMargin > 0 ? 'active' : 'inactive'}`}>
-                <span className="capitalize">{props.swipeMessage}</span><hr />
+                <span>{props.swipeMessage}</span><hr />
                 <i className={props.swipeIcon ? props.swipeIcon : 'bi-chevron-bar-down'}></i>
                 <div className="pb-4"></div>
             </div>

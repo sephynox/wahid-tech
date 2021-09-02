@@ -1,5 +1,10 @@
 import { ERCTypes, Fungibility } from '../tools/ContractData';
 
+export enum Network {
+    ETHEREUM = 'https://etherscan.io/address/',
+    POLYGON = 'https://polygonscan.com/address/',
+}
+
 export type OSUser = {
     user?: {
         username: string
@@ -10,27 +15,28 @@ export type OSUser = {
 };
 
 export type NftContract = {
+    network: Network,
     address: string,
     asset_contract_type: Fungibility,
-    created_date: Date,
-    name: string,
-    nft_version: string,
-    owner: number,
-    schema_name: ERCTypes,
-    symbol: string,
     total_supply: number,
-    description: string,
-    external_link: string,
-    image_url: string,
-    default_to_fiat: false,
-    dev_buyer_fee_basis_points: number,
-    dev_seller_fee_basis_points: number,
-    only_proxied_transfers: boolean,
-    opensea_buyer_fee_basis_points: number,
-    opensea_seller_fee_basis_points: number,
-    buyer_fee_basis_points: number,
-    seller_fee_basis_points: number,
-    payout_address: string,
+    created_date?: Date,
+    name?: string,
+    nft_version?: string,
+    owner?: number,
+    schema_name?: ERCTypes,
+    symbol?: string,
+    description?: string,
+    external_link?: string,
+    image_url?: string,
+    default_to_fiat?: false,
+    dev_buyer_fee_basis_points?: number,
+    dev_seller_fee_basis_points?: number,
+    only_proxied_transfers?: boolean,
+    opensea_buyer_fee_basis_points?: number,
+    opensea_seller_fee_basis_points?: number,
+    buyer_fee_basis_points?: number,
+    seller_fee_basis_points?: number,
+    payout_address?: string,
     opensea_version?: string,
 };
 
@@ -43,10 +49,10 @@ export type Nft = {
     image_url: string,
     permalink: string,
     is_presale: boolean,
-    asset_contract: NftContract,
     listing_date: Date,
     owner: OSUser,
     creator: OSUser,
+    asset_contract: NftContract,
     collection?: NftCollection,
     background_color?: string,
     image_preview_url?: string,

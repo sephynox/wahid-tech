@@ -59,13 +59,13 @@ const LanguageSelector: React.FunctionComponent<Props> = ({ columns = 3 }: Props
     return (
         <Modal show={appContext.langSelectorState === LanguageSelectorState.OPEN} onHide={closeLanguageSelector} centered>
             <Modal.Header>
-                <Modal.Title className="capitalize">{t('language')}</Modal.Title>
+                <Modal.Title>{t('language')}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Container>{options}</Container>
             </Modal.Body>
             <Modal.Footer>
-                <Button className="capitalize" variant="secondary" onClick={closeLanguageSelector}>{t('close')}</Button>
+                <Button variant="secondary" onClick={closeLanguageSelector}>{t('close')}</Button>
             </Modal.Footer>
         </Modal>
     );

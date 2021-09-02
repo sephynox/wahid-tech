@@ -107,6 +107,10 @@ figure figcaption {
     text-transform: capitalize;
 }
 
+.lowercase {
+    text-transform: lowercase;
+}
+
 .word-wrap {
     word-wrap: break-word;
 }
@@ -126,10 +130,6 @@ figure figcaption {
 
 .margin-auto-horizontal {
     margin: 0 auto;
-}
-
-.space-bottom {
-    margin-bottom: 100px;
 }
 
 .loader-center {

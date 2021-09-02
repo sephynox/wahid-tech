@@ -14,7 +14,7 @@ type Props = {
 }
 
 const OpenSea: React.FunctionComponent<Props> = (props): JSX.Element => {
-    const url = `https://opensea.io/assets/${props.address}`;
+    const url = props.address;
     const button = <>{props.button} <Eth /> {props.price}</>;
 
     return (
@@ -26,7 +26,7 @@ const OpenSea: React.FunctionComponent<Props> = (props): JSX.Element => {
                 </Col>
                 <Col xs={12} sm={6} md={6} lg={6} className="image">
                     <img src={props.image.url} alt={props.image.alt} />
-                    <Button className="capitalize" target="_blank" href={url}>{button}</Button>
+                    <Button target="_blank" href={url}>{button}</Button>
                 </Col>
             </Row>
         </OpenSeaStyle>

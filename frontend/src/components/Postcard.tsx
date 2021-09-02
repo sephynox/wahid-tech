@@ -29,7 +29,7 @@ const Postcard: React.FunctionComponent<Props> = (props): JSX.Element => {
                 <h3 className="card-title">{props.title}</h3>
                 <p>{props.date.toLocaleDateString(i18next.language)}</p>
                 <p className="card-text">{props.text}</p>
-                <NavLink className="btn btn-primary capitalize" to={props.link}>{props.linkText}</NavLink>
+                <NavLink className="btn btn-primary" to={props.link}>{props.linkText}</NavLink>
             </div>
         </PostcardStyle>
     );
@@ -70,6 +70,8 @@ const PostcardStyle = styled.article<Theme>`
 
     & header img {
         padding: ${(props: { padding: number }) => props.padding}px;
+        width: auto;
+        max-width: 100%;
         max-height: 350px;
         margin-left: auto;
         margin-right: auto;

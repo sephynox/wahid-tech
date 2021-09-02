@@ -11,6 +11,7 @@
         <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+        <link rel="stylesheet" href="%PUBLIC_URL%/styles/noscript.css" />
         <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -35,7 +36,12 @@
         <meta property="og:image" content="%PUBLIC_URL%/opengraph.png" />
     </head>
     <body>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <noscript>
+            <div>
+                <h1>This Website Requires JavaScript to Operate</h1>
+                <img src="/images/javascript-required.png" alt="Please Enable Javascript" />
+            </div>
+        </noscript>
         <div id="root"></div>
         <!--
       This HTML file is a template.
