@@ -22,5 +22,5 @@ export const WTECH_API_ENDPOINT_DEV = 'https://dev-api.wahid.tech/v1';
 export const WTECH_API_ENDPOINT = DEV_MODE ? WTECH_API_ENDPOINT_DEV : WTECH_API_ENDPOINT_PROD;
 export const SITE_CONTACT_ENDPOINT = WTECH_API_ENDPOINT + '/contact';
 //Front-end safe values only
-export const REACT_APP_GA_RECAPTCHA_KEY = "6Le0wCYUAAAAABYv_Axwdte1Jg7LcjqAhhBCYH80"
-export const REACT_APP_GA_TRACKING_ID = "G-HP7W48NCNM"
+export const REACT_APP_GA_RECAPTCHA_KEY = "6Le0wCYUAAAAABYv_Axwdte1Jg7LcjqAhhBCYH80";
+export const REACT_APP_GA_TRACKING_ID = "G-HP7W48NCNM";
