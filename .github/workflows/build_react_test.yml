@@ -9,15 +9,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Install dependencies
-        uses: borales/actions-yarn@v2.3.0
+      - name: Install Dependencies
         working-directory: ./frontend
         run: yarn install
-      - name: Build application
-        uses: borales/actions-yarn@v2.3.0
+      - name: Build Application
         working-directory: ./frontend
         run: yarn build
-      - name: Test application
-        uses: borales/actions-yarn@v2.3.0
+      - name: Test Application
         working-directory: ./frontend
         run: yarn test
