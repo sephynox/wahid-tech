@@ -31,4 +31,6 @@ jobs:
         run: yarn test
       - name: Deploy App to S3 bucket
         working-directory: ./frontend
-        run: aws s3 sync ./build/ s3://${{ secrets.AWS_S3_BUCKET }}
+        run: |
+          echo ${{ secrets.ENV }} > ./build/.env
+          aws s3 sync ./build/ s3://${{ secrets.AWS_S3_BUCKET }}
