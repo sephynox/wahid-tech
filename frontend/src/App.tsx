@@ -6,6 +6,7 @@ import { toast } from 'react-hot-toast';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './scss/custom.scss';
 import './App.css';
+import * as Constants from './Constants';
 import { socialLinks } from './Data';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { NavState } from './layout/Navigation';
@@ -139,7 +140,7 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
         let historyListener = undefined;
 
         if (allowedCookieState['analytics']) {
-            ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID ?? '', { debug: testMode });
+            ReactGA.initialize(Constants.REACT_APP_GA_TRACKING_ID ?? '', { debug: testMode });
 
             historyListener = history.listen(() => {
                 toast.dismiss();

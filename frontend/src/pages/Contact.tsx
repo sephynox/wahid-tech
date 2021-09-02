@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { toast } from 'react-hot-toast';
 import styled from 'styled-components';
+import * as Constants from '../Constants';
 import { apiReducer, initialWTechAPIState, submitContactForm, WTechAPIStates } from '../actions/WTech';
 import { initialContactData } from '../tools/ContactData';
 import { Themes } from '../tools/Themes';
@@ -168,7 +169,7 @@ const Contact = (): JSX.Element => {
                                     <ReCAPTCHA
                                         hl={i18n.language}
                                         ref={recaptchaRef}
-                                        sitekey={process.env.REACT_APP_GA_RECAPTCHA_KEY}
+                                        sitekey={Constants.REACT_APP_GA_RECAPTCHA_KEY}
                                         theme={theme}
                                         onExpired={() => setRecaptcha(null)}
                                         onChange={setRecaptcha}
