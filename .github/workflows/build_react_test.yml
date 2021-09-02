@@ -14,7 +14,9 @@ jobs:
         run: yarn install
       - name: Build Application
         working-directory: ./frontend
-        run: yarn build
+        run: |
+          echo "SKIP_PREFLIGHT_CHECK=true" > .env
+          yarn build
       - name: Test Application
         working-directory: ./frontend
         run: yarn test
