@@ -154,7 +154,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 a common goal and each node can communicate with one another to facilitate that goal but operates as
                 a single system. As such, these networks can very well be governed under a single authority like a
                 content-driven network (CDN). In a decentralized network, each node operates with only the information
-                it has also known as decision locality in order to accomplish its goal. This is how networks like
+                it has also known as information locality in order to accomplish its goal. This is how networks like
                 Bitcoin, Ethereum, XRP, etc. work. A rudimentary example of a decentralized network is a polygyne
                 ant colony (or a colony with multiple queens). Such colonies are decentralized as each ant operates
                 on local information to perform its tasks and each ant may be conducting a different task but if
