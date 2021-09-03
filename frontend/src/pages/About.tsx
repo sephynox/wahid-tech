@@ -45,7 +45,7 @@ const About = (): JSX.Element => {
                 >
                     <i className="icon bi-linkedin"></i>
                 </a>
-                <a href="resume.pdf" target="_blank" className="linkedin" title="Resume">
+                <a href="wahid-resume.pdf" target="_blank" className="linkedin" title="Resume">
                     <i className="icon bi-file-earmark-person-fill"></i>
                 </a>
                 <a
