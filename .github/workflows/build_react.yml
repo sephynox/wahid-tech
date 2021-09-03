@@ -24,17 +24,17 @@ jobs:
       - name: Build Application
         working-directory: ./frontend
         run: |
-          echo "SKIP_PREFLIGHT_CHECK=true" > .env
-          yarn build
+          echo "SKIP_PREFLIGHT_CHECK=true" > .env;
+          yarn build;
       - name: Test Application
         working-directory: ./frontend
         run: yarn test
-      - name: Deploy App to S3 bucket
+      - name: Deploy App to S3 Bucket
         working-directory: ./frontend
         run: aws s3 sync ./build/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
-      - name: Set CloudFront COMMIT_HASH variable
-        run: sed -i "s/COMMIT_HASH/${GITHUB_SHA}/g" ./frontend/additions/cloudfront-invalidation.json
-      - name: Set PRODUCTION CloudFront CLOUDFRONT_ID variable
-        run: sed -i "s/CLOUDFRONT_ID/${{ secrets.AWS_CLOUDFRONT_ID }}/g" ./frontend/additions/cloudfront-invalidation.json
+      - name: Set CloudFront Invalidation Variables
+        run: |
+          sed -i "s/COMMIT_HASH/${GITHUB_SHA}/g" ./build_additions/cloudfront-invalidation.json;
+          sed -i "s/CLOUDFRONT_ID/${{ secrets.AWS_CLOUDFRONT_ID }}/g" ./build_additions/cloudfront-invalidation.json;
       - name: Clear CloudFront Cache
-        run: aws cloudfront create-invalidation --cli-input-json file://./frontend/additions/cloudfront-invalidation.json
+        run: aws cloudfront create-invalidation --cli-input-json file://./build_additions/cloudfront-invalidation.json
