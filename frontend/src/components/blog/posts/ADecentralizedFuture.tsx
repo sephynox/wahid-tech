@@ -625,22 +625,23 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 account streams based on their inbound and outbound streams. Account pools can allow individuals
                 to predetermine their future finances whether for retirement or simply knowing exactly how long until
                 a pool will run out at its current rates. Moreover, there would be far fewer surprises this way
-                giving people more time to worry about other things in their lives.
+                giving people more time to worry about other things in their lives&mdash;the very point of technology.
             </p>
             <p>
-                However, money is not the only application for DLT technology. Anything from movie tickets, licenses,
-                academic degrees, certifications credentials, warranties, certificates of authenticity, and artwork
-                can be a non-fungible or semi-fungible token (NFT/SFT). Businesses can leverage promotions that
-                can span many years with loyal customers never missing out. For example, a movie theater can offer
-                discounts for multi-part movies that hold the ticket NFT for previous installments. Collectibles can
-                be issued for those that visited a theater for a movie and special editions can be minted for those
-                that saw an entire trilogy in theaters. Streaming platforms can simply offer the service of streaming
-                content while allowing rights to content to be held directly by consumers. Simply connect your address
-                to any streaming service and enjoy the content you own. This could conceivably extend to products where
-                individuals that own an obsolete version of a product can receive a special promotional price for
-                upgrading. As a result, the way advertising and direct marketing is done could be changed entirely. Of
-                course, commerce is not the only aspect this technology can change but also property deeds, automotive
-                titles, leases, mortgage agreements, and more can all be tokenized in an internet of value.
+                However, money is not the only application for DLT technology. Anything from movie/plane/speeding
+                tickets, licenses, academic degrees, certifications credentials, warranties, certificates of
+                authenticity, and artwork can be a non-fungible or semi-fungible token (NFT/SFT). Businesses can
+                leverage promotions that can span many years with loyal customers never missing out. For example, a
+                movie theater can offer discounts for multi-part movies to customers that hold the ticket NFT for
+                previous installments. Collectibles can be issued for those that visited a theater for a movie and
+                special editions can be minted for those that saw an entire trilogy in theaters. Streaming platforms
+                can simply offer the service of streaming content while allowing rights to content to be held directly
+                by consumers. Simply connect your address to any streaming service and enjoy the content you own. This
+                could conceivably extend to products where individuals that own an obsolete version of a product can
+                receive a special promotional price for upgrading. As a result, the way advertising and direct
+                marketing is done could be changed entirely. Of course, commerce is not the only aspect this
+                technology can change but also property deeds, automotive titles, leases, mortgage agreements, and
+                more can all be tokenized in an internet of value.
             </p>
             <p>
                 Even industries like healthcare can greatly benefit from DLT and the democratization of healthcare
@@ -660,11 +661,11 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 With governmental adoption, W2s and other tax forms can be minted by addresses with EIN NFTs which
                 could trigger the start of an income stream to an employee address. However, this could conceivably
                 open multiple streams of value at once: one to an employee, and the second directly to the IRS for
-                taxes virtually eliminating tax evasion. Census data can be collected more easily and accurately
-                and maintained with minimal effort especially when government networks interoperate with one
-                another. Eventually, voting can be done using DLT which would not only eliminate any possible fraud,
-                prevent gerrymandering, and encourage more people to vote thanks to convenience, but also,
-                the legitimacy of an election cannot be called into question.
+                taxes with the posibility of virtually eliminating tax evasion. Census data can be collected more
+                easily and accurately and maintained with minimal effort especially when government networks
+                interoperate with one another. Eventually, voting can be done using DLT which would not only eliminate
+                any possible fraud, prevent gerrymandering, and encourage more people to vote thanks to convenience,
+                but also, the legitimacy of an election cannot be called into question.
             </p>
             <p>
                 Finally, no more will exist the days of guessing wildly at how to control something as complex
