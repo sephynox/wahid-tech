@@ -5,6 +5,7 @@ import { Button, Col, Figure, Modal, Row } from 'react-bootstrap';
 import i18next from 'i18next';
 import styled from 'styled-components';
 import { Section } from '../../styles/Section';
+import * as Constants from '../../Constants';
 import Data from './Data';
 import NotFound from '../../pages/NotFound';
 import { NftContract } from '../../actions/OpenSea';
@@ -12,6 +13,7 @@ import { DefinitionList } from '../../styles/DefinitionList';
 import SocialLinks from '../../tools/SocialLinks';
 import OpenSea from './OpenSea';
 import { formatNumber } from '../../utils/data-formatters';
+import { Breadcrumbs } from '../../layout/Navigation';
 
 enum ModalState {
     OPEN,
@@ -44,6 +46,11 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
 
     return (
         <Section>
+            <Breadcrumbs links={[
+                { text: t('NFTs'), path: Constants.SITE_NFT_PATH_BASE },
+                { text: `NFT /`, path: '', active: true }
+            ]} />
+
             <h2 className="mb-5">{title}</h2>
             <Row>
                 <Col xs={12} md={12} lg={6} xl={6}>

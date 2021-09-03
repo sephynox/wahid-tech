@@ -1,6 +1,6 @@
 import React, { Component, useContext } from 'react';
 import { Breadcrumb } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { AppContext } from '../App';
@@ -39,16 +39,20 @@ export type NavBlock = {
 
 export const Breadcrumbs = ({ links }: BreadcrumbsProps): JSX.Element => {
     const { t } = useTranslation();
+
     return (
         <Breadcrumb>
-            <Breadcrumb.Item linkAs={NavLink} linkProps={{ to: "/" }}>{t('home')}</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>{t('home')}</Breadcrumb.Item>
             {links.map((crumb: Crumb, i: number) => (
                 <Breadcrumb.Item
                     key={i}
                     className={crumb.class}
-                    linkAs={NavLink}
+                    linkAs={Link}
                     linkProps={{ to: crumb.path }}
-                    active={crumb.active}>{crumb.text}</Breadcrumb.Item>)
+                    active={crumb.active}
+                >
+                    {crumb.text}
+                </Breadcrumb.Item>)
             )}
         </Breadcrumb>
     );

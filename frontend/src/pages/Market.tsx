@@ -122,13 +122,15 @@ const Market = (): JSX.Element => {
             fetchCryptoMarketStoreData();
         }
 
-        if (assetType && assetKey && assetData.type !== AssetStates.ERROR && assetData.type !== AssetStates.FETCHING) {
-            if (assetData.data && assetData.data[assetType][assetKey] && !assetData.data[assetType][assetKey].meta_data) {
-                fetchAssetData(assetType, assetKey)(dispatchAssetData);
-            }
+        if (assetType && assetKey && assetData.data && assetData.type !== AssetStates.FETCHING) {
+            if (assetData.data[assetType] && assetData.data[assetType][assetKey]) {
+                if (!assetData.data[assetType][assetKey].meta_data) {
+                    fetchAssetData(assetType, assetKey)(dispatchAssetData);
+                }
 
-            if (assetData.data && assetData.data[assetType][assetKey] && !assetData.data[assetType][assetKey].price_history) {
-                fetchAssetPriceData(assetType, assetKey, dateStart)(dispatchAssetData);
+                if (!assetData.data[assetType][assetKey].price_history) {
+                    fetchAssetPriceData(assetType, assetKey, dateStart)(dispatchAssetData);
+                }
             }
         }
 
@@ -141,6 +143,18 @@ const Market = (): JSX.Element => {
             fetchCryptoMarketStoreData();
         }, 60000);
 
+        return () => {
+            clearTimeout(timer);
+
+            //HACK Highcharts breaks react routing
+            document.querySelectorAll('body>section')
+                .forEach((el) => {
+                    try { el.remove(); } catch (e) { }
+                });
+        };
+    }, [assetType, assetKey, assetData, dateStart]);
+
+    useEffect(() => {
         if (loaderToast) {
             switch (assetData.type) {
                 case AssetStates.FETCHED_ASSET_MARKET_DATA:
@@ -150,11 +164,7 @@ const Market = (): JSX.Element => {
                     break;
             }
         }
-
-        return () => {
-            clearTimeout(timer);
-        };
-    }, [assetType, assetKey, assetData, dateStart, loaderToast, t]);
+    }, [assetData.type, loaderToast, t]);
 
     return (
         <MarketContext.Provider value={providerData}>

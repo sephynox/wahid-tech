@@ -146,9 +146,7 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
                 toast.dismiss();
                 ReactGA.pageview(window.location.pathname + window.location.search);
             });
-        }
 
-        if (historyListener !== undefined) {
             return historyListener;
         }
     }, [history, testMode, allowedCookieState]);

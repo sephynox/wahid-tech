@@ -3,6 +3,7 @@
 A personal website turned web application. Many features to come!
 
 [![React CI](https://github.com/sephynox/wahid-tech/actions/workflows/build_react_test.yml/badge.svg)](https://github.com/sephynox/wahid-tech/actions/workflows/build_react_test.yml)
+[![React CD](https://github.com/sephynox/wahid-tech/actions/workflows/build_react.yml/badge.svg)](https://github.com/sephynox/wahid-tech/actions/workflows/build_react.yml)
 
 ## Table of Contents
 

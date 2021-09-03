@@ -18,6 +18,9 @@ export const DefinitionList = styled.dl`
         color: #595959;
         padding-bottom: 5px;
         line-break: strict;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
     @media screen and (max-width: 768px) {
@@ -31,7 +34,7 @@ export const DefinitionList = styled.dl`
         }
     }
 
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 370px) {
         & dt {
             width: 100%;
             text-align: left;
@@ -41,8 +44,7 @@ export const DefinitionList = styled.dl`
             text-align: right;
         }
 
-        & dd,
-        dt {
+        & dd, dt {
             clear: both;
             width: 100%;
             display: block;

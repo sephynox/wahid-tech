@@ -13,9 +13,9 @@ const Routes: React.FunctionComponent = (): JSX.Element => (
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
-        <Route path="/nfts*" component={Nft} />
-        <Route path="/financial-markets*" component={Market} />
-        <Route path="/technology-blog*" component={Blog} />
+        <Route path="/nfts" component={Nft} />
+        <Route path="/financial-markets" component={Market} />
+        <Route path="/technology-blog" component={Blog} />
         <Route component={NotFound} />
     </Switch>
 );
