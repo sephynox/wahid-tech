@@ -471,9 +471,10 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 50-90 percentile and bottom 50 percent combined which controlled approximately 29%. This puts the top
                 1% almost 9 points higher than in 1989 while the entire bottom 50% sat at almost 10 points lower than
                 in 1989 <APAInline r={r['citation-the-fed-2021']} />. Additionally, the median sale price of houses in
-                the last three decades has quadrupled putting home ownership for many out of reach while dependance on
-                banking institutions for home buying increases. This culminates into an alarming trend where the top
-                1% of households are accumulating more wealth while the rest of the nation is being left with less.
+                the last three decades has nearly quadrupled putting home ownership for many out of reach while
+                dependance on banking institutions for home buying increases. This culminates into an alarming trend
+                where the top 1% of households are accumulating more wealth while the rest of the nation is being left
+                with less.
             </p>
             <Figure>
                 <LightBox imageLight={"/images/blog/housing-prices-median.png"} imageDark={"/images/blog/housing-prices-median-dark.png"} imageAlt="Charts displaying median sale price of houses in the United States" />
