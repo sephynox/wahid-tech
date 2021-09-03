@@ -166,7 +166,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 such a configuration would reduce fault tolerance. The key takeaway is that a distributed network
                 distributes a task load across multiples nodes which work together toward a common goal. A
                 decentralized network consists of multiple nodes that operate independently as their own authority
-                using local information to accomplish its goal. The differences lay in their intricacies as all
+                using local information to accomplish their goals. The differences lay in their intricacies as all
                 decentralized networks are distributed but not all distributed networks are decentralized. Although,
                 the words distributed and decentralized can be applied to more than just computer networks, the
                 current scope focuses on computer networks.
