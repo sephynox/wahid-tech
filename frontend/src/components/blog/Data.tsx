@@ -11,7 +11,7 @@ const Data: PostData = {
         comments: true,
         path: 'a-decentralized-future',
         authors: [{ given: 'Tanveer', family: 'Wahid' }],
-        date: new Date('2021-08-29'),
+        date: new Date('2021-09-02'),
         title: 'A Decentralized Future',
         readTime: 60,
         component: ADecentralizedFuture,
