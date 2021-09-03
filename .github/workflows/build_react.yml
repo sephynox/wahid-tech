@@ -33,8 +33,8 @@ jobs:
         working-directory: ./frontend
         run: aws s3 sync ./build/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
       - name: Set CloudFront COMMIT_HASH variable
-        run: sed -i "s/COMMIT_HASH/${GITHUB_SHA}/g" ./additions/cloudfront-invalidation.json
+        run: sed -i "s/COMMIT_HASH/${GITHUB_SHA}/g" ./frontend/additions/cloudfront-invalidation.json
       - name: Set PRODUCTION CloudFront CLOUDFRONT_ID variable
-        run: sed -i "s/CLOUDFRONT_ID/${{ secrets.AWS_CLOUDFRONT_ID }}/g" ./additions/cloudfront-invalidation.json
+        run: sed -i "s/CLOUDFRONT_ID/${{ secrets.AWS_CLOUDFRONT_ID }}/g" ./frontend/additions/cloudfront-invalidation.json
       - name: Clear CloudFront Cache
-        run: aws cloudfront create-invalidation --cli-input-json file://./additions/cloudfront-invalidation.json
+        run: aws cloudfront create-invalidation --cli-input-json file://./frontend/additions/cloudfront-invalidation.json
