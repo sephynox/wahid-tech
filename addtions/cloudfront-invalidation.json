@@ -1,0 +1,12 @@
+{
+    "DistributionId": "CLOUDFRONT_ID",
+    "InvalidationBatch": {
+        "Paths": {
+            "Quantity": 1,
+            "Items": [
+                "/*"
+            ]
+        },
+        "CallerReference": "COMMIT_HASH"
+    }
+}
