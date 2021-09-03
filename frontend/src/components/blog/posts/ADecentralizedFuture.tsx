@@ -342,7 +342,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 not money but the medium by which money is transferred. This subtle difference emerged for reasons of
                 convenience as gold coin was less portable than paper notes. Which brings us to the properties of money
                 (and currency) of which one is portability. Other properties include durability, divisibility, supply,
-                fungibility (or uniformity), its rate of adoption, and its security (or ability to counterfeit). When
+                fungibility (or uniformity), its general acceptance, and its security (or ability to counterfeit). When
                 compared to traditional paper currency, cryptocurrencies have far superior properties. For example,
                 you cannot break a bitcoin (although, not unlike paper money, it can be lost forever), it can be
                 divided to 100 millionths of a bitcoin (also known as satoshis), there is a finite supply making it deflationary, it is
