@@ -47,9 +47,7 @@ const MarketProfile = (): JSX.Element => {
                     <Row>
                         <Col>
                             <Section>
-                                <div className="title">
-                                    <h2>{assetData.name}</h2>
-                                </div>
+                                <h1>{assetData.name}</h1>
                             </Section>
                         </Col>
                         <Col className="text-right d-none d-md-block d-xl-block d-lg-block">
@@ -74,7 +72,7 @@ const MarketProfile = (): JSX.Element => {
                     <Row>
                         <Col xs={{ span: 12, order: 2 }} md={{ span: 12, order: 2 }} lg={{ span: 6, order: 1 }} xl={{ span: 6, order: 1 }}>
                             <Section>
-                                <h3>{t('about')} {assetData.name}</h3>
+                                <h2>{t('about')} {assetData.name}</h2>
                                 <ReadMore
                                     text={t(i18nNamespace.EXTERNAL + ':' + id + '_description')}
                                     charactersMax={300}
@@ -83,7 +81,7 @@ const MarketProfile = (): JSX.Element => {
                         </Col>
                         <Col xs={{ span: 12, order: 1 }} md={{ span: 12, order: 1 }} lg={{ span: 6, order: 2 }} xl={{ span: 6, order: 2 }}>
                             <Section>
-                                <h3>{t('statistics')}</h3>
+                                <h2>{t('statistics')}</h2>
                                 <DefinitionList>
                                     <dt className="xs-right">{t('price')}:</dt>
                                     <dd className="text-right">{formatPrice(assetData.price ?? 0, 9, i18next.language)}</dd>

@@ -8,7 +8,7 @@ import { APAInline } from '../../../tools/APACitation';
 const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
     <>
         <section>
-            <h4 id="Introduction">Introduction</h4>
+            <h3 id="Introduction">Introduction</h3>
             <p>
                 The internet is arguably one of the most important innovations in our modern times. I remember the
                 internet&apos;s &ldquo;Netscape moment&rdquo; though I was only a child at the time. As an engineer
@@ -32,7 +32,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 <img src="/images/blog/internet-a-fad.webp" alt="Daily Mail Internet a Fad Article" />
                 <figcaption>Afshar, V. @ValaAfshar. (2018, April 18). <cite>Internet ‘may be just a passing fad as millions give up on it&apos;</cite>, December 2000. <a target="_blank" href="https://web.archive.org/web/20210523195547/https://twitter.com/ValaAfshar/status/1383904613598859270" rel="noreferrer">Twitter</a>.</figcaption>
             </Figure>
-            <h4 id="Yesterdays-Experts">Yesterday&apos;s Experts</h4>
+            <h3 id="Yesterdays-Experts">Yesterday&apos;s Experts</h3>
             <Quote
                 quote="The truth is no online database will replace your daily newspaper, no CD-ROM can take the place 
                        of a competent teacher and no computer network will change the way government works"
@@ -104,7 +104,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
             </p>
         </section>
         <section>
-            <h4 id="Distributed-Ledger-Technology">Distributed Ledger Technology</h4>
+            <h3 id="Distributed-Ledger-Technology">Distributed Ledger Technology</h3>
             <Quote
                 quote="You must remember that every invention of this kind which is made adds to the general wealth 
                        by introducing a new system of greater economy of force. A great invention which facilitates 
@@ -215,7 +215,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 <figcaption>CroweGlobal @CroweGlobal. (2019, July 11). <cite>Report reveals #fraud costs the global economy $5.127 trillion with losses rising by 56% in the past decade.</cite> <a target="_blank" href="https://web.archive.org/web/20210816045808/https://twitter.com/croweglobal/status/1149375727042777088" rel="noreferrer">Twitter</a>.
                 </figcaption>
             </Figure>
-            <h4 id="Issues-of-Trust">Issues of Trust</h4>
+            <h3 id="Issues-of-Trust">Issues of Trust</h3>
             <Quote
                 quote="The root problem with conventional currency is all the trust that's required to make it work."
                 author="Satoshi Nakamoto"
@@ -303,7 +303,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 <img src="/images/blog/cryptocurrencies.png" alt="Various cryptocurrencies" />
                 <figcaption>Various cryptocurrencies. Image credit designwebjae, <a target="_blank" href="https://pixabay.com/users/designwebjae-1753371/" rel="noreferrer">Pixaby</a></figcaption>
             </Figure>
-            <h4 id="Cryptocurrencies">Cryptocurrencies</h4>
+            <h3 id="Cryptocurrencies">Cryptocurrencies</h3>
             <Quote quote="Anyone could create money; the problem is to get it accepted." author="Hyman Minsky" />
             <p>
                 One of the most subtle differences that is lost on many individuals in regard to cryptocurrencies is
@@ -381,7 +381,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 <img src="/images/blog/weaponized-dollar.jpg" alt="Dollars Gun" />
                 <figcaption>Weaponization of the U.S. Dollar. Image credit geralt, <a target="_blank" href="https://pixabay.com/users/geralt-9301/" rel="noreferrer">Pixaby</a></figcaption>
             </Figure>
-            <h4 id="The-Status-Quo">The Status Quo</h4>
+            <h3 id="The-Status-Quo">The Status Quo</h3>
             <p>
                 However, on the other hand, Federal Reserve chair Jerome Powell and Secretary of the Treasury,
                 Janet Yellen have been the most outspoken critics of cryptocurrency from within the U.S. government.
@@ -455,7 +455,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                     Pew Research Center. (2020, January 9). <i><cite>Trends in income and wealth inequality</cite></i>. <a target="_blank" href="https://www.pewresearch.org/social-trends/2020/01/09/trends-in-income-and-wealth-inequality" rel="noreferrer">Pew Research Center</a>.
                 </figcaption>
             </Figure>
-            <h4 id="The-Rest-of-Us">The Rest of Us</h4>
+            <h3 id="The-Rest-of-Us">The Rest of Us</h3>
             <Quote
                 quote="Income growth has been most rapid for the top 5% of families"
                 author="Pew Research Center"
@@ -510,7 +510,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
             </p>
         </section>
         <section>
-            <h4 id="The-Forgotten">The Forgotten</h4>
+            <h3 id="The-Forgotten">The Forgotten</h3>
             <Quote
                 quote="There's no stopping crypto, [it's] the future and we won't let some old fools take our future 
                        from us ... We're Nigerians. Using the crypto is a way out of poverty for the youth."
@@ -596,7 +596,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 <img src="/images/blog/decentral-world.jpg" alt="A Decentralized World" />
                 <figcaption>A Decentralized World. Image credit <a target="_blank" href="https://web.archive.org/web/20210831013812/https://pixabay.com/" rel="noreferrer">Pixaby</a></figcaption>
             </Figure>
-            <h4 id="The-Future">The Future</h4>
+            <h3 id="The-Future">The Future</h3>
             <Quote
                 quote="The only way to discover the limits of the possible is to go beyond them into the impossible."
                 author="Arthur C. Clarke"
@@ -682,7 +682,7 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
             </p>
         </section>
         <section>
-            <h4 id="Conclusion">Conclusion</h4>
+            <h3 id="Conclusion">Conclusion</h3>
             <Quote
                 quote="If communities are to engage in exchange and forge functioning societies, they must find a way 
                        to arrive at a commonly accepted foundation of truth."

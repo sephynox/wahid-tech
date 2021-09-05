@@ -28,7 +28,8 @@ const About = (): JSX.Element => {
 
     return (
         <AboutStyle id="about">
-            <h1>{Constants.MY_NAME}</h1>
+            <h1>{t('about')}</h1>
+            <h2>{Constants.MY_NAME}</h2>
             <header>
                 <p className="typed-container">{formatTitleCase(t('i_am_a'))} <Typed {...typed_options} /></p>
             </header>
@@ -64,11 +65,10 @@ const About = (): JSX.Element => {
 export default About;
 
 const AboutStyle = styled.section`
-    & h1 {
+    & h2 {
         margin: 0;
         font-size: 64px;
         font-weight: 700;
-        line-height: 56px;
     }
 
     & p.typed-container {
@@ -101,9 +101,8 @@ const AboutStyle = styled.section`
     @media (max-width: 992px) {
         text-align: center;
 
-        & h1 {
+        & h2 {
             font-size: 32px;
-            line-height: 36px;
         }
 
         & p {

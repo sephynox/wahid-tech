@@ -21,7 +21,7 @@ const Home = (): JSX.Element => {
     return (
         <>
             <Section>
-                <h2>{title}</h2>
+                <h1>{title}</h1>
                 <header>
                     <em>{subtext}</em>
                 </header>

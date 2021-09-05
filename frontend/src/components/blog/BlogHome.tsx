@@ -32,7 +32,7 @@ const BlogHome: React.FunctionComponent = (): JSX.Element => {
     return (
         <Section>
             <header>
-                <h2>{title}</h2>
+                <h1>{title}</h1>
                 <em>{subtext}</em>
             </header>
             <Row>{list}</Row>

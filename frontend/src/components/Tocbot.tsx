@@ -121,7 +121,7 @@ const Tocbot: React.FunctionComponent<Props> = (props: Props): JSX.Element => {
     return (
         <TocStyle ref={element}>
             <Container>
-                {props.header && <h3>{props.header}</h3>}
+                {props.header && <h2>{props.header}</h2>}
                 <aside className="js-toc toc" />
             </Container>
         </TocStyle>

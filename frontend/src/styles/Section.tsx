@@ -12,7 +12,7 @@ export const Section = styled.section`
         display: inline-block;
     }
 
-    & h2 {
+    & h1 {
         font-size: 32px;
         font-weight: bold;
         text-transform: uppercase;
@@ -21,7 +21,7 @@ export const Section = styled.section`
         position: relative;
     }
 
-    & h2::before {
+    & h1::before {
         content: '';
         position: absolute;
         display: block;
@@ -31,7 +31,7 @@ export const Section = styled.section`
         bottom: 1px;
     }
 
-    & h2::after {
+    & h1::after {
         content: '';
         position: absolute;
         display: block;
@@ -43,15 +43,15 @@ export const Section = styled.section`
     }
 
     @media screen and (max-width: 768px) {
-        & h2 {
+        & h1 {
             text-align: center;
         }
 
-        & h2::before {
+        & h1::before {
             left: calc(50% - 60px);
         }
 
-        & h2::after {
+        & h1::after {
             left: calc(50% - 20px);
         }
 

@@ -140,7 +140,7 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
         let historyListener = undefined;
 
         if (allowedCookieState['analytics']) {
-            ReactGA.initialize(Constants.REACT_APP_GA_TRACKING_ID ?? '', { debug: testMode });
+            ReactGA.initialize(Constants.REACT_APP_GA_TRACKING_ID, { debug: testMode });
 
             historyListener = history.listen(() => {
                 ReactGA.pageview(window.location.pathname + window.location.search);

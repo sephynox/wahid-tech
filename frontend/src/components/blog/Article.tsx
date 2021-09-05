@@ -87,7 +87,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                     <Figure>
                         <img src={data.image.url} alt={data.image.alt} />
                     </Figure>
-                    <h2 className="text-xs-center">{data.title}</h2>
+                    <h1 className="text-xs-center">{data.title}</h1>
                     <Container>
                         <DefinitionList>
                             <dt>{t('byline')}:</dt>
@@ -112,20 +112,20 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                         <Tocbot
                             header={t('table_of_contents')}
                             contentSelector="article"
-                            headingSelector="h4, h5, h6" />
+                            headingSelector="h3, h4, h5, h6" />
                     </Container>
                 </header>
-                <h3>{t('full_story')}</h3>
+                <h2>{t('full_story')}</h2>
                 <HorizontalRule />
                 <MyArticle r={article_references} />
                 <HorizontalRule />
                 <footer>
                     <details>
-                        <summary><h3>{t('references')}</h3></summary>
+                        <summary><h2>{t('references')}</h2></summary>
                         <References data={data.references} Format={APACitation} />
                     </details>
                     <details>
-                        <summary><h3>{t('citations')}</h3></summary>
+                        <summary><h2>{t('citations')}</h2></summary>
                         <CitationGuide
                             id={data.authors[0].family}
                             authors={data.authors}
@@ -138,7 +138,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                     </details>
                     {data.comments &&
                         <details open>
-                            <summary><h3>{t('comments')}</h3></summary>
+                            <summary><h2>{t('comments')}</h2></summary>
                             {appContext.allowedCookieState['disqus']
                                 ? <DiscussionEmbed
                                     shortname="wahidtech"
@@ -178,11 +178,11 @@ const ArticleStyle = styled.article`
         padding: 0;
     }
 
-    & section h2 {
+    & section h1 {
         margin-bottom: 20px;
     }
 
-    & h3 {
+    & h2 {
         margin: 20px 0 20px 0;
         font-size: 1.3em;
         display: inline-block;
@@ -190,9 +190,9 @@ const ArticleStyle = styled.article`
         color: #595959;
     }
 
-    & section h4 {
+    & section h3 {
         margin-top: 30px;
-        font-size: 1.2em;
+        font-size: 1.4em;
     }
 
     & .container {

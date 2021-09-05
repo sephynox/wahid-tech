@@ -51,7 +51,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 { text: `NFT /`, path: '', active: true }
             ]} />
 
-            <h2 className="mb-5">{title}</h2>
+            <h1 className="mb-5">{title}</h1>
             <Row>
                 <Col xs={12} md={12} lg={6} xl={6}>
                     <Figure className="pointer pl-0 pr-0-md" onClick={() => setModalState(ModalState.OPEN)}>
@@ -61,7 +61,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 </Col>
                 <Col xs={12} md={12} lg={6} xl={6} className="d-flex flex-column">
                     <div className="spacer"></div>
-                    <h3 className="pt-5">{t('details')}</h3>
+                    <h2 className="pt-5">{t('details')}</h2>
                     <DefinitionList>
                         <dt>{t('contract')}:</dt>
                         <dd className="text-right">
@@ -77,7 +77,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                     {!owner
                         ?
                         <>
-                            <h4>For Sale</h4>
+                            <h3>For Sale</h3>
                             <OpenSea
                                 address={data.permalink}
                                 price={price}
@@ -87,7 +87,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                         </>
                         :
                         <>
-                            <h4>Sold</h4>
+                            <h3>Sold</h3>
                             <DefinitionList>
                                 <dt>{t('owner')}:</dt>
                                 <dd className="text-right">{owner ? owner : t('no_owner')}</dd>

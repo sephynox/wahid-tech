@@ -24,7 +24,7 @@ const MarketHome: React.FunctionComponent = (): JSX.Element => {
         <>
             <Section>
                 <header>
-                    <h2>{title}</h2>
+                    <h1>{title}</h1>
                 </header>
                 <Row>
                     <Col className="text-right d-none d-md-block d-xl-block d-lg-block">

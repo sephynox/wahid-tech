@@ -76,7 +76,7 @@ const Contact = (): JSX.Element => {
 
     return (
         <ContactStyle id="contact">
-            <h2>{t('contact')}</h2>
+            <h1>{t('contact')}</h1>
             {apiRequest.type !== WTechAPIStates.SUBMITTED_CONTACT_FORM && <em>{t('content.contact')}</em>}
             <Row className="mt-1">
                 <Col lg={12} className="mt-6 mt-lg-0">{apiRequest.type === WTechAPIStates.SUBMITTED_CONTACT_FORM
