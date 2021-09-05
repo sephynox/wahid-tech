@@ -143,8 +143,8 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
             ReactGA.initialize(Constants.REACT_APP_GA_TRACKING_ID ?? '', { debug: testMode });
 
             historyListener = history.listen(() => {
-                toast.dismiss();
                 ReactGA.pageview(window.location.pathname + window.location.search);
+                toast.dismiss();
             });
 
             return historyListener;
