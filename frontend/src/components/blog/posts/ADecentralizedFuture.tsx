@@ -377,10 +377,6 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
             </p>
         </section>
         <section>
-            <Figure>
-                <img src="/images/blog/weaponized-dollar.jpg" alt="Dollars Gun" />
-                <figcaption>Weaponization of the U.S. Dollar. Image credit geralt, <a target="_blank" href="https://pixabay.com/users/geralt-9301/" rel="noreferrer">Pixaby</a></figcaption>
-            </Figure>
             <h3 id="The-Status-Quo">The Status Quo</h3>
             <p>
                 However, on the other hand, Federal Reserve chair Jerome Powell and Secretary of the Treasury,
