@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import { Button, Col, Figure, Modal, Row } from 'react-bootstrap';
 import i18next from 'i18next';
 import styled from 'styled-components';
@@ -36,6 +37,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
     const title: string = data.name ?? t('no_name');
     const subtext: string = data.description ?? t('no_description');
     const image = { url: data.image_url, alt: data.name };
+    const link = window.location.href;
     const owner: string = data.owner?.address;
     const created: string = Intl.DateTimeFormat(i18next.language).format(data.listing_date);
     const sale_date: string = data.last_sale ? Intl.DateTimeFormat(i18next.language).format(data.last_sale) : '';
@@ -46,6 +48,15 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
 
     return (
         <Section>
+            <Helmet>
+                <meta property="og:title" content={title} />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content={link} />
+                <meta property="og:image" content={image.url} />
+                <meta property="og:description" content={data.description} />
+                <meta property="article:published_time" content={created} />
+                <meta property="article:author" content={data.owner?.user?.username} />
+            </Helmet>
             <Breadcrumbs links={[
                 { text: t('NFTs'), path: Constants.SITE_NFT_PATH_BASE },
                 { text: `NFT /`, path: '', active: true }
@@ -72,7 +83,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                         <dt>{t('max_supply')}:</dt>
                         <dd className="text-right">{contract.total_supply}</dd>
                         <dt>{t('share')}:</dt>
-                        <dd className="text-right"><SocialLinks title={title} url={window.location.href} /></dd>
+                        <dd className="text-right"><SocialLinks title={title} url={link} /></dd>
                     </DefinitionList>
                     {!owner
                         ?

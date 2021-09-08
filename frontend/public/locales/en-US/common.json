@@ -116,6 +116,7 @@
         "contact_message_success": "Your message was successfully sent"
     },
     "content": {
+        "description": "A website and blog for Tanveer Wahid with future functionality for DeFi and DApp applications.",
         "home": "An informational website and technology blog.",
         "nfts": "A collection of my works as NFTs",
         "blog": "A technology blog analyzing technology through various lenses, disciplines and views.",

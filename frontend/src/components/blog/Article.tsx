@@ -52,13 +52,14 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
     const { t, i18n } = useTranslation();
     const appContext = useContext(AppContext);
 
+    const formatName = (author: ArticleAuthor) => {
+        return `${author.given} ${author.middle ? author.middle.substr(0, 1) + '. ' : ' '}${author.family}`;
+    }
+
     const disqus_lang = i18n.language === 'en-US' ? 'en' : i18n.language.replace('-', '_');
     const article_full_url = Constants.SITE_BLOG_ARTICLE_BASE_URL + data.path;
     const article_references = arrayToRecord(data.references, 'id');
-    const article_authors = data.authors
-        .map((author: ArticleAuthor) =>
-            author.given + (author.middle !== undefined ? author.middle.substr(0, 1) + '. ' : ' ') + author.family,
-        ).join(', ');
+    const article_authors = data.authors.map((author: ArticleAuthor) => formatName(author)).join(', ');
     const MyArticle = data.component;
     const publish_date = Intl.DateTimeFormat(i18next.language).format(data.date);
     const modified_date = data.modified ? Intl.DateTimeFormat(i18next.language).format(data.modified) : null;
@@ -77,6 +78,8 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                 <meta property="og:description" content={data.description} />
                 <meta property="article:published_time" content={meta_date} />
                 <meta property="article:modified_time" content={meta_modified} />
+                {data.authors.map((a, i) => <meta key={i} property="article:author" content={formatName(a)} />)}
+                {data.tags.map((t, i) => <meta key={i} property="article:tag" content={t} />)}
             </Helmet>
             <Breadcrumbs links={[
                 { text: t('blog'), path: Constants.SITE_BLOG_PATH_BASE },

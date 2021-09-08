@@ -1,15 +1,28 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import Theme from '../tools/Themes';
+import * as Constants from '../Constants';
 import { navLinks } from '../Data';
 import { ThemeEngine } from '../styles/GlobalStyle';
+import OpenGraphImage from '../resources/images/opengraph.png';
 import LanguageSelector from './LanguageSelector';
 import Navigation, { NavToggle } from './Navigation';
 import ScrollTop from './ScrollTop';
+import Theme from '../tools/Themes';
 
 const Header: React.FunctionComponent = (): JSX.Element => {
+    const { t } = useTranslation();
+
     return (
         <HeaderStyle id="header" className="d-flex flex-column justify-content-center">
+            <Helmet>
+                <meta property="og:title" content={Constants.SITE_NAME} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.href} />
+                <meta property="og:image" content={OpenGraphImage} />
+                <meta property="og:description" content={t('content.description')} />
+            </Helmet>
             <NavToggle />
             <ScrollTop />
             <Navigation navLinks={navLinks} />
