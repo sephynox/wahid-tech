@@ -48,7 +48,7 @@ const BackTopStyle = styled.div<Theme>`
     padding: 5px 12px;
     align-items: center;
     font-size: 30px;
-    color: (theme) => theme.text};
+    color: ${(props: ThemeEngine) => props.theme.text};
     background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
     transition: 0.5s all ease-in-out;
     overflow: hidden;

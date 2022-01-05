@@ -1,6 +1,7 @@
 import { Network, Nft } from '../../actions/OpenSea';
 import ImageBeachedWhale from '../../resources/images/nfts/beached-whale.png';
 import ImageFTDF51PercentAttack from '../../resources/images/nfts/ftdf-51-percent-attack.png';
+import ImageOTEOEMana from '../../resources/images/nfts/mana.png';
 
 // TODO Get OpenSea API approval
 const Data: Record<string, Nft> = {
@@ -12,23 +13,24 @@ const Data: Record<string, Nft> = {
         image_url: ImageBeachedWhale,
         listing_date: new Date(2021, 7, 29, 19, 28, 18),
         name: 'Beached Whale',
-        description: 'Among the vast ocean that is the mempool, the dark forest of cyberspace, there exist hidden paradises of boundless treasure lost in time. These caches of riches washed up upon shores long forgotten yet they remain untouched, beached whales. Photo Credit: Foundry Co (Pixaby)',
+        description:
+            'Among the vast ocean that is the mempool, the dark forest of cyberspace, there exist hidden paradises of boundless treasure lost in time. These caches of riches washed up upon shores long forgotten yet they remain untouched, beached whales. Photo Credit: Foundry Co (Pixaby)',
         external_link: 'https://wahid.eth/',
         owner: {
             user: {
-                username: 'twahid'
+                username: 'twahid',
             },
             profile_img_url: '',
             address: '',
-            config: ''
+            config: '',
         },
         creator: {
             user: {
-                username: 'twahid'
+                username: 'twahid',
             },
             profile_img_url: '',
             address: '',
-            config: ''
+            config: '',
         },
         asset_contract: {
             network: Network.ETHEREUM,
@@ -36,7 +38,8 @@ const Data: Record<string, Nft> = {
             asset_contract_type: 'non-fungible',
             total_supply: 1,
         },
-        permalink: 'https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/70166210179675030937276227931482602363625572420758951884515941330389498331137',
+        permalink:
+            'https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/70166210179675030937276227931482602363625572420758951884515941330389498331137',
         traits: [],
         is_presale: false,
     },
@@ -48,23 +51,24 @@ const Data: Record<string, Nft> = {
         image_url: ImageFTDF51PercentAttack,
         listing_date: new Date(2021, 7, 29, 19, 28, 18),
         name: '51% Attack',
-        description: 'Royal Rare - 1st Edition - 51% Attack - There is no entity, no system, no world that cannot succumb to an immeasurable barrage of computational power.',
+        description:
+            'Royal Rare - 1st Edition - 51% Attack - There is no entity, no system, no world that cannot succumb to an immeasurable barrage of computational power.',
         external_link: 'https://wahid.eth/',
         owner: {
             user: {
-                username: 'twahid'
+                username: 'twahid',
             },
             profile_img_url: '',
             address: '',
-            config: ''
+            config: '',
         },
         creator: {
             user: {
-                username: 'twahid'
+                username: 'twahid',
             },
             profile_img_url: '',
             address: '',
-            config: ''
+            config: '',
         },
         asset_contract: {
             network: Network.POLYGON,
@@ -72,12 +76,50 @@ const Data: Record<string, Nft> = {
             asset_contract_type: 'semi-fungible',
             total_supply: 10,
         },
-        permalink: 'https://opensea.io/assets/matic/0x2953399124f0cbb46d2cbacd8a89cf0599974963/70166210179675030937276227931482602363625572420758951884515941330389498331146',
+        permalink:
+            'https://opensea.io/assets/matic/0x2953399124f0cbb46d2cbacd8a89cf0599974963/70166210179675030937276227931482602363625572420758951884515941330389498331146',
+        traits: [],
+        is_presale: false,
+    },
+    'oteoe-mana': {
+        id: 1234,
+        token_id: '1234',
+        num_sales: 0,
+        top_bid: 1,
+        image_url: ImageOTEOEMana,
+        listing_date: new Date(2022, 1, 5, 15, 39, 0),
+        name: 'Mana',
+        description:
+            'Fern Stem at 100x via 10x UPlanFL N - "There exists a force within where the lines of possibility and reality become blurred. This realm is that where which reality is born and from it, we exist."',
+        external_link: 'https://wahid.eth/',
+        owner: {
+            user: {
+                username: 'twahid',
+            },
+            profile_img_url: '',
+            address: '',
+            config: '',
+        },
+        creator: {
+            user: {
+                username: 'twahid',
+            },
+            profile_img_url: '',
+            address: '',
+            config: '',
+        },
+        asset_contract: {
+            network: Network.WTECH,
+            address: 'TBD',
+            asset_contract_type: 'semi-fungible',
+            total_supply: 1,
+        },
+        permalink: 'TBD',
         traits: [],
         is_presale: false,
     },
 };
 
-export const Nfts: string[] = ['ftdf-51-percent-attack', 'beached-whale'];
+export const Nfts: string[] = ['oteoe-mana', 'ftdf-51-percent-attack', 'beached-whale'];
 
 export default Data;
