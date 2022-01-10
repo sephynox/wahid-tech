@@ -81,14 +81,14 @@ const Data: Record<string, Nft> = {
         traits: [],
         is_presale: false,
     },
-    'oteoe-mana': {
-        id: 1234,
-        token_id: '1234',
+    'oteoe-at-the-heart-of-existence': {
+        id: 70166210179675030937276227931482602363625572420758951884515941331489009958913,
+        token_id: '70166210179675030937276227931482602363625572420758951884515941331489009958913',
         num_sales: 0,
         top_bid: 1,
         image_url: ImageOTEOEMana,
         listing_date: new Date(2022, 1, 5, 15, 39, 0),
-        name: 'Mana',
+        name: 'At The Heart of Existence',
         description:
             'Fern Stem at 100x via 10x UPlanFL N - "There exists a force within where the lines of possibility and reality become blurred. This realm is that where which reality is born and from it, we exist."',
         external_link: 'https://wahid.eth/',
@@ -109,17 +109,18 @@ const Data: Record<string, Nft> = {
             config: '',
         },
         asset_contract: {
-            network: Network.WTECH,
-            address: 'TBD',
-            asset_contract_type: 'semi-fungible',
+            network: Network.POLYGON,
+            address: '0x2953399124f0cbb46d2cbacd8a89cf0599974963',
+            asset_contract_type: 'non-fungible',
             total_supply: 1,
         },
-        permalink: 'TBD',
+        permalink:
+            'https://opensea.io/assets/matic/0x2953399124f0cbb46d2cbacd8a89cf0599974963/70166210179675030937276227931482602363625572420758951884515941331489009958913',
         traits: [],
         is_presale: false,
     },
 };
 
-export const Nfts: string[] = ['oteoe-mana', 'ftdf-51-percent-attack', 'beached-whale'];
+export const Nfts: string[] = ['oteoe-at-the-heart-of-existence', 'ftdf-51-percent-attack', 'beached-whale'];
 
 export default Data;
