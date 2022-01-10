@@ -90,7 +90,7 @@ const Data: Record<string, Nft> = {
         listing_date: new Date(2022, 1, 5, 15, 39, 0),
         name: 'At The Heart of Existence',
         description:
-            'Fern Stem at 100x via 10x UPlanFL N - "There exists a force within where the lines of possibility and reality become blurred. This realm is that where which reality is born and from it, we exist."',
+            'Fern Stem at 100x via 10x UPlanFL N - "There exists a force within where the lines of possibility and reality become blurred. This realm is that where reality is born and from it, we come to exist."',
         external_link: 'https://wahid.eth/',
         owner: {
             user: {
