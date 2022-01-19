@@ -82,16 +82,16 @@ const Data: Record<string, Nft> = {
         is_presale: false,
     },
     'oteoe-at-the-heart-of-existence': {
-        id: 70166210179675030937276227931482602363625572420758951884515941331489009958913,
-        token_id: '70166210179675030937276227931482602363625572420758951884515941331489009958913',
+        id: 70166210179675030937276227931482602363625572420758951884515941343583637864449,
+        token_id: '70166210179675030937276227931482602363625572420758951884515941343583637864449',
         num_sales: 0,
         top_bid: 1,
         image_url: ImageOTEOEMana,
-        listing_date: new Date(2022, 1, 5, 15, 39, 0),
+        listing_date: new Date(2022, 1, 19, 0, 0, 0),
         name: 'At The Heart of Existence',
         description:
             'Fern Stem at 100x via 10x UPlanFL N - "There exists a force within where the lines of possibility and reality become blurred. This realm is that where reality is born and from it, we come to exist."',
-        external_link: 'https://wahid.eth/',
+        external_link: 'https://www.ontheedgeofexistence.com/#gallery-3',
         owner: {
             user: {
                 username: 'twahid',
@@ -109,15 +109,15 @@ const Data: Record<string, Nft> = {
             config: '',
         },
         asset_contract: {
-            network: Network.POLYGON,
-            address: '0x2953399124f0cbb46d2cbacd8a89cf0599974963',
+            network: Network.ETHEREUM,
+            address: '0x495f947276749ce646f68ac8c248420045cb7b5e',
             asset_contract_type: 'non-fungible',
             total_supply: 1,
         },
         permalink:
-            'https://opensea.io/assets/matic/0x2953399124f0cbb46d2cbacd8a89cf0599974963/70166210179675030937276227931482602363625572420758951884515941331489009958913',
+            'https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/70166210179675030937276227931482602363625572420758951884515941343583637864449',
         traits: [],
-        is_presale: false,
+        is_presale: true,
     },
 };
 
