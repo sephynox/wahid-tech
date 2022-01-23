@@ -7,6 +7,7 @@ import Contact from './pages/Contact';
 import Home from './pages/Home';
 import Market from './pages/Market';
 import Nft from './pages/Nft';
+import Project from './pages/Project';
 import { AssetData } from './tools/MarketData';
 import { SocialBlock } from './tools/SocialLinks';
 
@@ -23,6 +24,12 @@ export const navLinks: Array<NavBlock> = [
         icon: 'icon bi-graph-up',
         to: '/financial-markets',
         component: Market,
+    },
+    {
+        text: 'Projects',
+        icon: 'icon bi-bricks',
+        to: '/projects',
+        component: Project,
     },
     {
         text: 'NFTs',
@@ -73,40 +80,40 @@ export const socialLinks: Array<SocialBlock> = [
         icon: 'icon bi-envelope-open-fill',
         url: 'mailto:info@example.com?subject=',
     },
-
 ];
 
 export const systemEvents: Record<string, EventArgs> = {
-    'change_theme': {
+    change_theme: {
         category: 'Style',
         action: 'Theme',
     },
-    'disqus_comment': {
+    disqus_comment: {
         category: 'Social',
         action: 'Comment',
     },
-    'manual_refresh': {
+    manual_refresh: {
         category: 'Maintenance',
         action: 'Refresh',
     },
-}
+};
 
 export const systemLanguages: Record<string, string> = {
     'en-US': 'English',
-    'es': 'Español',
-    'de': 'Deutsch',
+    es: 'Español',
+    de: 'Deutsch',
 };
 
-export const supportedLanguages: Array<keyof typeof systemLanguages> = [
-    'en-US',
-    'es',
-    'de',
-];
+export const supportedLanguages: Array<keyof typeof systemLanguages> = ['en-US', 'es', 'de'];
 
 export const donationAddresses: Record<string, AssetData> = {
     xrp: { name: 'XRP (XRP)', icon: Icon.Xrp, address: 'r4UjAbmBoVVTUk6midb25GoWqtexBbcvzM' },
     btc: { name: 'Bitcoin (BTC)', icon: Icon.Btc, address: 'bc1qkqsfuaptqcslwmxh5lz2utxls4pe7wnjhepa2s' },
     eth: { name: 'Ethereum (ETH)', icon: Icon.Eth, address: '0x00E069d105F61564530859A35FE0D007C3536a35' },
-    ada: { name: 'Cardano (ADA)', icon: Icon.Ada, address: 'addr1qywvljkfnyyey38te86tshjscn6yw25c069lf82jfjgv57m3txy8f0nf4wnjwcr8uxmlg9wk7lt6uu7g5w9x077v8lwqgsulw6' },
+    ada: {
+        name: 'Cardano (ADA)',
+        icon: Icon.Ada,
+        address:
+            'addr1qywvljkfnyyey38te86tshjscn6yw25c069lf82jfjgv57m3txy8f0nf4wnjwcr8uxmlg9wk7lt6uu7g5w9x077v8lwqgsulw6',
+    },
     doge: { name: 'Doge (DOGE)', icon: Icon.Doge, address: 'D949UWaLauvKyhX6PNuXGavmMNS6uFcjfS' },
 };

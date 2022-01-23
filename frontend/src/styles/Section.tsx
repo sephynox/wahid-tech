@@ -42,7 +42,7 @@ export const Section = styled.section`
         left: 40px;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 992px) {
         & h1 {
             text-align: center;
         }

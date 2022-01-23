@@ -1,14 +1,23 @@
-import { ArticleAuthor } from '../components/blog/Article';
-
 export interface InTextCitations {
-    r: Record<string, Citation>
+    r: Record<string, Citation>;
+}
+
+export interface Author {
+    given: string;
+    dns?: string;
+    middle?: string;
+    family: string;
+}
+
+export const formatAuthorName = (author: Author): string => {
+    return `${author.given} ${author.middle ? author.middle.substring(0, 1) + '. ' : ' '}${author.family}`;
 };
 
 interface Citation {
     id: string;
     title: string;
     publisher: string;
-    authors?: Array<ArticleAuthor>;
+    authors?: Array<Author>;
     site?: string;
     date_month?: string;
     date_year?: number;

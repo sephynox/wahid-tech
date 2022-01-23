@@ -27,6 +27,8 @@
     "tags": "Tags",
     "view": "Examinar",
     "name": "Nombre",
+    "projects": "Proyectos",
+    "repository": "Repositorio",
     "read_seen": "Visto",
     "byline": "Por",
     "published": "Publicado",
@@ -118,6 +120,7 @@
     "content": {
         "description": "Un sitio web y un blog para Tanveer Wahid con futuras funcionalidades para aplicaciones DeFi y DApp.",
         "home": "Un sitio web informativo y un blog de tecnología.",
+        "projects": "Proyectos de código abierto disponibles en GitHub.",
         "nfts": "Una colección de mis trabajos como NFTs",
         "blog": "Un blog de tecnología que analiza la tecnología a través de varias lentes, disciplinas y puntos de vista.",
         "donate": "Los ingresos se utilizarán para mantener y mejorar la plataforma, así como para desarrollar contenidos de calidad para el blog.",

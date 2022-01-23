@@ -4,7 +4,11 @@
   "private": true,
   "dependencies": {
     "@chainlink/contracts": "^0.2.1",
-    "@chainlink/token": "^1.1.0"
+    "@chainlink/token": "^1.1.0",
+    "@ethersproject/shims": "^5.5.0",
+    "ethereum-blockies-base64": "^1.0.2",
+    "ethers": "^5.5.3",
+    "react-loading-skeleton": "^3.0.2"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.0",

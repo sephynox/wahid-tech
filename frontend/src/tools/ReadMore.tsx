@@ -6,26 +6,26 @@ import { ThemeEngine } from '../styles/GlobalStyle';
 type Props = {
     text: string;
     charactersMax: number;
-    copy?: boolean
+    copy?: boolean;
 };
 
 enum ReadMoreState {
     SHOW = 'show',
-    HIDE = 'hide'
-};
+    HIDE = 'hide',
+}
 
 enum CopyState {
     COPY = 'bi-clipboard',
-    COPIED = 'bi-clipboard-check'
-};
+    COPIED = 'bi-clipboard-check',
+}
 
 const ReadMore: React.FunctionComponent<Props> = ({ text, charactersMax, copy }: Props): JSX.Element => {
     const { t } = useTranslation();
     const [readMoreState, setReadMoreState] = useState(() => ReadMoreState.HIDE);
     const [copyState, setCopyState] = useState(() => CopyState.COPY);
 
-    const textShort = text.substr(0, charactersMax);
-    const textExtra = text.substr(charactersMax, text.length);
+    const textShort = text.substring(0, charactersMax);
+    const textExtra = text.substring(charactersMax, text.length);
     const showButton = text.length <= charactersMax ? 'hide' : '';
 
     const toggleShowMore = () => {
@@ -39,12 +39,16 @@ const ReadMore: React.FunctionComponent<Props> = ({ text, charactersMax, copy }:
 
     return (
         <ReadMoreStyles>
-            {textShort}<span className={'read-more-target ' + readMoreState}>{textExtra}</span>
-            <button onClick={toggleShowMore} className={'read-more-button ' + showButton}>...</button>
-            {copy ? <button title={t('copy')} onClick={() => copyText(text)} className="read-more-button">
-                <i className={copyState}></i>
+            {textShort}
+            <span className={'read-more-target ' + readMoreState}>{textExtra}</span>
+            <button onClick={toggleShowMore} className={'read-more-button ' + showButton}>
+                ...
             </button>
-                : null}
+            {copy ? (
+                <button title={t('copy')} onClick={() => copyText(text)} className="read-more-button">
+                    <i className={copyState}></i>
+                </button>
+            ) : null}
         </ReadMoreStyles>
     );
 };
@@ -53,7 +57,7 @@ export default ReadMore;
 
 const ReadMoreStyles = styled.p`
     & .read-more-target {
-        transition: .1s ease;
+        transition: 0.1s ease;
     }
 
     & .read-more-target.hide {
@@ -66,7 +70,7 @@ const ReadMoreStyles = styled.p`
         opacity: 1;
         max-height: auto;
     }
-    
+
     & .read-more-button.hide {
         display: none;
     }
@@ -74,10 +78,10 @@ const ReadMoreStyles = styled.p`
     & .read-more-button {
         cursor: pointer;
         display: inline-block;
-        padding: 0 .5em;
+        padding: 0 0.5em;
         color: ${(props: ThemeEngine) => props.theme.text};
         border: 1px solid ${(props: ThemeEngine) => props.theme.backgroundAlt};
         background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
-        border-radius: .25em;
+        border-radius: 0.25em;
     }
 `;

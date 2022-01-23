@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Button, Container, Figure } from 'react-bootstrap';
+import React, { useCallback, useContext, useEffect, useReducer } from 'react';
+import { Button, Col, Container, Figure, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
@@ -15,21 +15,17 @@ import Tocbot from '../Tocbot';
 import { Image } from '../Lightbox';
 import CitationGuide from '../../tools/CitationGuide';
 import SocialLinks from '../../tools/SocialLinks';
-import Citation, { InTextCitations } from '../../tools/Citation';
+import Citation, { Author, formatAuthorName, InTextCitations } from '../../tools/Citation';
 import References from '../../tools/References';
 import APACitation from '../../tools/APACitation';
 import Tags from '../../tools/Tags';
 import { formatNumber } from '../../utils/data-formatters';
 import { arrayToRecord } from '../../utils/data-helpers';
+import Blockies from '../../tools/Blockies';
+import { ensLookupReducer, fetchAddresses, initialEnsLookupState } from '../../actions/Ethereum';
 
 type Props = {
     data: ArticleData;
-};
-
-export interface ArticleAuthor {
-    given: string;
-    middle?: string;
-    family: string;
 };
 
 export interface ArticleData {
@@ -38,35 +34,43 @@ export interface ArticleData {
     description: string;
     image: Image;
     date: Date;
-    authors: Array<ArticleAuthor>;
+    authors: Author[];
     title: string;
-    tags: Array<string>;
+    tags: string[];
     readTime: number;
-    references: Array<Citation>;
+    references: Citation[];
     component: React.FunctionComponent<InTextCitations>;
     modified?: Date;
     comments?: boolean;
-};
+}
 
 const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
-    const { t, i18n } = useTranslation();
     const appContext = useContext(AppContext);
+    const { t, i18n } = useTranslation();
+    const [ensData, dispatchEnsData] = useReducer(ensLookupReducer, initialEnsLookupState);
 
-    const formatName = (author: ArticleAuthor) => {
-        return `${author.given} ${author.middle ? author.middle.substr(0, 1) + '. ' : ' '}${author.family}`;
-    }
+    const authorResolver = useCallback(async () => {
+        fetchAddresses(
+            data.authors.filter((authors) => authors.dns).map((authors) => authors.dns as string),
+            appContext.ethersProvider,
+        )(dispatchEnsData);
+    }, [data.authors, appContext.ethersProvider]);
 
+    const MyArticle = data.component;
     const disqus_lang = i18n.language === 'en-US' ? 'en' : i18n.language.replace('-', '_');
     const article_full_url = Constants.SITE_BLOG_ARTICLE_BASE_URL + data.path;
     const article_references = arrayToRecord(data.references, 'id');
-    const article_authors = data.authors.map((author: ArticleAuthor) => formatName(author)).join(', ');
-    const MyArticle = data.component;
+    const article_authors = data.authors.map((author: Author) => formatAuthorName(author)).join(', ');
     const publish_date = Intl.DateTimeFormat(i18next.language).format(data.date);
     const modified_date = data.modified ? Intl.DateTimeFormat(i18next.language).format(data.modified) : null;
     const meta_date = [data.date.getFullYear(), data.date.getMonth(), data.date.getDate()].join('-');
     const meta_modified = data.modified
         ? [data.modified.getFullYear(), data.modified.getMonth(), data.modified.getDate()].join('-')
         : undefined;
+
+    useEffect(() => {
+        authorResolver();
+    }, [authorResolver]);
 
     return (
         <>
@@ -78,13 +82,19 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                 <meta property="og:description" content={data.description} />
                 <meta property="article:published_time" content={meta_date} />
                 <meta property="article:modified_time" content={meta_modified} />
-                {data.authors.map((a, i) => <meta key={i} property="article:author" content={formatName(a)} />)}
-                {data.tags.map((t, i) => <meta key={i} property="article:tag" content={t} />)}
+                {data.authors.map((a, i) => (
+                    <meta key={i} property="article:author" content={formatAuthorName(a)} />
+                ))}
+                {data.tags.map((t, i) => (
+                    <meta key={i} property="article:tag" content={t} />
+                ))}
             </Helmet>
-            <Breadcrumbs links={[
-                { text: t('blog'), path: Constants.SITE_BLOG_PATH_BASE },
-                { text: t('article'), path: '', active: true }
-            ]} />
+            <Breadcrumbs
+                links={[
+                    { text: t('blog'), path: Constants.SITE_BLOG_PATH_BASE },
+                    { text: t('article'), path: '', active: true },
+                ]}
+            />
             <ArticleStyle>
                 <header>
                     <Figure>
@@ -92,30 +102,48 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                     </Figure>
                     <h1 className="text-xs-center">{data.title}</h1>
                     <Container>
-                        <DefinitionList>
-                            <dt>{t('byline')}:</dt>
-                            <dd>{article_authors}</dd>
-                            <dt>{t('published')}:</dt>
-                            <dd>{publish_date}</dd>
-                            {modified_date !== null ? (
-                                <>
-                                    <dt>{t('last_update')}:</dt>
-                                    <dd>{modified_date}</dd>
-                                </>
-                            ) : null}
-                            <dt>{t('summary')}:</dt>
-                            <dd>{data.description}</dd>
-                            <dt>{t('share')}:</dt>
-                            <dd><SocialLinks url={article_full_url} title={data.title} /></dd>
-                            <dt>{t('tags')}:</dt>
-                            <dd><Tags tags={data.tags} /></dd>
-                            <dt>{t('length')}:</dt>
-                            <dd>{formatNumber(data.readTime, i18next.language, 0)} {t('time.minutes')}</dd>
-                        </DefinitionList>
-                        <Tocbot
-                            header={t('table_of_contents')}
-                            contentSelector="article"
-                            headingSelector="h3, h4, h5, h6" />
+                        <Row>
+                            <Col xs={12} sm={12} md={2}>
+                                <Blockies state={ensData} width={100} />
+                            </Col>
+                            <Col xs={12} md={10}>
+                                <DefinitionList>
+                                    <dt>{t('byline')}:</dt>
+                                    <dd>{article_authors}</dd>
+                                    <dt>{t('published')}:</dt>
+                                    <dd>{publish_date}</dd>
+                                    {modified_date !== null ? (
+                                        <>
+                                            <dt>{t('last_update')}:</dt>
+                                            <dd>{modified_date}</dd>
+                                        </>
+                                    ) : null}
+                                    <dt>{t('summary')}:</dt>
+                                    <dd>{data.description}</dd>
+                                    <dt>{t('share')}:</dt>
+                                    <dd>
+                                        <SocialLinks url={article_full_url} title={data.title} />
+                                    </dd>
+                                    <dt>{t('tags')}:</dt>
+                                    <dd>
+                                        <Tags tags={data.tags} />
+                                    </dd>
+                                    <dt>{t('length')}:</dt>
+                                    <dd>
+                                        {formatNumber(data.readTime, i18next.language, 0)} {t('time.minutes')}
+                                    </dd>
+                                </DefinitionList>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Tocbot
+                                    header={t('table_of_contents')}
+                                    contentSelector="article"
+                                    headingSelector="h3, h4, h5, h6"
+                                />
+                            </Col>
+                        </Row>
                     </Container>
                 </header>
                 <h2>{t('full_story')}</h2>
@@ -123,12 +151,18 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                 <MyArticle r={article_references} />
                 <HorizontalRule />
                 <footer>
+                    {data.references.length > 0 && (
+                        <details>
+                            <summary>
+                                <h2>{t('references')}</h2>
+                            </summary>
+                            <References data={data.references} Format={APACitation} />
+                        </details>
+                    )}
                     <details>
-                        <summary><h2>{t('references')}</h2></summary>
-                        <References data={data.references} Format={APACitation} />
-                    </details>
-                    <details>
-                        <summary><h2>{t('citations')}</h2></summary>
+                        <summary>
+                            <h2>{t('citations')}</h2>
+                        </summary>
                         <CitationGuide
                             id={data.authors[0].family}
                             authors={data.authors}
@@ -139,33 +173,35 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                             date_day={data.date.getDate()}
                         />
                     </details>
-                    {data.comments &&
+                    {data.comments && (
                         <details open>
-                            <summary><h2>{t('comments')}</h2></summary>
-                            {appContext.allowedCookieState['disqus']
-                                ? <DiscussionEmbed
+                            <summary>
+                                <h2>{t('comments')}</h2>
+                            </summary>
+                            {appContext.allowedCookieState['disqus'] ? (
+                                <DiscussionEmbed
                                     shortname="wahidtech"
                                     config={{
-                                        onNewComment: () => { appContext.logEvent(systemEvents['disqus_comment']) },
+                                        onNewComment: () => {
+                                            appContext.logEvent(systemEvents['disqus_comment']);
+                                        },
                                         url: article_full_url,
                                         identifier: data.path,
                                         title: data.title,
                                         language: disqus_lang,
                                     }}
                                 />
-                                :
+                            ) : (
                                 <p>
-                                    {t('content.disqus_disabled')}<br />
-                                    <Button
-
-                                        onClick={appContext.togglePrivacySelector}
-                                        variant="link"
-                                    >
+                                    {t('content.disqus_disabled')}
+                                    <br />
+                                    <Button onClick={appContext.togglePrivacySelector} variant="link">
                                         {t('data_privacy')}
                                     </Button>
                                 </p>
-                            }
-                        </details>}
+                            )}
+                        </details>
+                    )}
                 </footer>
             </ArticleStyle>
         </>
@@ -176,6 +212,11 @@ export default Article;
 
 const ArticleStyle = styled.article`
     max-width: 800px;
+
+    & section > figure {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
 
     & section {
         padding: 0;
@@ -203,6 +244,11 @@ const ArticleStyle = styled.article`
     }
 
     @media screen and (max-width: 768px) {
+        & header + h2 {
+            display: block;
+            text-align: center;
+        }
+
         & footer p {
             text-align: left;
         }
@@ -213,6 +259,6 @@ const ArticleStyle = styled.article`
 
         & figure {
             padding: 10px;
-        }    
+        }
     }
 `;
