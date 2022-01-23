@@ -54,14 +54,7 @@ export const fetchAddresses =
         return Promise.all(
             addresses.map(async (address) => {
                 if (address.match(new RegExp(Constants.REGEX_ETHEREUM_ADDRESS))) {
-                    const result = await provider.lookupAddress(address);
-
-                    switch (result) {
-                        case '':
-                            throw Error(EnsLookupErrors.NO_ENS_SET.toString());
-                        default:
-                            return { ens: address, address: result };
-                    }
+                    return { ens: await provider.lookupAddress(address), address: address };
                 } else {
                     return { ens: address, address: await provider.resolveName(address) };
                 }

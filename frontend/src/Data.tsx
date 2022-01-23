@@ -26,7 +26,7 @@ export const navLinks: Array<NavBlock> = [
         component: Market,
     },
     {
-        text: 'Projects',
+        text: 'projects',
         icon: 'icon bi-bricks',
         to: '/projects',
         component: Project,

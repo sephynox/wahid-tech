@@ -1,29 +1,27 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
-import { Button, Container, Figure } from 'react-bootstrap';
+import { Container, Figure } from 'react-bootstrap';
 import axios from 'axios';
 import i18next from 'i18next';
 import styled from 'styled-components';
-import { DiscussionEmbed } from 'disqus-react';
-import { AppContext } from '../../App';
-import { systemEvents } from '../../Data';
 import * as Constants from '../../Constants';
 import Data from './Data';
 import NotFound from '../../pages/NotFound';
 import HorizontalRule from '../../styles/HorizontalRule';
 import { DefinitionList } from '../../styles/DefinitionList';
+import Comments from '../Comments';
 import SocialLinks from '../../tools/SocialLinks';
 import { Breadcrumbs } from '../../layout/Navigation';
 import { Author } from '../../tools/Citation';
+import LoaderSkeleton from '../../tools/LoaderSkeleton';
 
 const NftProfile: React.FunctionComponent = (): JSX.Element => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
     const [readme, setReadme] = useState<string | null>(null);
-    const appContext = useContext(AppContext);
 
     const data = Data[id];
 
@@ -43,7 +41,6 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
         return <NotFound />;
     }
 
-    const disqus_lang = i18n.language === 'en-US' ? 'en' : i18n.language.replace('-', '_');
     const authors = data.authors.map((author: Author) => formatName(author)).join(', ');
     const full_url = Constants.SITE_PROJECT_PATH_BASE_URL + data.path;
     const created: string = Intl.DateTimeFormat(i18next.language).format(data.date);
@@ -102,7 +99,11 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 </header>
                 <h2>{t('details')}</h2>
                 <HorizontalRule />
-                <ReactMarkdown>{readme ?? ''}</ReactMarkdown>
+                {readme ? (
+                    <ReactMarkdown>{readme ?? ''}</ReactMarkdown>
+                ) : (
+                    <LoaderSkeleton type="Paragraphs" bars={32} width="100%" height="300" />
+                )}
                 <HorizontalRule />
                 <footer>
                     {data.comments && (
@@ -110,28 +111,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                             <summary>
                                 <h2>{t('comments')}</h2>
                             </summary>
-                            {appContext.allowedCookieState['disqus'] ? (
-                                <DiscussionEmbed
-                                    shortname="wahidtech"
-                                    config={{
-                                        onNewComment: () => {
-                                            appContext.logEvent(systemEvents['disqus_comment']);
-                                        },
-                                        url: full_url,
-                                        identifier: data.path,
-                                        title: data.name,
-                                        language: disqus_lang,
-                                    }}
-                                />
-                            ) : (
-                                <p>
-                                    {t('content.disqus_disabled')}
-                                    <br />
-                                    <Button onClick={appContext.togglePrivacySelector} variant="link">
-                                        {t('data_privacy')}
-                                    </Button>
-                                </p>
-                            )}
+                            <Comments full_url={full_url} identifier={data.path} title={data.name} />
                         </details>
                     )}
                 </footer>

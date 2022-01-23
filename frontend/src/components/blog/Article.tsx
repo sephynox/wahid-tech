@@ -1,18 +1,17 @@
 import React, { useCallback, useContext, useEffect, useReducer } from 'react';
-import { Button, Col, Container, Figure, Row } from 'react-bootstrap';
+import { Col, Container, Figure, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
-import { DiscussionEmbed } from 'disqus-react';
 import i18next from 'i18next';
 import { AppContext } from '../../App';
 import * as Constants from '../../Constants';
-import { systemEvents } from '../../Data';
 import { Breadcrumbs } from '../../layout/Navigation';
 import { DefinitionList } from '../../styles/DefinitionList';
 import HorizontalRule from '../../styles/HorizontalRule';
 import Tocbot from '../Tocbot';
 import { Image } from '../Lightbox';
+import Comments from '../Comments';
 import CitationGuide from '../../tools/CitationGuide';
 import SocialLinks from '../../tools/SocialLinks';
 import Citation, { Author, formatAuthorName, InTextCitations } from '../../tools/Citation';
@@ -46,18 +45,17 @@ export interface ArticleData {
 
 const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
     const appContext = useContext(AppContext);
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const [ensData, dispatchEnsData] = useReducer(ensLookupReducer, initialEnsLookupState);
 
     const authorResolver = useCallback(async () => {
         fetchAddresses(
-            data.authors.filter((authors) => authors.dns).map((authors) => authors.dns as string),
+            data.authors.filter((authors) => !!authors.dns).map((authors) => authors.dns as string),
             appContext.ethersProvider,
         )(dispatchEnsData);
     }, [data.authors, appContext.ethersProvider]);
 
     const MyArticle = data.component;
-    const disqus_lang = i18n.language === 'en-US' ? 'en' : i18n.language.replace('-', '_');
     const article_full_url = Constants.SITE_BLOG_ARTICLE_BASE_URL + data.path;
     const article_references = arrayToRecord(data.references, 'id');
     const article_authors = data.authors.map((author: Author) => formatAuthorName(author)).join(', ');
@@ -178,28 +176,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                             <summary>
                                 <h2>{t('comments')}</h2>
                             </summary>
-                            {appContext.allowedCookieState['disqus'] ? (
-                                <DiscussionEmbed
-                                    shortname="wahidtech"
-                                    config={{
-                                        onNewComment: () => {
-                                            appContext.logEvent(systemEvents['disqus_comment']);
-                                        },
-                                        url: article_full_url,
-                                        identifier: data.path,
-                                        title: data.title,
-                                        language: disqus_lang,
-                                    }}
-                                />
-                            ) : (
-                                <p>
-                                    {t('content.disqus_disabled')}
-                                    <br />
-                                    <Button onClick={appContext.togglePrivacySelector} variant="link">
-                                        {t('data_privacy')}
-                                    </Button>
-                                </p>
-                            )}
+                            <Comments full_url={article_full_url} identifier={data.path} title={data.title} />
                         </details>
                     )}
                 </footer>
