@@ -60,6 +60,12 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 <meta property="og:description" content={data.description} data-react-helmet="true" />
                 <meta property="article:published_time" content={meta_date} data-react-helmet="true" />
                 <meta property="article:modified_time" content={meta_modified} data-react-helmet="true" />
+                <meta name="twitter:card" content="summary_large_image" data-react-helmet="true" />
+                <meta property="twitter:domain" content={Constants.SITE_DOMAIN} data-react-helmet="true" />
+                <meta property="twitter:url" content={full_url} data-react-helmet="true" />
+                <meta name="twitter:title" content={data.name} data-react-helmet="true" />
+                <meta name="twitter:description" content={data.description} data-react-helmet="true" />
+                <meta name="twitter:image" content={data.image.url} data-react-helmet="true" />
                 {data.authors.map((a, i) => (
                     <meta key={i} property="article:author" content={formatName(a)} />
                 ))}

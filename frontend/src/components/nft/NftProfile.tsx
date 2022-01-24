@@ -55,7 +55,13 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 <meta property="og:image" content={image.url} data-react-helmet="true" />
                 <meta property="og:description" content={data.description} data-react-helmet="true" />
                 <meta property="article:published_time" content={created} data-react-helmet="true" />
-                <meta property="article:author" content={data.owner?.user?.username} data-react-helmet="true" />
+                <meta property="article:author" content={data.owner.address} data-react-helmet="true" />
+                <meta name="twitter:card" content="summary_large_image" data-react-helmet="true" />
+                <meta property="twitter:domain" content={Constants.SITE_DOMAIN} data-react-helmet="true" />
+                <meta property="twitter:url" content={window.location.href} data-react-helmet="true" />
+                <meta name="twitter:title" content={title} data-react-helmet="true" />
+                <meta name="twitter:description" content={subtext} data-react-helmet="true" />
+                <meta name="twitter:image" content={image.url} data-react-helmet="true" />
             </Helmet>
             <Breadcrumbs
                 links={[
