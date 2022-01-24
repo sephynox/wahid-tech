@@ -17,7 +17,7 @@ export type Project = {
     comments?: boolean;
 };
 
-const Data: Record<string, Project> = {
+const ProjectData: Record<string, Project> = {
     'xrpl-rust': {
         name: 'xrpl-rust',
         path: 'xrpl-rust',
@@ -39,4 +39,4 @@ const Data: Record<string, Project> = {
 
 export const Projects: string[] = ['xrpl-rust'];
 
-export default Data;
+export default ProjectData;

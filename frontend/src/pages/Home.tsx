@@ -5,6 +5,7 @@ import * as Constants from '../Constants';
 import { Section } from '../styles/Section';
 import NftData, { Nfts } from '../components/nft/Data';
 import BlogData, { Posts } from '../components/blog/Data';
+import ProjectData, { Projects } from '../components/projects/Data';
 import Postcard from '../components/Postcard';
 
 const Home = (): JSX.Element => {
@@ -12,6 +13,7 @@ const Home = (): JSX.Element => {
 
     const article = BlogData[Posts[0]];
     const nft = NftData[Nfts[0]];
+    const project = ProjectData[Projects[0]];
     const title = Constants.SITE_NAME;
     const subtext = t('content.home');
 
@@ -24,7 +26,7 @@ const Home = (): JSX.Element => {
                 </header>
             </Section>
             <Row className="max-1200">
-                <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+                <Col xs={12} sm={12} md={6} lg={4} xl={4}>
                     <Section>
                         <h3 className="mb-3">{t('latest_blog_post')}</h3>
                         <Postcard
@@ -39,7 +41,21 @@ const Home = (): JSX.Element => {
                         />
                     </Section>
                 </Col>
-                <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+                <Col xs={12} sm={12} md={6} lg={4} xl={4}>
+                    <Section>
+                        <h3 className="mb-3">{t('latest_project')}</h3>
+                        <Postcard
+                            height={700}
+                            title={project.name}
+                            image={project.image}
+                            text={project.description}
+                            link={Constants.SITE_PROJECT_ASSET_PATH + Projects[0]}
+                            date={project.date}
+                            linkText={t('view')}
+                        />
+                    </Section>
+                </Col>
+                <Col xs={12} sm={12} md={6} lg={4} xl={4}>
                     <Section>
                         <h3 className="mb-3">{t('latest_nft')}</h3>
                         <Postcard
