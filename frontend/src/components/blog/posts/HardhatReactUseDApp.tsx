@@ -101,7 +101,7 @@ npx create-react-app  frontend --template typescript;
 
 const codeReactFrontendDeps = () =>
     `# Yarn
-yarn add -D @testing-library/dom@>=7.21.4 \\
+yarn add -D @testing-library/dom@^7.21.4 \\
     @babel/core@^7.0.0-0 \\
     @babel/plugin-syntax-flow@^7.14.5 \\
     @babel/plugin-transform-react-jsx@^7.14.9 \\
@@ -109,7 +109,7 @@ yarn add -D @testing-library/dom@>=7.21.4 \\
     postcss@^8.1.0 autoprefixer@^10.0.2;
 
 # NPM
-npm install --save-dev @testing-library/dom@>=7.21.4 \\
+npm install --save-dev @testing-library/dom@^7.21.4 \\
     @babel/core@^7.0.0-0 \\
     @babel/plugin-syntax-flow@^7.14.5 \\
     @babel/plugin-transform-react-jsx@^7.14.9 \\
