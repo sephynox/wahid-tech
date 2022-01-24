@@ -1,5 +1,6 @@
 import * as Icon from 'react-cryptocoins';
 import { EventArgs } from 'react-ga';
+import * as Constants from './Constants';
 import { NavBlock } from './layout/Navigation';
 import About from './pages/About';
 import Blog from './pages/Blog';
@@ -116,4 +117,8 @@ export const donationAddresses: Record<string, AssetData> = {
             'addr1qywvljkfnyyey38te86tshjscn6yw25c069lf82jfjgv57m3txy8f0nf4wnjwcr8uxmlg9wk7lt6uu7g5w9x077v8lwqgsulw6',
     },
     doge: { name: 'Doge (DOGE)', icon: Icon.Doge, address: 'D949UWaLauvKyhX6PNuXGavmMNS6uFcjfS' },
+};
+
+export const ethersConfig: Record<string, string> = {
+    infura: Constants.REACT_APP_INFURA_PROJECT_ID,
 };
