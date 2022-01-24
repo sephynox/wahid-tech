@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ThemeEngine } from './GlobalStyle';
 
 export const DefinitionList = styled.dl`
     & dd {
@@ -15,7 +16,7 @@ export const DefinitionList = styled.dl`
         text-align: right;
         font-weight: normal;
         font-style: italic;
-        color: #595959;
+        color: ${(props: ThemeEngine) => props.theme.subduedText};
         padding-bottom: 5px;
         line-break: strict;
         overflow: hidden;
@@ -44,7 +45,8 @@ export const DefinitionList = styled.dl`
             text-align: right;
         }
 
-        & dd, dt {
+        & dd,
+        dt {
             clear: both;
             width: 100%;
             display: block;

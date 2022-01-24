@@ -1,6 +1,5 @@
 import React from 'react';
-import { ArticleAuthor } from '../components/blog/Article';
-import Citation from './Citation';
+import Citation, { Author } from './Citation';
 import { HangingIndent } from '../styles/HangingIndent';
 
 //TODO
@@ -26,16 +25,16 @@ const MLACitation = ({
         authors === undefined
             ? publisher
             : authors
-                .map(
-                    (author: ArticleAuthor) =>
-                        author.family +
-                        ', ' +
-                        author.given +
-                        '.' +
-                        (author.middle !== undefined ? ' ' + author.middle.substr(0, 1) + '.' : ''),
-                )
-                .join(', ')
-                .replace(/\.+$/, '');
+                  .map(
+                      (author: Author) =>
+                          author.family +
+                          ', ' +
+                          author.given +
+                          '.' +
+                          (author.middle !== undefined ? ' ' + author.middle.substring(0, 1) + '.' : ''),
+                  )
+                  .join(', ')
+                  .replace(/\.+$/, '');
     // const pages =
     //     page_start !== undefined
     //         ? page_end !== undefined
@@ -48,9 +47,9 @@ const MLACitation = ({
         date_year === undefined
             ? 'n.d.'
             : (date_day !== undefined ? ' ' + date_day : '') +
-            (date_month !== undefined ? ', ' + date_month.substr(0, 3) + '.' : '') +
-            ' ' +
-            date_year;
+              (date_month !== undefined ? ', ' + date_month.substring(0, 3) + '.' : '') +
+              ' ' +
+              date_year;
 
     url = url !== undefined ? url.replace(/http[s]?:\/\//, '') : undefined;
     title = book ? title + '.' : '\u201C' + title + '.\u201D';

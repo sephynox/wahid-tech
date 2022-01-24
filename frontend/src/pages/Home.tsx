@@ -2,12 +2,10 @@ import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import * as Constants from '../Constants';
-import { donationAddresses } from '../Data';
 import { Section } from '../styles/Section';
 import NftData, { Nfts } from '../components/nft/Data';
 import BlogData, { Posts } from '../components/blog/Data';
 import Postcard from '../components/Postcard';
-import CryptoAssets from '../tools/CryptoAssets';
 
 const Home = (): JSX.Element => {
     const { t } = useTranslation();
@@ -16,7 +14,6 @@ const Home = (): JSX.Element => {
     const nft = NftData[Nfts[0]];
     const title = Constants.SITE_NAME;
     const subtext = t('content.home');
-    const donate = t('content.donate');
 
     return (
         <>
@@ -57,13 +54,6 @@ const Home = (): JSX.Element => {
                     </Section>
                 </Col>
             </Row>
-            <Section>
-                <header>
-                    <h3>{t('donate')}</h3>
-                    <p>{donate}</p>
-                </header>
-                <CryptoAssets data={donationAddresses} size={24} />
-            </Section>
         </>
     );
 };

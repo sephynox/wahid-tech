@@ -1,6 +1,5 @@
 import React from 'react';
-import { ArticleAuthor } from '../components/blog/Article';
-import Citation from './Citation';
+import Citation, { Author } from './Citation';
 import { HangingIndent } from '../styles/HangingIndent';
 
 export const APAInline: React.FunctionComponent<{ r: Citation | Array<Citation> }> = ({ r }): JSX.Element => {
@@ -11,7 +10,7 @@ export const APAInline: React.FunctionComponent<{ r: Citation | Array<Citation> 
     };
 
     const getAuthors = (ref: Citation): string => {
-        let authors: Array<ArticleAuthor> = [];
+        let authors: Array<Author> = [];
         let glue = ', ';
         let post = '';
 
@@ -47,14 +46,35 @@ export const APAInline: React.FunctionComponent<{ r: Citation | Array<Citation> 
 
     const getCite = (ref: Citation, index: number): JSX.Element => {
         if (getUrl(ref) !== undefined) {
-            return <a key={index} target="_blank" href={getUrl(ref)} rel="noreferrer">{getAuthors(ref)}, {getDate(ref)}</a>
+            return (
+                <a key={index} target="_blank" href={getUrl(ref)} rel="noreferrer">
+                    {getAuthors(ref)}, {getDate(ref)}
+                </a>
+            );
         } else {
-            return <>{getAuthors(ref)}, {getDate(ref)}</>;
+            return (
+                <>
+                    {getAuthors(ref)}, {getDate(ref)}
+                </>
+            );
         }
     };
 
     const l = citations.length;
-    return <>({citations.map((ref, i) => { return <span key={i}>{getCite(ref, i)}{i + 1 !== l ? '; ' : ''}</span> })})</>;
+    return (
+        <>
+            (
+            {citations.map((ref, i) => {
+                return (
+                    <span key={i}>
+                        {getCite(ref, i)}
+                        {i + 1 !== l ? '; ' : ''}
+                    </span>
+                );
+            })}
+            )
+        </>
+    );
 };
 
 //TODO
@@ -78,16 +98,16 @@ const APACitation = ({
         authors === undefined
             ? publisher
             : authors
-                .map(
-                    (author: ArticleAuthor) =>
-                        author.family +
-                        ', ' +
-                        (author.middle !== undefined ? author.middle.substr(0, 1) + '. ' : ' ') +
-                        author.given.substr(0, 1) +
-                        '.',
-                )
-                .join(', ')
-                .replace(/\.+$/, '');
+                  .map(
+                      (author: Author) =>
+                          author.family +
+                          ', ' +
+                          (author.middle !== undefined ? author.middle.substring(0, 1) + '. ' : ' ') +
+                          author.given.substring(0, 1) +
+                          '.',
+                  )
+                  .join(', ')
+                  .replace(/\.+$/, '');
     const pages =
         page_start !== undefined
             ? page_end !== undefined
@@ -98,15 +118,18 @@ const APACitation = ({
         date_year === undefined
             ? 'n.d.'
             : date_year +
-            (date_month !== undefined ? ', ' + date_month : '') +
-            (date_day !== undefined ? ' ' + date_day : '');
+              (date_month !== undefined ? ', ' + date_month : '') +
+              (date_day !== undefined ? ' ' + date_day : '');
 
     journal = journal !== undefined ? journal : undefined;
 
     return (
         <HangingIndent id={id !== undefined ? id : undefined}>
             {author_list}. ({date_string}). {chapter !== undefined ? <> {chapter}. In </> : undefined}
-            <i className={journal === undefined ? undefined : 'no-italic'}><cite>{title}</cite></i>.
+            <i className={journal === undefined ? undefined : 'no-italic'}>
+                <cite>{title}</cite>
+            </i>
+            .
             {journal !== undefined ? (
                 <>
                     {' '}

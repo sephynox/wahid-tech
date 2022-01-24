@@ -7,13 +7,13 @@ export enum ExternalLocaleStates {
     FETCHING,
     SUCCESS,
     ERROR,
-};
+}
 
 export type ExternalLocaleState =
-    | { type: typeof ExternalLocaleStates.EMPTY, data?: LocaleData }
-    | { type: typeof ExternalLocaleStates.FETCHING, data?: LocaleData }
-    | { type: typeof ExternalLocaleStates.ERROR, data?: LocaleData, error: string }
-    | { type: typeof ExternalLocaleStates.SUCCESS, data: LocaleData };
+    | { type: typeof ExternalLocaleStates.EMPTY; data?: LocaleData }
+    | { type: typeof ExternalLocaleStates.FETCHING; data?: LocaleData }
+    | { type: typeof ExternalLocaleStates.ERROR; data?: LocaleData; error: string }
+    | { type: typeof ExternalLocaleStates.SUCCESS; data: LocaleData };
 
 export const initialExternalLocaleState: ExternalLocaleState = {
     type: ExternalLocaleStates.EMPTY,

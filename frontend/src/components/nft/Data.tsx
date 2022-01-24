@@ -87,8 +87,8 @@ const Data: Record<string, Nft> = {
         num_sales: 0,
         top_bid: 1,
         image_url: ImageOTEOEMana,
-        listing_date: new Date(2022, 1, 19, 0, 0, 0),
-        name: 'At The Heart of Existence',
+        listing_date: new Date(2022, 0, 19, 0, 0, 0),
+        name: 'At the Heart of Existence',
         description:
             'Fern Stem at 100x via 10x UPlanFL N - "There exists a force within where the lines of possibility and reality become blurred. This realm is that where reality is born and from it, we come to exist."',
         external_link: 'https://www.ontheedgeofexistence.com/#gallery-3',

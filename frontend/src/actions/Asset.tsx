@@ -10,19 +10,9 @@ const methodDefinitions: Record<AssetStates, (...props: any) => (dispatch: Dispa
     [AssetStates.EMPTY]: () => async () => new Promise(() => undefined),
     [AssetStates.FETCHING]: () => async () => new Promise(() => undefined),
     [AssetStates.ERROR]: () => async () => new Promise(() => undefined),
-    [AssetStates.FETCHED_ASSET_META_DATA]: (
-        asset = '',
-    ) => async (dispatch: Dispatch<AssetState>) => new Promise(() => undefined),
-    [AssetStates.FETCHED_ASSET_MARKET_DATA]: (
-        currency = Constants.DEFAULT_CURRENCY,
-        priceChangePercentage = Constants.DEFAULT_PRICE_PERCENTAGE_CHANGES,
-    ) => async (dispatch: Dispatch<AssetState>) => new Promise(() => undefined),
-    [AssetStates.FETCHED_ASSET_PRICE_DATA]: (
-        asset = '',
-        start = 0,
-        end = 0,
-        currency = Constants.DEFAULT_CURRENCY,
-    ) => async (dispatch: Dispatch<AssetState>) => new Promise(() => undefined),
+    [AssetStates.FETCHED_ASSET_META_DATA]: () => async () => new Promise(() => undefined),
+    [AssetStates.FETCHED_ASSET_MARKET_DATA]: () => async () => new Promise(() => undefined),
+    [AssetStates.FETCHED_ASSET_PRICE_DATA]: () => async () => new Promise(() => undefined),
 };
 
 const methodBaseStates = {
@@ -67,16 +57,13 @@ const fetchData = (
         if (assetState.type === AssetStates.ERROR) {
             dispatch({ type: AssetStates.ERROR, class: assetClass, error: assetState.error });
         } else {
-            const data: AssetStateData = { ...initialAssetState.data as AssetStateData, ...assetState.data ?? {} };
+            const data: AssetStateData = { ...(initialAssetState.data as AssetStateData), ...(assetState.data ?? {}) };
             dispatch({ type: assetState.type, class: assetClass, key: key ?? '', data: data });
         }
     });
 };
 
-export const assetReducer = (
-    currentState: AssetState = initialAssetState,
-    action: AssetState,
-): AssetState => {
+export const assetReducer = (currentState: AssetState = initialAssetState, action: AssetState): AssetState => {
     const merger: AssetStateData = merge<AssetStateData>(currentState.data, action.data);
 
     switch (action.type) {
@@ -91,29 +78,24 @@ export const assetReducer = (
             return { ...currentState, type: action.type, class: action.class, key: action.key, data: merger };
         default:
             return { ...currentState, ...initialAssetState };
+    }
+};
+
+export const fetchAssetMarketData =
+    (type: MarketType) =>
+    async (dispatch: Dispatch<AssetState>): Promise<void> => {
+        fetchData(type, AssetStates.FETCHED_ASSET_MARKET_DATA, dispatch);
     };
-};
 
-export const fetchAssetMarketData = (
-    type: MarketType,
-) => async (dispatch: Dispatch<AssetState>): Promise<void> => {
-    fetchData(type, AssetStates.FETCHED_ASSET_MARKET_DATA, dispatch);
-};
+export const fetchAssetData =
+    (type: MarketType, key: string) =>
+    async (dispatch: Dispatch<AssetState>): Promise<void> => {
+        fetchData(type, AssetStates.FETCHED_ASSET_META_DATA, dispatch, { asset: key }, key);
+    };
 
-export const fetchAssetData = (
-    type: MarketType,
-    key: string,
-) => async (dispatch: Dispatch<AssetState>): Promise<void> => {
-    fetchData(type, AssetStates.FETCHED_ASSET_META_DATA, dispatch, { asset: key }, key);
-};
-
-export const fetchAssetPriceData = (
-    type: MarketType,
-    key: string,
-    start: number,
-    end = Date.now(),
-    currency = Constants.DEFAULT_CURRENCY,
-) => async (dispatch: Dispatch<AssetState>): Promise<void> => {
-    const props = { asset: key, start: start, end: end, currency: currency };
-    fetchData(type, AssetStates.FETCHED_ASSET_PRICE_DATA, dispatch, props, key);
-};
+export const fetchAssetPriceData =
+    (type: MarketType, key: string, start: number, end = Date.now(), currency = Constants.DEFAULT_CURRENCY) =>
+    async (dispatch: Dispatch<AssetState>): Promise<void> => {
+        const props = { asset: key, start: start, end: end, currency: currency };
+        fetchData(type, AssetStates.FETCHED_ASSET_PRICE_DATA, dispatch, props, key);
+    };

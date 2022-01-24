@@ -1,6 +1,5 @@
 import React from 'react';
-import { ArticleAuthor } from '../components/blog/Article';
-import Citation from './Citation';
+import Citation, { Author } from './Citation';
 import { HangingIndent } from '../styles/HangingIndent';
 
 //TODO
@@ -27,15 +26,15 @@ const ChicagoCitation = ({
         authors === undefined
             ? title
             : authors
-                .map(
-                    (author: ArticleAuthor) =>
-                        (author.middle !== undefined ? author.middle.substr(0, 1) + ' ' : '') +
-                        author.given +
-                        ' ' +
-                        author.family,
-                )
-                .join(', ')
-                .replace(/\.+$/, '');
+                  .map(
+                      (author: Author) =>
+                          (author.middle !== undefined ? author.middle.substring(0, 1) + ' ' : '') +
+                          author.given +
+                          ' ' +
+                          author.family,
+                  )
+                  .join(', ')
+                  .replace(/\.+$/, '');
     // const pages =
     //     page_start !== undefined
     //         ? page_end !== undefined
@@ -48,10 +47,10 @@ const ChicagoCitation = ({
         date_year === undefined
             ? 'n.d.'
             : (date_month !== undefined ? date_month : '') +
-            ' ' +
-            (date_day !== undefined ? date_day : '') +
-            ', ' +
-            date_year;
+              ' ' +
+              (date_day !== undefined ? date_day : '') +
+              ', ' +
+              date_year;
 
     title = book ? title + '.' : '\u201C' + title + ',\u201D';
     url = url !== undefined ? url.replace(/http[s]?:\/\//, '') : undefined;

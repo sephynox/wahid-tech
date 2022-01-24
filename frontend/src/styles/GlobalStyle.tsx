@@ -3,7 +3,7 @@ import Theme from '../tools/Themes';
 
 // Hack
 export type ThemeEngine = {
-    theme: Theme
+    theme: Theme;
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -54,6 +54,15 @@ a:hover {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+pre {
+    color: ${(props: ThemeEngine) => props.theme.dangerText};
+    background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended} !important;
+}
+
+pre, code {
+    font-family: Consolas, monospace !important;
 }
 
 div.card {

@@ -12,7 +12,7 @@ export const Blockquote = styled.blockquote`
     & em {
         margin-top: 10px;
         margin-bottom: 10px;
-        color: #595959;
+        color: ${(props: ThemeEngine) => props.theme.subduedText};
     }
 
     @media screen and (max-width: 768px) {

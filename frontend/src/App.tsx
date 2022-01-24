@@ -3,7 +3,9 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import ReactGA, { EventArgs } from 'react-ga';
 import { toast } from 'react-hot-toast';
+import { ethers } from 'ethers';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 import './scss/custom.scss';
 import './App.css';
 import * as Constants from './Constants';
@@ -26,26 +28,28 @@ import LoaderSpinner from './tools/LoaderSpinner';
 import { Section } from './styles/Section';
 
 export const AppContext = createContext<{
-    testMode: boolean,
-    theme: Themes,
-    navState: NavState,
-    langSelectorState: LanguageSelectorState,
-    privacySelectorState: PrivacyPromptState,
-    overlayState: OverlayState,
-    allowedCookieState: PrivacyCookieState,
-    socialLinks: Array<SocialBlock>,
-    externalLocaleState: ExternalLocaleState,
-    logEvent: (event: EventArgs, debug?: boolean) => void,
-    toggleNav: (override?: NavState, overlay?: boolean) => void,
-    toggleLangSelector: () => void,
-    togglePrivacySelector: () => void,
-    setTheme: (value: Themes) => void,
-    setNavState: (value: NavState) => void,
-    setOverlayState: (value: OverlayState) => void,
-    setAllowedCookieState: (value: PrivacyCookieState) => void,
-    setLangSelectorState: (value: LanguageSelectorState) => void,
-    setPrivacySelectorState: (value: PrivacyPromptState) => void,
-    dispatchExternalLocaleState: Dispatch<ExternalLocaleState>,
+    testMode: boolean;
+    theme: Themes;
+    navState: NavState;
+    langSelectorState: LanguageSelectorState;
+    privacySelectorState: PrivacyPromptState;
+    overlayState: OverlayState;
+    allowedCookieState: PrivacyCookieState;
+    socialLinks: Array<SocialBlock>;
+    externalLocaleState: ExternalLocaleState;
+    ethersProvider: ethers.providers.Provider;
+    setEthersProvider: (value: ethers.providers.Provider) => void;
+    logEvent: (event: EventArgs, debug?: boolean) => void;
+    toggleNav: (override?: NavState, overlay?: boolean) => void;
+    toggleLangSelector: () => void;
+    togglePrivacySelector: () => void;
+    setTheme: (value: Themes) => void;
+    setNavState: (value: NavState) => void;
+    setOverlayState: (value: OverlayState) => void;
+    setAllowedCookieState: (value: PrivacyCookieState) => void;
+    setLangSelectorState: (value: LanguageSelectorState) => void;
+    setPrivacySelectorState: (value: PrivacyPromptState) => void;
+    dispatchExternalLocaleState: Dispatch<ExternalLocaleState>;
 }>({
     testMode: false,
     theme: Themes.DARK,
@@ -56,6 +60,8 @@ export const AppContext = createContext<{
     allowedCookieState: {},
     socialLinks: socialLinks,
     externalLocaleState: initialExternalLocaleState,
+    ethersProvider: ethers.getDefaultProvider(),
+    setEthersProvider: () => null,
     logEvent: () => null,
     toggleNav: () => null,
     toggleLangSelector: () => null,
@@ -73,15 +79,28 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
     const testMode: boolean = process.env.NODE_ENV === 'test';
     const isLightScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     const sysTheme: Themes = isLightScheme ? Themes.LIGHT : Themes.DARK;
-    const localExternalLocaleState: ExternalLocaleState = { ...initialExternalLocaleState, ...JSON.parse(localStorage.getItem('externalLocaleState') ?? '{}') };
+    const localExternalLocaleState: ExternalLocaleState = {
+        ...initialExternalLocaleState,
+        ...JSON.parse(localStorage.getItem('externalLocaleState') ?? '{}'),
+    };
 
-    const [theme, setTheme] = useState(localStorage.getItem('theme') as Themes || sysTheme);
-    const [navState, setNavState] = useState(localStorage.getItem('navState') as NavState || NavState.CLOSED);
+    const [theme, setTheme] = useState((localStorage.getItem('theme') as Themes) || sysTheme);
+    const [navState, setNavState] = useState((localStorage.getItem('navState') as NavState) || NavState.CLOSED);
     const [overlayState, setOverlayState] = useState(OverlayState.HIDE);
+    const [ethersProvider, setEthersProvider] = useState<ethers.providers.Provider>(ethers.getDefaultProvider());
     const [langSelectorState, setLangSelectorState] = useState(LanguageSelectorState.CLOSED);
-    const [privacySelectorState, setPrivacySelectorState] = useState(localStorage.getItem('privacyPromptComplete') === 'true' ? PrivacyPromptState.INACTIVE : PrivacyPromptState.ACTIVE);
-    const [allowedCookieState, setAllowedCookieState] = useState(JSON.parse(localStorage.getItem('allowedCookieState') ?? '{}') as PrivacyCookieState);
-    const [externalLocaleState, dispatchExternalLocaleState] = useReducer(externalLocaleReducer, localExternalLocaleState);
+    const [privacySelectorState, setPrivacySelectorState] = useState(
+        localStorage.getItem('privacyPromptComplete') === 'true'
+            ? PrivacyPromptState.INACTIVE
+            : PrivacyPromptState.ACTIVE,
+    );
+    const [allowedCookieState, setAllowedCookieState] = useState(
+        JSON.parse(localStorage.getItem('allowedCookieState') ?? '{}') as PrivacyCookieState,
+    );
+    const [externalLocaleState, dispatchExternalLocaleState] = useReducer(
+        externalLocaleReducer,
+        localExternalLocaleState,
+    );
 
     const toggleNav = (override?: NavState, overlay?: boolean) => {
         const state = override ?? navState === NavState.CLOSED ? NavState.OPEN : NavState.CLOSED;
@@ -94,15 +113,19 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
     };
 
     const toggleLangSelector = () => {
-        setLangSelectorState(langSelectorState === LanguageSelectorState.CLOSED
-            ? LanguageSelectorState.OPEN
-            : LanguageSelectorState.CLOSED);
+        setLangSelectorState(
+            langSelectorState === LanguageSelectorState.CLOSED
+                ? LanguageSelectorState.OPEN
+                : LanguageSelectorState.CLOSED,
+        );
     };
 
     const togglePrivacySelector = () => {
-        setPrivacySelectorState(privacySelectorState === PrivacyPromptState.INACTIVE
-            ? PrivacyPromptState.ACTIVE
-            : PrivacyPromptState.INACTIVE);
+        setPrivacySelectorState(
+            privacySelectorState === PrivacyPromptState.INACTIVE
+                ? PrivacyPromptState.ACTIVE
+                : PrivacyPromptState.INACTIVE,
+        );
     };
 
     const logEvent = (event: EventArgs, debug = false) => {
@@ -123,6 +146,8 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
         allowedCookieState,
         socialLinks,
         externalLocaleState,
+        ethersProvider,
+        setEthersProvider,
         logEvent,
         toggleNav,
         toggleLangSelector,
@@ -163,7 +188,7 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
         <Suspense fallback={<LoaderSpinner type="Pulse" size={20} />}>
             <ThemeProvider theme={availableThemes[theme]}>
                 <AppContext.Provider value={appContext}>
-                    <Section className={"App" + (navState === NavState.OPEN ? ' mobile-nav-active' : '')}>
+                    <Section className={'App' + (navState === NavState.OPEN ? ' mobile-nav-active' : '')}>
                         <Header />
                         <Body />
                         <Footer />
@@ -177,6 +202,6 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
             </ThemeProvider>
         </Suspense>
     );
-}
+};
 
 export default withRouter(App);
