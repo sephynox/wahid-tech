@@ -1,6 +1,8 @@
 export const SITE_BASE_URL = window.location.origin;
 export const DEV_MODE = 'production' !== process.env.NODE_ENV;
 export const SITE_NAME = 'WTech';
+export const SITE_DOMAIN = 'wahid.tech';
+export const SITE_ENS = 'wahid.eth';
 export const MY_NAME = 'Tanveer Wahid';
 export const MY_EMAIL = 'tan@wahid.email';
 

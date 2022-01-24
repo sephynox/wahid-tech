@@ -25,6 +25,12 @@ const Header: React.FunctionComponent = (): JSX.Element => {
                 <meta property="og:url" content={window.location.href} data-react-helmet="true" />
                 <meta property="og:image" content={OpenGraphImage} data-react-helmet="true" />
                 <meta property="og:description" content={t('content.description')} data-react-helmet="true" />
+                <meta name="twitter:card" content="summary_large_image" data-react-helmet="true" />
+                <meta property="twitter:domain" content={Constants.SITE_DOMAIN} data-react-helmet="true" />
+                <meta property="twitter:url" content={window.location.href} data-react-helmet="true" />
+                <meta name="twitter:title" content={Constants.SITE_NAME} data-react-helmet="true" />
+                <meta name="twitter:description" content={t('content.description')} data-react-helmet="true" />
+                <meta name="twitter:image" content={OpenGraphImage} data-react-helmet="true" />
             </Helmet>
             <NavToggle />
             <ScrollTop />
