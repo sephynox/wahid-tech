@@ -11,6 +11,7 @@ export const DEFAULT_CURRENCY = 'USD';
 export const DEFAULT_PRICE_PLACES = 2;
 export const DEFAULT_PERCENT_PLACES = 2;
 export const DEFAULT_PRICE_PERCENTAGE_CHANGES = '24h,7d,30d,1y';
+export const DEFAUL_ETHERS_NETWORK = 'homestead';
 
 export const SITE_BLOG_PATH_BASE = '/technology-blog/';
 export const SITE_BLOG_ARTICLE_PATH = SITE_BLOG_PATH_BASE + 'posts/';
@@ -35,3 +36,4 @@ export const REGEX_ETHEREUM_ADDRESS = '/^0x[a-fA-F0-9]{40}$/';
 //Front-end safe values only
 export const REACT_APP_GA_RECAPTCHA_KEY = '6Le0wCYUAAAAABYv_Axwdte1Jg7LcjqAhhBCYH80';
 export const REACT_APP_GA_TRACKING_ID = 'UA-101953437-1';
+export const REACT_APP_INFURA_PROJECT_ID = '972ae4d98d4541bb808e85e73170615b';

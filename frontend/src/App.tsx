@@ -9,7 +9,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import './scss/custom.scss';
 import './App.css';
 import * as Constants from './Constants';
-import { socialLinks } from './Data';
+import { ethersConfig, socialLinks } from './Data';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { NavState } from './layout/Navigation';
 import Overlay, { OverlayState } from './layout/Overlay';
@@ -87,7 +87,9 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
     const [theme, setTheme] = useState((localStorage.getItem('theme') as Themes) || sysTheme);
     const [navState, setNavState] = useState((localStorage.getItem('navState') as NavState) || NavState.CLOSED);
     const [overlayState, setOverlayState] = useState(OverlayState.HIDE);
-    const [ethersProvider, setEthersProvider] = useState<ethers.providers.Provider>(ethers.getDefaultProvider());
+    const [ethersProvider, setEthersProvider] = useState<ethers.providers.Provider>(
+        ethers.getDefaultProvider(Constants.DEFAUL_ETHERS_NETWORK, ethersConfig),
+    );
     const [langSelectorState, setLangSelectorState] = useState(LanguageSelectorState.CLOSED);
     const [privacySelectorState, setPrivacySelectorState] = useState(
         localStorage.getItem('privacyPromptComplete') === 'true'
