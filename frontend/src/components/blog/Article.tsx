@@ -87,6 +87,7 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
                 <meta name="twitter:title" content={data.title} data-react-helmet="true" />
                 <meta name="twitter:description" content={data.description} data-react-helmet="true" />
                 <meta name="twitter:image" content={data.image.url} data-react-helmet="true" />
+                <meta name="keywords" content={data.tags.map((t) => t).join(',')} />
                 {data.authors.map((a, i) => (
                     <meta key={i} property="article:author" content={formatAuthorName(a)} />
                 ))}
