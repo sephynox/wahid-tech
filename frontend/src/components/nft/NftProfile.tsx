@@ -150,4 +150,8 @@ const ModalStyle = styled(Modal)`
     .modal-large {
         max-width: 100vh;
     }
+
+    & figure img {
+        max-height: calc(100vh - 400px);
+    }
 `;
