@@ -19,7 +19,7 @@ import { Breadcrumbs } from '../../layout/Navigation';
 enum ModalState {
     OPEN,
     CLOSED,
-};
+}
 
 const NftProfile: React.FunctionComponent = (): JSX.Element => {
     const { t } = useTranslation();
@@ -43,31 +43,35 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
     const sale_date: string = data.last_sale ? Intl.DateTimeFormat(i18next.language).format(data.last_sale) : '';
 
     const closeModal = () => {
-        setModalState(ModalState.CLOSED)
-    }
+        setModalState(ModalState.CLOSED);
+    };
 
     return (
         <Section>
             <Helmet>
-                <meta property="og:title" content={title} />
-                <meta property="og:type" content="article" />
-                <meta property="og:url" content={link} />
-                <meta property="og:image" content={image.url} />
-                <meta property="og:description" content={data.description} />
-                <meta property="article:published_time" content={created} />
-                <meta property="article:author" content={data.owner?.user?.username} />
+                <meta property="og:title" content={title} data-react-helmet="true" />
+                <meta property="og:type" content="article" data-react-helmet="true" />
+                <meta property="og:url" content={link} data-react-helmet="true" />
+                <meta property="og:image" content={image.url} data-react-helmet="true" />
+                <meta property="og:description" content={data.description} data-react-helmet="true" />
+                <meta property="article:published_time" content={created} data-react-helmet="true" />
+                <meta property="article:author" content={data.owner?.user?.username} data-react-helmet="true" />
             </Helmet>
-            <Breadcrumbs links={[
-                { text: t('NFTs'), path: Constants.SITE_NFT_PATH_BASE },
-                { text: `NFT /`, path: '', active: true }
-            ]} />
+            <Breadcrumbs
+                links={[
+                    { text: t('NFTs'), path: Constants.SITE_NFT_PATH_BASE },
+                    { text: `NFT /`, path: '', active: true },
+                ]}
+            />
 
             <h1 className="mb-5">{title}</h1>
             <Row>
                 <Col xs={12} md={12} lg={6} xl={6}>
                     <Figure className="pointer pl-0 pr-0-md" onClick={() => setModalState(ModalState.OPEN)}>
                         <img src={image.url} alt={subtext} />
-                        <figcaption><em>{subtext}</em></figcaption>
+                        <figcaption>
+                            <em>{subtext}</em>
+                        </figcaption>
                     </Figure>
                 </Col>
                 <Col xs={12} md={12} lg={6} xl={6} className="d-flex flex-column">
@@ -76,27 +80,25 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                     <DefinitionList>
                         <dt>{t('contract')}:</dt>
                         <dd className="text-right">
-                            <a target="_blank" href={`${contract.network}${contract.address}`} rel="noreferrer">{contract.address}</a>
+                            <a target="_blank" href={`${contract.network}${contract.address}`} rel="noreferrer">
+                                {contract.address}
+                            </a>
                         </dd>
                         <dt>{t('published')}:</dt>
                         <dd className="text-right">{created}</dd>
                         <dt>{t('max_supply')}:</dt>
                         <dd className="text-right">{contract.total_supply}</dd>
                         <dt>{t('share')}:</dt>
-                        <dd className="text-right"><SocialLinks title={title} url={link} /></dd>
+                        <dd className="text-right">
+                            <SocialLinks title={title} url={link} />
+                        </dd>
                     </DefinitionList>
-                    {!owner
-                        ?
+                    {!owner ? (
                         <>
                             <h3>For Sale</h3>
-                            <OpenSea
-                                address={data.permalink}
-                                price={price}
-                                button={t('purchase')}
-                                image={image}
-                            />
+                            <OpenSea address={data.permalink} price={price} button={t('purchase')} image={image} />
                         </>
-                        :
+                    ) : (
                         <>
                             <h3>Sold</h3>
                             <DefinitionList>
@@ -106,21 +108,30 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                                 <dd className="text-right">{sale_date ? sale_date : t('no_owner')}</dd>
                             </DefinitionList>
                         </>
-                    }
+                    )}
                 </Col>
             </Row>
-            <ModalStyle show={modalState === ModalState.OPEN} onHide={closeModal} dialogClassName="modal-large" centered>
+            <ModalStyle
+                show={modalState === ModalState.OPEN}
+                onHide={closeModal}
+                dialogClassName="modal-large"
+                centered
+            >
                 <Modal.Header>
                     <Modal.Title>{title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Figure>
                         <img src={image.url} alt={subtext} />
-                        <figcaption><em>{subtext}</em></figcaption>
+                        <figcaption>
+                            <em>{subtext}</em>
+                        </figcaption>
                     </Figure>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={closeModal}>{t('close')}</Button>
+                    <Button variant="secondary" onClick={closeModal}>
+                        {t('close')}
+                    </Button>
                 </Modal.Footer>
             </ModalStyle>
         </Section>

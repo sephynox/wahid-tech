@@ -53,13 +53,13 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
     return (
         <>
             <Helmet>
-                <meta property="og:title" content={data.name} />
-                <meta property="og:type" content="article" />
-                <meta property="og:url" content={full_url} />
-                <meta property="og:image" content={data.image.url} />
-                <meta property="og:description" content={data.description} />
-                <meta property="article:published_time" content={meta_date} />
-                <meta property="article:modified_time" content={meta_modified} />
+                <meta property="og:title" content={data.name} data-react-helmet="true" />
+                <meta property="og:type" content="article" data-react-helmet="true" />
+                <meta property="og:url" content={full_url} data-react-helmet="true" />
+                <meta property="og:image" content={data.image.url} data-react-helmet="true" />
+                <meta property="og:description" content={data.description} data-react-helmet="true" />
+                <meta property="article:published_time" content={meta_date} data-react-helmet="true" />
+                <meta property="article:modified_time" content={meta_modified} data-react-helmet="true" />
                 {data.authors.map((a, i) => (
                     <meta key={i} property="article:author" content={formatName(a)} />
                 ))}
