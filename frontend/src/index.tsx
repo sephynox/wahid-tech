@@ -8,14 +8,7 @@ import i18n from './services/i18n';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const rootElement = document.getElementById('root');
-let method = ReactDOM.render;
-
-if (rootElement?.hasChildNodes()) {
-    method = ReactDOM.hydrate;
-}
-
-method(
+ReactDOM.render(
     <React.StrictMode>
         <I18nextProvider i18n={i18n}>
             <Router>
