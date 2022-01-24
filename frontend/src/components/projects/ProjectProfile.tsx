@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import * as Constants from '../../Constants';
 import Data from './Data';
 import NotFound from '../../pages/NotFound';
+import { ThemeEngine } from '../../styles/GlobalStyle';
 import HorizontalRule from '../../styles/HorizontalRule';
 import { DefinitionList } from '../../styles/DefinitionList';
 import Comments from '../Comments';
@@ -143,7 +144,7 @@ const ProjectStyle = styled.article`
         font-size: 1.3em;
         display: inline-block;
         text-transform: capitalize;
-        color: #595959;
+        color: ${(props: ThemeEngine) => props.theme.subduedText};
     }
 
     & .container {

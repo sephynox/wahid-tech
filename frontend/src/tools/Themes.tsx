@@ -1,5 +1,5 @@
-import OpenSeaDark from '../resources/images/opensea-dark.png'
-import OpenSeaLight from '../resources/images/opensea-light.png'
+import OpenSeaDark from '../resources/images/opensea-dark.png';
+import OpenSeaLight from '../resources/images/opensea-light.png';
 
 export enum Themes {
     LIGHT = 'light',
@@ -8,8 +8,8 @@ export enum Themes {
 
 export enum Active {
     ON = 'active',
-    OFF = ''
-};
+    OFF = '',
+}
 
 export type Theme = {
     name: string;
@@ -25,6 +25,7 @@ export type Theme = {
     linkHover: string;
     hr: string;
     text: string;
+    subduedText: string;
     textAlt: string;
     textIcon: string;
     info: string;
@@ -56,6 +57,7 @@ export const lightTheme: Theme = {
     linkHover: 'rgb(38, 107, 172)',
     hr: 'rgb(96, 96, 96)',
     text: '#000',
+    subduedText: '#595959',
     textAlt: '#1a487d',
     textIcon: '#000',
     info: 'rgb(5, 99, 187)',
@@ -71,8 +73,8 @@ export const lightTheme: Theme = {
     successText: 'rgb(19, 162, 7)',
     successBorder: 'rgb(19, 162, 7)',
     images: {
-        opensea: OpenSeaLight
-    }
+        opensea: OpenSeaLight,
+    },
 };
 
 export const darkTheme: Theme = {
@@ -89,6 +91,7 @@ export const darkTheme: Theme = {
     linkHover: 'rgb(6, 125, 237)',
     hr: 'rgb(81, 83, 84)',
     text: '#fff',
+    subduedText: '#959595',
     textAlt: '#acc7e6',
     textIcon: '#9ba4ae',
     infoText: '#81b6f0',
@@ -104,13 +107,13 @@ export const darkTheme: Theme = {
     successText: 'rgb(32, 253, 13)',
     successBorder: 'rgb(32, 253, 13)',
     images: {
-        opensea: OpenSeaDark
-    }
+        opensea: OpenSeaDark,
+    },
 };
 
 export const availableThemes: Record<string, Theme> = {
     [Themes.LIGHT]: lightTheme,
-    [Themes.DARK]: darkTheme
+    [Themes.DARK]: darkTheme,
 };
 
 export default Theme;
