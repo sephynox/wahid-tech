@@ -23,8 +23,8 @@ type BreadcrumbsProps = {
 
 export enum NavState {
     OPEN = 'active',
-    CLOSED = ''
-};
+    CLOSED = '',
+}
 
 export type NavBlock = {
     text: string;
@@ -42,7 +42,9 @@ export const Breadcrumbs = ({ links }: BreadcrumbsProps): JSX.Element => {
 
     return (
         <Breadcrumb>
-            <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>{t('home')}</Breadcrumb.Item>
+            <Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>
+                {t('home')}
+            </Breadcrumb.Item>
             {links.map((crumb: Crumb, i: number) => (
                 <Breadcrumb.Item
                     key={i}
@@ -52,8 +54,8 @@ export const Breadcrumbs = ({ links }: BreadcrumbsProps): JSX.Element => {
                     active={crumb.active}
                 >
                     {crumb.text}
-                </Breadcrumb.Item>)
-            )}
+                </Breadcrumb.Item>
+            ))}
         </Breadcrumb>
     );
 };
@@ -67,9 +69,8 @@ export const NavToggle = (): JSX.Element => {
             onClick={() => {
                 appContext.toggleNav(undefined, true);
             }}
-            className={appContext.navState === NavState.CLOSED
-                ? 'bi bi-list mobile-nav-toggle'
-                : `bi bi-x mobile-nav-toggle`
+            className={
+                appContext.navState === NavState.CLOSED ? 'bi bi-list mobile-nav-toggle' : `bi bi-x mobile-nav-toggle`
             }
         ></NavToggleStyle>
     );
@@ -85,7 +86,7 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({ navLinks }: Navi
         to,
         className = 'nav-link',
         activeClassName = 'active',
-        exact = false
+        exact = false,
     }: NavBlock): JSX.Element => {
         const { t } = useTranslation();
         return (
@@ -103,7 +104,15 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({ navLinks }: Navi
 
     return (
         <NavStyle id="navbar">
-            <ul>{navLinks.map((l: NavBlock, i): JSX.Element => <li key={i}><NavItem {...l} /></li>)}</ul>
+            <ul>
+                {navLinks.map(
+                    (l: NavBlock, i): JSX.Element => (
+                        <li key={i}>
+                            <NavItem {...l} />
+                        </li>
+                    ),
+                )}
+            </ul>
             <Buttons />
         </NavStyle>
     );
@@ -114,7 +123,8 @@ export default Navigation;
 export const NavStyle = styled.nav`
     padding: 0;
     display: block;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     * {
         margin: 0;
@@ -138,14 +148,15 @@ export const NavStyle = styled.nav`
         border: none;
     }
 
-    & >ul>li {
+    & > ul > li {
         position: relative;
         white-space: nowrap;
     }
 
-    & a, 
-      .nav-menu-buttons button, 
-      .nav-menu-buttons button:focus, a:focus {
+    & a,
+    .nav-menu-buttons button,
+    .nav-menu-buttons button:focus,
+    a:focus {
         display: flex;
         align-items: center;
         padding: 10px 18px;
@@ -158,50 +169,50 @@ export const NavStyle = styled.nav`
         transition: 0.3s;
     }
 
-    & a i, 
-      a:focus i,
-      .nav-menu-buttons button i {
+    & a i,
+    a:focus i,
+    .nav-menu-buttons button i {
         font-size: 20px;
     }
 
-    & a span, 
-      a:focus span {
+    & a span,
+    a:focus span {
         padding: 0 5px 0 7px;
     }
 
-    & a:hover, 
-      .active, 
-      .active:focus, 
-      li:hover>a {
+    & a:hover,
+    .active,
+    .active:focus,
+    li:hover > a {
         background-color: #0563bb;
     }
 
-    & a:hover, 
-      li:hover>button, 
-      li:hover>a,
-      .nav-menu-buttons button:hover {
+    & a:hover,
+    li:hover > button,
+    li:hover > a,
+    .nav-menu-buttons button:hover {
         width: 100%;
     }
 
-    & a:hover span, 
-      li:hover>button span, 
-      li:hover>a span,
-      .nav-menu-buttons button:hover span {
+    & a:hover span,
+    li:hover > button span,
+    li:hover > a span,
+    .nav-menu-buttons button:hover span {
         display: block;
     }
 
     @media (min-width: 992px) {
-        & a, 
-          a:focus,
-          .nav-menu-buttons button {
+        & a,
+        a:focus,
+        .nav-menu-buttons button {
             width: 56px;
         }
 
-        & a span, 
-          a:focus span, 
-          a:focus span, 
-          .nav-menu-buttons button span, 
-          .nav-menu-buttons button:focus span {
+        & a span,
+        a:focus span,
+        a:focus span,
+        .nav-menu-buttons button span,
+        .nav-menu-buttons button:focus span {
             display: none;
         }
     }

@@ -22,7 +22,7 @@ const Data: PostData = {
             url: '/images/blog/hardhat-usedapp-typescript.png',
             alt: 'Hardhat + React + useDapp + Typescript',
         },
-        tags: ['dlt', 'blockchain', 'dapp', 'development'],
+        tags: ['smart contracts', 'dapp', 'development', 'react', 'ethereum'],
         references: [
             {
                 id: 'citation-hardhat-2022',

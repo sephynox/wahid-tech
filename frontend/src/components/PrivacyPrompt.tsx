@@ -16,13 +16,13 @@ type Props = {
     customizeText: string;
     closeExpandedText: string;
     acceptExpandedText: string;
-    tableText: { name: string, expiration: string, description: string };
+    tableText: { name: string; expiration: string; description: string };
     settingsCallback: (settings: PrivacyCookieState) => void;
 };
 
 export type PrivacyCookieState = {
     [key: string]: boolean;
-}
+};
 
 export enum PrivacyPromptState {
     INACTIVE,
@@ -44,13 +44,17 @@ export type PrivacySetting = {
 };
 
 const PrivacyPrompt = (props: Props): JSX.Element => {
-    const [promptActive, setPromptActive] = useState(props.show ? PrivacyPromptState.ACTIVE : PrivacyPromptState.INACTIVE);
+    const [promptActive, setPromptActive] = useState(
+        props.show ? PrivacyPromptState.ACTIVE : PrivacyPromptState.INACTIVE,
+    );
     const [customizeActive, setCustomizeActive] = useState(PrivacyPromptState.INACTIVE);
     const [settings, setSettings] = useState(props.settings);
     const [defaults] = useState(props.defaults);
 
     const toggleCustomizeState = () => {
-        setCustomizeActive(customizeActive === PrivacyPromptState.ACTIVE ? PrivacyPromptState.INACTIVE : PrivacyPromptState.ACTIVE);
+        setCustomizeActive(
+            customizeActive === PrivacyPromptState.ACTIVE ? PrivacyPromptState.INACTIVE : PrivacyPromptState.ACTIVE,
+        );
     };
 
     const setPrivacyPromptComplete = (reject?: boolean, accept?: boolean) => {
@@ -74,7 +78,9 @@ const PrivacyPrompt = (props: Props): JSX.Element => {
         <tr key={setting.name}>
             <td>{setting.name}</td>
             <td>{setting.expiration}</td>
-            <td className="hide-mobile"><ReadMore text={setting.description} charactersMax={42} /></td>
+            <td className="hide-mobile">
+                <ReadMore text={setting.description} charactersMax={42} />
+            </td>
         </tr>
     );
 
@@ -83,10 +89,12 @@ const PrivacyPrompt = (props: Props): JSX.Element => {
             <Row>
                 <Col>
                     <Switch
-                        changeHandler={(s: SwitchStates) => { settings[key].active = s === SwitchStates.ACTIVE ? true : false; }}
+                        changeHandler={(s: SwitchStates) => {
+                            settings[key].active = s === SwitchStates.ACTIVE ? true : false;
+                        }}
                         active={state}
                         size={25}
-                        margin={.5}
+                        margin={0.5}
                         fontSize={1}
                         className="mb-3"
                         disabled={locked}
@@ -104,11 +112,7 @@ const PrivacyPrompt = (props: Props): JSX.Element => {
                                 <th className="hide-mobile">{props.tableText.description}</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {settings[key].cookies.map((cookie) =>
-                                tableRow(cookie)
-                            )}
-                        </tbody>
+                        <tbody>{settings[key].cookies.map((cookie) => tableRow(cookie))}</tbody>
                     </Table>
                 </Col>
             </Row>
@@ -119,7 +123,7 @@ const PrivacyPrompt = (props: Props): JSX.Element => {
         return Object.keys(settings).map((k): JSX.Element => {
             return categoryTab(k, settings[k].title);
         });
-    }
+    };
 
     const getCategoryTabs = (): Array<JSX.Element> => {
         return Object.keys(settings).map((k): JSX.Element => {
@@ -130,7 +134,7 @@ const PrivacyPrompt = (props: Props): JSX.Element => {
                 settings[k].locked,
             );
         });
-    }
+    };
 
     useEffect(() => {
         setSettings(props.settings);
@@ -142,7 +146,9 @@ const PrivacyPrompt = (props: Props): JSX.Element => {
             <div className={`privacy-prompt-banner ${customizeActive === PrivacyPromptState.ACTIVE ? 'expanded' : ''}`}>
                 <Row>
                     <Col>
-                        <p><strong>{props.title}</strong></p>
+                        <p>
+                            <strong>{props.title}</strong>
+                        </p>
                     </Col>
                 </Row>
                 <Row>
@@ -151,11 +157,20 @@ const PrivacyPrompt = (props: Props): JSX.Element => {
                     </Col>
                     <Col xs={12} sm={12} md={12} lg={3} xl={3} className="privacy-prompt-buttons">
                         <Button onClick={() => setPrivacyPromptComplete(false, true)}>{props.acceptAllText}</Button>
-                        <Button onClick={() => setPrivacyPromptComplete(true)} variant="outline-danger">{props.rejectAllText}</Button>
-                        <br /><Button onClick={toggleCustomizeState} variant="link">{props.customizeText}</Button>
+                        <Button onClick={() => setPrivacyPromptComplete(true)} variant="outline-danger">
+                            {props.rejectAllText}
+                        </Button>
+                        <br />
+                        <Button onClick={toggleCustomizeState} variant="link">
+                            {props.customizeText}
+                        </Button>
                     </Col>
                 </Row>
-                <Row className={`privacy-prompt-customize ${customizeActive === PrivacyPromptState.ACTIVE ? 'active' : ''}`}>
+                <Row
+                    className={`privacy-prompt-customize ${
+                        customizeActive === PrivacyPromptState.ACTIVE ? 'active' : ''
+                    }`}
+                >
                     <Col>
                         <Row>
                             <Col>
@@ -167,9 +182,7 @@ const PrivacyPrompt = (props: Props): JSX.Element => {
                                             </Nav>
                                         </Col>
                                         <Col xs={12} sm={12} md={9} lg={9} xl={9}>
-                                            <Tab.Content>
-                                                {getCategoryTabs()}
-                                            </Tab.Content>
+                                            <Tab.Content>{getCategoryTabs()}</Tab.Content>
                                         </Col>
                                     </Row>
                                 </Tab.Container>
@@ -178,7 +191,9 @@ const PrivacyPrompt = (props: Props): JSX.Element => {
                         <Row className="text-right">
                             <Col className="privacy-prompt-buttons">
                                 <Button onClick={() => setPrivacyPromptComplete()}>{props.acceptExpandedText}</Button>
-                                <Button variant="outline-danger" onClick={toggleCustomizeState}>{props.closeExpandedText}</Button>
+                                <Button variant="outline-danger" onClick={toggleCustomizeState}>
+                                    {props.closeExpandedText}
+                                </Button>
                             </Col>
                         </Row>
                     </Col>
@@ -224,7 +239,7 @@ const PrivacyPromptStyle = styled.div`
     }
 
     & .privacy-prompt-buttons > button {
-        font-size: .9em;
+        font-size: 0.9em;
         margin-left: 10px;
     }
 
@@ -234,7 +249,6 @@ const PrivacyPromptStyle = styled.div`
     }
 
     @media (min-width: 768px) {
-
     }
 
     @media screen and (max-width: 768px) {
