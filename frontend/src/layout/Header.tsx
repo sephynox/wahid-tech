@@ -47,9 +47,9 @@ const HeaderStyle = styled.header<Theme>`
     top: 0;
     left: 0;
     bottom: 0;
+    padding: 0;
     z-index: 999;
     transition: all 0.5s;
-    padding: 15px;
     overflow-y: auto;
 
     @media (min-width: 992px) {
