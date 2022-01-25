@@ -108,7 +108,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 <h2>{t('details')}</h2>
                 <HorizontalRule />
                 {readme ? (
-                    <ReactMarkdown>{readme ?? ''}</ReactMarkdown>
+                    <ReactMarkdown transformLinkUri={null}>{readme ?? ''}</ReactMarkdown>
                 ) : (
                     <LoaderSkeleton type="Paragraphs" bars={32} width="100%" height="300" />
                 )}
