@@ -17,7 +17,7 @@ import Comments from '../Comments';
 import SocialLinks from '../../tools/SocialLinks';
 import { Breadcrumbs } from '../../layout/Navigation';
 import { Author } from '../../tools/Citation';
-import LoaderSkeleton from '../../tools/LoaderSkeleton';
+import LoaderSkeleton from '../../layout/LoaderSkeleton';
 
 const NftProfile: React.FunctionComponent = (): JSX.Element => {
     const { t } = useTranslation();
@@ -112,6 +112,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 ) : (
                     <LoaderSkeleton type="Paragraphs" bars={32} width="100%" height="300" />
                 )}
+                <br />
                 <HorizontalRule />
                 <footer>
                     {data.comments && (

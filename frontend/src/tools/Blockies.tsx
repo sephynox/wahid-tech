@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import makeBlockie from 'ethereum-blockies-base64';
 import { EnsLookupData, EnsLookupState, EnsLookupStates } from '../actions/Ethereum';
-import LoaderSkeleton from './LoaderSkeleton';
+import LoaderSkeleton from '../layout/LoaderSkeleton';
 
 type BlockiesProps = {
     state: EnsLookupState;
@@ -33,7 +33,11 @@ export const Blockies = ({ state, width }: BlockiesProps): JSX.Element => {
             );
         default:
         case EnsLookupStates.FETCHING:
-            return <LoaderSkeleton type="Profile" width={width} height={width} />;
+            return (
+                <SkeletonContainerStyle>
+                    <LoaderSkeleton type="Profile" width={width} height={width} />
+                </SkeletonContainerStyle>
+            );
     }
 };
 
@@ -47,5 +51,9 @@ const BlockieStyle = styled.img`
 
 const BlockieEnsStyle = styled.cite`
     display: block;
+    text-align: center;
+`;
+
+const SkeletonContainerStyle = styled.div`
     text-align: center;
 `;

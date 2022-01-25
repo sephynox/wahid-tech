@@ -17,7 +17,7 @@ import { formatFirstUpper, formatNumber, formatPrice } from '../../utils/data-fo
 import StyledPercentage from '../../tools/StyledPercentage';
 import IconButton from '../../tools/IconButton';
 import NotFound from '../../pages/NotFound';
-import LoaderSkeleton from '../../tools/LoaderSkeleton';
+import LoaderSkeleton from '../../layout/LoaderSkeleton';
 
 const MarketProfile = (): JSX.Element => {
     const { type, id } = useParams<{ type: MarketType; id: string }>();
