@@ -1,28 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useReducer, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
-import { Container, Figure } from 'react-bootstrap';
+import { Col, Container, Figure, Row } from 'react-bootstrap';
 import axios from 'axios';
 import i18next from 'i18next';
 import styled from 'styled-components';
 import * as Constants from '../../Constants';
+import { AppContext } from '../../App';
 import Data from './Data';
 import NotFound from '../../pages/NotFound';
 import { ThemeEngine } from '../../styles/GlobalStyle';
 import HorizontalRule from '../../styles/HorizontalRule';
 import { DefinitionList } from '../../styles/DefinitionList';
 import Comments from '../Comments';
+import { ensLookupReducer, fetchAddresses, initialEnsLookupState } from '../../actions/Ethereum';
 import SocialLinks from '../../tools/SocialLinks';
 import { Breadcrumbs } from '../../layout/Navigation';
 import { Author } from '../../tools/Citation';
 import LoaderSkeleton from '../../layout/LoaderSkeleton';
+import Blockies from '../../tools/Blockies';
 
 const NftProfile: React.FunctionComponent = (): JSX.Element => {
+    const appContext = useContext(AppContext);
     const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
     const [readme, setReadme] = useState<string | null>(null);
+    const [ensData, dispatchEnsData] = useReducer(ensLookupReducer, initialEnsLookupState);
 
     const data = Data[id];
 
@@ -30,13 +35,22 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
         return `${author.given} ${author.middle ? author.middle.substring(0, 1) + '. ' : ' '}${author.family}`;
     };
 
-    const fetchReadme = (path: string) => {
+    const fetchReadme = useCallback(async (path: string) => {
         axios.get(path).then((response) => setReadme(response.data));
-    };
+    }, []);
+
+    // TODO abstract
+    const authorResolver = useCallback(async () => {
+        fetchAddresses(
+            data.authors.filter((authors) => !!authors.dns).map((authors) => authors.dns as string),
+            appContext.ethersProvider,
+        )(dispatchEnsData);
+    }, [data.authors, appContext.ethersProvider]);
 
     useEffect(() => {
+        authorResolver();
         fetchReadme(data.readme);
-    }, [data]);
+    }, [data, fetchReadme, authorResolver]);
 
     if (data === undefined) {
         return <NotFound />;
@@ -87,22 +101,29 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                     </Figure>
                     <h1 className="text-xs-center">{data.name}</h1>
                     <Container>
-                        <DefinitionList>
-                            <dt>{t('byline')}:</dt>
-                            <dd>{authors}</dd>
-                            <dt>{t('repository')}:</dt>
-                            <dd>
-                                <a href={data.repo_url}>{data.repo_url}</a>
-                            </dd>
-                            <dt>{t('published')}:</dt>
-                            <dd>{created}</dd>
-                            <dt>{t('summary')}:</dt>
-                            <dd>{data.description}</dd>
-                            <dt>{t('share')}:</dt>
-                            <dd>
-                                <SocialLinks url={full_url} title={data.name} />
-                            </dd>
-                        </DefinitionList>
+                        <Row>
+                            <Col xs={12} sm={12} md={2}>
+                                <Blockies state={ensData} width={100} />
+                            </Col>
+                            <Col xs={12} md={10}>
+                                <DefinitionList>
+                                    <dt>{t('byline')}:</dt>
+                                    <dd>{authors}</dd>
+                                    <dt>{t('repository')}:</dt>
+                                    <dd>
+                                        <a href={data.repo_url}>{data.repo_url}</a>
+                                    </dd>
+                                    <dt>{t('published')}:</dt>
+                                    <dd>{created}</dd>
+                                    <dt>{t('summary')}:</dt>
+                                    <dd>{data.description}</dd>
+                                    <dt>{t('share')}:</dt>
+                                    <dd>
+                                        <SocialLinks url={full_url} title={data.name} />
+                                    </dd>
+                                </DefinitionList>
+                            </Col>
+                        </Row>
                     </Container>
                 </header>
                 <h2>{t('details')}</h2>
