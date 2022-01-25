@@ -121,7 +121,7 @@ const Navigation: React.FunctionComponent<NavigationProps> = ({ navLinks }: Navi
 export default Navigation;
 
 export const NavStyle = styled.nav`
-    padding: 0;
+    padding: 15px;
     display: block;
     overflow-x: hidden;
     overflow-y: auto;
