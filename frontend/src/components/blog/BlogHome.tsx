@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import * as Constants from '../../Constants';
 import Data, { Posts } from './Data';
 import { Section } from '../../styles/Section';
-import Postcard from '../Postcard';
+import Postcard from '../../tools/Postcard';
 
 const BlogHome: React.FunctionComponent = (): JSX.Element => {
     const { t } = useTranslation();

@@ -1,12 +1,12 @@
 export interface InTextCitations {
-    r: Record<string, Citation>;
+    readonly r: Record<string, Citation>;
 }
 
 export interface Author {
-    given: string;
-    dns?: string;
-    middle?: string;
-    family: string;
+    readonly given: string;
+    readonly family: string;
+    readonly middle?: string;
+    readonly dns?: string;
 }
 
 export const formatAuthorName = (author: Author): string => {

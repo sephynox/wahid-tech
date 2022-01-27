@@ -9,18 +9,12 @@
         "@testing-library/jest-dom": "^5.11.4",
         "@testing-library/react": "^12.0.0",
         "@testing-library/user-event": "^13.2.1",
-        "@types/i18next": "^13.0.0",
-        "@types/i18next-browser-languagedetector": "^3.0.0",
         "@types/qrcode.react": "^1.0.2",
         "@types/react": "^17.0.15",
         "@types/react-bootstrap-table-next": "^4.0.15",
         "@types/react-bootstrap-table2-paginator": "^2.1.2",
-        "@types/react-content-loader": "^4.0.0",
         "@types/react-dom": "^17.0.9",
-        "@types/react-ga": "^2.3.0",
-        "@types/react-i18next": "^8.1.0",
         "@types/react-router-dom": "^5.1.8",
-        "@types/react-swipeable": "^5.2.0",
         "@types/styled-components": "^5.1.11",
         "@types/validator": "^13.6.3",
         "@web3-react/core": "^6.1.9",
@@ -67,25 +61,33 @@
         "react-typed": "^1.2.0",
         "styled-components": "^5.3.0",
         "tocbot": "^4.13.1",
-        "typescript": "^4.3.5",
+        "typescript": "^4.5.5",
         "validator": "^13.6.0",
         "web-vitals": "^2.1.0",
         "web3modal": "^1.9.3"
     },
     "devDependencies": {
+        "@babel/core": "^7.16.12",
+        "@babel/eslint-parser": "^7.16.5",
+        "@babel/preset-env": "^7.16.11",
+        "@babel/preset-react": "^7.16.7",
+        "@types/express": "^4.17.13",
         "@types/styled-components-react-native": "^5.1.1",
         "@typescript-eslint/eslint-plugin": "^4.28.5",
         "@typescript-eslint/parser": "^4.28.5",
-        "babel-eslint": "^10.1.0",
+        "babel-jest": "^27.4.6",
         "babel-plugin-styled-components": "^1.13.2",
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-jsx-a11y": "^6.5.1",
         "eslint-plugin-prettier": "^4.0.0",
         "eslint-plugin-react": "^7.24.0",
-        "node-sass": "^6.0.0",
         "prettier": "^2.3.2",
-        "sass-loader": "^12.0.0",
-        "webpack": "^5.51.1"
+        "react-snap": "^1.23.0",
+        "sass": "^1.49.0",
+        "sass-loader": "^12.4.0",
+        "webpack": "^5.67.0",
+        "webpack-dev-server": "^4.7.3"
     },
     "babel": {
         "plugins": [
@@ -97,7 +99,8 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+        "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+        "postbuild": "react-snap"
     },
     "eslintConfig": {
         "extends": [

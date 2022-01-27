@@ -1,18 +1,23 @@
-import React, { useCallback, useContext, useEffect, useReducer } from 'react';
+import React, { useCallback, useContext, useEffect, useReducer, useRef } from 'react';
 import { Col, Container, Figure, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components';
 import i18next from 'i18next';
+import tocbot from 'tocbot';
 import { AppContext } from '../../App';
 import * as Constants from '../../Constants';
+import { ensLookupReducer, EnsLookupState, fetchAddresses, initialEnsLookupState } from '../../actions/Ethereum';
 import { Breadcrumbs } from '../../layout/Navigation';
 import { ThemeEngine } from '../../styles/GlobalStyle';
 import { DefinitionList } from '../../styles/DefinitionList';
 import HorizontalRule from '../../styles/HorizontalRule';
+import NotFound from '../../pages/NotFound';
 import Tocbot from '../Tocbot';
-import { Image } from '../Lightbox';
 import Comments from '../Comments';
+import Data from './Data';
+import { Image } from '../../tools/Lightbox';
 import CitationGuide from '../../tools/CitationGuide';
 import SocialLinks from '../../tools/SocialLinks';
 import Citation, { Author, formatAuthorName, InTextCitations } from '../../tools/Citation';
@@ -22,11 +27,6 @@ import Tags from '../../tools/Tags';
 import { formatNumber } from '../../utils/data-formatters';
 import { arrayToRecord } from '../../utils/data-helpers';
 import Blockies from '../../tools/Blockies';
-import { ensLookupReducer, fetchAddresses, initialEnsLookupState } from '../../actions/Ethereum';
-
-type Props = {
-    data: ArticleData;
-};
 
 export interface ArticleData {
     id: number;
@@ -44,17 +44,40 @@ export interface ArticleData {
     comments?: boolean;
 }
 
-const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
+const Article: React.FunctionComponent = (): JSX.Element => {
+    const isActive = useRef(true);
     const appContext = useContext(AppContext);
     const { t } = useTranslation();
+    const { id } = useParams<{ id: string }>();
     const [ensData, dispatchEnsData] = useReducer(ensLookupReducer, initialEnsLookupState);
+
+    const data = Data[id];
+
+    const dispatchEnsDataAssist = (state: EnsLookupState): void => {
+        if (isActive.current) {
+            dispatchEnsData(state);
+        }
+    };
 
     const authorResolver = useCallback(async () => {
         fetchAddresses(
             data.authors.filter((authors) => !!authors.dns).map((authors) => authors.dns as string),
             appContext.ethersProvider,
-        )(dispatchEnsData);
+        )(dispatchEnsDataAssist);
     }, [data.authors, appContext.ethersProvider]);
+
+    useEffect(() => {
+        authorResolver();
+
+        return () => {
+            isActive.current = false;
+            tocbot.destroy();
+        };
+    }, [data, authorResolver]);
+
+    if (data === undefined) {
+        return <NotFound />;
+    }
 
     const MyArticle = data.component;
     const article_full_url = Constants.SITE_BLOG_ARTICLE_BASE_URL + data.path;
@@ -67,26 +90,23 @@ const Article: React.FunctionComponent<Props> = ({ data }: Props) => {
         ? [data.modified.getFullYear(), data.modified.getMonth(), data.modified.getDate()].join('-')
         : undefined;
 
-    useEffect(() => {
-        authorResolver();
-    }, [authorResolver]);
-
     return (
         <>
             <Helmet>
-                <meta property="og:title" content={data.title} data-react-helmet="true" />
-                <meta property="og:type" content="article" data-react-helmet="true" />
-                <meta property="og:url" content={article_full_url} data-react-helmet="true" />
-                <meta property="og:image" content={data.image.url} data-react-helmet="true" />
-                <meta property="og:description" content={data.description} data-react-helmet="true" />
-                <meta property="article:published_time" content={meta_date} data-react-helmet="true" />
-                <meta property="article:modified_time" content={meta_modified} data-react-helmet="true" />
-                <meta name="twitter:card" content="summary_large_image" data-react-helmet="true" />
-                <meta property="twitter:domain" content={Constants.SITE_DOMAIN} data-react-helmet="true" />
-                <meta property="twitter:url" content={article_full_url} data-react-helmet="true" />
-                <meta name="twitter:title" content={data.title} data-react-helmet="true" />
-                <meta name="twitter:description" content={data.description} data-react-helmet="true" />
-                <meta name="twitter:image" content={data.image.url} data-react-helmet="true" />
+                <title>{data.title}</title>
+                <meta property="og:title" content={data.title} />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content={article_full_url} />
+                <meta property="og:image" content={data.image.url} />
+                <meta property="og:description" content={data.description} />
+                <meta property="article:published_time" content={meta_date} />
+                <meta property="article:modified_time" content={meta_modified} />
+                <meta name="twitter:card" content="summary" />
+                <meta property="twitter:domain" content={Constants.SITE_DOMAIN} />
+                <meta property="twitter:url" content={article_full_url} />
+                <meta name="twitter:title" content={data.title} />
+                <meta name="twitter:description" content={data.description} />
+                <meta name="twitter:image" content={data.image.url} />
                 <meta name="keywords" content={data.tags.map((t) => t).join(',')} />
                 {data.authors.map((a, i) => (
                     <meta key={i} property="article:author" content={formatAuthorName(a)} />

@@ -5,18 +5,18 @@ import Backend from 'i18next-http-backend';
 import * as Constants from '../Constants';
 
 export enum i18nNamespace {
-    COMMON = 'common',
+    COMMON = 'translation',
     VALIDATION = 'validation',
     EXTERNAL = 'external',
-};
+}
 
 i18next
     .use(Backend)
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
-        ns: Object.values(i18nNamespace),
-        defaultNS: 'common',
+        //ns: Object.values(i18nNamespace),
+        defaultNS: 'translation',
         debug: Constants.DEV_MODE,
         fallbackLng: Constants.DEFAULT_LANG,
         saveMissing: false,

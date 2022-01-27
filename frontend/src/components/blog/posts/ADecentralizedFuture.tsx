@@ -1,7 +1,7 @@
 import React from 'react';
 import { Figure } from 'react-bootstrap';
-import LightBox from '../../Lightbox';
-import Quote from '../../Quote';
+import Quote from '../../../tools/Quote';
+import LightBox from '../../../tools/Lightbox';
 import { InTextCitations } from '../../../tools/Citation';
 import { APAInline } from '../../../tools/APACitation';
 

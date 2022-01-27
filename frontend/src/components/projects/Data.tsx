@@ -1,5 +1,5 @@
 import { Author } from '../../tools/Citation';
-import { Image } from '../Lightbox';
+import { Image } from '../../tools/Lightbox';
 import ImageXRPLRust from '../../resources/images/projects/xrpl-rust.png';
 
 export type Project = {

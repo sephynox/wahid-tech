@@ -6,7 +6,7 @@ import { Section } from '../styles/Section';
 import NftData, { Nfts } from '../components/nft/Data';
 import BlogData, { Posts } from '../components/blog/Data';
 import ProjectData, { Projects } from '../components/projects/Data';
-import Postcard from '../components/Postcard';
+import Postcard from '../tools/Postcard';
 
 const Home = (): JSX.Element => {
     const { t } = useTranslation();

@@ -3,7 +3,7 @@ import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Section } from '../../styles/Section';
 import * as Constants from '../../Constants';
-import Postcard from '../Postcard';
+import Postcard from '../../tools/Postcard';
 import Data, { Nfts } from './Data';
 
 const NftHome: React.FunctionComponent = (): JSX.Element => {
@@ -18,7 +18,7 @@ const NftHome: React.FunctionComponent = (): JSX.Element => {
         const description: string = nft.description;
         const image = {
             url: nft.image_url,
-            alt: name
+            alt: name,
         };
 
         return (

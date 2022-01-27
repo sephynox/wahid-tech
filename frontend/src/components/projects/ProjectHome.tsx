@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Section } from '../../styles/Section';
 import * as Constants from '../../Constants';
 import { donationAddresses } from '../../Data';
-import Postcard from '../Postcard';
+import Postcard from '../../tools/Postcard';
 import Data, { Projects } from './Data';
 import CryptoAssets from '../../tools/CryptoAssets';
 

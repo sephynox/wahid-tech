@@ -1,8 +1,10 @@
 import React, { createContext, Dispatch, Suspense, useEffect, useState, useReducer } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import { HelmetProvider } from 'react-helmet-async';
 import ReactGA, { EventArgs } from 'react-ga';
+import { I18nextProvider } from 'react-i18next';
 import { toast } from 'react-hot-toast';
+import { ThemeProvider } from 'styled-components';
 import { ethers } from 'ethers';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -10,6 +12,7 @@ import './scss/custom.scss';
 import './App.css';
 import * as Constants from './Constants';
 import { ethersConfig, socialLinks } from './Data';
+import i18n from './services/i18n';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { NavState } from './layout/Navigation';
 import Overlay, { OverlayState } from './layout/Overlay';
@@ -182,27 +185,27 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
         localStorage.setItem('theme', theme);
     }, [theme]);
 
-    useEffect(() => {
-        localStorage.setItem('allowedCookieState', JSON.stringify(allowedCookieState));
-    }, [allowedCookieState]);
-
     return (
-        <Suspense fallback={<LoaderSpinner type="Pulse" size={20} />}>
-            <ThemeProvider theme={availableThemes[theme]}>
-                <AppContext.Provider value={appContext}>
-                    <Section className={'App' + (navState === NavState.OPEN ? ' mobile-nav-active' : '')}>
-                        <Header />
-                        <Body />
-                        <Footer />
-                        <Privacy />
-                        <Toaster />
-                        <Overlay state={overlayState as OverlayState} />
-                        <BackTop />
-                        <GlobalStyle />
-                    </Section>
-                </AppContext.Provider>
-            </ThemeProvider>
-        </Suspense>
+        <I18nextProvider i18n={i18n}>
+            <HelmetProvider>
+                <Suspense fallback={<LoaderSpinner type="Pulse" size={20} />}>
+                    <ThemeProvider theme={availableThemes[theme]}>
+                        <AppContext.Provider value={appContext}>
+                            <Section className={'App' + (navState === NavState.OPEN ? ' mobile-nav-active' : '')}>
+                                <Header />
+                                <Body />
+                                <Footer />
+                                <Privacy />
+                                <Toaster />
+                                <Overlay state={overlayState as OverlayState} />
+                                <BackTop />
+                                <GlobalStyle />
+                            </Section>
+                        </AppContext.Provider>
+                    </ThemeProvider>
+                </Suspense>
+            </HelmetProvider>
+        </I18nextProvider>
     );
 };
 

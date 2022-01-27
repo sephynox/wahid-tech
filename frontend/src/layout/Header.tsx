@@ -17,20 +17,20 @@ const Header: React.FunctionComponent = (): JSX.Element => {
     return (
         <HeaderStyle id="header" className="d-flex flex-column justify-content-center">
             <Helmet>
-                <title data-react-helmet="true">{Constants.MY_NAME} - Engineering &amp; Cybersecurity - Blog</title>
-                <meta name="author" content={Constants.MY_NAME} data-react-helmet="true" />
-                <meta name="description" content={t('content.description')} data-react-helmet="true" />
-                <meta property="og:title" content={Constants.SITE_NAME} data-react-helmet="true" />
-                <meta property="og:type" content="website" data-react-helmet="true" />
-                <meta property="og:url" content={window.location.href} data-react-helmet="true" />
-                <meta property="og:image" content={OpenGraphImage} data-react-helmet="true" />
-                <meta property="og:description" content={t('content.description')} data-react-helmet="true" />
-                <meta name="twitter:card" content="summary_large_image" data-react-helmet="true" />
-                <meta property="twitter:domain" content={Constants.SITE_DOMAIN} data-react-helmet="true" />
-                <meta property="twitter:url" content={window.location.href} data-react-helmet="true" />
-                <meta name="twitter:title" content={Constants.SITE_NAME} data-react-helmet="true" />
-                <meta name="twitter:description" content={t('content.description')} data-react-helmet="true" />
-                <meta name="twitter:image" content={OpenGraphImage} data-react-helmet="true" />
+                <title>{Constants.MY_NAME} - Engineering &amp; Cybersecurity - Blog</title>
+                <meta name="author" content={Constants.MY_NAME} />
+                <meta name="description" content={t('content.description')} />
+                <meta property="og:title" content={Constants.SITE_NAME} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.href} />
+                <meta property="og:image" content={OpenGraphImage} />
+                <meta property="og:description" content={t('content.description')} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta property="twitter:domain" content={Constants.SITE_DOMAIN} />
+                <meta property="twitter:url" content={window.location.href} />
+                <meta name="twitter:title" content={Constants.SITE_NAME} />
+                <meta name="twitter:description" content={t('content.description')} />
+                <meta name="twitter:image" content={OpenGraphImage} />
             </Helmet>
             <NavToggle />
             <ScrollTop />
