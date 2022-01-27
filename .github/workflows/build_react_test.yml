@@ -19,4 +19,4 @@ jobs:
           yarn build
       - name: Test Application
         working-directory: ./frontend
-        run: yarn test
+        run: CI=true yarn test
