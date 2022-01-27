@@ -87,7 +87,7 @@
         "jest": "^27.4.7",
         "jest-watch-typeahead": "0.6.5",
         "prettier": "^2.3.2",
-        "react-snap": "^1.23.0",
+        "react-snap": "^1.10.0",
         "sass": "^1.49.0",
         "sass-loader": "^12.4.0",
         "webpack": "^5.67.0",
