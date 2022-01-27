@@ -11,7 +11,7 @@ export const DEFAULT_CURRENCY = 'USD';
 export const DEFAULT_PRICE_PLACES = 2;
 export const DEFAULT_PERCENT_PLACES = 2;
 export const DEFAULT_PRICE_PERCENTAGE_CHANGES = '24h,7d,30d,1y';
-export const DEFAUL_ETHERS_NETWORK = 'homestead';
+export const DEFAULT_ETHERS_NETWORK = 'homestead';
 
 export const SITE_BLOG_PATH_BASE = '/technology-blog/';
 export const SITE_BLOG_ARTICLE_PATH = SITE_BLOG_PATH_BASE + 'posts/';

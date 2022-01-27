@@ -91,7 +91,7 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
     const [navState, setNavState] = useState((localStorage.getItem('navState') as NavState) || NavState.CLOSED);
     const [overlayState, setOverlayState] = useState(OverlayState.HIDE);
     const [ethersProvider, setEthersProvider] = useState<ethers.providers.Provider>(
-        ethers.getDefaultProvider(Constants.DEFAUL_ETHERS_NETWORK, ethersConfig),
+        new ethers.providers.InfuraProvider(Constants.DEFAULT_ETHERS_NETWORK, ethersConfig),
     );
     const [langSelectorState, setLangSelectorState] = useState(LanguageSelectorState.CLOSED);
     const [privacySelectorState, setPrivacySelectorState] = useState(
