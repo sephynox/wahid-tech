@@ -16,7 +16,7 @@ type BlockieProps = {
 
 export const Blockie = ({ data, width }: BlockieProps): JSX.Element => (
     <figure>
-        <BlockieStyle src={makeBlockie(data.address)} alt={data.address} width={width} />
+        <BlockieStyle src={makeBlockie(data.address ?? '')} alt={data.address} width={width} />
         <address>{data.ens && <BlockieEnsStyle>{data.ens}</BlockieEnsStyle>}</address>
     </figure>
 );

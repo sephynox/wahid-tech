@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import MarketList from './MarketList';
 import { Section } from '../../styles/Section';
+import MarketList from './MarketList';
 import { MarketContext } from '../../pages/Market';
 import IconButton from '../../tools/IconButton';
 import { MarketType } from '../../tools/MarketData';
-import { useState } from 'react';
 
 const MarketHome: React.FunctionComponent = (): JSX.Element => {
     const marketContext = React.useContext(MarketContext);
@@ -32,7 +31,8 @@ const MarketHome: React.FunctionComponent = (): JSX.Element => {
                             title={t('refresh')}
                             onClick={refreshData}
                             icon="bi-arrow-repeat"
-                            size={30}></IconButton>
+                            size={30}
+                        ></IconButton>
                     </Col>
                 </Row>
                 <MarketList data={listData} />

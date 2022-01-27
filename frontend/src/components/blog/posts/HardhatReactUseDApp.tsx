@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert } from 'react-bootstrap';
-import Code from '../../Code';
+import Code from '../../../tools/Code';
 import { InTextCitations } from '../../../tools/Citation';
 
 const codeInstallNpm = () =>

@@ -48,3 +48,7 @@ export const formatShortNumber = (n: number, d: number): string => {
 
     return item ? (n / item.value).toFixed(d).replace(rx, '$1') + item.symbol : '0';
 };
+
+export const reduceByKey = <T,>(data: { [key: string]: T }[], extract: string): T[] => {
+    return data.filter((tokens) => !!tokens[extract]).map((tokens) => tokens[extract]);
+};

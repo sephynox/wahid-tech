@@ -7,6 +7,7 @@ export type ThemeEngine = {
 };
 
 export const GlobalStyle = createGlobalStyle`
+
 html,
 body {
     overflow-y: auto;
@@ -86,16 +87,16 @@ div.card {
 }
 
 .nav-menu a span {
-    color:  ${(props: ThemeEngine) => props.theme.text};
+    color: ${(props: ThemeEngine) => props.theme.text};
 }
 
 button.nav-link {
-    color:  ${(props: ThemeEngine) => props.theme.text};
+    color: ${(props: ThemeEngine) => props.theme.text};
     background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
 }
 
 button.nav-link i {
-    color:  ${(props: ThemeEngine) => props.theme.text};
+    color: ${(props: ThemeEngine) => props.theme.text};
 }
 
 .nav-link {
@@ -179,7 +180,7 @@ hr.nav-menu-buttons {
     border-color: ${(props: ThemeEngine) => props.theme.hr};
 }
 
-.table-striped > tbody > tr:nth-of-type(2n+1) {
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
     color: ${(props: ThemeEngine) => props.theme.textAlt};
 }
 

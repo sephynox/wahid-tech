@@ -1,13 +1,23 @@
 // eslint-disable-next-line no-undef
 module.exports = {
     env: {
+        jest: true,
         browser: true,
         es2021: true,
     },
-    extends: ['react-app', 'plugin:react/recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+    extends: [
+        'react-app',
+        'react-app/jest',
+        'plugin:react/recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:jsx-a11y/recommended',
+        'prettier',
+    ],
     parserOptions: {
+        warnOnUnsupportedTypeScriptVersion: false,
         ecmaFeatures: {
             jsx: true,
+            modules: true,
         },
         ecmaVersion: 2020,
         sourceType: 'module',

@@ -1,25 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { I18nextProvider } from 'react-i18next';
-import { HelmetProvider } from 'react-helmet-async';
 import '@ethersproject/shims';
-import i18n from './services/i18n';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
+const rootElement = document.getElementById('root');
+const appElement = (
     <React.StrictMode>
-        <I18nextProvider i18n={i18n}>
-            <Router>
-                <HelmetProvider>
-                    <App />
-                </HelmetProvider>
-            </Router>
-        </I18nextProvider>
-    </React.StrictMode>,
-    document.getElementById('root'),
+        <Router>
+            <App />
+        </Router>
+    </React.StrictMode>
 );
+ReactDOM.render(appElement, rootElement);
+// if (rootElement?.hasChildNodes()) {
+//     ReactDOM.hydrate(appElement, rootElement);
+// } else {
+//     ReactDOM.render(appElement, rootElement);
+// }
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

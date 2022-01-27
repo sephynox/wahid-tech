@@ -14,8 +14,8 @@ export enum EnsLookupErrors {
 }
 
 export type EnsLookupData = {
-    ens: string;
-    address: string;
+    ens: string | null;
+    address: string | null;
 };
 
 // TODO

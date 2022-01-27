@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useReducer, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useReducer, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
@@ -15,7 +15,7 @@ import { ThemeEngine } from '../../styles/GlobalStyle';
 import HorizontalRule from '../../styles/HorizontalRule';
 import { DefinitionList } from '../../styles/DefinitionList';
 import Comments from '../Comments';
-import { ensLookupReducer, fetchAddresses, initialEnsLookupState } from '../../actions/Ethereum';
+import { ensLookupReducer, EnsLookupState, fetchAddresses, initialEnsLookupState } from '../../actions/Ethereum';
 import SocialLinks from '../../tools/SocialLinks';
 import { Breadcrumbs } from '../../layout/Navigation';
 import { Author } from '../../tools/Citation';
@@ -23,6 +23,7 @@ import LoaderSkeleton from '../../layout/LoaderSkeleton';
 import Blockies from '../../tools/Blockies';
 
 const NftProfile: React.FunctionComponent = (): JSX.Element => {
+    const isActive = useRef(true);
     const appContext = useContext(AppContext);
     const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
@@ -31,25 +32,36 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
 
     const data = Data[id];
 
+    const readmeLinks = (href: string) => `${data.repo_url}/blob/HEAD/${href}`;
+
     const formatName = (author: Author) => {
         return `${author.given} ${author.middle ? author.middle.substring(0, 1) + '. ' : ' '}${author.family}`;
     };
 
     const fetchReadme = useCallback(async (path: string) => {
-        axios.get(path).then((response) => setReadme(response.data));
+        axios.get(path).then((response) => isActive.current && setReadme(response.data));
     }, []);
 
-    // TODO abstract
+    const dispatchEnsDataAssist = (state: EnsLookupState): void => {
+        if (isActive.current) {
+            dispatchEnsData(state);
+        }
+    };
+
     const authorResolver = useCallback(async () => {
         fetchAddresses(
             data.authors.filter((authors) => !!authors.dns).map((authors) => authors.dns as string),
             appContext.ethersProvider,
-        )(dispatchEnsData);
+        )(dispatchEnsDataAssist);
     }, [data.authors, appContext.ethersProvider]);
 
     useEffect(() => {
         authorResolver();
         fetchReadme(data.readme);
+
+        return () => {
+            isActive.current = false;
+        };
     }, [data, fetchReadme, authorResolver]);
 
     if (data === undefined) {
@@ -67,19 +79,20 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
     return (
         <>
             <Helmet>
-                <meta property="og:title" content={data.name} data-react-helmet="true" />
-                <meta property="og:type" content="article" data-react-helmet="true" />
-                <meta property="og:url" content={full_url} data-react-helmet="true" />
-                <meta property="og:image" content={data.image.url} data-react-helmet="true" />
-                <meta property="og:description" content={data.description} data-react-helmet="true" />
-                <meta property="article:published_time" content={meta_date} data-react-helmet="true" />
-                <meta property="article:modified_time" content={meta_modified} data-react-helmet="true" />
-                <meta name="twitter:card" content="summary_large_image" data-react-helmet="true" />
-                <meta property="twitter:domain" content={Constants.SITE_DOMAIN} data-react-helmet="true" />
-                <meta property="twitter:url" content={full_url} data-react-helmet="true" />
-                <meta name="twitter:title" content={data.name} data-react-helmet="true" />
-                <meta name="twitter:description" content={data.description} data-react-helmet="true" />
-                <meta name="twitter:image" content={data.image.url} data-react-helmet="true" />
+                <title>{data.name}</title>
+                <meta property="og:title" content={data.name} />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content={full_url} />
+                <meta property="og:image" content={data.image.url} />
+                <meta property="og:description" content={data.description} />
+                <meta property="article:published_time" content={meta_date} />
+                <meta property="article:modified_time" content={meta_modified} />
+                <meta name="twitter:card" content="summary" />
+                <meta property="twitter:domain" content={Constants.SITE_DOMAIN} />
+                <meta property="twitter:url" content={full_url} />
+                <meta name="twitter:title" content={data.name} />
+                <meta name="twitter:description" content={data.description} />
+                <meta name="twitter:image" content={data.image.url} />
                 <meta name="keywords" content={data.tags.map((t) => t).join(',')} />
                 {data.authors.map((a, i) => (
                     <meta key={i} property="article:author" content={formatName(a)} />
@@ -129,7 +142,9 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 <h2>{t('details')}</h2>
                 <HorizontalRule />
                 {readme ? (
-                    <ReactMarkdown transformLinkUri={null}>{readme ?? ''}</ReactMarkdown>
+                    <ReactMarkdown transformLinkUri={readmeLinks} linkTarget="_blank">
+                        {readme}
+                    </ReactMarkdown>
                 ) : (
                     <LoaderSkeleton type="Paragraphs" bars={32} width="100%" height="300" />
                 )}

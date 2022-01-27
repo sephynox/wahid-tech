@@ -8,19 +8,20 @@ import { i18nNamespace } from '../services/i18n';
 import { chunkArray } from '../utils/data-helpers';
 
 type Props = {
-    columns?: number
+    columns?: number;
 };
 
 export enum LanguageSelectorState {
     OPEN,
-    CLOSED
-};
+    CLOSED,
+}
 
 const LanguageSelector: React.FunctionComponent<Props> = ({ columns = 3 }: Props): JSX.Element => {
     const appContext = useContext(AppContext);
     const { t, i18n } = useTranslation();
 
     const changeLanguageHandler = (lang: string): void => {
+        document.documentElement.lang = lang;
         i18n.changeLanguage(lang);
         closeLanguageSelector();
     };
@@ -37,8 +38,11 @@ const LanguageSelector: React.FunctionComponent<Props> = ({ columns = 3 }: Props
                 {group.map((lang: string, x: number) => (
                     <Col key={x} className="mt-3 text-center">
                         <Button
-                            onClick={() => { changeLanguageHandler(lang); }}
-                            variant={i18n.language === lang ? 'primary' : 'secondary'}>
+                            onClick={() => {
+                                changeLanguageHandler(lang);
+                            }}
+                            variant={i18n.language === lang ? 'primary' : 'secondary'}
+                        >
                             {systemLanguages[lang]}
                         </Button>
                     </Col>
@@ -49,7 +53,7 @@ const LanguageSelector: React.FunctionComponent<Props> = ({ columns = 3 }: Props
 
     useEffect(() => {
         localStorage.setItem('externalLocaleState', JSON.stringify(appContext.externalLocaleState));
-        supportedLanguages.forEach(lang => {
+        supportedLanguages.forEach((lang) => {
             if (appContext.externalLocaleState.data && appContext.externalLocaleState.data[lang] !== undefined) {
                 i18next.addResourceBundle(lang, i18nNamespace.EXTERNAL, appContext.externalLocaleState.data[lang]);
             }
@@ -57,7 +61,11 @@ const LanguageSelector: React.FunctionComponent<Props> = ({ columns = 3 }: Props
     }, [appContext.externalLocaleState]);
 
     return (
-        <Modal show={appContext.langSelectorState === LanguageSelectorState.OPEN} onHide={closeLanguageSelector} centered>
+        <Modal
+            show={appContext.langSelectorState === LanguageSelectorState.OPEN}
+            onHide={closeLanguageSelector}
+            centered
+        >
             <Modal.Header>
                 <Modal.Title>{t('language')}</Modal.Title>
             </Modal.Header>
@@ -65,7 +73,9 @@ const LanguageSelector: React.FunctionComponent<Props> = ({ columns = 3 }: Props
                 <Container>{options}</Container>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={closeLanguageSelector}>{t('close')}</Button>
+                <Button variant="secondary" onClick={closeLanguageSelector}>
+                    {t('close')}
+                </Button>
             </Modal.Footer>
         </Modal>
     );

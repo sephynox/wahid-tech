@@ -7,16 +7,11 @@ import * as Constants from '../Constants';
 import { AppContext } from '../App';
 import { systemEvents } from '../Data';
 import { AssetState, AssetStates, initialAssetState } from '../actions/AssetState';
-import {
-    assetReducer,
-    fetchAssetData,
-    fetchAssetPriceData,
-    fetchAssetMarketData
-} from '../actions/Asset';
+import { assetReducer, fetchAssetData, fetchAssetPriceData, fetchAssetMarketData } from '../actions/Asset';
 import MarketHome from '../components/market/MarketHome';
 import MarketProfile from '../components/market/MarketProfile';
 import { MarketType } from '../tools/MarketData';
-import SwipeDown from '../components/SwipeDown';
+import SwipeDown from '../layout/SwipeDown';
 import { unixDaysAgo } from '../utils/data-helpers';
 
 //import StockChart from '../components/StockChart';
@@ -26,19 +21,21 @@ import { unixDaysAgo } from '../utils/data-helpers';
 //import { Symfoni } from "./hardhat/SymfoniContext";
 
 export const MarketContext = createContext<{
-    assetData: AssetState,
-    dateStart: number,
-    refreshData: (type: MarketType, reducer: Dispatch<AssetState>, assetKey?: string) => void,
-    setDateStart: Dispatch<SetStateAction<number>>,
-    dispatchAssetData: Dispatch<AssetState>,
-    marketDataByline: (type: MarketType) => JSX.Element,
+    assetData: AssetState;
+    dateStart: number;
+    refreshData: (type: MarketType, reducer: Dispatch<AssetState>, assetKey?: string) => void;
+    setDateStart: Dispatch<SetStateAction<number>>;
+    dispatchAssetData: Dispatch<AssetState>;
+    marketDataByline: (type: MarketType) => JSX.Element;
 }>({
     assetData: initialAssetState,
     dateStart: new Date().getTime(),
     refreshData: () => undefined,
     setDateStart: () => undefined,
     dispatchAssetData: () => undefined,
-    marketDataByline: function marketDataByline() { return <div></div> },
+    marketDataByline: function marketDataByline() {
+        return <div></div>;
+    },
 });
 
 const Market = (): JSX.Element => {
@@ -46,7 +43,10 @@ const Market = (): JSX.Element => {
     const appContext = useContext(AppContext);
 
     const defaultStart: number = unixDaysAgo(366);
-    const localAssetState: AssetState = { ...initialAssetState, ...JSON.parse(localStorage.getItem('assetData') ?? '{}') };
+    const localAssetState: AssetState = {
+        ...initialAssetState,
+        ...JSON.parse(localStorage.getItem('assetData') ?? '{}'),
+    };
 
     const [loaderToast, setLoaderToast] = useState<string | null>(null);
     const [assetData, dispatchAssetData] = useReducer(assetReducer, localAssetState);
@@ -77,13 +77,18 @@ const Market = (): JSX.Element => {
     };
 
     const marketDataByline = (type: MarketType): JSX.Element => {
-        const recordData = assetData.data ? assetData.data[type][Object.keys(assetData.data[type])[0]]?.source : undefined;
+        const recordData = assetData.data
+            ? assetData.data[type][Object.keys(assetData.data[type])[0]]?.source
+            : undefined;
         const sourceLink = recordData?.link;
         const sourceName = recordData?.name;
 
         return (
             <span>
-                {t('data_from')} <a target="_blank" href={sourceLink} rel="noreferrer">{sourceName}</a>
+                {t('data_from')}{' '}
+                <a target="_blank" href={sourceLink} rel="noreferrer">
+                    {sourceName}
+                </a>
             </span>
         );
     };
@@ -94,7 +99,7 @@ const Market = (): JSX.Element => {
         refreshData,
         setDateStart,
         dispatchAssetData,
-        marketDataByline
+        marketDataByline,
     };
 
     // TODO Retrieve data from ChainLink
@@ -147,10 +152,11 @@ const Market = (): JSX.Element => {
             clearTimeout(timer);
 
             //HACK Highcharts breaks react routing
-            document.querySelectorAll('body>section')
-                .forEach((el) => {
-                    try { el.remove(); } catch (e) { }
-                });
+            document.querySelectorAll('body>section').forEach((el) => {
+                try {
+                    el.remove();
+                } catch (e) {}
+            });
         };
     }, [assetType, assetKey, assetData, dateStart]);
 

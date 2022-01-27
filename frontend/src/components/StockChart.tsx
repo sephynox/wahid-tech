@@ -13,7 +13,7 @@ import {
     Title,
     Tooltip,
     XAxis,
-    YAxis
+    YAxis,
 } from 'react-jsx-highcharts';
 import { HighchartsStockChart, Navigator, RangeSelector } from 'react-jsx-highstock';
 import * as Constants from '../Constants';
@@ -22,35 +22,47 @@ import LoaderSpinner from '../tools/LoaderSpinner';
 import { formatFirstUpper, formatPrice, formatShortNumber } from '../utils/data-formatters';
 
 type Props = {
-    dataSet: MarketPriceData,
-    height: number,
-    symbol: string,
-    xAxis?: string,
-    title?: string,
-    legend?: string,
-    rangeSelector?: Array<Highcharts.RangeSelectorButtonsOptions>,
-    defaultRange?: number,
+    dataSet: MarketPriceData;
+    height: number;
+    symbol: string;
+    xAxis?: string;
+    title?: string;
+    legend?: string;
+    rangeSelector?: Array<Highcharts.RangeSelectorButtonsOptions>;
+    defaultRange?: number;
 };
 
-const StockChart = ({ title, dataSet, height, symbol, rangeSelector, xAxis = 'Time', defaultRange = 5 }: Props): JSX.Element => {
+const StockChart = ({
+    title,
+    dataSet,
+    height,
+    symbol,
+    rangeSelector,
+    xAxis = 'Time',
+    defaultRange = 5,
+}: Props): JSX.Element => {
     const { t } = useTranslation();
     const [data1, setData1] = useState(dataSet);
     const [loaded, setLoaded] = useState(dataSet.prices !== undefined);
-    const [chartRange, setChartRange] = useState(parseInt(localStorage.getItem('chartRange') ?? defaultRange.toString()));
+    const [chartRange, setChartRange] = useState(
+        parseInt(localStorage.getItem('chartRange') ?? defaultRange.toString()),
+    );
 
     const fmtPrice = (n: number) => formatPrice(n, Constants.DEFAULT_PRICE_PLACES, i18next.language);
-    const fmtShortNumber = (ctx: Highcharts.AxisLabelsFormatterContextObject) => `${symbol}${formatShortNumber(ctx.value as number, 0)}`;
+    const fmtShortNumber = (ctx: Highcharts.AxisLabelsFormatterContextObject) =>
+        `${symbol}${formatShortNumber(ctx.value as number, 0)}`;
     const fmtContextPrice = (ctx: Highcharts.AxisLabelsFormatterContextObject) => `${fmtPrice(ctx.value as number)}`;
-    const fmtDate = (ctx: Highcharts.AxisLabelsFormatterContextObject) => Intl.DateTimeFormat(i18next.language).format(new Date(ctx.value ? ctx.value : 0));
+    const fmtDate = (ctx: Highcharts.AxisLabelsFormatterContextObject) =>
+        Intl.DateTimeFormat(i18next.language).format(new Date(ctx.value ? ctx.value : 0));
 
     if (!rangeSelector) {
         rangeSelector = [
-            { count: 24, offsetMin: 0, offsetMax: 0, type: "hour", text: "24H" },
-            { count: 7, offsetMin: 0, offsetMax: 0, type: "day", text: "7D" },
-            { count: 30, offsetMin: 0, offsetMax: 0, type: "day", text: "30D" },
-            { count: 90, offsetMin: 0, offsetMax: 0, type: "day", text: "90D" },
-            { count: 1, offsetMin: 0, offsetMax: 0, type: "ytd", text: "YTD" },
-            { offsetMin: 0, offsetMax: 0, type: "all", text: "All" },
+            { count: 24, offsetMin: 0, offsetMax: 0, type: 'hour', text: '24H' },
+            { count: 7, offsetMin: 0, offsetMax: 0, type: 'day', text: '7D' },
+            { count: 30, offsetMin: 0, offsetMax: 0, type: 'day', text: '30D' },
+            { count: 90, offsetMin: 0, offsetMax: 0, type: 'day', text: '90D' },
+            { count: 1, offsetMin: 0, offsetMax: 0, type: 'ytd', text: 'YTD' },
+            { offsetMin: 0, offsetMax: 0, type: 'all', text: 'All' },
         ];
     }
 
@@ -58,8 +70,8 @@ const StockChart = ({ title, dataSet, height, symbol, rangeSelector, xAxis = 'Ti
         lang: {
             rangeSelectorZoom: formatFirstUpper(t('zoom')),
             decimalPoint: t('number.fractional'),
-            thousandsSep: t('number.separator')
-        }
+            thousandsSep: t('number.separator'),
+        },
     });
 
     useEffect(() => {
@@ -74,25 +86,20 @@ const StockChart = ({ title, dataSet, height, symbol, rangeSelector, xAxis = 'Ti
             }
         }
 
-        return () => { Highcharts.charts = []; };
-    }, [dataSet, rangeSelector, chartRange, loaded]);
-
-    useEffect(() => {
         localStorage.setItem('chartRange', chartRange.toString());
-    }, [chartRange]);
+        return () => {
+            Highcharts.charts = [];
+        };
+    }, [dataSet, rangeSelector, chartRange, loaded]);
 
     return (
         <HighchartsProvider Highcharts={Highcharts}>
             <HighchartsStockChart updateArgs={[true, true, true]}>
-                <Chart
-                    marginLeft={20}
-                    marginRight={20}
-                    zoomType="x"
-                    height={height}
-                    numberFormatter={fmtPrice}
-                />
+                <Chart marginLeft={20} marginRight={20} zoomType="x" height={height} numberFormatter={fmtPrice} />
                 <Title>{title}</Title>
-                <Loading isLoading={!loaded}><LoaderSpinner width="50%" height={5} /></Loading>
+                <Loading isLoading={!loaded}>
+                    <LoaderSpinner width="50%" height={5} />
+                </Loading>
                 <Legend layout="horizontal" />
                 <Tooltip />
                 <XAxis labels={{ formatter: fmtDate }}>
@@ -129,12 +136,10 @@ const StockChart = ({ title, dataSet, height, symbol, rangeSelector, xAxis = 'Ti
                 </YAxis> */}
                 <RangeSelector selected={chartRange}>
                     {rangeSelector.map((r, i) => (
-                        <RangeSelector.Button
-                            key={i}
-                            events={{ click: () => setChartRange(i) }}
-                            {...r}>
+                        <RangeSelector.Button key={i} events={{ click: () => setChartRange(i) }} {...r}>
                             {r.text}
-                        </RangeSelector.Button>))}
+                        </RangeSelector.Button>
+                    ))}
                     <RangeSelector.Input enabled />
                 </RangeSelector>
                 <Navigator>

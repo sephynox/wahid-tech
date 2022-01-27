@@ -5,7 +5,9 @@ import Theme from './Themes';
 import { AssetData } from './MarketData';
 import QRCodeModal, { QRModalState } from './QRCodeModal';
 
-const CryptoAssets: React.FunctionComponent<{ data: Record<string, AssetData>, size: number }> = (props): JSX.Element => {
+const CryptoAssets: React.FunctionComponent<{ data: Record<string, AssetData>; size: number }> = (
+    props,
+): JSX.Element => {
     const [activeAddress, setActiveAddress] = useState({} as AssetData);
     const [qrModalState, setQRModalState] = useState(QRModalState.CLOSED);
 
@@ -18,10 +20,19 @@ const CryptoAssets: React.FunctionComponent<{ data: Record<string, AssetData>, s
         <>
             {Object.keys(props.data).map(function (k, i) {
                 const Icon = props.data[k].icon ?? Btc;
-                return <li
-                    key={i}
-                    title={props.data[k].name}
-                    onClick={() => clickIcon(props.data[k])}><Icon size={props.size} /></li>;
+                return (
+                    <li key={i}>
+                        <i
+                            title={props.data[k].name}
+                            onClick={() => clickIcon(props.data[k])}
+                            onKeyPress={() => clickIcon(props.data[k])}
+                            role="button"
+                            tabIndex={i}
+                        >
+                            <Icon size={props.size} />
+                        </i>
+                    </li>
+                );
             })}
         </>
     );

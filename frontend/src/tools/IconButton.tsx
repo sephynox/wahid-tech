@@ -9,6 +9,7 @@ type Props = {
     onClick: () => void;
     enabled?: boolean;
     text?: string;
+    tab?: number;
 };
 
 const IconButton: React.FunctionComponent<Props> = (props): JSX.Element => {
@@ -20,7 +21,11 @@ const IconButton: React.FunctionComponent<Props> = (props): JSX.Element => {
             <i
                 title={props.title}
                 onClick={props.onClick}
-                className={`${props.icon} ${enabled ? 'active' : 'inactive'}`}></i>
+                onKeyPress={props.onClick}
+                role="button"
+                tabIndex={props.tab ?? 0}
+                className={`${props.icon} ${enabled ? 'active' : 'inactive'}`}
+            ></i>
         </IconButtonStyle>
     );
 };

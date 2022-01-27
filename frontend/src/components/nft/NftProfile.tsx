@@ -26,6 +26,10 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
     const { id } = useParams<{ id: string }>();
     const [modalState, setModalState] = useState(ModalState.CLOSED);
 
+    const closeModal = () => {
+        setModalState(ModalState.CLOSED);
+    };
+
     const data = Data[id];
 
     if (data === undefined) {
@@ -42,26 +46,22 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
     const created: string = Intl.DateTimeFormat(i18next.language).format(data.listing_date);
     const sale_date: string = data.last_sale ? Intl.DateTimeFormat(i18next.language).format(data.last_sale) : '';
 
-    const closeModal = () => {
-        setModalState(ModalState.CLOSED);
-    };
-
     return (
         <Section>
             <Helmet>
-                <meta property="og:title" content={title} data-react-helmet="true" />
-                <meta property="og:type" content="article" data-react-helmet="true" />
-                <meta property="og:url" content={link} data-react-helmet="true" />
-                <meta property="og:image" content={image.url} data-react-helmet="true" />
-                <meta property="og:description" content={data.description} data-react-helmet="true" />
-                <meta property="article:published_time" content={created} data-react-helmet="true" />
-                <meta property="article:author" content={data.owner.address} data-react-helmet="true" />
-                <meta name="twitter:card" content="summary_large_image" data-react-helmet="true" />
-                <meta property="twitter:domain" content={Constants.SITE_DOMAIN} data-react-helmet="true" />
-                <meta property="twitter:url" content={window.location.href} data-react-helmet="true" />
-                <meta name="twitter:title" content={title} data-react-helmet="true" />
-                <meta name="twitter:description" content={subtext} data-react-helmet="true" />
-                <meta name="twitter:image" content={image.url} data-react-helmet="true" />
+                <meta property="og:title" content={title} />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content={link} />
+                <meta property="og:image" content={image.url} />
+                <meta property="og:description" content={data.description} />
+                <meta property="article:published_time" content={created} />
+                <meta property="article:author" content={data.owner.address} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta property="twitter:domain" content={Constants.SITE_DOMAIN} />
+                <meta property="twitter:url" content={window.location.href} />
+                <meta name="twitter:title" content={title} />
+                <meta name="twitter:description" content={subtext} />
+                <meta name="twitter:image" content={image.url} />
             </Helmet>
             <Breadcrumbs
                 links={[

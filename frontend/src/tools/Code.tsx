@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { solarizedLight, CodeBlock, tomorrowNight } from 'react-code-blocks';
 import { AppContext } from '../App';
-import { Themes } from '../tools/Themes';
+import { Themes } from './Themes';
 
 type CodeProps = {
     text: string;

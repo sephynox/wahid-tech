@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { ThemeEngine } from '../styles/GlobalStyle';
 import { Image } from './Lightbox';
-import Theme from '../tools/Themes';
+import Theme from './Themes';
 
 type Props = {
     title: string;
@@ -29,7 +29,9 @@ const Postcard: React.FunctionComponent<Props> = (props): JSX.Element => {
                 <h3 className="card-title">{props.title}</h3>
                 <p>{props.date.toLocaleDateString(i18next.language)}</p>
                 <p className="card-text">{props.text}</p>
-                <NavLink className="btn btn-primary" to={props.link}>{props.linkText}</NavLink>
+                <NavLink className="btn btn-primary" to={props.link}>
+                    {props.linkText}
+                </NavLink>
             </div>
         </PostcardStyle>
     );

@@ -4,18 +4,22 @@ import { Eth } from 'react-cryptocoins';
 import styled from 'styled-components';
 import QRCode from 'qrcode.react';
 import { ThemeEngine } from '../../styles/GlobalStyle';
-import { Image } from '../Lightbox';
+import { Image } from '../../tools/Lightbox';
 
 type Props = {
     button: string;
     address: string;
     price: string;
     image: Image;
-}
+};
 
 const OpenSea: React.FunctionComponent<Props> = (props): JSX.Element => {
     const url = props.address;
-    const button = <>{props.button} <Eth /> {props.price}</>;
+    const button = (
+        <>
+            {props.button} <Eth /> {props.price}
+        </>
+    );
 
     return (
         <OpenSeaStyle>
@@ -26,7 +30,9 @@ const OpenSea: React.FunctionComponent<Props> = (props): JSX.Element => {
                 </Col>
                 <Col xs={12} sm={6} md={6} lg={6} className="image">
                     <img src={props.image.url} alt={props.image.alt} />
-                    <Button target="_blank" href={url}>{button}</Button>
+                    <Button target="_blank" href={url}>
+                        {button}
+                    </Button>
                 </Col>
             </Row>
         </OpenSeaStyle>
@@ -57,7 +63,7 @@ const OpenSeaStyle = styled.article`
     & div.description .code {
         margin: auto;
     }
-    
+
     & div.description .price {
         text-align: right;
     }
@@ -94,7 +100,8 @@ const OpenSeaStyle = styled.article`
     @media screen and (max-width: 768px) {
         max-height: unset;
 
-        & div.description, div.image {
+        & div.description,
+        div.image {
             width: 100%;
             max-width: unset;
         }
