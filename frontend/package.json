@@ -108,7 +108,10 @@
         ]
     },
     "reactSnap": {
-        "concurrency": 2
+        "concurrency": 2,
+        "puppeteerArgs": [
+            "--disable-dev-shm-usage"
+        ]
     },
     "browserslist": {
         "production": [
