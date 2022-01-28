@@ -79,7 +79,7 @@ const PostcardStyle = styled.article<Theme>`
         margin-right: auto;
     }
 
-    @media (min-width: 992px) {
+    @media (min-width: 993px) {
         :nth-child(odd) {
             margin-bottom: 10px;
         }

@@ -28,7 +28,6 @@ import BackTop from './tools/BackTop';
 import { SocialBlock } from './tools/SocialLinks';
 import { Themes, availableThemes } from './tools/Themes';
 import LoaderSpinner from './tools/LoaderSpinner';
-import { Section } from './styles/Section';
 
 export const AppContext = createContext<{
     testMode: boolean;
@@ -191,16 +190,14 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
                 <Suspense fallback={<LoaderSpinner type="Pulse" size={20} />}>
                     <ThemeProvider theme={availableThemes[theme]}>
                         <AppContext.Provider value={appContext}>
-                            <Section className={'App' + (navState === NavState.OPEN ? ' mobile-nav-active' : '')}>
-                                <Header />
-                                <Body />
-                                <Footer />
-                                <Privacy />
-                                <Toaster />
-                                <Overlay state={overlayState as OverlayState} />
-                                <BackTop />
-                                <GlobalStyle />
-                            </Section>
+                            <Header />
+                            <Body />
+                            <Footer />
+                            <Privacy />
+                            <Toaster />
+                            <Overlay state={overlayState as OverlayState} />
+                            <BackTop />
+                            <GlobalStyle />
                         </AppContext.Provider>
                     </ThemeProvider>
                 </Suspense>

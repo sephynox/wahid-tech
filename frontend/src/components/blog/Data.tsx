@@ -1,4 +1,4 @@
-import { ArticleData } from './Article';
+import { ArticleData, ArticleEditType } from './Article';
 import ADecentralizedFuture from './posts/ADecentralizedFuture';
 import HardhatReactUseDApp from './posts/HardhatReactUseDApp';
 
@@ -76,7 +76,14 @@ const Data: PostData = {
             url: '/images/blog/cryptocurrencies.png',
             alt: 'Bitcoin XRP Ethereum Cryptocurrencies',
         },
-        tags: ['dlt', 'blockchain', 'cryptocurrency'],
+        tags: ['dlt', 'blockchain', 'cryptocurrency', 'futurism'],
+        edits: [
+            {
+                type: ArticleEditType.RETRACTION,
+                reason: 'A single section containing information without a direct and verifiable source was retracted in order to maintain well-sourced article.',
+                date: new Date('2022-01-27'),
+            },
+        ],
         references: [
             {
                 id: 'citation-arons-2021',

@@ -566,18 +566,6 @@ const ADecentralizedFuture = ({ r }: InTextCitations): JSX.Element => (
                 some&rdquo; <APAInline r={r['citation-the-fed-2019']} />. This all continues to occur as the value of
                 the money these individuals do have continues to decrease as time goes on.
             </p>
-            <p>
-                Additionally, money is not the only thing slowly being siphoned from the majority of people. Central
-                nexuses of power such as big tech have been criticized for their practices of censorship. While the
-                issues of misinformation are of great concern, there is collateral damage especially when such protests
-                are directed toward our governments in peaceful manners. A case and point: A recent attempt by
-                cryptocurrency YouTuber Ben Armstrong also known as &ldquo;BitBoy&rdquo; to organize a peaceful online
-                protest of the SEC action against Ripple Labs. This protest was to simply leave bad reviews on the
-                SEC&apos;s Google business page for their Atlanta, Georgia offices. Since then, Google has seemingly now
-                removed the majority of the reviews. Regardless of how one may feel about the YouTube influencer&apos;s
-                content, the fact that a private corporation has eradicated traces of a very public and peaceful protest
-                against a government organization <i>is</i> a cause for concern.
-            </p>
         </section>
         <section>
             <h3 id="The-Forgotten">The Forgotten</h3>

@@ -20,25 +20,23 @@ const MarketHome: React.FunctionComponent = (): JSX.Element => {
     };
 
     return (
-        <>
-            <Section>
-                <header>
-                    <h1>{title}</h1>
-                </header>
-                <Row>
-                    <Col className="text-right d-none d-md-block d-xl-block d-lg-block">
-                        <IconButton
-                            title={t('refresh')}
-                            onClick={refreshData}
-                            icon="bi-arrow-repeat"
-                            size={30}
-                        ></IconButton>
-                    </Col>
-                </Row>
-                <MarketList data={listData} />
-                <div className="text-right">{marketContext.marketDataByline(marketType)}</div>
-            </Section>
-        </>
+        <Section>
+            <header>
+                <h1>{title}</h1>
+            </header>
+            <Row>
+                <Col className="text-right d-none d-md-block d-xl-block d-lg-block">
+                    <IconButton
+                        title={t('refresh')}
+                        onClick={refreshData}
+                        icon="bi-arrow-repeat"
+                        size={30}
+                    ></IconButton>
+                </Col>
+            </Row>
+            <MarketList data={listData} />
+            <div className="text-right">{marketContext.marketDataByline(marketType)}</div>
+        </Section>
     );
 };
 

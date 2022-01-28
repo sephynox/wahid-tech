@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import Typed from 'react-typed';
 import styled from 'styled-components';
 import * as Constants from '../Constants';
+import { Section } from '../styles/Section';
 import { formatTitleCase } from '../utils/data-formatters';
 
 const About = (): JSX.Element => {
@@ -28,21 +29,26 @@ const About = (): JSX.Element => {
 
     return (
         <AboutStyle id="about">
-            <h1>{t('about')}</h1>
-            <h2>{Constants.MY_NAME}</h2>
             <header>
-                <p className="typed-container">{formatTitleCase(t('i_am_a'))} <Typed {...typed_options} /></p>
+                <Section>
+                    <h1>{t('about')}</h1>
+                    <h2>{Constants.MY_NAME}</h2>
+                    <p className="typed-container">
+                        {formatTitleCase(t('i_am_a'))} <Typed {...typed_options} />
+                    </p>
+                </Section>
             </header>
-            <article className="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+            <section className="col-xs-12 col-sm-12 col-md-12 col-lg-6">
                 <hr />
                 {bio_text}
-            </article>
+            </section>
             <footer className="social-links">
                 <a
                     href="https://www.linkedin.com/in/twahid"
                     target="_blank"
                     className="linkedin"
-                    title="LinkedIn" rel="noreferrer"
+                    title="LinkedIn"
+                    rel="noreferrer"
                 >
                     <i className="icon bi-linkedin"></i>
                 </a>
@@ -53,7 +59,8 @@ const About = (): JSX.Element => {
                     href="https://github.com/sephynox/wahid-tech"
                     target="_blank"
                     className="github"
-                    title="GitHub" rel="noreferrer"
+                    title="GitHub"
+                    rel="noreferrer"
                 >
                     <i className="icon bi-github"></i>
                 </a>
@@ -64,7 +71,7 @@ const About = (): JSX.Element => {
 
 export default About;
 
-const AboutStyle = styled.section`
+const AboutStyle = styled.article`
     & h2 {
         margin: 0;
         font-size: 64px;
@@ -74,7 +81,7 @@ const AboutStyle = styled.section`
     & p.typed-container {
         margin: 15px 0 0 0;
         font-size: 26px;
-        font-family: "Poppins", sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
 
     & p span {

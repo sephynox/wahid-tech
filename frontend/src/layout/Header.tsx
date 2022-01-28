@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import * as Constants from '../Constants';
 import { navLinks } from '../Data';
+import { AppContext } from '../App';
 import { ThemeEngine } from '../styles/GlobalStyle';
 import OpenGraphImage from '../resources/images/opengraph.png';
 import LanguageSelector from './LanguageSelector';
-import Navigation, { NavToggle } from './Navigation';
+import Navigation, { NavState, NavToggle } from './Navigation';
 import ScrollTop from './ScrollTop';
 import Theme from '../tools/Themes';
 
 const Header: React.FunctionComponent = (): JSX.Element => {
     const { t } = useTranslation();
+    const appContext = useContext(AppContext);
 
     return (
-        <HeaderStyle id="header" className="d-flex flex-column justify-content-center">
+        <HeaderStyle id="header" navState={appContext.navState} className="d-flex flex-column justify-content-center">
             <Helmet>
                 <title>{Constants.MY_NAME} - Engineering &amp; Cybersecurity - Blog</title>
                 <meta name="author" content={Constants.MY_NAME} />
@@ -52,7 +54,7 @@ const HeaderStyle = styled.header<Theme>`
     transition: all 0.5s;
     overflow-y: auto;
 
-    @media (min-width: 992px) {
+    @media (min-width: 993px) {
         & .mobile-nav-toggle {
             display: none;
         }
@@ -60,8 +62,12 @@ const HeaderStyle = styled.header<Theme>`
 
     @media screen and (max-width: 992px) {
         width: 300px;
-        left: -300px;
+        left: ${(props: { navState: NavState }) => (props.navState === NavState.OPEN ? 0 : -300)}px;
         background-color: ${(props: ThemeEngine) => props.theme.background};
         border-right: 1px solid ${(props: ThemeEngine) => props.theme.backgroundDelta};
+
+        & .mobile-nav-toggle {
+            color: ${(props: ThemeEngine) => props.theme.text};
+        }
     }
 `;
