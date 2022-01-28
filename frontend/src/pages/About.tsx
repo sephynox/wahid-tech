@@ -13,14 +13,12 @@ const About = (): JSX.Element => {
     const bio_text = t('content.about');
     const typed_options = {
         strings: [
-            'VP of Engineering',
+            'Software Engineer',
             'Software Architect',
             'Fullstack Developer',
-            'Web App Engineer',
-            'Mobile Engineer',
             'DevOps Engineer',
-            'CSec Analyst',
-            'Compliance Officer',
+            'Mobile Developer',
+            'Cybersecurity Analyst',
         ],
         loop: true,
         typeSpeed: 100,
@@ -65,9 +63,9 @@ const About = (): JSX.Element => {
                 >
                     <i className="icon bi-linkedin"></i>
                 </a>
-                <a href="wahid-resume.pdf" target="_blank" className="linkedin" title="Resume">
+                {/* <a href="wahid-resume.pdf" target="_blank" className="linkedin" title="Resume">
                     <i className="icon bi-file-earmark-person-fill"></i>
-                </a>
+                </a> */}
                 <a
                     href="https://github.com/sephynox/wahid-tech"
                     target="_blank"
