@@ -38,10 +38,7 @@ const About = (): JSX.Element => {
                     </p>
                 </Section>
             </header>
-            <section className="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                <hr />
-                {bio_text}
-            </section>
+            <section className="col-xs-12 col-sm-12 col-md-12 col-lg-6">{bio_text}</section>
             <footer className="social-links">
                 <a
                     href="https://www.linkedin.com/in/twahid"

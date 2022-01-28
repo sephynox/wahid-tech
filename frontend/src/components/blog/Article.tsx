@@ -11,6 +11,8 @@ import * as Constants from '../../Constants';
 import { ensLookupReducer, EnsLookupState, fetchAddresses, initialEnsLookupState } from '../../actions/Ethereum';
 import { Breadcrumbs } from '../../layout/Navigation';
 import { ThemeEngine } from '../../styles/GlobalStyle';
+import { Section } from '../../styles/Section';
+import { QuietList } from '../../styles/Lists';
 import { DefinitionList } from '../../styles/DefinitionList';
 import HorizontalRule from '../../styles/HorizontalRule';
 import NotFound from '../../pages/NotFound';
@@ -23,11 +25,10 @@ import SocialLinks from '../../tools/SocialLinks';
 import Citation, { Author, formatAuthorName, InTextCitations } from '../../tools/Citation';
 import References from '../../tools/References';
 import APACitation from '../../tools/APACitation';
+import Blockies from '../../tools/Blockies';
 import Tags from '../../tools/Tags';
 import { formatNumber } from '../../utils/data-formatters';
 import { arrayToRecord } from '../../utils/data-helpers';
-import Blockies from '../../tools/Blockies';
-import { QuietList } from '../../styles/Lists';
 
 export enum ArticleEditType {
     CORRECTION = 'correction',
@@ -157,7 +158,9 @@ const Article: React.FunctionComponent = (): JSX.Element => {
                     <Figure>
                         <img src={data.image.url} alt={data.image.alt} />
                     </Figure>
-                    <h1 className="text-xs-center">{data.title}</h1>
+                    <Section>
+                        <h1 className="text-xs-center">{data.title}</h1>
+                    </Section>
                     <Container>
                         <Row>
                             <Col xs={12} sm={12} md={2}>
