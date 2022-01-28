@@ -126,6 +126,8 @@ const Article: React.FunctionComponent = (): JSX.Element => {
         <>
             <Helmet>
                 <title>{data.title}</title>
+                <meta name="description" content={data.description} />
+                <meta name="author" content={article_authors} />
                 <meta property="og:title" content={data.title} />
                 <meta property="og:type" content="article" />
                 <meta property="og:url" content={article_full_url} />
