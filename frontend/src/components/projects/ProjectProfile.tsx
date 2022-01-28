@@ -83,6 +83,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 <meta property="og:url" content={full_url} />
                 <meta property="og:image" content={data.image.url} />
                 <meta property="og:description" content={data.description} />
+                <meta property="article:section" content="Projects" />
                 <meta property="article:published_time" content={meta_date} />
                 <meta property="article:modified_time" content={meta_modified} />
                 <meta name="twitter:card" content="summary" />
@@ -92,9 +93,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 <meta name="twitter:description" content={data.description} />
                 <meta name="twitter:image" content={data.image.url} />
                 <meta name="keywords" content={data.tags.map((t) => t).join(',')} />
-                {data.authors.map((a, i) => (
-                    <meta key={i} property="article:author" content={formatAuthorName(a)} />
-                ))}
+                {data.authors.map((a, i) => a.og && <meta key={i} property="article:author" content={a.og} />)}
                 {data.tags.map((t, i) => (
                     <meta key={i} property="article:tag" content={t} />
                 ))}

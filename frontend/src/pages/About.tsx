@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import Typed from 'react-typed';
 import styled from 'styled-components';
@@ -29,6 +30,21 @@ const About = (): JSX.Element => {
 
     return (
         <AboutStyle id="about">
+            <Helmet>
+                <title>{Constants.SITE_TITLE}</title>
+                <meta name="author" content={Constants.MY_NAME} />
+                <meta name="description" content={t('content.description')} />
+                <meta property="og:type" content="profile" />
+                <meta property="og:description" content={bio_text} />
+                <meta property="profile:last_name" content={Constants.MY_NAME.split(' ')[0]} />
+                <meta property="profile:last_name" content={Constants.MY_NAME.split(' ')[1]} />
+                <meta property="profile:username" content={Constants.SITE_ENS}></meta>
+                <meta name="twitter:card" content="summary" />
+                <meta property="twitter:domain" content={Constants.SITE_DOMAIN} />
+                <meta property="twitter:url" content={window.location.href} />
+                <meta name="twitter:title" content={Constants.SITE_NAME} />
+                <meta name="twitter:description" content={bio_text} />
+            </Helmet>
             <header>
                 <Section>
                     <h1>{t('about')}</h1>

@@ -1,3 +1,4 @@
+import * as Constants from '../../Constants';
 import { ArticleData, ArticleEditType } from './Article';
 import ADecentralizedFuture from './posts/ADecentralizedFuture';
 import HardhatReactUseDApp from './posts/HardhatReactUseDApp';
@@ -11,7 +12,7 @@ const Data: PostData = {
         id: 2,
         comments: true,
         path: 'hardhat-react-usedapp',
-        authors: [{ given: 'Tanveer', family: 'Wahid', dns: 'wahid.eth' }],
+        authors: [Constants.AUTHOR_ME],
         date: new Date('2022-01-22'),
         title: 'Hardhat + React + useDapp',
         readTime: 20,
@@ -65,7 +66,7 @@ const Data: PostData = {
         id: 1,
         comments: true,
         path: 'a-decentralized-future',
-        authors: [{ given: 'Tanveer', family: 'Wahid', dns: 'wahid.eth' }],
+        authors: [Constants.AUTHOR_ME],
         date: new Date('2021-09-02'),
         title: 'A Decentralized Future',
         readTime: 60,

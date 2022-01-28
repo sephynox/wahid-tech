@@ -7,6 +7,7 @@ export interface Author {
     readonly family: string;
     readonly middle?: string;
     readonly dns?: string;
+    readonly og?: string;
 }
 
 export const formatAuthorName = (author: Author): string => {

@@ -58,6 +58,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 <meta property="og:url" content={link} />
                 <meta property="og:image" content={image.url} />
                 <meta property="og:description" content={data.description} />
+                <meta property="article:section" content="NFTs" />
                 <meta property="article:published_time" content={created} />
                 <meta property="article:author" content={data.creator.user?.username} />
                 <meta name="twitter:card" content="summary_large_image" />
