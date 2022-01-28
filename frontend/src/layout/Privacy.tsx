@@ -273,7 +273,7 @@ const Privacy: React.FunctionComponent = (): JSX.Element => {
     const privacyPrompt = {
         title: formatFirstUpper(t('privacy_consent')),
         text: t('content.privacy_consent'),
-        show: appContext.privacySelectorState === PrivacyPromptState.ACTIVE ? true : false,
+        show: !privacyPromptComplete || appContext.privacySelectorState === PrivacyPromptState.ACTIVE ? true : false,
         acceptAllText: t('button.accept_all'),
         rejectAllText: t('button.reject_all'),
         closeExpandedText: t('button.close'),

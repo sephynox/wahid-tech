@@ -93,11 +93,8 @@ const App = ({ history }: RouteComponentProps): JSX.Element => {
         new ethers.providers.InfuraProvider(Constants.DEFAULT_ETHERS_NETWORK, ethersConfig),
     );
     const [langSelectorState, setLangSelectorState] = useState(LanguageSelectorState.CLOSED);
-    const [privacySelectorState, setPrivacySelectorState] = useState(
-        localStorage.getItem('privacyPromptComplete') === 'true'
-            ? PrivacyPromptState.INACTIVE
-            : PrivacyPromptState.ACTIVE,
-    );
+    const [privacySelectorState, setPrivacySelectorState] = useState(PrivacyPromptState.INACTIVE);
+
     const [allowedCookieState, setAllowedCookieState] = useState(
         JSON.parse(localStorage.getItem('allowedCookieState') ?? '{}') as PrivacyCookieState,
     );
