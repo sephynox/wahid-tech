@@ -45,10 +45,12 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
     const owner: string = data.owner?.address;
     const created: string = Intl.DateTimeFormat(i18next.language).format(data.listing_date);
     const sale_date: string = data.last_sale ? Intl.DateTimeFormat(i18next.language).format(data.last_sale) : '';
+    const tags = ['nft', 'art'];
 
     return (
         <Section>
             <Helmet>
+                <title>{title}</title>
                 <meta property="og:title" content={title} />
                 <meta property="og:type" content="article" />
                 <meta property="og:url" content={link} />
@@ -62,6 +64,10 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 <meta name="twitter:title" content={title} />
                 <meta name="twitter:description" content={subtext} />
                 <meta name="twitter:image" content={image.url} />
+                <meta name="keywords" content={tags.map((t) => t).join(',')} />
+                {tags.map((t, i) => (
+                    <meta key={i} property="article:tag" content={t} />
+                ))}
             </Helmet>
             <Breadcrumbs
                 links={[

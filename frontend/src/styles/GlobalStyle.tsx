@@ -124,15 +124,6 @@ hr.nav-menu-buttons {
     background-color: ${(props: ThemeEngine) => props.theme.info} !important;
 }
 
-.mobile-nav-active .mobile-nav-toggle {
-    color: ${(props: ThemeEngine) => props.theme.text};
-    background-color: ${(props: ThemeEngine) => props.theme.info};
-}
-
-.mobile-nav-toggle {
-    color: ${(props: ThemeEngine) => props.theme.text};
-}
-
 .back-to-top:hover {
     background-color: ${(props: ThemeEngine) => props.theme.info};
     color: ${(props: ThemeEngine) => props.theme.text};

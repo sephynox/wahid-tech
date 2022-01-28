@@ -201,7 +201,7 @@ export const NavStyle = styled.nav`
         display: block;
     }
 
-    @media (min-width: 992px) {
+    @media (min-width: 993px) {
         & a,
         a:focus,
         .nav-menu-buttons button {

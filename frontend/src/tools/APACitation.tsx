@@ -53,9 +53,9 @@ export const APAInline: React.FunctionComponent<{ r: Citation | Array<Citation> 
             );
         } else {
             return (
-                <>
+                <a key={index} href={`#${ref.id}`}>
                     {getAuthors(ref)}, {getDate(ref)}
-                </>
+                </a>
             );
         }
     };

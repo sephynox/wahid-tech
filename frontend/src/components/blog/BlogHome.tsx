@@ -29,6 +29,7 @@ const BlogHome: React.FunctionComponent = (): JSX.Element => {
             </Col>
         );
     });
+
     return (
         <Section>
             <header>

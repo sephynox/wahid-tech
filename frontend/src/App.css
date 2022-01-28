@@ -227,16 +227,6 @@ figure figcaption {
     }
 }
 
-@media screen and (max-width: 992px) {
-    .App.mobile-nav-active {
-        overflow: hidden;
-    }
-
-    .App.mobile-nav-active #header {
-        left: 0;
-    }
-}
-
 @-webkit-keyframes animate-loading {
     0% {
         transform: rotate(0deg);

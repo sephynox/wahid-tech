@@ -1,13 +1,13 @@
-import * as React from 'react'
+import * as React from 'react';
 import styled from 'styled-components';
 import Routes from '../Routes';
 import Theme from '../tools/Themes';
 
 const Body: React.FunctionComponent = (): JSX.Element => (
-    <MainStyle id="main" className="d-flex flex-column">
-        <div className="margin-auto-vertical">
+    <MainStyle id="main" className="d-flex flex-column margin-auto-vertical">
+        <section className="margin-auto-vertical">
             <Routes />
-        </div>
+        </section>
     </MainStyle>
 );
 
@@ -20,7 +20,7 @@ const MainStyle = styled.main<Theme>`
     position: relative;
     padding: 60px 0 80px 15px;
 
-    @media (min-width: 992px) {
+    @media (min-width: 993px) {
         padding-left: 160px;
         padding-right: 30px;
     }

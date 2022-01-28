@@ -11,6 +11,8 @@ import * as Constants from '../../Constants';
 import { ensLookupReducer, EnsLookupState, fetchAddresses, initialEnsLookupState } from '../../actions/Ethereum';
 import { Breadcrumbs } from '../../layout/Navigation';
 import { ThemeEngine } from '../../styles/GlobalStyle';
+import { Section } from '../../styles/Section';
+import { QuietList } from '../../styles/Lists';
 import { DefinitionList } from '../../styles/DefinitionList';
 import HorizontalRule from '../../styles/HorizontalRule';
 import NotFound from '../../pages/NotFound';
@@ -23,10 +25,24 @@ import SocialLinks from '../../tools/SocialLinks';
 import Citation, { Author, formatAuthorName, InTextCitations } from '../../tools/Citation';
 import References from '../../tools/References';
 import APACitation from '../../tools/APACitation';
+import Blockies from '../../tools/Blockies';
 import Tags from '../../tools/Tags';
 import { formatNumber } from '../../utils/data-formatters';
 import { arrayToRecord } from '../../utils/data-helpers';
-import Blockies from '../../tools/Blockies';
+
+export enum ArticleEditType {
+    CORRECTION = 'correction',
+    RETRACTION = 'retraction',
+    ADDENDA = 'addenda',
+    CONCERN = 'concern',
+    COMMENT = 'comment',
+}
+
+export interface ArticleEdit {
+    date: Date;
+    type: ArticleEditType;
+    reason: string;
+}
 
 export interface ArticleData {
     id: number;
@@ -40,8 +56,8 @@ export interface ArticleData {
     readTime: number;
     references: Citation[];
     component: React.FunctionComponent<InTextCitations>;
-    modified?: Date;
     comments?: boolean;
+    edits?: ArticleEdit[];
 }
 
 const Article: React.FunctionComponent = (): JSX.Element => {
@@ -52,6 +68,19 @@ const Article: React.FunctionComponent = (): JSX.Element => {
     const [ensData, dispatchEnsData] = useReducer(ensLookupReducer, initialEnsLookupState);
 
     const data = Data[id];
+
+    const editItem = (edit: ArticleEdit, index: number): JSX.Element => {
+        return (
+            <li key={index}>
+                <strong>
+                    {t(edit.type.toString())}: {Intl.DateTimeFormat(i18next.language).format(edit.date)}
+                </strong>
+                <p>
+                    <i>{edit.reason}</i>
+                </p>
+            </li>
+        );
+    };
 
     const dispatchEnsDataAssist = (state: EnsLookupState): void => {
         if (isActive.current) {
@@ -67,6 +96,7 @@ const Article: React.FunctionComponent = (): JSX.Element => {
     }, [data.authors, appContext.ethersProvider]);
 
     useEffect(() => {
+        //contentsProvider();
         authorResolver();
 
         return () => {
@@ -84,11 +114,13 @@ const Article: React.FunctionComponent = (): JSX.Element => {
     const article_references = arrayToRecord(data.references, 'id');
     const article_authors = data.authors.map((author: Author) => formatAuthorName(author)).join(', ');
     const publish_date = Intl.DateTimeFormat(i18next.language).format(data.date);
-    const modified_date = data.modified ? Intl.DateTimeFormat(i18next.language).format(data.modified) : null;
     const meta_date = [data.date.getFullYear(), data.date.getMonth(), data.date.getDate()].join('-');
-    const meta_modified = data.modified
-        ? [data.modified.getFullYear(), data.modified.getMonth(), data.modified.getDate()].join('-')
+    const modified_date = data.edits
+        ? Intl.DateTimeFormat(i18next.language).format(
+              data.edits.reduce((prev, next) => (next.date > prev.date ? next : prev)).date,
+          )
         : undefined;
+    const meta_modified = modified_date;
 
     return (
         <>
@@ -126,7 +158,9 @@ const Article: React.FunctionComponent = (): JSX.Element => {
                     <Figure>
                         <img src={data.image.url} alt={data.image.alt} />
                     </Figure>
-                    <h1 className="text-xs-center">{data.title}</h1>
+                    <Section>
+                        <h1 className="text-xs-center">{data.title}</h1>
+                    </Section>
                     <Container>
                         <Row>
                             <Col xs={12} sm={12} md={2}>
@@ -138,7 +172,7 @@ const Article: React.FunctionComponent = (): JSX.Element => {
                                     <dd>{article_authors}</dd>
                                     <dt>{t('published')}:</dt>
                                     <dd>{publish_date}</dd>
-                                    {modified_date !== null ? (
+                                    {modified_date !== undefined ? (
                                         <>
                                             <dt>{t('last_update')}:</dt>
                                             <dd>{modified_date}</dd>
@@ -161,22 +195,22 @@ const Article: React.FunctionComponent = (): JSX.Element => {
                                 </DefinitionList>
                             </Col>
                         </Row>
-                        <Row>
-                            <Col>
-                                <Tocbot
-                                    header={t('table_of_contents')}
-                                    contentSelector="article"
-                                    headingSelector="h3, h4, h5, h6"
-                                />
-                            </Col>
-                        </Row>
                     </Container>
+                    <h2>{t('full_story')}</h2>
+                    <HorizontalRule />
                 </header>
-                <h2>{t('full_story')}</h2>
-                <HorizontalRule />
+                <Tocbot header={t('table_of_contents')} contentSelector="article" headingSelector="h3, h4, h5, h6" />
                 <MyArticle r={article_references} />
-                <HorizontalRule />
                 <footer>
+                    <HorizontalRule />
+                    {data.edits !== undefined && data.edits.length > 0 && (
+                        <details>
+                            <summary>
+                                <h2>{t('edits')}</h2>
+                            </summary>
+                            <QuietList>{data.edits.map((edit, i) => editItem(edit, i))}</QuietList>
+                        </details>
+                    )}
                     {data.references.length > 0 && (
                         <details>
                             <summary>
@@ -228,24 +262,28 @@ const ArticleStyle = styled.article`
     }
 
     & section h1 {
-        margin-bottom: 20px;
+        padding-bottom: 20px;
     }
 
     & h2 {
-        margin: 20px 0 20px 0;
+        padding: 20px 0 20px 0;
         font-size: 1.3em;
         display: inline-block;
         text-transform: capitalize;
         color: ${(props: ThemeEngine) => props.theme.subduedText};
     }
 
+    & h3 {
+        font-size: 1.2em;
+    }
+
     & section h3 {
-        margin-top: 30px;
+        padding-top: 30px;
         font-size: 1.4em;
     }
 
     & section h4 {
-        margin-top: 20px;
+        padding-top: 20px;
         font-size: 1.1em;
     }
 
