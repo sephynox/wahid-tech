@@ -18,7 +18,7 @@ import Comments from '../Comments';
 import { ensLookupReducer, EnsLookupState, fetchAddresses, initialEnsLookupState } from '../../actions/Ethereum';
 import SocialLinks from '../../tools/SocialLinks';
 import { Breadcrumbs } from '../../layout/Navigation';
-import { Author } from '../../tools/Citation';
+import { Author, formatAuthorName } from '../../tools/Citation';
 import LoaderSkeleton from '../../layout/LoaderSkeleton';
 import Blockies from '../../tools/Blockies';
 
@@ -33,10 +33,6 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
     const data = Data[id];
 
     const readmeLinks = (href: string) => `${data.repo_url}/blob/HEAD/${href}`;
-
-    const formatName = (author: Author) => {
-        return `${author.given} ${author.middle ? author.middle.substring(0, 1) + '. ' : ' '}${author.family}`;
-    };
 
     const fetchReadme = useCallback(async (path: string) => {
         axios.get(path).then((response) => isActive.current && setReadme(response.data));
@@ -68,7 +64,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
         return <NotFound />;
     }
 
-    const authors = data.authors.map((author: Author) => formatName(author)).join(', ');
+    const authors = data.authors.map((author: Author) => formatAuthorName(author)).join(', ');
     const full_url = Constants.SITE_PROJECT_PATH_BASE_URL + data.path;
     const created: string = Intl.DateTimeFormat(i18next.language).format(data.date);
     const meta_date = [data.date.getFullYear(), data.date.getMonth(), data.date.getDate()].join('-');
@@ -80,11 +76,14 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
         <>
             <Helmet>
                 <title>{data.name}</title>
+                <meta name="description" content={data.description} />
+                <meta name="author" content={authors} />
                 <meta property="og:title" content={data.name} />
                 <meta property="og:type" content="article" />
                 <meta property="og:url" content={full_url} />
                 <meta property="og:image" content={data.image.url} />
                 <meta property="og:description" content={data.description} />
+                <meta property="article:section" content="Projects" />
                 <meta property="article:published_time" content={meta_date} />
                 <meta property="article:modified_time" content={meta_modified} />
                 <meta name="twitter:card" content="summary" />
@@ -94,9 +93,7 @@ const NftProfile: React.FunctionComponent = (): JSX.Element => {
                 <meta name="twitter:description" content={data.description} />
                 <meta name="twitter:image" content={data.image.url} />
                 <meta name="keywords" content={data.tags.map((t) => t).join(',')} />
-                {data.authors.map((a, i) => (
-                    <meta key={i} property="article:author" content={formatName(a)} />
-                ))}
+                {data.authors.map((a, i) => a.og && <meta key={i} property="article:author" content={a.og} />)}
                 {data.tags.map((t, i) => (
                     <meta key={i} property="article:tag" content={t} />
                 ))}

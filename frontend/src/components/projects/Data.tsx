@@ -1,3 +1,4 @@
+import * as Constants from '../../Constants';
 import { Author } from '../../tools/Citation';
 import { Image } from '../../tools/Lightbox';
 import ImageXRPLRust from '../../resources/images/projects/xrpl-rust.png';
@@ -22,7 +23,7 @@ const ProjectData: Record<string, Project> = {
         name: 'xrpl-rust',
         path: 'xrpl-rust',
         language: 'rust',
-        authors: [{ given: 'Tanveer', family: 'Wahid', dns: 'wahid.eth' }],
+        authors: [Constants.AUTHOR_ME],
         description:
             'A pure Rust implementation for interacting with the XRP Ledger. The xrpl-rust crate simplifies the hardest parts of XRP Ledger interaction including serialization and transaction signing while providing idiomatic Rust functionality for XRP Ledger transactions and core server API (rippled) objects.',
         image: {

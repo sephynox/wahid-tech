@@ -1,10 +1,13 @@
 export const SITE_BASE_URL = window.location.origin;
 export const DEV_MODE = 'production' !== process.env.NODE_ENV;
+export const MY_NAME = 'Tanveer Wahid';
+export const MY_EMAIL = 'tan@wahid.email';
 export const SITE_NAME = 'WTech';
 export const SITE_DOMAIN = 'wahid.tech';
 export const SITE_ENS = 'wahid.eth';
-export const MY_NAME = 'Tanveer Wahid';
-export const MY_EMAIL = 'tan@wahid.email';
+export const SITE_OG_PROFILE = 'https://wahid.tech/about';
+export const SITE_TITLE = `${MY_NAME} - Engineering &amp; Cybersecurity - Blog`;
+export const AUTHOR_ME = { given: 'Tanveer', family: 'Wahid', dns: SITE_ENS, og: SITE_OG_PROFILE };
 
 export const DEFAULT_LANG = 'en-US';
 export const DEFAULT_CURRENCY = 'USD';
