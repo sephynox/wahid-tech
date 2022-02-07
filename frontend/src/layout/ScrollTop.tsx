@@ -1,17 +1,20 @@
-import { useEffect } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { useEffect } from "react";
+import { createBrowserHistory } from "history";
 
-const ScrollTop = ({ history }: RouteComponentProps) => {
-    useEffect(() => {
-        const listener = history.listen(() => {
-            document.body.scrollTo(0, 0);
-        });
-        return () => {
-            listener();
-        }
-    }, [history]);
+const ScrollTop = (): null => {
+  const history = createBrowserHistory();
 
-    return (null);
+  useEffect(() => {
+    const listener = history.listen(() => {
+      document.body.scrollTo(0, 0);
+    });
+
+    return () => {
+      listener();
+    };
+  }, [history]);
+
+  return null;
 };
 
-export default withRouter(ScrollTop);
+export default ScrollTop;

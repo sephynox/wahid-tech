@@ -1,23 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-import '@ethersproject/shims';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { I18nextProvider } from "react-i18next";
+import { HelmetProvider } from "react-helmet-async";
+import { Spinner } from "react-bootstrap";
+import "@ethersproject/shims";
 
-const rootElement = document.getElementById('root');
+import i18next from "./services/i18n";
+import reportWebVitals from "./reportWebVitals";
+import Routes from "./Routes";
+
+const rootElement = document.getElementById("root");
 const appElement = (
-    <React.StrictMode>
-        <Router>
-            <App />
-        </Router>
-    </React.StrictMode>
+  <Suspense fallback={<Spinner animation="border" role="status" />}>
+    <BrowserRouter>
+      <I18nextProvider i18n={i18next}>
+        <HelmetProvider>
+          <Routes />
+        </HelmetProvider>
+      </I18nextProvider>
+    </BrowserRouter>
+  </Suspense>
 );
 
 if (rootElement?.hasChildNodes()) {
-    ReactDOM.hydrate(appElement, rootElement);
+  ReactDOM.hydrate(appElement, rootElement);
 } else {
-    ReactDOM.render(appElement, rootElement);
+  ReactDOM.render(appElement, rootElement);
 }
 
 // If you want to start measuring performance in your app, pass a function
