@@ -1,49 +1,68 @@
-import React, { useContext } from 'react';
-import { useTranslation } from 'react-i18next';
-import { AppContext } from '../App';
-import { systemEvents, systemLanguages } from '../Data';
-import { Themes } from '../tools/Themes';
+import React from "react";
+import { useTranslation } from "react-i18next";
 
-const Buttons: React.FunctionComponent = (): JSX.Element => {
-    const appContext = useContext(AppContext);
-    const { t, i18n } = useTranslation();
+import { Themes } from "../styles/Themes";
+import { PrivacyPromptState } from "../components/PrivacyPrompt";
+import { LanguageSelectorState } from "./LanguageSelector";
+import ToggleTheme from "./ToggleTheme";
 
-    const toggleTheme = () => {
-        let mode = Themes.LIGHT;
+type Props = {
+  theme: Themes;
+  setTheme: (value: Themes) => void;
+  systemLanguages: Record<string, string>;
+  languageSelectorState: LanguageSelectorState;
+  setLanguageSelectorState: (state: LanguageSelectorState) => void;
+  privacyPromptState: PrivacyPromptState;
+  setPrivacyPromptState: (state: PrivacyPromptState) => void;
+};
 
-        if (appContext.theme === Themes.LIGHT) {
-            mode = Themes.DARK;
-        }
+const Buttons: React.FunctionComponent<Props> = ({
+  theme,
+  systemLanguages,
+  languageSelectorState,
+  privacyPromptState,
+  setTheme,
+  setLanguageSelectorState,
+  setPrivacyPromptState,
+}): JSX.Element => {
+  const { t, i18n } = useTranslation();
 
-        appContext.logEvent({ ...systemEvents['change_theme'], label: mode.toString() });
-        appContext.setTheme(mode);
-    };
-
-    return (
-        <div className="nav-menu-buttons">
-            <hr className="mt-3 mb-3" />
-            <ul>
-                <li>
-                    <button className="nav-link" onClick={toggleTheme}>
-                        <i className={appContext.theme === Themes.LIGHT ? 'icon bi-moon-fill' : 'icon bi-sun-fill'}></i>
-                        <span>&nbsp;{t(appContext.theme)}</span>
-                    </button>
-                </li>
-                <li>
-                    <button className="nav-link" onClick={appContext.toggleLangSelector}>
-                        <i className="icon bi-translate"></i>
-                        <span>&nbsp;{systemLanguages[i18n.language]}</span>
-                    </button>
-                </li>
-                <li>
-                    <button className="nav-link" onClick={appContext.togglePrivacySelector}>
-                        <i className="icon bi-collection"></i>
-                        <span>&nbsp;{t('data_privacy')}</span>
-                    </button>
-                </li>
-            </ul>
-        </div>
+  const toggleLangSelector = () => {
+    setLanguageSelectorState(
+      languageSelectorState === LanguageSelectorState.CLOSED
+        ? LanguageSelectorState.OPEN
+        : LanguageSelectorState.CLOSED,
     );
+  };
+
+  const togglePrivacyPrompt = () => {
+    setPrivacyPromptState(
+      privacyPromptState === PrivacyPromptState.INACTIVE ? PrivacyPromptState.ACTIVE : PrivacyPromptState.INACTIVE,
+    );
+  };
+
+  return (
+    <div className="nav-menu-buttons">
+      <hr className="mt-3 mb-3" />
+      <ul>
+        <li>
+          <ToggleTheme theme={theme} setTheme={setTheme} />
+        </li>
+        <li>
+          <button className="nav-link" onClick={toggleLangSelector}>
+            <i className="icon bi-translate"></i>
+            <span>&nbsp;{systemLanguages[i18n.language]}</span>
+          </button>
+        </li>
+        <li>
+          <button className="nav-link" onClick={togglePrivacyPrompt}>
+            <i className="icon bi-collection"></i>
+            <span>&nbsp;{t("data_privacy")}</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  );
 };
 
 export default Buttons;
