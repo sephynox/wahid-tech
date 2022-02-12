@@ -209,6 +209,7 @@ const PrivacyPromptStyle = styled.div`
   background-color: ${(props: ThemeEngine) => props.theme.backgroundExtended};
   position: fixed;
   top: 0;
+  left: 0;
 
   &.active {
     display: block;
@@ -243,9 +244,6 @@ const PrivacyPromptStyle = styled.div`
   & td p {
     font-size: 1em;
     margin-bottom: 0;
-  }
-
-  @media (min-width: 768px) {
   }
 
   @media screen and (max-width: 768px) {
