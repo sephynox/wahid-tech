@@ -26,11 +26,6 @@ export const navLinks: NavBlock[] = [
     to: "/projects",
   },
   {
-    text: "NFTs",
-    icon: "icon bi-images",
-    to: "/nfts",
-  },
-  {
     text: "blog",
     icon: "icon bi-journals",
     to: "/technology-blog",
