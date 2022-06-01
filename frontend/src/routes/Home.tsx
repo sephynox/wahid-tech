@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import * as Constants from "../Constants";
 import BlogData, { Posts } from "../Data/Blog";
-import NftData, { Nfts } from "../Data/Nft";
+//import NftData, { Nfts } from "../Data/Nft";
 import ProjectData, { Projects } from "../Data/Project";
 import { Section } from "../styles/Section";
 import Postcard from "../components/Postcard";
@@ -13,7 +13,7 @@ const Home = (): JSX.Element => {
   const { t } = useTranslation();
 
   const article = BlogData[Posts[0]];
-  const nft = NftData[Nfts[0]];
+  //const nft = NftData[Nfts[0]];
   const project = ProjectData[Projects[0]];
   const title = Constants.SITE_NAME;
   const subtext = t("content.home");
@@ -56,7 +56,7 @@ const Home = (): JSX.Element => {
             />
           </Section>
         </Col>
-        <Col xs={12} sm={12} md={6} lg={4} xl={4}>
+         {/* <Col xs={12} sm={12} md={6} lg={4} xl={4}>
           <Section>
             <h3 className="mb-3">{t("latest_nft")}</h3>
             <Postcard
@@ -69,7 +69,7 @@ const Home = (): JSX.Element => {
               linkText={t("view")}
             />
           </Section>
-        </Col>
+        </Col> */}
       </Row>
     </>
   );
